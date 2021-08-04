@@ -23,6 +23,7 @@ import re as re_
 import base64
 import datetime as datetime_
 
+
 etree_ = None
 Verbose_import_ = False
 (   XMLParser_import_none, XMLParser_import_lxml,
@@ -404,7 +405,7 @@ def showIndent(outfile, level, pretty_print=True):
 def quote_xml(inStr):
     if not inStr:
         return ''
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, str) and inStr or
           '%s' % inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
@@ -413,7 +414,7 @@ def quote_xml(inStr):
 
 
 def quote_attrib(inStr):
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, str) and inStr or
           '%s' % inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
@@ -2251,7 +2252,7 @@ class BoxStyle(GeneratedsSuper):
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -2303,7 +2304,7 @@ class Card(GeneratedsSuper):
         self.Text = _cast(None, Text)
         self.GradeTwoIndex = _cast(int, GradeTwoIndex)
         self.GradeThreeReference = _cast(None, GradeThreeReference)
-        if isinstance(DateTime, basestring):
+        if isinstance(DateTime, str):
             initvalue_ = datetime_.datetime.strptime(DateTime, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = DateTime
@@ -2518,7 +2519,7 @@ class Card(GeneratedsSuper):
             already_processed.add('LocalDateTimeOffset')
             try:
                 self.LocalDateTimeOffset = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('TimeSet', node)
         if value is not None and 'TimeSet' not in already_processed:
@@ -2543,7 +2544,7 @@ class Card(GeneratedsSuper):
             already_processed.add('GradeOneIndex')
             try:
                 self.GradeOneIndex = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('GradeTwoReference', node)
         if value is not None and 'GradeTwoReference' not in already_processed:
@@ -2558,7 +2559,7 @@ class Card(GeneratedsSuper):
             already_processed.add('GradeTwoIndex')
             try:
                 self.GradeTwoIndex = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('GradeThreeReference', node)
         if value is not None and 'GradeThreeReference' not in already_processed:
@@ -2569,7 +2570,7 @@ class Card(GeneratedsSuper):
             already_processed.add('DateTime')
             try:
                 self.DateTime = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (DateTime): %s' % exp)
         value = find_attr_value_('DateTimeDescription', node)
         if value is not None and 'DateTimeDescription' not in already_processed:
@@ -2588,7 +2589,7 @@ class Card(GeneratedsSuper):
             already_processed.add('GradeThreeIndex')
             try:
                 self.GradeThreeIndex = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Summary', node)
         if value is not None and 'Summary' not in already_processed:
@@ -2904,7 +2905,7 @@ class CustomImage(GeneratedsSuper):
             already_processed.add('DataLength')
             try:
                 self.DataLength = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('DataGuid', node)
         if value is not None and 'DataGuid' not in already_processed:
@@ -3255,7 +3256,7 @@ class PropertyBagProperty(GeneratedsSuper):
             already_processed.add('DataLength')
             try:
                 self.DataLength = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Data', node)
         if value is not None and 'Data' not in already_processed:
@@ -3344,7 +3345,7 @@ class Chart(GeneratedsSuper):
         self.WiringDistanceNear = _cast(float, WiringDistanceNear)
         self.UseWiringHeightForThemeIcon = _cast(bool, UseWiringHeightForThemeIcon)
         self.DefaultTickRate = _cast(float, DefaultTickRate)
-        if isinstance(DefaultDateTimeForNewChart, basestring):
+        if isinstance(DefaultDateTimeForNewChart, str):
             initvalue_ = datetime_.datetime.strptime(DefaultDateTimeForNewChart, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = DefaultDateTimeForNewChart
@@ -3353,7 +3354,7 @@ class Chart(GeneratedsSuper):
         self.HiddenItemsVisibility = _cast(None, HiddenItemsVisibility)
         self.GridWidthSize = _cast(float, GridWidthSize)
         self.HideMatchingTimeZoneFormat = _cast(bool, HideMatchingTimeZoneFormat)
-        if isinstance(DefaultDate, basestring):
+        if isinstance(DefaultDate, str):
             initvalue_ = datetime_.datetime.strptime(DefaultDate, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = DefaultDate
@@ -4362,7 +4363,7 @@ class Chart(GeneratedsSuper):
             already_processed.add('GridHeightSize')
             try:
                 self.GridHeightSize = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (GridHeightSize): %s' % exp)
         value = find_attr_value_('UseDefaultLinkSpacingWhenDragging', node)
         if value is not None and 'UseDefaultLinkSpacingWhenDragging' not in already_processed:
@@ -4405,21 +4406,21 @@ class Chart(GeneratedsSuper):
             already_processed.add('BackColour')
             try:
                 self.BackColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('DefaultLinkSpacing', node)
         if value is not None and 'DefaultLinkSpacing' not in already_processed:
             already_processed.add('DefaultLinkSpacing')
             try:
                 self.DefaultLinkSpacing = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (DefaultLinkSpacing): %s' % exp)
         value = find_attr_value_('WiringDistanceNear', node)
         if value is not None and 'WiringDistanceNear' not in already_processed:
             already_processed.add('WiringDistanceNear')
             try:
                 self.WiringDistanceNear = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (WiringDistanceNear): %s' % exp)
         value = find_attr_value_('UseWiringHeightForThemeIcon', node)
         if value is not None and 'UseWiringHeightForThemeIcon' not in already_processed:
@@ -4435,21 +4436,21 @@ class Chart(GeneratedsSuper):
             already_processed.add('DefaultTickRate')
             try:
                 self.DefaultTickRate = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (DefaultTickRate): %s' % exp)
         value = find_attr_value_('DefaultDateTimeForNewChart', node)
         if value is not None and 'DefaultDateTimeForNewChart' not in already_processed:
             already_processed.add('DefaultDateTimeForNewChart')
             try:
                 self.DefaultDateTimeForNewChart = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (DefaultDateTimeForNewChart): %s' % exp)
         value = find_attr_value_('WiringHeight', node)
         if value is not None and 'WiringHeight' not in already_processed:
             already_processed.add('WiringHeight')
             try:
                 self.WiringHeight = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (WiringHeight): %s' % exp)
         value = find_attr_value_('HiddenItemsVisibility', node)
         if value is not None and 'HiddenItemsVisibility' not in already_processed:
@@ -4461,7 +4462,7 @@ class Chart(GeneratedsSuper):
             already_processed.add('GridWidthSize')
             try:
                 self.GridWidthSize = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (GridWidthSize): %s' % exp)
         value = find_attr_value_('HideMatchingTimeZoneFormat', node)
         if value is not None and 'HideMatchingTimeZoneFormat' not in already_processed:
@@ -4477,7 +4478,7 @@ class Chart(GeneratedsSuper):
             already_processed.add('DefaultDate')
             try:
                 self.DefaultDate = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (DefaultDate): %s' % exp)
         value = find_attr_value_('TimeBarVisible', node)
         if value is not None and 'TimeBarVisible' not in already_processed:
@@ -4493,7 +4494,7 @@ class Chart(GeneratedsSuper):
             already_processed.add('WiringSpacing')
             try:
                 self.WiringSpacing = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (WiringSpacing): %s' % exp)
         value = find_attr_value_('BlankLinkLabels', node)
         if value is not None and 'BlankLinkLabels' not in already_processed:
@@ -4523,7 +4524,7 @@ class Chart(GeneratedsSuper):
             already_processed.add('WiringDistanceFar')
             try:
                 self.WiringDistanceFar = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (WiringDistanceFar): %s' % exp)
         value = find_attr_value_('IdReferenceLinking', node)
         if value is not None and 'IdReferenceLinking' not in already_processed:
@@ -4786,7 +4787,7 @@ class ChartItem(GeneratedsSuper):
         self.Selected = _cast(bool, Selected)
         self.GradeTwoReference = _cast(None, GradeTwoReference)
         self.GradeThreeReference = _cast(None, GradeThreeReference)
-        if isinstance(DateTime, basestring):
+        if isinstance(DateTime, str):
             initvalue_ = datetime_.datetime.strptime(DateTime, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = DateTime
@@ -5119,7 +5120,7 @@ class ChartItem(GeneratedsSuper):
             already_processed.add('LocalDateTimeOffset')
             try:
                 self.LocalDateTimeOffset = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Shown', node)
         if value is not None and 'Shown' not in already_processed:
@@ -5144,7 +5145,7 @@ class ChartItem(GeneratedsSuper):
             already_processed.add('GradeOneIndex')
             try:
                 self.GradeOneIndex = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Description', node)
         if value is not None and 'Description' not in already_processed:
@@ -5159,7 +5160,7 @@ class ChartItem(GeneratedsSuper):
             already_processed.add('GradeTwoIndex')
             try:
                 self.GradeTwoIndex = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Selected', node)
         if value is not None and 'Selected' not in already_processed:
@@ -5183,7 +5184,7 @@ class ChartItem(GeneratedsSuper):
             already_processed.add('DateTime')
             try:
                 self.DateTime = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (DateTime): %s' % exp)
         value = find_attr_value_('DateTimeDescription', node)
         if value is not None and 'DateTimeDescription' not in already_processed:
@@ -5202,7 +5203,7 @@ class ChartItem(GeneratedsSuper):
             already_processed.add('GradeThreeIndex')
             try:
                 self.GradeThreeIndex = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('TimeSet', node)
         if value is not None and 'TimeSet' not in already_processed:
@@ -5231,7 +5232,7 @@ class ChartItem(GeneratedsSuper):
             already_processed.add('XPosition')
             try:
                 self.XPosition = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Id', node)
         if value is not None and 'Id' not in already_processed:
@@ -5639,7 +5640,7 @@ class CircleStyle(GeneratedsSuper):
             already_processed.add('Diameter')
             try:
                 self.Diameter = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (Diameter): %s' % exp)
         value = find_attr_value_('Autosize', node)
         if value is not None and 'Autosize' not in already_processed:
@@ -5672,21 +5673,21 @@ class CircleStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('BackColour', node)
         if value is not None and 'BackColour' not in already_processed:
             already_processed.add('BackColour')
             try:
                 self.BackColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LineWidth', node)
         if value is not None and 'LineWidth' not in already_processed:
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -5880,7 +5881,7 @@ class CIStyle(GeneratedsSuper):
             already_processed.add('SubTextWidth')
             try:
                 self.SubTextWidth = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (SubTextWidth): %s' % exp)
         value = find_attr_value_('Background', node)
         if value is not None and 'Background' not in already_processed:
@@ -6212,7 +6213,7 @@ class ConnectionStyle(GeneratedsSuper):
             already_processed.add('FanOut')
             try:
                 self.FanOut = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -6323,21 +6324,21 @@ class Corner(GeneratedsSuper):
             already_processed.add('Y')
             try:
                 self.Y = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('X', node)
         if value is not None and 'X' not in already_processed:
             already_processed.add('X')
             try:
                 self.X = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Z', node)
         if value is not None and 'Z' not in already_processed:
             already_processed.add('Z')
             try:
                 self.Z = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('GroupReference', node)
         if value is not None and 'GroupReference' not in already_processed:
@@ -8363,7 +8364,7 @@ class DatabaseProperty(GeneratedsSuper):
             already_processed.add('LocalDateTimeOffset')
             try:
                 self.LocalDateTimeOffset = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Visible', node)
         if value is not None and 'Visible' not in already_processed:
@@ -9404,21 +9405,21 @@ class End(GeneratedsSuper):
             already_processed.add('Y')
             try:
                 self.Y = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('X', node)
         if value is not None and 'X' not in already_processed:
             already_processed.add('X')
             try:
                 self.X = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Z', node)
         if value is not None and 'Z' not in already_processed:
             already_processed.add('Z')
             try:
                 self.Z = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'Entity':
@@ -9959,7 +9960,7 @@ class EntityType(GeneratedsSuper):
             already_processed.add('Colour')
             try:
                 self.Colour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('SemanticTypeGuid', node)
         if value is not None and 'SemanticTypeGuid' not in already_processed:
@@ -9979,7 +9980,7 @@ class EntityType(GeneratedsSuper):
             already_processed.add('IconShadingColour')
             try:
                 self.IconShadingColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Id', node)
         if value is not None and 'Id' not in already_processed:
@@ -10652,14 +10653,14 @@ class EventStyle(GeneratedsSuper):
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Width', node)
         if value is not None and 'Width' not in already_processed:
             already_processed.add('Width')
             try:
                 self.Width = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (Width): %s' % exp)
         value = find_attr_value_('StrengthReference', node)
         if value is not None and 'StrengthReference' not in already_processed:
@@ -10688,7 +10689,7 @@ class EventStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Enlargement', node)
         if value is not None and 'Enlargement' not in already_processed:
@@ -10700,7 +10701,7 @@ class EventStyle(GeneratedsSuper):
             already_processed.add('BackColour')
             try:
                 self.BackColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Alignment', node)
         if value is not None and 'Alignment' not in already_processed:
@@ -10725,7 +10726,7 @@ class EventStyle(GeneratedsSuper):
             already_processed.add('Height')
             try:
                 self.Height = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (Height): %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -10736,7 +10737,7 @@ class EventStyle(GeneratedsSuper):
             already_processed.add('IconShadingColour')
             try:
                 self.IconShadingColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Filled', node)
         if value is not None and 'Filled' not in already_processed:
@@ -11147,7 +11148,7 @@ class Font(GeneratedsSuper):
             already_processed.add('BackColour')
             try:
                 self.BackColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Italic', node)
         if value is not None and 'Italic' not in already_processed:
@@ -11163,14 +11164,14 @@ class Font(GeneratedsSuper):
             already_processed.add('PointSize')
             try:
                 self.PointSize = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('FontColour', node)
         if value is not None and 'FontColour' not in already_processed:
             already_processed.add('FontColour')
             try:
                 self.FontColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -11485,14 +11486,14 @@ class FrameStyle(GeneratedsSuper):
             already_processed.add('Colour')
             try:
                 self.Colour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Margin', node)
         if value is not None and 'Margin' not in already_processed:
             already_processed.add('Margin')
             try:
                 self.Margin = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -12218,14 +12219,14 @@ class Icon(GeneratedsSuper):
             already_processed.add('TextX')
             try:
                 self.TextX = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('TextY', node)
         if value is not None and 'TextY' not in already_processed:
             already_processed.add('TextY')
             try:
                 self.TextY = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'IconStyle':
@@ -12380,14 +12381,14 @@ class IconPicture(GeneratedsSuper):
             already_processed.add('CustomSize')
             try:
                 self.CustomSize = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (CustomSize): %s' % exp)
         value = find_attr_value_('DataLength', node)
         if value is not None and 'DataLength' not in already_processed:
             already_processed.add('DataLength')
             try:
                 self.DataLength = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Data', node)
         if value is not None and 'Data' not in already_processed:
@@ -12543,7 +12544,7 @@ class IconStyle(GeneratedsSuper):
             already_processed.add('IconShadingColour')
             try:
                 self.IconShadingColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('EntityTypeReference', node)
         if value is not None and 'EntityTypeReference' not in already_processed:
@@ -12901,7 +12902,7 @@ class JunctionStyle(GeneratedsSuper):
             already_processed.add('Colour')
             try:
                 self.Colour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('ThemeColourAfter', node)
         if value is not None and 'ThemeColourAfter' not in already_processed:
@@ -12918,7 +12919,7 @@ class JunctionStyle(GeneratedsSuper):
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -13361,14 +13362,14 @@ class LegendDefinition(GeneratedsSuper):
             already_processed.add('X')
             try:
                 self.X = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Y', node)
         if value is not None and 'Y' not in already_processed:
             already_processed.add('Y')
             try:
                 self.Y = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('HorizontalAlignment', node)
         if value is not None and 'HorizontalAlignment' not in already_processed:
@@ -13571,7 +13572,7 @@ class LegendItem(GeneratedsSuper):
             already_processed.add('Colour')
             try:
                 self.Colour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Arrows', node)
         if value is not None and 'Arrows' not in already_processed:
@@ -13591,14 +13592,14 @@ class LegendItem(GeneratedsSuper):
             already_processed.add('IconShadingColour')
             try:
                 self.IconShadingColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LineWidth', node)
         if value is not None and 'LineWidth' not in already_processed:
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -13842,14 +13843,14 @@ class Link(GeneratedsSuper):
             already_processed.add('LabelSegment')
             try:
                 self.LabelSegment = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LabelPos', node)
         if value is not None and 'LabelPos' not in already_processed:
             already_processed.add('LabelPos')
             try:
                 self.LabelPos = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('End2Id', node)
         if value is not None and 'End2Id' not in already_processed:
@@ -13860,7 +13861,7 @@ class Link(GeneratedsSuper):
             already_processed.add('Offset')
             try:
                 self.Offset = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('ConnectionReference', node)
         if value is not None and 'ConnectionReference' not in already_processed:
@@ -14167,7 +14168,7 @@ class LinkStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('MlStyle', node)
         if value is not None and 'MlStyle' not in already_processed:
@@ -14179,14 +14180,14 @@ class LinkStyle(GeneratedsSuper):
             already_processed.add('FanOut')
             try:
                 self.FanOut = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LineWidth', node)
         if value is not None and 'LineWidth' not in already_processed:
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -14303,7 +14304,7 @@ class LinkType(GeneratedsSuper):
             already_processed.add('Colour')
             try:
                 self.Colour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('SemanticTypeGuid', node)
         if value is not None and 'SemanticTypeGuid' not in already_processed:
@@ -14812,14 +14813,14 @@ class OleItem(GeneratedsSuper):
             already_processed.add('Height')
             try:
                 self.Height = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Width', node)
         if value is not None and 'Width' not in already_processed:
             already_processed.add('Width')
             try:
                 self.Width = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('ProgID', node)
         if value is not None and 'ProgID' not in already_processed:
@@ -14830,7 +14831,7 @@ class OleItem(GeneratedsSuper):
             already_processed.add('DataLength')
             try:
                 self.DataLength = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
             if self.DataLength < 0:
                 raise_parse_error(node, 'Invalid NonNegativeInteger')
@@ -14843,7 +14844,7 @@ class OleItem(GeneratedsSuper):
             already_processed.add('TextX')
             try:
                 self.TextX = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('DataGuid', node)
         if value is not None and 'DataGuid' not in already_processed:
@@ -14858,7 +14859,7 @@ class OleItem(GeneratedsSuper):
             already_processed.add('TextY')
             try:
                 self.TextY = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'OleItemStyle':
@@ -15040,14 +15041,14 @@ class OleItemStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LineWidth', node)
         if value is not None and 'LineWidth' not in already_processed:
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -15079,18 +15080,18 @@ class Origin(GeneratedsSuper):
     def __init__(self, EditTime=None, LastPrintDate=None, LastSaveDate=None, RevisionNumber=None, CreatedDate=None):
         self.original_tagname_ = None
         self.EditTime = _cast(int, EditTime)
-        if isinstance(LastPrintDate, basestring):
+        if isinstance(LastPrintDate, str):
             initvalue_ = datetime_.datetime.strptime(LastPrintDate, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = LastPrintDate
         self.LastPrintDate = initvalue_
-        if isinstance(LastSaveDate, basestring):
+        if isinstance(LastSaveDate, str):
             initvalue_ = datetime_.datetime.strptime(LastSaveDate, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = LastSaveDate
         self.LastSaveDate = initvalue_
         self.RevisionNumber = _cast(int, RevisionNumber)
-        if isinstance(CreatedDate, basestring):
+        if isinstance(CreatedDate, str):
             initvalue_ = datetime_.datetime.strptime(CreatedDate, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = CreatedDate
@@ -15195,35 +15196,35 @@ class Origin(GeneratedsSuper):
             already_processed.add('EditTime')
             try:
                 self.EditTime = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LastPrintDate', node)
         if value is not None and 'LastPrintDate' not in already_processed:
             already_processed.add('LastPrintDate')
             try:
                 self.LastPrintDate = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (LastPrintDate): %s' % exp)
         value = find_attr_value_('LastSaveDate', node)
         if value is not None and 'LastSaveDate' not in already_processed:
             already_processed.add('LastSaveDate')
             try:
                 self.LastSaveDate = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (LastSaveDate): %s' % exp)
         value = find_attr_value_('RevisionNumber', node)
         if value is not None and 'RevisionNumber' not in already_processed:
             already_processed.add('RevisionNumber')
             try:
                 self.RevisionNumber = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('CreatedDate', node)
         if value is not None and 'CreatedDate' not in already_processed:
             already_processed.add('CreatedDate')
             try:
                 self.CreatedDate = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (CreatedDate): %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -15398,28 +15399,28 @@ class PageSettings(GeneratedsSuper):
             already_processed.add('TopMargin')
             try:
                 self.TopMargin = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('RightMargin', node)
         if value is not None and 'RightMargin' not in already_processed:
             already_processed.add('RightMargin')
             try:
                 self.RightMargin = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('PaperSize', node)
         if value is not None and 'PaperSize' not in already_processed:
             already_processed.add('PaperSize')
             try:
                 self.PaperSize = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Reduction', node)
         if value is not None and 'Reduction' not in already_processed:
             already_processed.add('Reduction')
             try:
                 self.Reduction = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('PaperSizeString', node)
         if value is not None and 'PaperSizeString' not in already_processed:
@@ -15430,21 +15431,21 @@ class PageSettings(GeneratedsSuper):
             already_processed.add('ThemeNameWidth')
             try:
                 self.ThemeNameWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('BottomMargin', node)
         if value is not None and 'BottomMargin' not in already_processed:
             already_processed.add('BottomMargin')
             try:
                 self.BottomMargin = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LeftMargin', node)
         if value is not None and 'LeftMargin' not in already_processed:
             already_processed.add('LeftMargin')
             try:
                 self.LeftMargin = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -15711,7 +15712,7 @@ class PaletteBar(GeneratedsSuper):
             already_processed.add('SplitterPosition')
             try:
                 self.SplitterPosition = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Visible', node)
         if value is not None and 'Visible' not in already_processed:
@@ -16185,7 +16186,7 @@ class PrintSettings(GeneratedsSuper):
             already_processed.add('VertPages')
             try:
                 self.VertPages = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('AssemblePages', node)
         if value is not None and 'AssemblePages' not in already_processed:
@@ -16201,14 +16202,14 @@ class PrintSettings(GeneratedsSuper):
             already_processed.add('MinExtentX')
             try:
                 self.MinExtentX = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('MinExtentY', node)
         if value is not None and 'MinExtentY' not in already_processed:
             already_processed.add('MinExtentY')
             try:
                 self.MinExtentY = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('ColourTimeBarBackground', node)
         if value is not None and 'ColourTimeBarBackground' not in already_processed:
@@ -16233,14 +16234,14 @@ class PrintSettings(GeneratedsSuper):
             already_processed.add('MaxExtentX')
             try:
                 self.MaxExtentX = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('MaxExtentY', node)
         if value is not None and 'MaxExtentY' not in already_processed:
             already_processed.add('MaxExtentY')
             try:
                 self.MaxExtentY = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('CentreChart', node)
         if value is not None and 'CentreChart' not in already_processed:
@@ -16261,7 +16262,7 @@ class PrintSettings(GeneratedsSuper):
             already_processed.add('HorzPages')
             try:
                 self.HorzPages = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('NumberPages', node)
         if value is not None and 'NumberPages' not in already_processed:
@@ -16325,7 +16326,7 @@ class Snapshot(GeneratedsSuper):
         self.Scale = _cast(float, Scale)
         self.Name = _cast(None, Name)
         self.ShowAll = _cast(bool, ShowAll)
-        if isinstance(DateTime, basestring):
+        if isinstance(DateTime, str):
             initvalue_ = datetime_.datetime.strptime(DateTime, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = DateTime
@@ -16465,7 +16466,7 @@ class Snapshot(GeneratedsSuper):
             already_processed.add('Scale')
             try:
                 self.Scale = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (Scale): %s' % exp)
         value = find_attr_value_('Name', node)
         if value is not None and 'Name' not in already_processed:
@@ -16485,21 +16486,21 @@ class Snapshot(GeneratedsSuper):
             already_processed.add('DateTime')
             try:
                 self.DateTime = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (DateTime): %s' % exp)
         value = find_attr_value_('X', node)
         if value is not None and 'X' not in already_processed:
             already_processed.add('X')
             try:
                 self.X = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Y', node)
         if value is not None and 'Y' not in already_processed:
             already_processed.add('Y')
             try:
                 self.Y = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('ViewClassId', node)
         if value is not None and 'ViewClassId' not in already_processed:
@@ -16625,7 +16626,7 @@ class SnapshotItem(GeneratedsSuper):
         self.DateSet = _cast(bool, DateSet)
         self.Ordered = _cast(bool, Ordered)
         self.Shown = _cast(bool, Shown)
-        if isinstance(DateTime, basestring):
+        if isinstance(DateTime, str):
             initvalue_ = datetime_.datetime.strptime(DateTime, '%Y-%m-%dT%H:%M:%S')
         else:
             initvalue_ = DateTime
@@ -16829,42 +16830,42 @@ class SnapshotItem(GeneratedsSuper):
             already_processed.add('DateTime')
             try:
                 self.DateTime = self.gds_parse_datetime(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad date-time attribute (DateTime): %s' % exp)
         value = find_attr_value_('CornerId', node)
         if value is not None and 'CornerId' not in already_processed:
             already_processed.add('CornerId')
             try:
                 self.CornerId = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Width', node)
         if value is not None and 'Width' not in already_processed:
             already_processed.add('Width')
             try:
                 self.Width = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Y', node)
         if value is not None and 'Y' not in already_processed:
             already_processed.add('Y')
             try:
                 self.Y = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('X', node)
         if value is not None and 'X' not in already_processed:
             already_processed.add('X')
             try:
                 self.X = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Height', node)
         if value is not None and 'Height' not in already_processed:
             already_processed.add('Height')
             try:
                 self.Height = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -18047,7 +18048,7 @@ class TextBlockStyle(GeneratedsSuper):
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('StrengthReference', node)
         if value is not None and 'StrengthReference' not in already_processed:
@@ -18067,21 +18068,21 @@ class TextBlockStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Width', node)
         if value is not None and 'Width' not in already_processed:
             already_processed.add('Width')
             try:
                 self.Width = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (Width): %s' % exp)
         value = find_attr_value_('BackColour', node)
         if value is not None and 'BackColour' not in already_processed:
             already_processed.add('BackColour')
             try:
                 self.BackColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Alignment', node)
         if value is not None and 'Alignment' not in already_processed:
@@ -18097,7 +18098,7 @@ class TextBlockStyle(GeneratedsSuper):
             already_processed.add('Height')
             try:
                 self.Height = float(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise ValueError('Bad float/double attribute (Height): %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -18220,14 +18221,14 @@ class Theme(GeneratedsSuper):
             already_processed.add('TextX')
             try:
                 self.TextX = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('TextY', node)
         if value is not None and 'TextY' not in already_processed:
             already_processed.add('TextY')
             try:
                 self.TextY = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         if nodeName_ == 'ThemeStyle':
@@ -18647,7 +18648,7 @@ class ThemeStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('GoesToChartEnd', node)
         if value is not None and 'GoesToChartEnd' not in already_processed:
@@ -18678,14 +18679,14 @@ class ThemeStyle(GeneratedsSuper):
             already_processed.add('IconShadingColour')
             try:
                 self.IconShadingColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('LineWidth', node)
         if value is not None and 'LineWidth' not in already_processed:
             already_processed.add('LineWidth')
             try:
                 self.LineWidth = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Type', node)
         if value is not None and 'Type' not in already_processed:
@@ -18836,14 +18837,14 @@ class TimeBar(GeneratedsSuper):
             already_processed.add('BorderLineColour')
             try:
                 self.BorderLineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('BackColour', node)
         if value is not None and 'BackColour' not in already_processed:
             already_processed.add('BackColour')
             try:
                 self.BackColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('NewViewTimeBarVisible', node)
         if value is not None and 'NewViewTimeBarVisible' not in already_processed:
@@ -18988,7 +18989,7 @@ class TimeBarIntervalBandStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Visible', node)
         if value is not None and 'Visible' not in already_processed:
@@ -19102,7 +19103,7 @@ class TimeBarMarkerBandStyle(GeneratedsSuper):
             already_processed.add('MarkerSymbolColour')
             try:
                 self.MarkerSymbolColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Visible', node)
         if value is not None and 'Visible' not in already_processed:
@@ -19118,7 +19119,7 @@ class TimeBarMarkerBandStyle(GeneratedsSuper):
             already_processed.add('OverLappingMarkerSymbolColour')
             try:
                 self.OverLappingMarkerSymbolColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -19235,7 +19236,7 @@ class TimeBarTickBandStyle(GeneratedsSuper):
             already_processed.add('LineColour')
             try:
                 self.LineColour = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
         value = find_attr_value_('Visible', node)
         if value is not None and 'Visible' not in already_processed:
@@ -19348,7 +19349,7 @@ class TimeZone(GeneratedsSuper):
             already_processed.add('UniqueID')
             try:
                 self.UniqueID = int(value)
-            except ValueError, exp:
+            except ValueError as exp:
                 raise_parse_error(node, 'Bad integer attribute: %s' % exp)
     def buildChildren(self, child_, node, nodeName_, fromsubclass_=False):
         pass
@@ -21330,7 +21331,7 @@ Usage: python <Parser>.py [ -s ] <in_xml_file>
 
 
 def usage():
-    print USAGE_TEXT
+    print(USAGE_TEXT)
     sys.exit(1)
 
 
@@ -21386,7 +21387,7 @@ def parseEtree(inFileName, silence=False):
 
 
 def parseString(inString, silence=False):
-    from StringIO import StringIO
+    from io import StringIO
     doc = parsexml_(StringIO(inString))
     rootNode = doc.getroot()
     rootTag, rootClass = get_root_tag(rootNode)

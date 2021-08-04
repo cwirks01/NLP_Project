@@ -1,0 +1,553 @@
+name,value
+a little after three o'clock - DATE,
+"June 3rd, 1916 - DATE",
+three brief months - DATE,
+Cambrian - NORP,
+Greenland - GPE,Cape Farewell - GPE
+Greenland - GPE,Bengal - GPE
+Greenland - GPE,Cape Farewell - GPE
+the summer - DATE,Cape Farewell - GPE
+the summer - DATE,Bengal - GPE
+the summer - DATE,Cape Farewell - GPE
+Cape Farewell - GPE,Greenland - GPE
+Cape Farewell - GPE,Bengal - GPE
+Cape Farewell - GPE,Greenland - GPE
+Bengal - GPE,Cape Farewell - GPE
+Bengal - GPE,Greenland - GPE
+two minutes - TIME,
+Santa Monica - GPE,
+recent years - DATE,American - NORP
+recent years - DATE,three - CARDINAL
+recent years - DATE,as many seconds - TIME
+recent years - DATE,Germans - NORP
+recent years - DATE,French - NORP
+recent years - DATE,English - NORP
+Germany - GPE,American - NORP
+Germany - GPE,three - CARDINAL
+Germany - GPE,as many seconds - TIME
+Germany - GPE,Germans - NORP
+Germany - GPE,French - NORP
+Germany - GPE,English - NORP
+England - GPE,American - NORP
+England - GPE,three - CARDINAL
+England - GPE,as many seconds - TIME
+England - GPE,Germans - NORP
+England - GPE,French - NORP
+England - GPE,English - NORP
+France - GPE,American - NORP
+France - GPE,three - CARDINAL
+France - GPE,as many seconds - TIME
+France - GPE,Germans - NORP
+France - GPE,French - NORP
+France - GPE,English - NORP
+the United States - GPE,American - NORP
+the United States - GPE,three - CARDINAL
+the United States - GPE,as many seconds - TIME
+the United States - GPE,Germans - NORP
+the United States - GPE,French - NORP
+the United States - GPE,English - NORP
+Curtiss - ORG,
+American - NORP,France - GPE
+American - NORP,Airedale - ORG
+American - NORP,Crown Prince Nobbler - PERSON
+American - NORP,first - ORDINAL
+American - NORP,the past dismal hours - DATE
+American - NORP,the previous afternoon - TIME
+American - NORP,Atlantic - LOC
+three - CARDINAL,France - GPE
+three - CARDINAL,Airedale - ORG
+three - CARDINAL,Crown Prince Nobbler - PERSON
+three - CARDINAL,first - ORDINAL
+three - CARDINAL,the past dismal hours - DATE
+three - CARDINAL,the previous afternoon - TIME
+three - CARDINAL,Atlantic - LOC
+as many seconds - TIME,France - GPE
+as many seconds - TIME,Airedale - ORG
+as many seconds - TIME,Crown Prince Nobbler - PERSON
+as many seconds - TIME,first - ORDINAL
+as many seconds - TIME,the past dismal hours - DATE
+as many seconds - TIME,the previous afternoon - TIME
+as many seconds - TIME,Atlantic - LOC
+Airedale - ORG,American - NORP
+Airedale - ORG,Pacific - LOC
+Airedale - ORG,Frankenstein - PERSON
+Airedale - ORG,a few yards - QUANTITY
+Airedale - ORG,Nobs - ORG
+Airedale - ORG,Nobs - ORG
+Airedale - ORG,Fate - PERSON
+Airedale - ORG,German - NORP
+Airedale - ORG,two - CARDINAL
+Airedale - ORG,third - ORDINAL
+Airedale - ORG,Benson - PERSON
+Airedale - ORG,two - CARDINAL
+Airedale - ORG,Englishmen - PRODUCT
+Airedale - ORG,Von Schoenvorts - PERSON
+Airedale - ORG,Baron von Schoenvorts - PERSON
+Airedale - ORG,the U-33 - PRODUCT
+Crown Prince Nobbler - PERSON,American - NORP
+Crown Prince Nobbler - PERSON,Pacific - LOC
+Crown Prince Nobbler - PERSON,Frankenstein - PERSON
+Crown Prince Nobbler - PERSON,a few yards - QUANTITY
+Crown Prince Nobbler - PERSON,Nobs - ORG
+Crown Prince Nobbler - PERSON,Nobs - ORG
+Crown Prince Nobbler - PERSON,Fate - PERSON
+Crown Prince Nobbler - PERSON,German - NORP
+Crown Prince Nobbler - PERSON,two - CARDINAL
+Crown Prince Nobbler - PERSON,third - ORDINAL
+Crown Prince Nobbler - PERSON,Benson - PERSON
+Crown Prince Nobbler - PERSON,two - CARDINAL
+Crown Prince Nobbler - PERSON,Englishmen - PRODUCT
+Crown Prince Nobbler - PERSON,Von Schoenvorts - PERSON
+Crown Prince Nobbler - PERSON,Baron von Schoenvorts - PERSON
+Crown Prince Nobbler - PERSON,the U-33 - PRODUCT
+first - ORDINAL,American - NORP
+first - ORDINAL,Pacific - LOC
+first - ORDINAL,Frankenstein - PERSON
+first - ORDINAL,a few yards - QUANTITY
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,Fate - PERSON
+first - ORDINAL,German - NORP
+first - ORDINAL,two - CARDINAL
+first - ORDINAL,third - ORDINAL
+first - ORDINAL,Benson - PERSON
+first - ORDINAL,two - CARDINAL
+first - ORDINAL,Englishmen - PRODUCT
+first - ORDINAL,Von Schoenvorts - PERSON
+first - ORDINAL,Baron von Schoenvorts - PERSON
+first - ORDINAL,the U-33 - PRODUCT
+Punch - NORP,
+two hundred yards - QUANTITY,
+hundreds of feet - QUANTITY,
+two seconds - TIME,
+half - CARDINAL,another two days - DATE
+half - CARDINAL,Only two - CARDINAL
+one - CARDINAL,nineteen - CARDINAL
+one - CARDINAL,sixteen - CARDINAL
+one - CARDINAL,Germans - NORP
+one - CARDINAL,nine - CARDINAL
+one - CARDINAL,Jack - PERSON
+one - CARDINAL,Bradley - PERSON
+one - CARDINAL,German - NORP
+one - CARDINAL,Olson - PERSON
+one - CARDINAL,British - NORP
+one - CARDINAL,Kiel - PERSON
+one - CARDINAL,Six - CARDINAL
+one - CARDINAL,Swede - NORP
+one - CARDINAL,U-33 - PRODUCT
+one - CARDINAL,German - NORP
+Pacific - LOC,first - ORDINAL
+Frankenstein - PERSON,first - ORDINAL
+second - ORDINAL,Bradley - PERSON
+One - CARDINAL,Diesel - ORG
+four feet - QUANTITY,
+a few yards - QUANTITY,first - ORDINAL
+Germans - NORP,Germany - GPE
+Germans - NORP,nineteen - CARDINAL
+Germans - NORP,one - CARDINAL
+Germans - NORP,sixteen - CARDINAL
+Germans - NORP,nine - CARDINAL
+Germans - NORP,English - LANGUAGE
+Germans - NORP,Friedrich von Schoenvorts - PERSON
+Germans - NORP,eight - CARDINAL
+Germans - NORP,Bradley - PERSON
+Germans - NORP,Olson - PERSON
+Germans - NORP,only nine - CARDINAL
+Germans - NORP,eight - CARDINAL
+Germans - NORP,Bradley - PERSON
+a few minutes - TIME,Germany - GPE
+a few minutes - TIME,nineteen - CARDINAL
+a few minutes - TIME,one - CARDINAL
+a few minutes - TIME,sixteen - CARDINAL
+a few minutes - TIME,nine - CARDINAL
+a few minutes - TIME,English - LANGUAGE
+a few minutes - TIME,Friedrich von Schoenvorts - PERSON
+a few minutes - TIME,eight - CARDINAL
+a few minutes - TIME,Bradley - PERSON
+a few minutes - TIME,Olson - PERSON
+a few minutes - TIME,only nine - CARDINAL
+a few minutes - TIME,eight - CARDINAL
+a few minutes - TIME,Bradley - PERSON
+Nobs - ORG,first - ORDINAL
+Nobs - ORG,first - ORDINAL
+Nobs - ORG,Lys - PERSON
+Nobs - ORG,Lys - PERSON
+Caspak - GPE,
+an hour - TIME,
+Leland-Stanford - FAC,
+German - NORP,first - ORDINAL
+German - NORP,Jack - PERSON
+German - NORP,Bradley - PERSON
+German - NORP,one - CARDINAL
+German - NORP,1 - CARDINAL
+German - NORP,"July, 1916 - DATE"
+German - NORP,Swedish - NORP
+German - NORP,Balmen - GPE
+German - NORP,Rio de Janiero - ORG
+German - NORP,Barcelona - GPE
+German - NORP,June - DATE
+German - NORP,U-33 - PRODUCT
+German - NORP,one - CARDINAL
+German - NORP,About a hundred yards - CARDINAL
+German - NORP,Bradley - GPE
+all night - TIME,
+Nobbler - PERSON,
+Nobbler - ORG,
+two - CARDINAL,Bradley - PERSON
+two - CARDINAL,Olson - PERSON
+two - CARDINAL,first - ORDINAL
+two - CARDINAL,third - ORDINAL
+two - CARDINAL,four - CARDINAL
+two - CARDINAL,first - ORDINAL
+two - CARDINAL,Benson - PERSON
+two - CARDINAL,Englishmen - PRODUCT
+two - CARDINAL,Lys - PERSON
+morning - TIME,
+days - DATE,
+hours - TIME,
+French - NORP,England - GPE
+English - NORP,England - GPE
+Channel - ORG,"August, 1914 - DATE"
+Channel - ORG,two days - DATE
+Kaiser - ORG,
+the past dismal hours - DATE,three - CARDINAL
+the previous afternoon - TIME,three - CARDINAL
+"August, 1914 - DATE",Channel - ORG
+about two hundred yards - QUANTITY,
+yesterday - DATE,
+Americans - NORP,
+many years - DATE,
+English - LANGUAGE,Bradley - PERSON
+English - LANGUAGE,V. C.'s - PERSON
+English - LANGUAGE,Germans - NORP
+five hundreds tons - QUANTITY,Bradley - PERSON
+five hundreds tons - QUANTITY,V. C.'s - PERSON
+five hundreds tons - QUANTITY,Germans - NORP
+fifty feet - QUANTITY,
+Two - CARDINAL,
+the next few seconds - TIME,
+Fate - PERSON,first - ORDINAL
+Kick - PERSON,
+one to three - CARDINAL,
+Nob - PERSON,
+ten - CARDINAL,
+eight - CARDINAL,Friedrich von Schoenvorts - PERSON
+eight - CARDINAL,Germans - NORP
+eight - CARDINAL,Olson - PERSON
+eight - CARDINAL,only nine - CARDINAL
+eight - CARDINAL,Germans - NORP
+eight - CARDINAL,Bradley - PERSON
+nineteen - CARDINAL,one - CARDINAL
+nineteen - CARDINAL,Germans - NORP
+sixteen - CARDINAL,one - CARDINAL
+sixteen - CARDINAL,Germans - NORP
+nine - CARDINAL,one - CARDINAL
+nine - CARDINAL,Germans - NORP
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,Irish - NORP
+a bad day's - DATE,Scotch - GPE
+a bad day's - DATE,English - LANGUAGE
+a bad day's - DATE,V. C.'s - PERSON
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,Jack - PERSON
+a bad day's - DATE,one - CARDINAL
+a bad day's - DATE,German - NORP
+a bad day's - DATE,second - ORDINAL
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,two - CARDINAL
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,Wilson - ORG
+a bad day's - DATE,the previous night - TIME
+a bad day's - DATE,Von Schoenvorts - PERSON
+a bad day's - DATE,twenty-four hours - TIME
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,Benson - PERSON
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,the days - DATE
+a bad day's - DATE,Benson - PERSON
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,the days - DATE
+a bad day's - DATE,Germans - NORP
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,only nine - CARDINAL
+a bad day's - DATE,eight - CARDINAL
+a bad day's - DATE,Germans - NORP
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Irish - NORP
+Bradley - PERSON,Scotch - GPE
+Bradley - PERSON,English - LANGUAGE
+Bradley - PERSON,V. C.'s - PERSON
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Jack - PERSON
+Bradley - PERSON,one - CARDINAL
+Bradley - PERSON,German - NORP
+Bradley - PERSON,second - ORDINAL
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,two - CARDINAL
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Wilson - ORG
+Bradley - PERSON,the previous night - TIME
+Bradley - PERSON,Von Schoenvorts - PERSON
+Bradley - PERSON,twenty-four hours - TIME
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Benson - PERSON
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,the days - DATE
+Bradley - PERSON,Benson - PERSON
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,the days - DATE
+Bradley - PERSON,Germans - NORP
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,only nine - CARDINAL
+Bradley - PERSON,eight - CARDINAL
+Bradley - PERSON,Germans - NORP
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,one - CARDINAL
+Olson - PERSON,British - NORP
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,two - CARDINAL
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,Wilson - ORG
+Olson - PERSON,the previous night - TIME
+Olson - PERSON,twenty-four hours - TIME
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,Benson - PERSON
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,the days - DATE
+Olson - PERSON,Benson - PERSON
+Olson - PERSON,Englishmen - PRODUCT
+Olson - PERSON,Balmen - GPE
+Olson - PERSON,Bradley - ORG
+Olson - PERSON,the U-33 - PRODUCT
+Olson - PERSON,only nine - CARDINAL
+Olson - PERSON,eight - CARDINAL
+Olson - PERSON,Germans - NORP
+Olson - PERSON,Bradley - PERSON
+Irish - NORP,Bradley - PERSON
+Irish - NORP,Bradley - PERSON
+Irish - NORP,one - CARDINAL
+Irish - NORP,British - NORP
+Irish - NORP,Bradley - PERSON
+Irish - NORP,two - CARDINAL
+Irish - NORP,Bradley - PERSON
+Irish - NORP,Wilson - ORG
+Irish - NORP,the previous night - TIME
+Irish - NORP,twenty-four hours - TIME
+Irish - NORP,Bradley - PERSON
+Irish - NORP,Bradley - PERSON
+Irish - NORP,Benson - PERSON
+Irish - NORP,Bradley - PERSON
+Irish - NORP,the days - DATE
+Irish - NORP,Benson - PERSON
+Irish - NORP,Englishmen - PRODUCT
+Irish - NORP,Balmen - GPE
+Irish - NORP,Bradley - ORG
+Irish - NORP,the U-33 - PRODUCT
+Irish - NORP,only nine - CARDINAL
+Irish - NORP,eight - CARDINAL
+Irish - NORP,Germans - NORP
+Irish - NORP,Bradley - PERSON
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,one - CARDINAL
+Scotch - GPE,British - NORP
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,two - CARDINAL
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,Wilson - ORG
+Scotch - GPE,the previous night - TIME
+Scotch - GPE,twenty-four hours - TIME
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,Benson - PERSON
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,the days - DATE
+Scotch - GPE,Benson - PERSON
+Scotch - GPE,Englishmen - PRODUCT
+Scotch - GPE,Balmen - GPE
+Scotch - GPE,Bradley - ORG
+Scotch - GPE,the U-33 - PRODUCT
+Scotch - GPE,only nine - CARDINAL
+Scotch - GPE,eight - CARDINAL
+Scotch - GPE,Germans - NORP
+Scotch - GPE,Bradley - PERSON
+V. C.'s - PERSON,English - LANGUAGE
+V. C.'s - PERSON,Bradley - PERSON
+Baron von Schoenvorts - PERSON,first - ORDINAL
+Baron von Schoenvorts - PERSON,the U-33 - PRODUCT
+Friedrich von Schoenvorts - PERSON,eight - CARDINAL
+Friedrich von Schoenvorts - PERSON,Germans - NORP
+Jack - PERSON,Bradley - PERSON
+Jack - PERSON,one - CARDINAL
+Jack - PERSON,German - NORP
+Half - CARDINAL,
+British - NORP,Olson - PERSON
+British - NORP,one - CARDINAL
+British - NORP,Balmen - GPE
+British - NORP,Georgetown - ORG
+British - NORP,Guiana - PERSON
+three months ago - DATE,
+half an hour - TIME,
+the Royal Navy - ORG,
+About one - CARDINAL,
+Union Jack - PERSON,
+forty feet - QUANTITY,
+two days - DATE,Channel - ORG
+Kiel - PERSON,one - CARDINAL
+Lys - PERSON,Nobs - ORG
+Lys - PERSON,von Schoenvorts - PERSON
+Lys - PERSON,Nobs - ORG
+Lys - PERSON,two - CARDINAL
+third - ORDINAL,first - ORDINAL
+third - ORDINAL,two - CARDINAL
+Diesel - ORG,One - CARDINAL
+a minute - TIME,
+noon - TIME,
+another two days - DATE,half - CARDINAL
+Wilson - ORG,Bradley - PERSON
+Wilson - ORG,Olson - PERSON
+Wilson - ORG,the previous night - TIME
+Wilson - ORG,Benson - PERSON
+Wilson - ORG,two nights - DATE
+tonight - TIME,
+Benson - PERSON,Wilson - ORG
+Benson - PERSON,two nights - DATE
+Benson - PERSON,Bradley - PERSON
+Benson - PERSON,Olson - PERSON
+Benson - PERSON,Bradley - PERSON
+Benson - PERSON,the days - DATE
+Benson - PERSON,Olson - PERSON
+Benson - PERSON,first - ORDINAL
+Benson - PERSON,two - CARDINAL
+Benson - PERSON,Englishmen - PRODUCT
+Benson - PERSON,the Stupid Germans - LAW
+Benson - PERSON,the Stupid Germans - LAW
+four - CARDINAL,two - CARDINAL
+the past night - TIME,
+von Schoenvorts - PERSON,Lys - PERSON
+von Schoenvorts - PERSON,A half-hour - TIME
+the previous night - TIME,Bradley - PERSON
+the previous night - TIME,Olson - PERSON
+the previous night - TIME,Wilson - ORG
+Von Schoenvorts - PERSON,Bradley - PERSON
+Von Schoenvorts - PERSON,first - ORDINAL
+some night - TIME,
+daytime - TIME,
+two nights - DATE,Benson - PERSON
+two nights - DATE,Wilson - ORG
+the night before - TIME,
+last night - TIME,
+All night - TIME,
+Take von Schoenvorts - WORK_OF_ART,
+twenty-four hours - TIME,Olson - PERSON
+twenty-four hours - TIME,Bradley - PERSON
+R.N. - ORG,
+over two years - DATE,
+twelve hours - TIME,
+the fourth day - DATE,
+four days - DATE,
+six more days - DATE,
+the season - DATE,
+the middle of June - DATE,
+California - GPE,
+the year - DATE,
+U-33 - PRODUCT,one - CARDINAL
+U-33 - PRODUCT,German - NORP
+North American - NORP,one - CARDINAL
+North American - NORP,German - NORP
+six days - DATE,
+Atlantic - LOC,American - NORP
+the seventh day - DATE,
+five hundred - CARDINAL,
+about 20 - CARDINAL,
+30 - CARDINAL,
+nearly twenty-five hundred miles - CARDINAL,
+the days - DATE,Bradley - PERSON
+the days - DATE,Benson - PERSON
+the days - DATE,Olson - PERSON
+the days - DATE,Bradley - PERSON
+several hours - TIME,
+the Balmen of Halmstad - ORG,
+Sweden - GPE,
+Brazil - GPE,
+Spain - GPE,
+Swede - NORP,Six - CARDINAL
+Swede - NORP,one - CARDINAL
+Englishmen - PRODUCT,Olson - PERSON
+Englishmen - PRODUCT,first - ORDINAL
+Englishmen - PRODUCT,Benson - PERSON
+Englishmen - PRODUCT,two - CARDINAL
+Balmen - GPE,Olson - PERSON
+Balmen - GPE,British - NORP
+Balmen - GPE,1 - CARDINAL
+Balmen - GPE,"July, 1916 - DATE"
+Balmen - GPE,Swedish - NORP
+Balmen - GPE,Rio de Janiero - ORG
+Balmen - GPE,Barcelona - GPE
+Balmen - GPE,German - NORP
+Balmen - GPE,June - DATE
+Balmen - GPE,Baron von Schoenvorts - PERSON
+Balmen - GPE,first - ORDINAL
+Bradley - ORG,Olson - PERSON
+Bradley - ORG,British - NORP
+Bradley - ORG,1 - CARDINAL
+Bradley - ORG,"July, 1916 - DATE"
+Bradley - ORG,Swedish - NORP
+Bradley - ORG,Rio de Janiero - ORG
+Bradley - ORG,Barcelona - GPE
+Bradley - ORG,German - NORP
+Bradley - ORG,June - DATE
+Bradley - ORG,Baron von Schoenvorts - PERSON
+Bradley - ORG,first - ORDINAL
+the U-33 - PRODUCT,Olson - PERSON
+the U-33 - PRODUCT,British - NORP
+the U-33 - PRODUCT,1 - CARDINAL
+the U-33 - PRODUCT,"July, 1916 - DATE"
+the U-33 - PRODUCT,Swedish - NORP
+the U-33 - PRODUCT,Rio de Janiero - ORG
+the U-33 - PRODUCT,Barcelona - GPE
+the U-33 - PRODUCT,German - NORP
+the U-33 - PRODUCT,June - DATE
+the U-33 - PRODUCT,Baron von Schoenvorts - PERSON
+the U-33 - PRODUCT,first - ORDINAL
+1 - CARDINAL,Balmen - GPE
+1 - CARDINAL,German - NORP
+"July, 1916 - DATE",Balmen - GPE
+"July, 1916 - DATE",German - NORP
+Swedish - NORP,Balmen - GPE
+Swedish - NORP,German - NORP
+Rio de Janiero - ORG,Balmen - GPE
+Rio de Janiero - ORG,German - NORP
+Barcelona - GPE,Balmen - GPE
+Barcelona - GPE,German - NORP
+June - DATE,Balmen - GPE
+June - DATE,German - NORP
+the Cape Verde Islands - LOC,
+Georgetown - ORG,British - NORP
+Guiana - PERSON,British - NORP
+Six - CARDINAL,Swede - NORP
+Six - CARDINAL,one - CARDINAL
+the next morning - TIME,
+the Stupid Germans - LAW,Benson - PERSON
+the Stupid Germans - LAW,Benson - PERSON
+one day - DATE,
+Horn - LOC,
+the Pacific coast - LOC,
+North America - LOC,
+The very first day - DATE,
+the South Pacific - LOC,
+About eight - CARDINAL,
+About a hundred yards - CARDINAL,German - NORP
+Irishman - NORP,
+Bradley - GPE,German - NORP
+Englishman - PERSON,
+only nine - CARDINAL,Olson - PERSON
+only nine - CARDINAL,eight - CARDINAL
+only nine - CARDINAL,Germans - NORP
+only nine - CARDINAL,Bradley - PERSON
+Only two - CARDINAL,half - CARDINAL
+Baron - PERSON,
+A half-hour - TIME,von Schoenvorts - PERSON
+San Diego - GPE,

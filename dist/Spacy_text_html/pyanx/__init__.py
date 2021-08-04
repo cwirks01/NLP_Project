@@ -1,2 +1,2 @@
-from anx import *
-from pyanx import *
+from .anx import *
+from .pyanx import *

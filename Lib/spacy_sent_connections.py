@@ -1,14 +1,15 @@
-import spacy
 import os
 import tkinter
 import tkinter.filedialog as filedialog
 import PyPDF2
 import en_core_web_sm
 import json
+import pyanx
 
 import pandas as pd
 
-from spacy import displacy
+from Lib.json_util import add_values_to_json, rm_header_dups_json
+from tkinter import messagebox
 
 nlp = en_core_web_sm.load()
 
@@ -16,12 +17,35 @@ nlp = en_core_web_sm.load()
 def load_file():
     root = tkinter.Tk()
     root.withdraw()
-    filePathName = filedialog.askopenfilename(parent=root,
-                                              title='Open file to read',
-                                              filetypes=(("Text Document", "*.txt"),
-                                                         ("Adobe Acrobat Document", "*.pdf"),
-                                                         ("All Files", "*.*")))
+    filePathName = filedialog.askopenfilenames(parent=root,
+                                               title='Open file to read',
+                                               filetypes=(("Text Document", "*.txt"),
+                                                          ("Adobe Acrobat Document", "*.pdf"),
+                                                          ("All Files", "*.*")),
+                                               )
     return filePathName
+
+
+def json_repo_load():
+    root = tkinter.Tk()
+    root.withdraw()
+    answer = messagebox.askokcancel("Question", "Press ok to load repository. "
+                                                "\nPress cancel to start new repository.")
+    if answer:
+        filePathName = filedialog.askopenfilenames(parent=root,
+                                                   title='Open file to read',
+                                                   filetypes=(("JSON File", "*.json"),
+                                                              ("All Files", "*.*")),
+                                                   )
+        try:
+            with open(filePathName) as json_file:
+                data = json.load(json_file)
+        except:
+            data = {}
+    else:
+        data = {}
+
+    return data
 
 
 def read_in_pdf(file_path):
@@ -35,7 +59,35 @@ def read_in_pdf(file_path):
     return text
 
 
-def sentence_parser(text, json_data=None, file_path=os.getcwd(), file_out='Demo.txt'):
+def read_file():
+    global text
+    json_data = json_repo_load()
+    filepaths = load_file()
+    for filepath in filepaths:
+        file_basename = os.path.basename(filepath)
+        print("Reading " + file_basename)
+        base_split = os.path.splitext(file_basename)
+        file_extension = base_split[1]
+        try:
+            if file_extension.endswith('txt'):
+                file = open(filepath, 'r')
+                text = nlp(file.read())
+            elif file_extension.endswith('pdf'):
+                text = nlp(read_in_pdf(filepath))
+            else:
+                pass
+
+        except EOFError as e:
+            print(e)
+
+        json_data = sentence_parser(unstruct_text=text, json_data_parser=json_data)
+        print('Finished processing ' + file_basename)
+    save_csv_json_file(json_data)
+
+    return
+
+
+def sentence_parser(unstruct_text, json_data_parser=None):
     """
     parses out sentences and counts the amount of times objects/places/currency/dates
     are in the same sentence. Output in dataframe format with names and number.
@@ -44,22 +96,79 @@ def sentence_parser(text, json_data=None, file_path=os.getcwd(), file_out='Demo.
     appear in the same sentence.
 
 
-    :param file_path:
-    :param file_out:
-    :param json_data:
-    :param text:
+    :param unstruct_text:
+    :param json_data_parser:
     :return:
     """
-    list_sent = list(text.sents)
 
-    two_items = list_sent
+    if json_data_parser is None:
+        json_data_parser = {}
+    list_sent = list(unstruct_text.sents)
+    for items in list_sent:
+        a = []
+        for item in items.ents:
+            a.append(item.text + ' - ' + item.label_)
 
-    json_data = json_data
-    filepath = file_path
-    file_out = file_out
+        json_data_parser = add_values_to_json(json_data_parser, a)
+        json_data_parser = rm_header_dups_json(json_data_parser)
 
-    json_stats = json_data_search(two_items, json_data)
+    return json_data_parser
 
+
+def analyst_worksheet(df_anb):
+    root = tkinter.Tk()
+    root.withdraw()
+    chart = pyanx.Pyanx()
+    df_anb_count = df_anb.value_counts(subset=['name', 'value'])
+    df_anb_count = df_anb_count.reset_index()
+    df_anb_count = df_anb_count.rename(columns={df_anb_count.columns[0]: 'name',
+                                                df_anb_count.columns[1]: 'value',
+                                                df_anb_count.columns[2]: 'occurrence'})
+
+    df_anb_count = df_anb_count[df_anb_count['occurrence'] >= 2]
+
+    type_of = ['PERSON', 'GPE', 'NORP', 'ORG']
+    for index, row in df_anb_count.iterrows():
+        ents_split = row['name'].split(' - ')
+        entitys_name = ents_split[0]
+        entitys_type = ents_split[1]
+        val_split = row['value'].split(' - ')
+        val_name = val_split[0]
+        value_type = val_split[1]
+        if entitys_type in type_of:
+            chart_node1 = chart.add_node(entity_type=entitys_type, label=entitys_name)
+            chart_node2 = chart.add_node(entity_type=value_type, label=val_name)
+            chart.add_edge(chart_node1, chart_node2, "Occurence amount %s" % row['occurrence'])
+    # file_out = filedialog.asksaveasfilename(parent=root,
+    #                                         title='Save-file',
+    #                                         defaultextension=".anx",
+    #                                         filetypes=(("ANX File", "*.anx"),
+    #                                                    ("All Files", "*.*")))
+    chart.create('./demo.anx')
+    return
+
+
+def save_csv_json_file(json_data_save, analyst_notebook=True):
+    root = tkinter.Tk()
+    root.withdraw()
+    file_out = filedialog.asksaveasfilename(parent=root,
+                                            title='Save-file',
+                                            defaultextension=".csv",
+                                            filetypes=(("Microsoft Excel Comma Separated Values File", "*.csv"),
+                                                       ("All Files", "*.*")))
+
+    df_data = pd.DataFrame(pd.json_normalize(json_data_save).squeeze().reset_index())
+    df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
+    df_data = df_data.explode("value").reset_index(drop=True)
+    df_data.to_csv(os.path.join(file_out), index=False)
+
+    if analyst_notebook:
+        analyst_worksheet(df_data)
+
+    json_file_path = os.path.splitext(os.path.basename(file_out))[0]
+    json_file_path = os.path.join(os.path.dirname(file_out), json_file_path + '.json')
+    with open(json_file_path, "w") as write_file:
+        json.dump(json_data_save, write_file, indent=4)
     return
 
 
@@ -72,44 +181,8 @@ def json_data_search(text, data):
     :return pandas.dataFrame:
     """
 
-
     return data
 
 
-def json_repo_load(file_path):
-    base = os.path.basename(file_path)
-    dir_name = os.path.dirname(file_path)
-    base_split = os.path.splitext(base)
-    file_name = base_split[0] + '.json'
-    new_file_path = os.path.join(dir_name, file_name)
-    try:
-        with open(new_file_path) as json_file:
-            data = json.load(json_file)
-    except:
-        data = {}
-
-    return data
-
-
-def read_file(file_out="Demo.html"):
-    global json_data, text
-    filepath = load_file()
-    base = os.path.basename(filepath)
-    base_split = os.path.splitext(base)
-    file_extension = base_split[1]
-    try:
-        json_data = json_repo_load(filepath)
-        if file_extension == '.txt':
-            file = open(filepath, 'r')
-            text = nlp(file.read())
-        elif file_extension == '.pdf':
-            text = nlp(read_in_pdf(filepath))
-        else:
-            pass
-
-    except EOFError as e:
-        print(e)
-
-    sentence_parser(text, json_data=json_data, filepath=filepath, file_out=file_out)
-
-    return
+if __name__ == '__main__':
+    read_file()

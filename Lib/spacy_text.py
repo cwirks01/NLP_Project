@@ -16,7 +16,8 @@ def export_file():
     filePathName = filedialog.asksaveasfilename(parent=root,
                                                 title='Save-file',
                                                 defaultextension=".html",
-                                                filetypes=(("HTML Document", "*.html"), ("All Files", "*.*")))
+                                                filetypes=(("HTML Document", "*.html"),
+                                                           ("All Files", "*.*")))
     print(filePathName)
     return filePathName
 

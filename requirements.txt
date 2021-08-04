@@ -2,3 +2,7 @@ spacy~=3.1.1
 numpy~=1.21.1
 thinc~=8.0.8
 en_core_web_sm~=3.1.0
+future~=0.18.2
+PyPDF2~=1.26.0
+pandas~=1.2.4
+py2exe~=0.10.4.0
