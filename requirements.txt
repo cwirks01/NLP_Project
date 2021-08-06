@@ -6,3 +6,5 @@ future~=0.18.2
 PyPDF2~=1.26.0
 pandas~=1.2.4
 py2exe~=0.10.4.0
+pyanx~=0.2
+lxml

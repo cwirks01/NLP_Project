@@ -15,7 +15,7 @@ import random
 
 import datetime
 
-from . import anx
+from pyanx import anx
 
 __author__ = 'Petter Chr. Bjelland (petter.bjelland@gmail.com)'
 
@@ -141,6 +141,7 @@ class Pyanx(object):
 
     def create(self, path, pretty=True):
         chart = anx.Chart(IdReferenceLinking=False)
+        appVersion = anx.ApplicationVersion()
         chart.add_StrengthCollection(anx.StrengthCollection([
             anx.Strength(DotStyle="DotStyleDashed", Name="Dashed", Id="Dashed"),
             anx.Strength(DotStyle="DotStyleSolid", Name="Solid", Id="Solid")
@@ -152,4 +153,5 @@ class Pyanx(object):
         self.__add_links(chart)
 
         with open(path, 'w') as output_file:
+            appVersion.export(outfile=output_file,level=0, namespacedef_='')
             chart.export(output_file, 0, pretty_print=pretty, namespacedef_=None)
