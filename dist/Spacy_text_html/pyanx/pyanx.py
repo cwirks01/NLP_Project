@@ -17,7 +17,7 @@ import datetime
 
 from pyanx import anx
 
-__author__ = 'Petter Chr. Bjelland (petter.bjelland@gmail.com)'
+__author__ = 'Charles Wirks (cwirks01@gmail.com)'
 
 
 class Pyanx(object):
