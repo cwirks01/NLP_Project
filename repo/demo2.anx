@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Chart GridHeightSize="2.952756e-01" UseDefaultLinkSpacingWhenDragging="false" GridVisibleOnAllViews="true" ShowAllFlag="false" ShowPages="false" BackColour="16777215" DefaultLinkSpacing="2.952756e-01" WiringDistanceNear="7.874016e-02" UseWiringHeightForThemeIcon="true" DefaultTickRate="1.000000e+00" WiringHeight="1.968504e-01" HiddenItemsVisibility="ItemsVisibilityHidden" GridWidthSize="2.952756e-01" HideMatchingTimeZoneFormat="false" TimeBarVisible="false" WiringSpacing="1.968504e-01" BlankLinkLabels="false" UseLocalTimeZone="true" TypeIconDrawingMode="HighQuality" WiringDistanceFar="3.937008e-01" IdReferenceLinking="false" IsBackColourFilled="true" SnapToGrid="false" LabelSumNumericLinks="false" LabelRule="LabelRuleMerge" Rigorous="true" MsxmlVersion="4.20.9818.0" SchemaVersion="7.0.0.1">
+	<StrengthCollection>
+		<Strength DotStyle="DotStyleDashed" Id="Dashed" Name="Dashed"/>
+		<Strength DotStyle="DotStyleSolid" Id="Solid" Name="Solid"/>
+	</StrengthCollection>
+	<EntityTypeCollection>
+		<EntityType Name="NORP" Colour="0" IconFile="NORP" PreferredRepresentation="RepresentAsIcon"/>
+		<EntityType Name="PERSON" Colour="0" IconFile="PERSON" PreferredRepresentation="RepresentAsIcon"/>
+		<EntityType Name="GPE" Colour="0" IconFile="GPE" PreferredRepresentation="RepresentAsIcon"/>
+		<EntityType Name="CARDINAL" Colour="0" IconFile="CARDINAL" PreferredRepresentation="RepresentAsIcon"/>
+		<EntityType Name="DATE" Colour="0" IconFile="DATE" PreferredRepresentation="RepresentAsIcon"/>
+		<EntityType Name="ORG" Colour="0" IconFile="ORG" PreferredRepresentation="RepresentAsIcon"/>
+	</EntityTypeCollection>
+	<LinkTypeCollection>
+		<LinkType Colour="0" Name="Link"/>
+	</LinkTypeCollection>
+	<ChartItemCollection>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Irish" XPosition="507">
+			<End Y="216" X="507" Z="0">
+				<Entity EntityId="Irish" Identity="Irish" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="NORP"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Bradley" XPosition="195">
+			<End Y="237" X="195" Z="0">
+				<Entity EntityId="Bradley" Identity="Bradley" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="PERSON"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Olson" XPosition="40">
+			<End Y="446" X="40" Z="0">
+				<Entity EntityId="Olson" Identity="Olson" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="PERSON"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Scotch" XPosition="767">
+			<End Y="728" X="767" Z="0">
+				<Entity EntityId="Scotch" Identity="Scotch" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="GPE"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Germans" XPosition="941">
+			<End Y="998" X="941" Z="0">
+				<Entity EntityId="Germans" Identity="Germans" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="NORP"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Benson" XPosition="101">
+			<End Y="720" X="101" Z="0">
+				<Entity EntityId="Benson" Identity="Benson" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="PERSON"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Greenland" XPosition="906">
+			<End Y="555" X="906" Z="0">
+				<Entity EntityId="Greenland" Identity="Greenland" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="GPE"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Cape Farewell" XPosition="484">
+			<End Y="66" X="484" Z="0">
+				<Entity EntityId="Cape Farewell" Identity="Cape Farewell" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="GPE"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="eight" XPosition="30">
+			<End Y="718" X="30" Z="0">
+				<Entity EntityId="eight" Identity="eight" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="CARDINAL"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="the days" XPosition="538">
+			<End Y="480" X="538" Z="0">
+				<Entity EntityId="the days" Identity="the days" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="DATE"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Crown Prince Nobbler" XPosition="41">
+			<End Y="207" X="41" Z="0">
+				<Entity EntityId="Crown Prince Nobbler" Identity="Crown Prince Nobbler" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="PERSON"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Nobs" XPosition="375">
+			<End Y="294" X="375" Z="0">
+				<Entity EntityId="Nobs" Identity="Nobs" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="ORG"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="two" XPosition="618">
+			<End Y="570" X="618" Z="0">
+				<Entity EntityId="two" Identity="two" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="CARDINAL"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="German" XPosition="294">
+			<End Y="850" X="294" Z="0">
+				<Entity EntityId="German" Identity="German" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="NORP"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="one" XPosition="34">
+			<End Y="900" X="34" Z="0">
+				<Entity EntityId="one" Identity="one" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="CARDINAL"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Lys" XPosition="642">
+			<End Y="484" X="642" Z="0">
+				<Entity EntityId="Lys" Identity="Lys" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="PERSON"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Airedale" XPosition="246">
+			<End Y="525" X="246" Z="0">
+				<Entity EntityId="Airedale" Identity="Airedale" LabelIsIdentity="false">
+					<Icon TextX="0" TextY="16">
+						<IconStyle Type="ORG"/>
+					</Icon>
+				</Entity>
+			</End>
+		</ChartItem>
+	</ChartItemCollection>
+	<ChartItemCollection>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 8" XPosition="0">
+			<Link End1Id="Irish" LabelSegment="0" LabelPos="50" End2Id="Bradley">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="5" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 8" XPosition="0">
+			<Link End1Id="Olson" LabelSegment="0" LabelPos="50" End2Id="Bradley">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="5" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 8" XPosition="0">
+			<Link End1Id="Scotch" LabelSegment="0" LabelPos="50" End2Id="Bradley">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="5" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 7" XPosition="0">
+			<Link End1Id="Bradley" LabelSegment="0" LabelPos="50" End2Id="Olson">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="4" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Germans" LabelSegment="0" LabelPos="50" End2Id="Bradley">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Benson" LabelSegment="0" LabelPos="50" End2Id="Bradley">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Benson" LabelSegment="0" LabelPos="50" End2Id="Olson">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Irish" LabelSegment="0" LabelPos="50" End2Id="Benson">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Greenland" LabelSegment="0" LabelPos="50" End2Id="Cape Farewell">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Germans" LabelSegment="0" LabelPos="50" End2Id="eight">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Bradley" LabelSegment="0" LabelPos="50" End2Id="Benson">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Bradley" LabelSegment="0" LabelPos="50" End2Id="Germans">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Olson" LabelSegment="0" LabelPos="50" End2Id="Benson">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Bradley" LabelSegment="0" LabelPos="50" End2Id="the days">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Cape Farewell" LabelSegment="0" LabelPos="50" End2Id="Greenland">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Crown Prince Nobbler" LabelSegment="0" LabelPos="50" End2Id="Nobs">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Crown Prince Nobbler" LabelSegment="0" LabelPos="50" End2Id="two">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="German" LabelSegment="0" LabelPos="50" End2Id="one">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Nobs" LabelSegment="0" LabelPos="50" End2Id="Lys">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Lys" LabelSegment="0" LabelPos="50" End2Id="Nobs">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Airedale" LabelSegment="0" LabelPos="50" End2Id="Nobs">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Scotch" LabelSegment="0" LabelPos="50" End2Id="Benson">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+		<ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Occurence amount 2" XPosition="0">
+			<Link End1Id="Airedale" LabelSegment="0" LabelPos="50" End2Id="two">
+				<LinkStyle ArrowStyle="ArrowOnHead" StrengthReference="Solid" LineColour="0" MlStyle="MultiplicityMultiple" LineWidth="1" Type="Link"/>
+			</Link>
+		</ChartItem>
+	</ChartItemCollection>
+</Chart>

@@ -168,8 +168,6 @@ a few minutes - TIME,Olson - PERSON
 a few minutes - TIME,only nine - CARDINAL
 a few minutes - TIME,eight - CARDINAL
 a few minutes - TIME,Bradley - PERSON
-Nobs - ORG,first - ORDINAL
-Nobs - ORG,first - ORDINAL
 Nobs - ORG,Lys - PERSON
 Nobs - ORG,Lys - PERSON
 Caspak - GPE,
@@ -262,7 +260,6 @@ a bad day's - DATE,Von Schoenvorts - PERSON
 a bad day's - DATE,twenty-four hours - TIME
 a bad day's - DATE,Olson - PERSON
 a bad day's - DATE,Benson - PERSON
-a bad day's - DATE,Olson - PERSON
 a bad day's - DATE,the days - DATE
 a bad day's - DATE,Benson - PERSON
 a bad day's - DATE,Olson - PERSON
@@ -291,7 +288,6 @@ Bradley - PERSON,Von Schoenvorts - PERSON
 Bradley - PERSON,twenty-four hours - TIME
 Bradley - PERSON,Olson - PERSON
 Bradley - PERSON,Benson - PERSON
-Bradley - PERSON,Olson - PERSON
 Bradley - PERSON,the days - DATE
 Bradley - PERSON,Benson - PERSON
 Bradley - PERSON,Olson - PERSON
@@ -422,7 +418,6 @@ Benson - PERSON,Olson - PERSON
 Benson - PERSON,first - ORDINAL
 Benson - PERSON,two - CARDINAL
 Benson - PERSON,Englishmen - PRODUCT
-Benson - PERSON,the Stupid Germans - LAW
 Benson - PERSON,the Stupid Germans - LAW
 four - CARDINAL,two - CARDINAL
 the past night - TIME,

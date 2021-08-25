@@ -55,7 +55,7 @@ class Pyanx(object):
 
         return current_id
 
-    def add_edge(self, source, sink, label='', color=0, style='Solid', description='', datestr=None,
+    def add_edge(self, source, sink, label='', color=0, style='Solid', linewidth=None, description='', datestr=None,
                  datestr_description=None, dateformat='%Y-%m-%dT%H:%M:%S', timezone=None):
         if datestr:
             _datetime = datetime.datetime.strptime(datestr, dateformat)
@@ -69,6 +69,7 @@ class Pyanx(object):
             'label': label,
             'color': color,
             'style': style,
+            'linewidth': linewidth,
             'description': description,
             'datetime': _datetime,
             'datetime_description': datestr_description,
@@ -128,7 +129,8 @@ class Pyanx(object):
 
         for source, sink, data in self.edges:
             link_style = anx.LinkStyle(StrengthReference=data['style'], Type='Link', ArrowStyle='ArrowOnHead',
-                                       LineColour=data['color'], MlStyle="MultiplicityMultiple")
+                                       LineColour=data['color'], LineWidth=data['linewidth'],
+                                       MlStyle="MultiplicityMultiple")
             link = anx.Link(End1Id=source, End2Id=sink, LinkStyle=link_style)
 
             chart_item = anx.ChartItem(Label=data['label'], Link=link, Description=data['description'])
@@ -153,5 +155,5 @@ class Pyanx(object):
         self.__add_links(chart)
 
         with open(path, 'w') as output_file:
-            appVersion.export(outfile=output_file,level=0, namespacedef_='')
+            appVersion.export(outfile=output_file, level=0, namespacedef_='')
             chart.export(output_file, 0, pretty_print=pretty, namespacedef_=None)
