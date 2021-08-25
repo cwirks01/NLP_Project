@@ -5,14 +5,13 @@ Author: Charles Wirks email: cwirks01@gmail.com
 """
 import os
 import PyPDF2
-import en_core_web_sm
 import json
-import pyanx
 
 import pandas as pd
 import tkinter as tk
 
 from Lib.json_util import add_values_to_json, rm_header_dups_json
+from Lib import en_core_web_sm, pyanx
 
 
 def sentence_parser(unstruct_text, json_data_parser=None):
