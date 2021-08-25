@@ -125,3 +125,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Product files | Keep Folder for future runs but DO NOT retain products
+Products/*

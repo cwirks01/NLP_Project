@@ -1,3 +1,8 @@
+"""
+
+Author: Charles Wirks email: cwirks01@gmail.com
+
+"""
 import os
 import tkinter
 import tkinter.filedialog as filedialog
@@ -40,9 +45,10 @@ def json_repo_load():
         try:
             with open(filePathName) as json_file:
                 data = json.load(json_file)
-        except:
+        except FileNotFoundError:
             data = {}
     else:
+        Exception(" No file loaded. ")
         data = {}
 
     return data
@@ -104,18 +110,23 @@ def sentence_parser(unstruct_text, json_data_parser=None):
     if json_data_parser is None:
         json_data_parser = {}
     list_sent = list(unstruct_text.sents)
+    b = []
     for items in list_sent:
         a = []
         for item in items.ents:
-            a.append(item.text + ' - ' + item.label_)
+            a.append(item.text + " - " + item.label_)
+            if "%s" % (item.text + " - " + item.label_) == "Bradley - PERSON":
+                b.append(items)
 
         json_data_parser = add_values_to_json(json_data_parser, a)
         json_data_parser = rm_header_dups_json(json_data_parser)
-
+    with open("../repo/some2.txt", 'w') as file:
+        file.write(str(b))
+        file.close()
     return json_data_parser
 
 
-def analyst_worksheet(df_anb):
+def analyst_worksheet(df_anb, file_out_path):
     root = tkinter.Tk()
     root.withdraw()
     chart = pyanx.Pyanx()
@@ -135,16 +146,24 @@ def analyst_worksheet(df_anb):
         val_split = row['value'].split(' - ')
         val_name = val_split[0]
         value_type = val_split[1]
+        max_occurences = df_anb_count.occurrence.max()
         if entitys_type in type_of:
             chart_node1 = chart.add_node(entity_type=entitys_type, label=entitys_name)
             chart_node2 = chart.add_node(entity_type=value_type, label=val_name)
-            chart.add_edge(chart_node1, chart_node2, "Occurence amount %s" % row['occurrence'])
+            linewidth = (float(row['occurrence']) / max_occurences) * 5
+            chart.add_edge(chart_node1, chart_node2,
+                           label="Occurence amount %s" % row['occurrence'],
+                           linewidth=linewidth)
     # file_out = filedialog.asksaveasfilename(parent=root,
     #                                         title='Save-file',
     #                                         defaultextension=".anx",
     #                                         filetypes=(("ANX File", "*.anx"),
     #                                                    ("All Files", "*.*")))
-    chart.create('./demo.anx')
+    file_out_dir = os.path.dirname(file_out_path)
+    file_out_name = os.path.basename(file_out_path)
+    file_out_name = os.path.splitext(file_out_name)[0]
+
+    chart.create(os.path.join(file_out_dir, file_out_name + ".anx"))
     return
 
 
@@ -163,7 +182,7 @@ def save_csv_json_file(json_data_save, analyst_notebook=True):
     df_data.to_csv(os.path.join(file_out), index=False)
 
     if analyst_notebook:
-        analyst_worksheet(df_data)
+        analyst_worksheet(df_data, file_out)
 
     json_file_path = os.path.splitext(os.path.basename(file_out))[0]
     json_file_path = os.path.join(os.path.dirname(file_out), json_file_path + '.json')
@@ -183,6 +202,3 @@ def json_data_search(text, data):
 
     return data
 
-
-if __name__ == '__main__':
-    read_file()

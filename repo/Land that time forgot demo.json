@@ -217,8 +217,6 @@
         "Bradley - PERSON"
     ],
     "Nobs - ORG": [
-        "first - ORDINAL",
-        "first - ORDINAL",
         "Lys - PERSON",
         "Lys - PERSON"
     ],
@@ -343,7 +341,6 @@
         "twenty-four hours - TIME",
         "Olson - PERSON",
         "Benson - PERSON",
-        "Olson - PERSON",
         "the days - DATE",
         "Benson - PERSON",
         "Olson - PERSON",
@@ -374,7 +371,6 @@
         "twenty-four hours - TIME",
         "Olson - PERSON",
         "Benson - PERSON",
-        "Olson - PERSON",
         "the days - DATE",
         "Benson - PERSON",
         "Olson - PERSON",
@@ -537,7 +533,6 @@
         "first - ORDINAL",
         "two - CARDINAL",
         "Englishmen - PRODUCT",
-        "the Stupid Germans - LAW",
         "the Stupid Germans - LAW"
     ],
     "four - CARDINAL": [
