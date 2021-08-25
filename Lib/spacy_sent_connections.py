@@ -4,93 +4,15 @@ Author: Charles Wirks email: cwirks01@gmail.com
 
 """
 import os
-import tkinter
-import tkinter.filedialog as filedialog
 import PyPDF2
 import en_core_web_sm
 import json
 import pyanx
 
 import pandas as pd
+import tkinter as tk
 
 from Lib.json_util import add_values_to_json, rm_header_dups_json
-from tkinter import messagebox
-
-nlp = en_core_web_sm.load()
-
-
-def load_file():
-    root = tkinter.Tk()
-    root.withdraw()
-    filePathName = filedialog.askopenfilenames(parent=root,
-                                               title='Open file to read',
-                                               filetypes=(("Text Document", "*.txt"),
-                                                          ("Adobe Acrobat Document", "*.pdf"),
-                                                          ("All Files", "*.*")),
-                                               )
-    return filePathName
-
-
-def json_repo_load():
-    root = tkinter.Tk()
-    root.withdraw()
-    answer = messagebox.askokcancel("Question", "Press ok to load repository. "
-                                                "\nPress cancel to start new repository.")
-    if answer:
-        filePathName = filedialog.askopenfilenames(parent=root,
-                                                   title='Open file to read',
-                                                   filetypes=(("JSON File", "*.json"),
-                                                              ("All Files", "*.*")),
-                                                   )
-        try:
-            with open(filePathName) as json_file:
-                data = json.load(json_file)
-        except FileNotFoundError:
-            data = {}
-    else:
-        Exception(" No file loaded. ")
-        data = {}
-
-    return data
-
-
-def read_in_pdf(file_path):
-    mypdf = open(r'%s' % file_path, mode='rb')
-    pdf_document = PyPDF2.PdfFileReader(mypdf)
-
-    text = []
-    for i in range(pdf_document.numPages):
-        page_to_print = pdf_document.getPage(i)
-        text = page_to_print.extractText()
-    return text
-
-
-def read_file():
-    global text
-    json_data = json_repo_load()
-    filepaths = load_file()
-    for filepath in filepaths:
-        file_basename = os.path.basename(filepath)
-        print("Reading " + file_basename)
-        base_split = os.path.splitext(file_basename)
-        file_extension = base_split[1]
-        try:
-            if file_extension.endswith('txt'):
-                file = open(filepath, 'r')
-                text = nlp(file.read())
-            elif file_extension.endswith('pdf'):
-                text = nlp(read_in_pdf(filepath))
-            else:
-                pass
-
-        except EOFError as e:
-            print(e)
-
-        json_data = sentence_parser(unstruct_text=text, json_data_parser=json_data)
-        print('Finished processing ' + file_basename)
-    save_csv_json_file(json_data)
-
-    return
 
 
 def sentence_parser(unstruct_text, json_data_parser=None):
@@ -120,15 +42,21 @@ def sentence_parser(unstruct_text, json_data_parser=None):
 
         json_data_parser = add_values_to_json(json_data_parser, a)
         json_data_parser = rm_header_dups_json(json_data_parser)
-    with open("../repo/some2.txt", 'w') as file:
+    with open("./repo/some2.txt", 'w') as file:
         file.write(str(b))
         file.close()
     return json_data_parser
 
 
 def analyst_worksheet(df_anb, file_out_path):
-    root = tkinter.Tk()
-    root.withdraw()
+    """
+    May need to use in the main class if the file saving method is updated with tkinter
+    :param df_anb:
+    :param file_out_path:
+    :return:
+    """
+    # root = tkinter.Tk()
+    # root.withdraw()
     chart = pyanx.Pyanx()
     df_anb_count = df_anb.value_counts(subset=['name', 'value'])
     df_anb_count = df_anb_count.reset_index()
@@ -167,38 +95,113 @@ def analyst_worksheet(df_anb, file_out_path):
     return
 
 
-def save_csv_json_file(json_data_save, analyst_notebook=True):
-    root = tkinter.Tk()
-    root.withdraw()
-    file_out = filedialog.asksaveasfilename(parent=root,
-                                            title='Save-file',
-                                            defaultextension=".csv",
-                                            filetypes=(("Microsoft Excel Comma Separated Values File", "*.csv"),
-                                                       ("All Files", "*.*")))
+def read_in_pdf(file_path):
+    global text_out
+    mypdf = open(r'%s' % file_path, mode='rb')
+    pdf_document = PyPDF2.PdfFileReader(mypdf)
 
-    df_data = pd.DataFrame(pd.json_normalize(json_data_save).squeeze().reset_index())
-    df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
-    df_data = df_data.explode("value").reset_index(drop=True)
-    df_data.to_csv(os.path.join(file_out), index=False)
-
-    if analyst_notebook:
-        analyst_worksheet(df_data, file_out)
-
-    json_file_path = os.path.splitext(os.path.basename(file_out))[0]
-    json_file_path = os.path.join(os.path.dirname(file_out), json_file_path + '.json')
-    with open(json_file_path, "w") as write_file:
-        json.dump(json_data_save, write_file, indent=4)
-    return
+    for i in range(pdf_document.numPages):
+        page_to_print = pdf_document.getPage(i)
+        text_out = page_to_print.extractText()
+    return text_out
 
 
-def json_data_search(text, data):
-    """
-    json data will return with dataframe of statistics of the amount of times a
-    noun has appeared with another noun.
-    :param text:
-    :param data:
-    :return pandas.dataFrame:
-    """
+class spacy_sent_connections(tk.Tk):
 
-    return data
+    def __init__(self):
+        import tkinter.filedialog
+        self.filedialog = tkinter.filedialog
 
+        import tkinter
+        self.tk_root = tkinter.Tk()
+
+        import tkinter.messagebox
+        self.messagebox = tkinter.messagebox
+        self.tk_root.withdraw()
+        self.nlp = en_core_web_sm.load()
+        self.text = []
+        self.answer = None
+
+    def load_file(self):
+        # root = tkinter.Tk()
+        # root.withdraw()
+        filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                                                        title='Open file to read',
+                                                        filetypes=(("Text Document", "*.txt"),
+                                                                   ("Adobe Acrobat Document", "*.pdf"),
+                                                                   ("All Files", "*.*")),
+                                                        )
+        return filePathName
+
+    def json_repo_load(self):
+
+        try:
+            self.answer = self.messagebox.askyesno("Question", "Would you like to load a repository?")
+        except RuntimeError as e:
+            print(e)
+            self.answer = False
+            pass
+        if self.answer:
+            filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                                                            title='Open file to read',
+                                                            filetypes=(("JSON File", "*.json"),
+                                                                       ("All Files", "*.*")),
+                                                            )
+            try:
+                with open(filePathName) as json_file:
+                    data = json.load(json_file)
+            except FileNotFoundError:
+                data = {}
+        else:
+            Exception(" No file loaded. ")
+            data = {}
+
+        return data
+
+    def read_file(self):
+        json_data = self.json_repo_load()
+        filepaths = self.load_file()
+        for filepath in filepaths:
+            file_basename = os.path.basename(filepath)
+            print("Reading " + file_basename)
+            base_split = os.path.splitext(file_basename)
+            file_extension = base_split[1]
+            try:
+                if file_extension.endswith('txt'):
+                    file = open(filepath, 'r')
+                    self.text = self.nlp(file.read())
+                elif file_extension.endswith('pdf'):
+                    self.text = self.nlp(read_in_pdf(filepath))
+                else:
+                    pass
+
+            except EOFError as e:
+                print(e)
+
+            json_data = sentence_parser(unstruct_text=self.text, json_data_parser=json_data)
+            print('Finished processing ' + file_basename)
+        self.save_csv_json_file(json_data)
+
+        return
+
+    def save_csv_json_file(self, json_data_save, analyst_notebook=True):
+        file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
+                                                     title='Save-file',
+                                                     defaultextension=".csv",
+                                                     filetypes=(
+                                                         ("Microsoft Excel Comma Separated Values File", "*.csv"),
+                                                         ("All Files", "*.*")))
+
+        df_data = pd.DataFrame(pd.json_normalize(json_data_save).squeeze().reset_index())
+        df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
+        df_data = df_data.explode("value").reset_index(drop=True)
+        df_data.to_csv(os.path.join(file_out), index=False)
+
+        if analyst_notebook:
+            analyst_worksheet(df_data, file_out)
+
+        json_file_path = os.path.splitext(os.path.basename(file_out))[0]
+        json_file_path = os.path.join(os.path.dirname(file_out), json_file_path + '.json')
+        with open(json_file_path, "w") as write_file:
+            json.dump(json_data_save, write_file, indent=4)
+        return
