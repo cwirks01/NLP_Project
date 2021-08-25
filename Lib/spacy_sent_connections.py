@@ -45,9 +45,10 @@ def json_repo_load():
         try:
             with open(filePathName) as json_file:
                 data = json.load(json_file)
-        except:
+        except FileNotFoundError:
             data = {}
     else:
+        Exception(" No file loaded. ")
         data = {}
 
     return data
@@ -119,7 +120,7 @@ def sentence_parser(unstruct_text, json_data_parser=None):
 
         json_data_parser = add_values_to_json(json_data_parser, a)
         json_data_parser = rm_header_dups_json(json_data_parser)
-    with open("some2.txt", 'w') as file:
+    with open("../repo/some2.txt", 'w') as file:
         file.write(str(b))
         file.close()
     return json_data_parser
@@ -201,6 +202,3 @@ def json_data_search(text, data):
 
     return data
 
-
-if __name__ == '__main__':
-    read_file()

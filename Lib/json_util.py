@@ -1,9 +1,12 @@
+import traceback
+
 
 def add_values_to_json(json_file, values):
     for value in values:
         try:
             json_file[value].extend(values)
-        except:
+        except Exception as e:
+            print("%s not listed in JSON file." % e)
             json_file.update({value: values})
     return json_file
 
