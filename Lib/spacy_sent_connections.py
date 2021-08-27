@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 
 Author: Charles Wirks email: cwirks01@gmail.com
@@ -6,10 +7,11 @@ Author: Charles Wirks email: cwirks01@gmail.com
 import os
 import PyPDF2
 import json
+from flask import redirect, url_for
 
 import pandas as pd
-import Lib.tkinter as tk
 
+import tkinter as tk
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import en_core_web_sm, pyanx
 
@@ -108,18 +110,18 @@ def read_in_pdf(file_path):
 class spacy_sent_connections(tk.Tk):
 
     def __init__(self):
-        import tkinter.filedialog
-        self.filedialog = tkinter.filedialog
+        from tkinter import filedialog as tk_filedialog
+        from tkinter import messagebox as tk_messagebox
+        import tkinter as tk
 
-        import tkinter
-        self.tk_root = tkinter.Tk()
-
-        import tkinter.messagebox
-        self.messagebox = tkinter.messagebox
+        self.filedialog = tk_filedialog
+        self.tk_root = tk.Tk()
+        self.messagebox = tk_messagebox
         self.tk_root.withdraw()
         self.nlp = en_core_web_sm.load()
         self.text = []
         self.answer = None
+        self.x = 3
 
     def load_file(self):
         # root = tkinter.Tk()
@@ -181,7 +183,7 @@ class spacy_sent_connections(tk.Tk):
             print('Finished processing ' + file_basename)
         self.save_csv_json_file(json_data)
 
-        return
+        return redirect(url_for("/application_ran"))
 
     def save_csv_json_file(self, json_data_save, analyst_notebook=True):
         file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
@@ -203,4 +205,6 @@ class spacy_sent_connections(tk.Tk):
         json_file_path = os.path.join(os.path.dirname(file_out), json_file_path + '.json')
         with open(json_file_path, "w") as write_file:
             json.dump(json_data_save, write_file, indent=4)
+
+        os.remove(os.path.join(os.getcwd(), "uploads/*"))
         return

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 This work is made available under the Apache License, Version 2.0.
 
@@ -15,7 +15,7 @@ import random
 
 import datetime
 
-from pyanx import anx
+from Lib.pyanx import anx
 
 __author__ = 'Charles Wirks (cwirks01@gmail.com)'
 
