@@ -8,7 +8,7 @@ import PyPDF2
 import json
 
 import pandas as pd
-import tkinter as tk
+import Lib.tkinter as tk
 
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import en_core_web_sm, pyanx
