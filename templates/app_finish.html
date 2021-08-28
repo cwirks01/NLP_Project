@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Process Complete</title>
 </head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
     function downloadFile(file) {
@@ -60,13 +60,13 @@ console.log(appDir)
 <div class="container">
 <!--    <input type="button" onclick="download_all_files()" value="Save Files"/>-->
 <!--    <a href="#" class="myLink">Download</a>-->
-    <form method="get" action="../downloads/data.csv">
+    <form method="get" action="../downloaded/data.csv">
     <button type="submit">Download CSV</button>
     </form>
-        <form method="get" action="../downloads/data.anx">
+        <form method="get" action="./downloaded/data.json" action="#">
     <button type="submit">Download JSON</button>
     </form>
-        <form method="get" action="../downloads/data.json">
+        <form method="get" action="../downloaded/data.anx">
     <button type="submit">Download ANB</button>
     </form>
     <form action="/">

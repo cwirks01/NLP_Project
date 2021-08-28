@@ -8,10 +8,11 @@ import os
 import PyPDF2
 import json
 from flask import Flask, redirect, url_for
+import spacy
 
 import pandas as pd
 
-import tkinter as tk
+# import tkinter as tk
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import en_core_web_sm, pyanx
 
@@ -109,18 +110,18 @@ def read_in_pdf(file_path):
     return text_out
 
 
-class spacy_sent_connections(tk.Tk):
+class spacy_sent_connections:
 
-    def __init__(self, gui=False, downloads='downloads', upload_dir='uploads', repo='repo'):
-        from tkinter import filedialog as tk_filedialog
-        from tkinter import messagebox as tk_messagebox
-        import tkinter as tk
+    def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo'):
+        # from tkinter import filedialog as tk_filedialog
+        # from tkinter import messagebox as tk_messagebox
+        # import tkinter as tk
 
-        self.filedialog = tk_filedialog
-        self.tk_root = tk.Tk()
-        self.messagebox = tk_messagebox
-        self.tk_root.withdraw()
-        self.nlp = en_core_web_sm.load()
+        # self.filedialog = tk_filedialog
+        # self.tk_root = tk.Tk()
+        # self.messagebox = tk_messagebox
+        # self.tk_root.withdraw()
+        self.nlp = spacy.load('en_core_web_sm')
         self.text = []
         self.gui = gui
         self.downloads = os.path.join(ROOT, downloads)
@@ -135,11 +136,12 @@ class spacy_sent_connections(tk.Tk):
         # root = tkinter.Tk()
         # root.withdraw()
         if self.gui:
-            filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
-                                                            title='Open file to read',
-                                                            filetypes=(("Text Document", "*.txt"),
-                                                                       ("Adobe Acrobat Document", "*.pdf"),
-                                                                       ("All Files", "*.*")))
+            # filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+            #                                                 title='Open file to read',
+            #                                                 filetypes=(("Text Document", "*.txt"),
+            #                                                            ("Adobe Acrobat Document", "*.pdf"),
+            #                                                            ("All Files", "*.*")))
+            filePathName=''
         else:
             filePathList = []
             for file in os.listdir(self.uploads):
@@ -159,10 +161,11 @@ class spacy_sent_connections(tk.Tk):
 
         if self.answer:
             if self.gui:
-                filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
-                                                                title='Open file to read',
-                                                                filetypes=(("JSON File", "*.json"),
-                                                                           ("All Files", "*.*")), )
+                # filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                #                                                 title='Open file to read',
+                #                                                 filetypes=(("JSON File", "*.json"),
+                #                                                            ("All Files", "*.*")), )
+                filePathName=''
             else:
                 os.makedirs(self.repo, exist_ok=True)
                 filePathName = os.listdir(self.repo)[0]
@@ -207,12 +210,13 @@ class spacy_sent_connections(tk.Tk):
 
     def save_csv_json_file(self, json_data_save, analyst_notebook=True):
         if self.gui:
-            file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
-                                                         title='Save-file',
-                                                         defaultextension=".csv",
-                                                         filetypes=(
-                                                             ("Microsoft Excel Comma Separated Values File", "*.csv"),
-                                                             ("All Files", "*.*")))
+            # file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
+            #                                              title='Save-file',
+            #                                              defaultextension=".csv",
+            #                                              filetypes=(
+            #                                                  ("Microsoft Excel Comma Separated Values File", "*.csv"),
+            #                                                  ("All Files", "*.*")))
+            file_out=''
         else:
             os.makedirs(self.downloads, exist_ok=True)
             file_out = os.path.join(self.downloads, 'data.csv')
@@ -234,8 +238,8 @@ class spacy_sent_connections(tk.Tk):
             filePath = os.path.join(self.uploads, f)
             if os.path.isfile(filePath):
                 os.remove(filePath,)
-        # for f in os.listdir(self.downloads):
-        #     filePath = os.path.join(self.downloads, f)
+        # for f in os.listdir(self.downloaded):
+        #     filePath = os.path.join(self.downloaded, f)
         #     if os.path.isfile(filePath):
-        #         os.remove(os.path.join(self.downloads, f))
+        #         os.remove(os.path.join(self.downloaded, f))
         return
