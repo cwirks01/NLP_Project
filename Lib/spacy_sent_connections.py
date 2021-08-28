@@ -7,13 +7,15 @@ Author: Charles Wirks email: cwirks01@gmail.com
 import os
 import PyPDF2
 import json
-from flask import redirect, url_for
+from flask import Flask, redirect, url_for
 
 import pandas as pd
 
 import tkinter as tk
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import en_core_web_sm, pyanx
+
+ROOT = os.getcwd()
 
 
 def sentence_parser(unstruct_text, json_data_parser=None):
@@ -109,7 +111,7 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections(tk.Tk):
 
-    def __init__(self):
+    def __init__(self, gui=False, downloads='downloads', upload_dir='uploads', repo='repo'):
         from tkinter import filedialog as tk_filedialog
         from tkinter import messagebox as tk_messagebox
         import tkinter as tk
@@ -120,34 +122,51 @@ class spacy_sent_connections(tk.Tk):
         self.tk_root.withdraw()
         self.nlp = en_core_web_sm.load()
         self.text = []
-        self.answer = None
-        self.x = 3
+        self.gui = gui
+        self.downloads = os.path.join(ROOT, downloads)
+        self.uploads = os.path.join(ROOT, upload_dir)
+        self.repo = os.path.join(self.uploads, repo)
+        if os.listdir(self.repo):
+            self.answer = True
+        else:
+            self.answer = False
 
     def load_file(self):
         # root = tkinter.Tk()
         # root.withdraw()
-        filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
-                                                        title='Open file to read',
-                                                        filetypes=(("Text Document", "*.txt"),
-                                                                   ("Adobe Acrobat Document", "*.pdf"),
-                                                                   ("All Files", "*.*")),
-                                                        )
+        if self.gui:
+            filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                                                            title='Open file to read',
+                                                            filetypes=(("Text Document", "*.txt"),
+                                                                       ("Adobe Acrobat Document", "*.pdf"),
+                                                                       ("All Files", "*.*")))
+        else:
+            filePathList = []
+            for file in os.listdir(self.uploads):
+                fp = os.path.join(self.uploads, file)
+                filePathList.append(fp)
+            filePathName = filePathList
         return filePathName
 
     def json_repo_load(self):
 
-        try:
-            self.answer = self.messagebox.askyesno("Question", "Would you like to load a repository?")
-        except RuntimeError as e:
-            print(e)
-            self.answer = False
-            pass
+        # try:
+        #     self.answer = self.messagebox.askyesno("Question", "Would you like to load a repository?")
+        # except RuntimeError as e:
+        #     print(e)
+        #     self.answer = False
+        #     pass
+
         if self.answer:
-            filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
-                                                            title='Open file to read',
-                                                            filetypes=(("JSON File", "*.json"),
-                                                                       ("All Files", "*.*")),
-                                                            )
+            if self.gui:
+                filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                                                                title='Open file to read',
+                                                                filetypes=(("JSON File", "*.json"),
+                                                                           ("All Files", "*.*")), )
+            else:
+                os.makedirs(self.repo, exist_ok=True)
+                filePathName = os.listdir(self.repo)[0]
+
             try:
                 with open(filePathName) as json_file:
                     data = json.load(json_file)
@@ -175,23 +194,28 @@ class spacy_sent_connections(tk.Tk):
                     self.text = self.nlp(read_in_pdf(filepath))
                 else:
                     pass
+                file.close()
 
             except EOFError as e:
-                print(e)
+                e
 
             json_data = sentence_parser(unstruct_text=self.text, json_data_parser=json_data)
             print('Finished processing ' + file_basename)
         self.save_csv_json_file(json_data)
 
-        return redirect(url_for("/application_ran"))
+        return
 
     def save_csv_json_file(self, json_data_save, analyst_notebook=True):
-        file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
-                                                     title='Save-file',
-                                                     defaultextension=".csv",
-                                                     filetypes=(
-                                                         ("Microsoft Excel Comma Separated Values File", "*.csv"),
-                                                         ("All Files", "*.*")))
+        if self.gui:
+            file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
+                                                         title='Save-file',
+                                                         defaultextension=".csv",
+                                                         filetypes=(
+                                                             ("Microsoft Excel Comma Separated Values File", "*.csv"),
+                                                             ("All Files", "*.*")))
+        else:
+            os.makedirs(self.downloads, exist_ok=True)
+            file_out = os.path.join(self.downloads, 'data.csv')
 
         df_data = pd.DataFrame(pd.json_normalize(json_data_save).squeeze().reset_index())
         df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
@@ -206,5 +230,12 @@ class spacy_sent_connections(tk.Tk):
         with open(json_file_path, "w") as write_file:
             json.dump(json_data_save, write_file, indent=4)
 
-        os.remove(os.path.join(os.getcwd(), "uploads/*"))
+        for f in os.listdir(self.uploads):
+            filePath = os.path.join(self.uploads, f)
+            if os.path.isfile(filePath):
+                os.remove(filePath,)
+        # for f in os.listdir(self.downloads):
+        #     filePath = os.path.join(self.downloads, f)
+        #     if os.path.isfile(filePath):
+        #         os.remove(os.path.join(self.downloads, f))
         return

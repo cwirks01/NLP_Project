@@ -4,9 +4,71 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    function downloadFile(file) {
+      // Create a link and set the URL using `createObjectURL`
+      const link = document.createElement("a");
+      link.style.display = "none";
+      link.href = URL.createObjectURL(file);
+      link.download = file.name;
+
+      // It needs to be added to the DOM so it can be clicked
+      document.body.appendChild(link);
+      link.click();
+
+      // To make this work on Firefox we need to wait
+      // a little while before removing it.
+      setTimeout(() => {
+        URL.revokeObjectURL(link.href);
+        link.parentNode.removeChild(link);
+      }, 0);
+    }
+
+
+    // Dynamically create a File
+    const myFile = new File([`${new Date()}: Meow!`], "my-cat.txt");
+
+    // Download it using our function
+    function download_all_files() {
+    function download_all_files() {
+    var fs = require('fs');
+    var files = fs.readdirSync('C:\\Users\\612946\\Documents\\NTC\\NLP_Project\\downloads');
+    for (var i in files) {
+      var definition = new File('C:\\Users\\612946\\Documents\\NTC\\NLP_Project\\downloads' + files[i]);
+      window.open('C:\\Users\\612946\\Documents\\NTC\\NLP_Project\\downloads' + files[i]);
+    }
+    }
+    var filesaver = new FileSaver(blob, "video.webm");
+
+    download_all_files();
+    downloadFile(myFile);
+
+    $('a.myLink').click(function(e) {
+        e.preventDefault();
+        var files = fs.readdirSync('C:\Users\612946\Documents\NTC\NLP_Project\downloads\');
+        for (var i in files) {
+            window.open('C:\Users\612946\Documents\NTC\NLP_Project\downloads\' files[i]');
+        });
+var path = require('path');
+var appDir = path.dirname(require.main.filename);
+console.log(appDir)
+</script>
+    <script src="objects/js/jquery.min.js" type="text/javascript"></script>
+    <script src="objects/js/site.min.js" type="text/javascript"></script>
 <body>
 <h1>Your files are complete!</h1>
 <div class="container">
+<!--    <input type="button" onclick="download_all_files()" value="Save Files"/>-->
+<!--    <a href="#" class="myLink">Download</a>-->
+    <form method="get" action="../downloads/data.csv">
+    <button type="submit">Download CSV</button>
+    </form>
+        <form method="get" action="../downloads/data.anx">
+    <button type="submit">Download JSON</button>
+    </form>
+        <form method="get" action="../downloads/data.json">
+    <button type="submit">Download ANB</button>
+    </form>
     <form action="/">
     <input type="submit" value="Home" />
     </form>
