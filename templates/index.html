@@ -1,0 +1,43 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>NLP SpaCy</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    $("#logo").css('opacity','0');
+
+    $("#select_logo").click(function(e){
+       e.preventDefault();
+       $("#logo").trigger('click');
+    });
+</script>
+<h2>Select file(s) to upload</h2>
+<p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</p>
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+        <p>
+            <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv" multiple="true" required>
+            <a id="select_logo">Load files to Process.</a>
+            <br>
+            <input type="file" accept=".json" id="logo">
+            <a id="select_logo">Would you like to load a repository?</a>
+        </p>
+    </dl>
+<p>
+    <div class="container">
+        <form action="/processing/", method="post">
+        <input type="submit" value="Submit">
+        </form>
+    </div>
+</p>
+</form>
