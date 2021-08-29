@@ -19,8 +19,8 @@
         <LinkType Colour="0" Name="Link"/>
     </LinkTypeCollection>
     <ChartItemCollection>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Crown Prince Nobbler" XPosition="894">
-            <End Y="577" X="894" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Crown Prince Nobbler" XPosition="861">
+            <End Y="277" X="861" Z="0">
                 <Entity EntityId="Crown Prince Nobbler" Identity="Crown Prince Nobbler" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="PERSON"/>
@@ -28,8 +28,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Nobs" XPosition="25">
-            <End Y="138" X="25" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Nobs" XPosition="732">
+            <End Y="303" X="732" Z="0">
                 <Entity EntityId="Nobs" Identity="Nobs" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="ORG"/>
@@ -37,8 +37,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Airedale" XPosition="81">
-            <End Y="283" X="81" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Airedale" XPosition="271">
+            <End Y="734" X="271" Z="0">
                 <Entity EntityId="Airedale" Identity="Airedale" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="ORG"/>
@@ -46,8 +46,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Cape Farewell" XPosition="546">
-            <End Y="233" X="546" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Cape Farewell" XPosition="928">
+            <End Y="406" X="928" Z="0">
                 <Entity EntityId="Cape Farewell" Identity="Cape Farewell" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -55,8 +55,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Greenland" XPosition="658">
-            <End Y="178" X="658" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Greenland" XPosition="417">
+            <End Y="414" X="417" Z="0">
                 <Entity EntityId="Greenland" Identity="Greenland" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -64,8 +64,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Bengal" XPosition="949">
-            <End Y="375" X="949" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Bengal" XPosition="353">
+            <End Y="316" X="353" Z="0">
                 <Entity EntityId="Bengal" Identity="Bengal" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -73,8 +73,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="the United States" XPosition="740">
-            <End Y="278" X="740" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="the United States" XPosition="902">
+            <End Y="293" X="902" Z="0">
                 <Entity EntityId="the United States" Identity="the United States" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -82,8 +82,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="American" XPosition="496">
-            <End Y="340" X="496" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="American" XPosition="134">
+            <End Y="691" X="134" Z="0">
                 <Entity EntityId="American" Identity="American" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="NORP"/>
@@ -91,8 +91,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Germans" XPosition="461">
-            <End Y="402" X="461" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Germans" XPosition="306">
+            <End Y="726" X="306" Z="0">
                 <Entity EntityId="Germans" Identity="Germans" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="NORP"/>
@@ -100,8 +100,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="as many seconds" XPosition="570">
-            <End Y="308" X="570" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="as many seconds" XPosition="958">
+            <End Y="940" X="958" Z="0">
                 <Entity EntityId="as many seconds" Identity="as many seconds" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="TIME"/>
@@ -109,8 +109,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="three" XPosition="733">
-            <End Y="832" X="733" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="three" XPosition="975">
+            <End Y="723" X="975" Z="0">
                 <Entity EntityId="three" Identity="three" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="CARDINAL"/>
@@ -118,8 +118,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Germany" XPosition="510">
-            <End Y="532" X="510" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Germany" XPosition="322">
+            <End Y="673" X="322" Z="0">
                 <Entity EntityId="Germany" Identity="Germany" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -127,8 +127,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Frankenstein" XPosition="652">
-            <End Y="42" X="652" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Frankenstein" XPosition="216">
+            <End Y="14" X="216" Z="0">
                 <Entity EntityId="Frankenstein" Identity="Frankenstein" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="PERSON"/>
@@ -136,8 +136,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Pacific" XPosition="505">
-            <End Y="212" X="505" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Pacific" XPosition="295">
+            <End Y="785" X="295" Z="0">
                 <Entity EntityId="Pacific" Identity="Pacific" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="LOC"/>
@@ -145,8 +145,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="a few yards" XPosition="84">
-            <End Y="388" X="84" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="a few yards" XPosition="671">
+            <End Y="920" X="671" Z="0">
                 <Entity EntityId="a few yards" Identity="a few yards" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="QUANTITY"/>
@@ -154,8 +154,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="France" XPosition="192">
-            <End Y="604" X="192" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="France" XPosition="138">
+            <End Y="102" X="138" Z="0">
                 <Entity EntityId="France" Identity="France" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -163,8 +163,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="first" XPosition="776">
-            <End Y="890" X="776" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="first" XPosition="220">
+            <End Y="633" X="220" Z="0">
                 <Entity EntityId="first" Identity="first" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="ORDINAL"/>
@@ -172,8 +172,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="England" XPosition="316">
-            <End Y="458" X="316" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="England" XPosition="659">
+            <End Y="907" X="659" Z="0">
                 <Entity EntityId="England" Identity="England" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
