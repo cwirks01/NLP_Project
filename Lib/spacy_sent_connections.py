@@ -7,15 +7,61 @@ Author: Charles Wirks email: cwirks01@gmail.com
 import os
 import PyPDF2
 import json
-from flask import Flask, redirect, url_for
+import spacy
 
 import pandas as pd
 
-import tkinter as tk
 from Lib.json_util import add_values_to_json, rm_header_dups_json
-from Lib import en_core_web_sm, pyanx
+from Lib import pyanx
 
 ROOT = os.getcwd()
+
+
+class gui_tkinter:
+
+    def __init__(self):
+        from tkinter import filedialog as tk_filedialog
+        from tkinter import messagebox as tk_messagebox
+        import tkinter as tk
+
+        self.filedialog = tk_filedialog
+        self.tk_root = tk.Tk()
+        self.messagebox = tk_messagebox
+        self.tk_root.withdraw()
+
+    def load_files(self):
+        filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                                                        title='Open file to read',
+                                                        filetypes=(("Text Document", "*.txt"),
+                                                                   ("Adobe Acrobat Document", "*.pdf"),
+                                                                   ("All Files", "*.*")))
+        return filePathName
+
+    def load_jfile(self):
+        filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
+                                                        title='Open file to read',
+                                                        filetypes=(("Text Document", "*.txt"),
+                                                                   ("JSON", "*.json"),
+                                                                   ("All Files", "*.*")))
+        return filePathName
+
+    def save_file(self):
+        file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
+                                                     title='Save-file',
+                                                     defaultextension=".csv",
+                                                     filetypes=(
+                                                         ("Microsoft Excel Comma Separated Values File", "*.csv"),
+                                                         ("All Files", "*.*")))
+        return file_out
+
+    def message_out(self):
+        try:
+            answer = self.messagebox.askyesno("Question", "Would you like to load a repository?")
+        except RuntimeError as e:
+            print(e)
+            answer = False
+            pass
+        return answer
 
 
 def sentence_parser(unstruct_text, json_data_parser=None):
@@ -58,8 +104,6 @@ def analyst_worksheet(df_anb, file_out_path):
     :param file_out_path:
     :return:
     """
-    # root = tkinter.Tk()
-    # root.withdraw()
     chart = pyanx.Pyanx()
     df_anb_count = df_anb.value_counts(subset=['name', 'value'])
     df_anb_count = df_anb_count.reset_index()
@@ -85,11 +129,6 @@ def analyst_worksheet(df_anb, file_out_path):
             chart.add_edge(chart_node1, chart_node2,
                            label="Occurence amount %s" % row['occurrence'],
                            linewidth=linewidth)
-    # file_out = filedialog.asksaveasfilename(parent=root,
-    #                                         title='Save-file',
-    #                                         defaultextension=".anx",
-    #                                         filetypes=(("ANX File", "*.anx"),
-    #                                                    ("All Files", "*.*")))
     file_out_dir = os.path.dirname(file_out_path)
     file_out_name = os.path.basename(file_out_path)
     file_out_name = os.path.splitext(file_out_name)[0]
@@ -109,18 +148,10 @@ def read_in_pdf(file_path):
     return text_out
 
 
-class spacy_sent_connections(tk.Tk):
+class spacy_sent_connections:
 
-    def __init__(self, gui=False, downloads='downloads', upload_dir='uploads', repo='repo'):
-        from tkinter import filedialog as tk_filedialog
-        from tkinter import messagebox as tk_messagebox
-        import tkinter as tk
-
-        self.filedialog = tk_filedialog
-        self.tk_root = tk.Tk()
-        self.messagebox = tk_messagebox
-        self.tk_root.withdraw()
-        self.nlp = en_core_web_sm.load()
+    def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo'):
+        self.nlp = spacy.load("en_core_web_sm")
         self.text = []
         self.gui = gui
         self.downloads = os.path.join(ROOT, downloads)
@@ -132,14 +163,9 @@ class spacy_sent_connections(tk.Tk):
             self.answer = False
 
     def load_file(self):
-        # root = tkinter.Tk()
-        # root.withdraw()
         if self.gui:
-            filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
-                                                            title='Open file to read',
-                                                            filetypes=(("Text Document", "*.txt"),
-                                                                       ("Adobe Acrobat Document", "*.pdf"),
-                                                                       ("All Files", "*.*")))
+            filePathName = gui_tkinter()
+            filePathName.load_files()
         else:
             filePathList = []
             for file in os.listdir(self.uploads):
@@ -150,19 +176,13 @@ class spacy_sent_connections(tk.Tk):
 
     def json_repo_load(self):
 
-        # try:
-        #     self.answer = self.messagebox.askyesno("Question", "Would you like to load a repository?")
-        # except RuntimeError as e:
-        #     print(e)
-        #     self.answer = False
-        #     pass
-
         if self.answer:
             if self.gui:
-                filePathName = self.filedialog.askopenfilenames(parent=self.tk_root,
-                                                                title='Open file to read',
-                                                                filetypes=(("JSON File", "*.json"),
-                                                                           ("All Files", "*.*")), )
+                gui_answer = gui_tkinter()
+                self.answer = gui_answer.message_out()
+                if self.answer:
+                    filePathName = gui_tkinter()
+                    filePathName.load_jfile()
             else:
                 os.makedirs(self.repo, exist_ok=True)
                 filePathName = os.listdir(self.repo)[0]
@@ -197,7 +217,7 @@ class spacy_sent_connections(tk.Tk):
                 file.close()
 
             except EOFError as e:
-                e
+                print(e)
 
             json_data = sentence_parser(unstruct_text=self.text, json_data_parser=json_data)
             print('Finished processing ' + file_basename)
@@ -207,12 +227,8 @@ class spacy_sent_connections(tk.Tk):
 
     def save_csv_json_file(self, json_data_save, analyst_notebook=True):
         if self.gui:
-            file_out = self.filedialog.asksaveasfilename(parent=self.tk_root,
-                                                         title='Save-file',
-                                                         defaultextension=".csv",
-                                                         filetypes=(
-                                                             ("Microsoft Excel Comma Separated Values File", "*.csv"),
-                                                             ("All Files", "*.*")))
+            file_out = gui_tkinter()
+            file_out.save_file()
         else:
             os.makedirs(self.downloads, exist_ok=True)
             file_out = os.path.join(self.downloads, 'data.csv')
@@ -233,9 +249,5 @@ class spacy_sent_connections(tk.Tk):
         for f in os.listdir(self.uploads):
             filePath = os.path.join(self.uploads, f)
             if os.path.isfile(filePath):
-                os.remove(filePath,)
-        # for f in os.listdir(self.downloads):
-        #     filePath = os.path.join(self.downloads, f)
-        #     if os.path.isfile(filePath):
-        #         os.remove(os.path.join(self.downloads, f))
+                os.remove(filePath, )
         return

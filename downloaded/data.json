@@ -1,0 +1,197 @@
+{
+    "a little after three o'clock - DATE": [],
+    "June 3rd, 1916 - DATE": [],
+    "three brief months - DATE": [],
+    "Cambrian - NORP": [],
+    "Greenland - GPE": [
+        "Cape Farewell - GPE",
+        "Bengal - GPE",
+        "Cape Farewell - GPE",
+        "Bengal - GPE",
+        "Cape Farewell - GPE"
+    ],
+    "the summer - DATE": [
+        "Cape Farewell - GPE",
+        "Bengal - GPE",
+        "Cape Farewell - GPE",
+        "Bengal - GPE",
+        "Cape Farewell - GPE"
+    ],
+    "Cape Farewell - GPE": [
+        "Greenland - GPE",
+        "Bengal - GPE",
+        "Greenland - GPE",
+        "Greenland - GPE",
+        "Bengal - GPE",
+        "Greenland - GPE"
+    ],
+    "Bengal - GPE": [
+        "Cape Farewell - GPE",
+        "Greenland - GPE",
+        "Cape Farewell - GPE",
+        "Greenland - GPE"
+    ],
+    "two minutes - TIME": [],
+    "Santa Monica - GPE": [],
+    "recent years - DATE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP"
+    ],
+    "Germany - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP"
+    ],
+    "England - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP"
+    ],
+    "France - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP"
+    ],
+    "the United States - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP"
+    ],
+    "Curtiss - ORG": [],
+    "American - NORP": [
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL",
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL"
+    ],
+    "three - CARDINAL": [
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL",
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL"
+    ],
+    "as many seconds - TIME": [
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL",
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL"
+    ],
+    "Airedale - ORG": [
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Nobs - ORG",
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Nobs - ORG"
+    ],
+    "Crown Prince Nobbler - PERSON": [
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Nobs - ORG",
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Nobs - ORG"
+    ],
+    "first - ORDINAL": [
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Nobs - ORG",
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Nobs - ORG"
+    ],
+    "Punch - NORP": [],
+    "two hundred yards - QUANTITY": [],
+    "hundreds of feet - QUANTITY": [],
+    "two seconds - TIME": [],
+    "half - CARDINAL": [],
+    "one - CARDINAL": [],
+    "Pacific - LOC": [
+        "first - ORDINAL",
+        "first - ORDINAL"
+    ],
+    "Frankenstein - PERSON": [
+        "first - ORDINAL",
+        "first - ORDINAL"
+    ],
+    "second - ORDINAL": [],
+    "One - CARDINAL": [],
+    "four feet - QUANTITY": [],
+    "a few yards - QUANTITY": [
+        "first - ORDINAL",
+        "first - ORDINAL"
+    ],
+    "Germans - NORP": [
+        "Germany - GPE",
+        "Germany - GPE"
+    ],
+    "a few minutes - TIME": [
+        "Germany - GPE",
+        "Germany - GPE"
+    ],
+    "Nobs - ORG": [],
+    "Caspak - GPE": [],
+    "an hour - TIME": [],
+    "Leland-Stanford - FAC": [],
+    "German - NORP": [],
+    "all night - TIME": [],
+    "Nobbler - PERSON": [],
+    "Nobbler - ORG": [],
+    "two - CARDINAL": []
+}
