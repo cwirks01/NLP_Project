@@ -2,7 +2,7 @@
 from werkzeug.utils import secure_filename
 
 from Lib.spacy_sent_connections import spacy_sent_connections
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, send_from_directory
 import os
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ REPO_FOLDER = os.path.join(UPLOAD_FOLDER, 'repo')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # file Download
-DOWNLOAD_FOLDER = os.path.join(ROOT, 'downloads')
+DOWNLOAD_FOLDER = os.path.join(ROOT, 'downloaded')
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
@@ -67,9 +67,15 @@ def process_files():
     return redirect("/application_ran")
 
 
-@app.route("/application_ran")
+@app.route("/application_ran", methods=['GET', 'POST'])
 def complete_app():
     return render_template("app_finish.html")
+
+
+@app.route('/out/<filename>')
+def downloaded_file(filename):
+    print(filename)
+    return send_from_directory(app.config["DOWNLOAD_FOLDER"], filename)
 
 
 if __name__ == '__main__':

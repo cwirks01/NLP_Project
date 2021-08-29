@@ -8,12 +8,14 @@ import os
 import PyPDF2
 import json
 from flask import Flask, redirect, url_for
+import spacy
 
 import pandas as pd
 
 import tkinter as tk
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import en_core_web_sm, pyanx
+
 
 ROOT = os.getcwd()
 
@@ -111,7 +113,7 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections(tk.Tk):
 
-    def __init__(self, gui=False, downloads='downloads', upload_dir='uploads', repo='repo'):
+    def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo'):
         from tkinter import filedialog as tk_filedialog
         from tkinter import messagebox as tk_messagebox
         import tkinter as tk
@@ -120,7 +122,7 @@ class spacy_sent_connections(tk.Tk):
         self.tk_root = tk.Tk()
         self.messagebox = tk_messagebox
         self.tk_root.withdraw()
-        self.nlp = en_core_web_sm.load()
+        self.nlp = spacy.load("en_core_web_sm")
         self.text = []
         self.gui = gui
         self.downloads = os.path.join(ROOT, downloads)
@@ -197,7 +199,7 @@ class spacy_sent_connections(tk.Tk):
                 file.close()
 
             except EOFError as e:
-                e
+                print(e)
 
             json_data = sentence_parser(unstruct_text=self.text, json_data_parser=json_data)
             print('Finished processing ' + file_basename)

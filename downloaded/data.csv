@@ -1,0 +1,156 @@
+name,value
+a little after three o'clock - DATE,
+"June 3rd, 1916 - DATE",
+three brief months - DATE,
+Cambrian - NORP,
+Greenland - GPE,Cape Farewell - GPE
+Greenland - GPE,Bengal - GPE
+Greenland - GPE,Cape Farewell - GPE
+Greenland - GPE,Bengal - GPE
+Greenland - GPE,Cape Farewell - GPE
+the summer - DATE,Cape Farewell - GPE
+the summer - DATE,Bengal - GPE
+the summer - DATE,Cape Farewell - GPE
+the summer - DATE,Bengal - GPE
+the summer - DATE,Cape Farewell - GPE
+Cape Farewell - GPE,Greenland - GPE
+Cape Farewell - GPE,Bengal - GPE
+Cape Farewell - GPE,Greenland - GPE
+Cape Farewell - GPE,Greenland - GPE
+Cape Farewell - GPE,Bengal - GPE
+Cape Farewell - GPE,Greenland - GPE
+Bengal - GPE,Cape Farewell - GPE
+Bengal - GPE,Greenland - GPE
+Bengal - GPE,Cape Farewell - GPE
+Bengal - GPE,Greenland - GPE
+two minutes - TIME,
+Santa Monica - GPE,
+recent years - DATE,American - NORP
+recent years - DATE,three - CARDINAL
+recent years - DATE,as many seconds - TIME
+recent years - DATE,Germans - NORP
+recent years - DATE,American - NORP
+recent years - DATE,three - CARDINAL
+recent years - DATE,as many seconds - TIME
+recent years - DATE,Germans - NORP
+Germany - GPE,American - NORP
+Germany - GPE,three - CARDINAL
+Germany - GPE,as many seconds - TIME
+Germany - GPE,Germans - NORP
+Germany - GPE,American - NORP
+Germany - GPE,three - CARDINAL
+Germany - GPE,as many seconds - TIME
+Germany - GPE,Germans - NORP
+England - GPE,American - NORP
+England - GPE,three - CARDINAL
+England - GPE,as many seconds - TIME
+England - GPE,Germans - NORP
+England - GPE,American - NORP
+England - GPE,three - CARDINAL
+England - GPE,as many seconds - TIME
+England - GPE,Germans - NORP
+France - GPE,American - NORP
+France - GPE,three - CARDINAL
+France - GPE,as many seconds - TIME
+France - GPE,Germans - NORP
+France - GPE,American - NORP
+France - GPE,three - CARDINAL
+France - GPE,as many seconds - TIME
+France - GPE,Germans - NORP
+the United States - GPE,American - NORP
+the United States - GPE,three - CARDINAL
+the United States - GPE,as many seconds - TIME
+the United States - GPE,Germans - NORP
+the United States - GPE,American - NORP
+the United States - GPE,three - CARDINAL
+the United States - GPE,as many seconds - TIME
+the United States - GPE,Germans - NORP
+Curtiss - ORG,
+American - NORP,France - GPE
+American - NORP,Airedale - ORG
+American - NORP,Crown Prince Nobbler - PERSON
+American - NORP,first - ORDINAL
+American - NORP,France - GPE
+American - NORP,Airedale - ORG
+American - NORP,Crown Prince Nobbler - PERSON
+American - NORP,first - ORDINAL
+three - CARDINAL,France - GPE
+three - CARDINAL,Airedale - ORG
+three - CARDINAL,Crown Prince Nobbler - PERSON
+three - CARDINAL,first - ORDINAL
+three - CARDINAL,France - GPE
+three - CARDINAL,Airedale - ORG
+three - CARDINAL,Crown Prince Nobbler - PERSON
+three - CARDINAL,first - ORDINAL
+as many seconds - TIME,France - GPE
+as many seconds - TIME,Airedale - ORG
+as many seconds - TIME,Crown Prince Nobbler - PERSON
+as many seconds - TIME,first - ORDINAL
+as many seconds - TIME,France - GPE
+as many seconds - TIME,Airedale - ORG
+as many seconds - TIME,Crown Prince Nobbler - PERSON
+as many seconds - TIME,first - ORDINAL
+Airedale - ORG,American - NORP
+Airedale - ORG,Pacific - LOC
+Airedale - ORG,Frankenstein - PERSON
+Airedale - ORG,a few yards - QUANTITY
+Airedale - ORG,Nobs - ORG
+Airedale - ORG,Nobs - ORG
+Airedale - ORG,American - NORP
+Airedale - ORG,Pacific - LOC
+Airedale - ORG,Frankenstein - PERSON
+Airedale - ORG,a few yards - QUANTITY
+Airedale - ORG,Nobs - ORG
+Airedale - ORG,Nobs - ORG
+Crown Prince Nobbler - PERSON,American - NORP
+Crown Prince Nobbler - PERSON,Pacific - LOC
+Crown Prince Nobbler - PERSON,Frankenstein - PERSON
+Crown Prince Nobbler - PERSON,a few yards - QUANTITY
+Crown Prince Nobbler - PERSON,Nobs - ORG
+Crown Prince Nobbler - PERSON,Nobs - ORG
+Crown Prince Nobbler - PERSON,American - NORP
+Crown Prince Nobbler - PERSON,Pacific - LOC
+Crown Prince Nobbler - PERSON,Frankenstein - PERSON
+Crown Prince Nobbler - PERSON,a few yards - QUANTITY
+Crown Prince Nobbler - PERSON,Nobs - ORG
+Crown Prince Nobbler - PERSON,Nobs - ORG
+first - ORDINAL,American - NORP
+first - ORDINAL,Pacific - LOC
+first - ORDINAL,Frankenstein - PERSON
+first - ORDINAL,a few yards - QUANTITY
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,American - NORP
+first - ORDINAL,Pacific - LOC
+first - ORDINAL,Frankenstein - PERSON
+first - ORDINAL,a few yards - QUANTITY
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,Nobs - ORG
+Punch - NORP,
+two hundred yards - QUANTITY,
+hundreds of feet - QUANTITY,
+two seconds - TIME,
+half - CARDINAL,
+one - CARDINAL,
+Pacific - LOC,first - ORDINAL
+Pacific - LOC,first - ORDINAL
+Frankenstein - PERSON,first - ORDINAL
+Frankenstein - PERSON,first - ORDINAL
+second - ORDINAL,
+One - CARDINAL,
+four feet - QUANTITY,
+a few yards - QUANTITY,first - ORDINAL
+a few yards - QUANTITY,first - ORDINAL
+Germans - NORP,Germany - GPE
+Germans - NORP,Germany - GPE
+a few minutes - TIME,Germany - GPE
+a few minutes - TIME,Germany - GPE
+Nobs - ORG,
+Caspak - GPE,
+an hour - TIME,
+Leland-Stanford - FAC,
+German - NORP,
+all night - TIME,
+Nobbler - PERSON,
+Nobbler - ORG,
+two - CARDINAL,
