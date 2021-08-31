@@ -251,3 +251,4 @@ class spacy_sent_connections:
             if os.path.isfile(filePath):
                 os.remove(filePath, )
         return
+        
