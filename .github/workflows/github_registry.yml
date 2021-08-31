@@ -60,6 +60,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-        - name: Adding an ENV var
-          run: |
-            echo "export NTC_TOKEN=${{ secrets.NTC_TOKEN }}" > ~/.bashrc
+          
+      - name: Adding an ENV var
+        run: |
+          echo "export NTC_TOKEN=${{ secrets.NTC_TOKEN }}" > ~/.bashrc
