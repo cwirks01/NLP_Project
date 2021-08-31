@@ -63,6 +63,6 @@ jobs:
           context: .
           push: true
           file: ./Dockerfile
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ steps.vars.outputs.GITHUB_REPOSITORY_LOWERCASE}}:${{ steps.vars.outputs.tag }}
+          tags: ${{ steps.vars.outputs.GITHUB_REPOSITORY_LOWERCASE}}:${{ steps.vars.outputs.tag }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: "NTC_TOKEN=${{ secrets.NTC_TOKEN }}"
