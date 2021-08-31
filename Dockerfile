@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
-LABEL desc "Incredibly language processor designed."
+LABEL desc "Incredibly fast language processor designed for initial analysis."
 
 WORKDIR /NLP_Project
 
