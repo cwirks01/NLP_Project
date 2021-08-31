@@ -19,6 +19,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # file Download
 DOWNLOAD_FOLDER = os.path.join(ROOT, 'downloaded')
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
+print(os.listdir(ROOT))
 
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -32,6 +33,7 @@ def allowed_file(filename):
 
 @app.route("/")
 def main():
+    print(os.listdir(os.getcwd()))
     return render_template("index.html")
 
 
