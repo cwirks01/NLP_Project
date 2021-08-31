@@ -55,8 +55,7 @@ jobs:
       
       - name: Build and push Docker images
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        env:
-          NTC_TOKEN: ${{ secrets.NTC_TOKEN }}
+        run: echo "export NTC_TOKEN=${{ secrets.NTC_TOKEN }}"
         with:
           context: .
           push: true
