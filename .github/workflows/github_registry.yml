@@ -49,9 +49,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3.5.0
         with:
-          images: |
-            cwirks01/${{ github.repository }}
-            ghcr.io/${{ github.repository }}
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.repository }}
+          tag-custom: ${GITHUB_REF#refs/tags/}
+          tag-semver: {{version}}
+
       
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
@@ -59,6 +60,6 @@ jobs:
           context: .
           push: true
           file: ./Dockerfile
-          tags: cwirks01/nlp_project:${{ github.event.release.tag_name }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: "NTC_TOKEN=${{ secrets.NTC_TOKEN }}"
