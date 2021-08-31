@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      
+      - name: "base image build"
         id: vars
         run: |
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
