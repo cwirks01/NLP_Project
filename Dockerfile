@@ -4,6 +4,7 @@ FROM ubuntu
 
 ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
+ARG NTC_TOKEN
 
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
@@ -42,7 +43,7 @@ RUN echo "export DISPLAY='localhost:0.0'" >> .bashrc && \
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
 
-RUN git clone https://NTC_TOKEN@github.com/cwirks01/NLP_Project.git
+RUN git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
