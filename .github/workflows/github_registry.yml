@@ -56,9 +56,6 @@ jobs:
         uses: docker/metadata-action@v3.5.0
         with:
           images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.repository }}
-          tag-custom: ${GITHUB_REF#refs/tags/}
-          tag-semver: {{version}}
-
       
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
