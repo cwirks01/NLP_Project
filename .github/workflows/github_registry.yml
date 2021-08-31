@@ -31,6 +31,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+        id: vars
+        run: |
+        echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        GITHUB_REPOSITORY_LOWERCASE=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -60,6 +64,6 @@ jobs:
           context: .
           push: true
           file: ./Dockerfile
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${GITHUB_REPOSITORY_LOWERCASE}:${{ steps.vars.outputs.tag }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: "NTC_TOKEN=${{ secrets.NTC_TOKEN }}"
