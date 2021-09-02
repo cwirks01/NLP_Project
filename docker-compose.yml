@@ -2,12 +2,25 @@ version: '3.9'
 
 services:
   web:
+    restart: always
     build: .
+    networks:
+      - nlp_project
     ports:
-      - "8000:8000"
+      - "80:80"
+      - "443:443"
     volumes:
-      - .:/NLP_Project
-    environment:
-      FLASK_ENV: development
-  redis:
-    image: "redis:alpine"
+      - /usr/share/nginx/html
+
+    #Specify the network these containers will run on
+  nginx:
+    image: nginx
+    depends_on:
+    - web
+    expose:
+      - "80"
+
+networks:
+  nlp_project:
+    external:
+      name: nlp_project_default

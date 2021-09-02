@@ -9,7 +9,7 @@
 
  - Ensure GITHUB_TOKEN is saved in your Environmental Variables
 ```docker
-docker build -t nlp_project --build-arg TOKEN="$(echo $env:GITHUB_TOKEN)" .
+docker-compose build --build-arg NTC_TOKEN="$(echo $env:GITHUB_TOKEN)"; docker-compose up
 ```
 
 ```Commandline

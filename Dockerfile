@@ -1,6 +1,14 @@
 # syntax=docker/dockerfile:1
 FROM python:3.8
 FROM ubuntu
+FROM nginx
+
+COPY ./reverse-proxy/default.conf /etc/nginx/conf.d/default.conf
+COPY ./reverse-proxy/default.conf /etc/nginx/sites-enabled/nlp_project
+COPY ./reverse-proxy/default.conf /etc/nginx/sites-available/nlp_project
+COPY ./reverse-proxy/backend-not-found.html /var/www/html/backend-not-found.html
+COPY ./reverse-proxy/includes/ /etc/nginx/includes/
+COPY ./reverse-proxy/ssl/ /etc/ssl/certs/nginx/
 
 ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
@@ -10,7 +18,7 @@ LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
 LABEL desc "Incredibly fast language processor designed for initial analysis."
 
-WORKDIR /NLP_Project
+WORKDIR /usr/share/nginx/html
 
 ENV FLASK_APP=main.py
 ENV FLASK_RUN_HOST=0.0.0.0
@@ -21,8 +29,9 @@ RUN apt-get update
 # Install software
 RUN apt-get install -y git && \
     apt-get install -y python3-pip && \
-    apt-get install -y python3.8 python3-tk && \
-    apt-get install -y xvfb
+    apt-get install -y python3-tk && \
+    pip3 install -U pip setuptools wheel && \
+    pip install blis
 
 # Create known_hosts
 # Add github key
@@ -31,14 +40,19 @@ RUN mkdir -p /NLP_Project/ssh && \
     chmod 0700 /NLP_Project/ssh && \
     touch /NLP_Project/ssh/known_hosts && \
     touch /NLP_Project/ssh/config && \
+    touch /.bashrc && \
+    touch /etc/ssh/sshd_config && \
     ssh-keyscan -H github.com > /NLP_Project/ssh/known_hosts
 
 # ERROR: _tkinter.TclError: couldn't connect to display "unix" (SOLVED)
-RUN echo "export DISPLAY='localhost:0.0'" >> .bashrc && \
-    echo "export DISPLAY=':0'" >> .bashrc && \
-    echo "export MPLBACKEND='Agg'" >> .bashrc && \
+RUN echo "export DISPLAY='localhost:0.0'" >> /.bashrc && \
+    echo "export DISPLAY=':0'" >> /.bashrc && \
+    echo "export MPLBACKEND='Agg'" >> /.bashrc && \
     echo "s/^.*X11Forwarding.*$/X11Forwarding yes/" >> /etc/ssh/sshd_config && \
     echo "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" >> /etc/ssh/sshd_config
+
+CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts && \
+    echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
@@ -47,6 +61,7 @@ RUN git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
+CMD python -m spacy download en_core_web_sm
 
 EXPOSE 8000
 

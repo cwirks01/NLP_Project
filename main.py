@@ -31,13 +31,13 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route("/")
+@app.route("/nlp_project")
 def main():
     print(os.listdir(os.getcwd()))
     return render_template("index.html")
 
 
-@app.route('/', methods=['POST'])
+@app.route('/nlp_project', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
