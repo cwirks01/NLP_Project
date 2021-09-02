@@ -7,10 +7,13 @@ services:
     networks:
       - nlp_project
     ports:
-      - "80:80"
+      - "8000:8000"
       - "443:443"
     volumes:
       - /usr/share/nginx/html
+    environment:
+      - NODE_ENV=prod
+      - PORT=8000
 
     #Specify the network these containers will run on
   nginx:
