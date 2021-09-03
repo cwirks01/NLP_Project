@@ -55,7 +55,7 @@ phases:
     #file-format: JunitXml | CucumberJson
 artifacts:
   files:
-    - /NLP_Project/*
+    - "**/*"
   name: build-artifact-nlp
 #cache:
   #paths:
