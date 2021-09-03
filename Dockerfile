@@ -7,7 +7,6 @@ COPY ./reverse-proxy/default.conf /etc/nginx/conf.d/default.conf
 COPY ./reverse-proxy/default.conf /etc/nginx/sites-enabled/nlp_project
 COPY ./reverse-proxy/default.conf /etc/nginx/sites-available/nlp_project
 COPY ./reverse-proxy/backend-not-found.html /var/www/html/backend-not-found.html
-COPY ./reverse-proxy/includes/ /etc/nginx/includes/
 COPY ./reverse-proxy/ssl/ /etc/ssl/certs/nginx/
 
 ARG TOKEN
@@ -57,7 +56,7 @@ CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts && \
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
 
-RUN git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
+CMD git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
