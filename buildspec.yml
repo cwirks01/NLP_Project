@@ -26,17 +26,21 @@ phases:
     #runtime-versions:
       # name: version
       # name: version
-    #commands:
-      # - docker network create nlp_project_default
-      # - docker-compose build --build-arg NTC_TOKEN="$(echo $env:NTC_TOKEN)"
-  #pre_build:
-    #commands:
-      # - command
+    commands:
+       - sudo yum install git
+       - sudo yum install -y yum-utils
+       - sudo yum-config-manager \
+         --add-repo \
+         https://download.docker.com/linux/centos/docker-ce.repo
+       - sudo yum install docker-ce docker-ce-cli containerd.io
+#  pre_build:
+#    commands:
+#       - command
       # - command
   build:
     commands:
-      - docker network create nlp_project_default
-      - docker-compose build --build-arg NTC_TOKEN="$(echo $env:NTC_TOKEN)"
+      - sudo docker network create nlp_project_default
+      - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $env:NTC_TOKEN)"
   post_build:
     commands:
       - sudo docker-compose up
