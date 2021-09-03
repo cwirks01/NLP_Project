@@ -20,7 +20,7 @@ env:
   #build-matrix:
   #build-graph:
 phases:
-  install:
+  install: docker
     #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
     #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
     #runtime-versions:
@@ -33,6 +33,8 @@ phases:
          --add-repo \
          https://download.docker.com/linux/centos/docker-ce.repo
        - sudo yum install docker-ce docker-ce-cli containerd.io
+       - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+       - sudo chmod +x /usr/local/bin/docker-compose
 #  pre_build:
 #    commands:
 #       - command
