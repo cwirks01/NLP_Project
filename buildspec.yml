@@ -60,7 +60,7 @@ phases:
     #file-format: JunitXml | CucumberJson
 artifacts:
   files:
-    - "**/*"
+    - imagedefinitions.json
 #cache:
   #paths:
     # - paths
