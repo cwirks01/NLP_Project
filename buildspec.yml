@@ -53,13 +53,12 @@ phases:
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
-#artifacts:
-  #files:
-    # - location
-    # - location
-  #name: $(date +%Y-%m-%d)
-  #discard-paths: yes
-  #base-directory: location
+artifacts:
+  files:
+    - '**/*'
+  base-directory: base_dir
+  name: build-artifact-nlp
+  discard-paths: no
 #cache:
   #paths:
     # - paths
