@@ -7,7 +7,6 @@ COPY ./reverse-proxy/default.conf /etc/nginx/conf.d/default.conf
 COPY ./reverse-proxy/default.conf /etc/nginx/sites-enabled/nlp_project
 COPY ./reverse-proxy/default.conf /etc/nginx/sites-available/nlp_project
 COPY ./reverse-proxy/backend-not-found.html /var/www/html/backend-not-found.html
-COPY ./reverse-proxy/ssl/ /etc/ssl/certs/nginx/
 
 ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
