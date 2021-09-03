@@ -20,11 +20,11 @@ env:
   #build-matrix:
   #build-graph:
 phases:
-#  install:
+  #install:
     #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
     #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-#    runtime-versions:
-#       name: version
+    #runtime-versions:
+      # name: version
       # name: version
     #commands:
       # - docker network create nlp_project_default
