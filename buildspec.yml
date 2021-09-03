@@ -56,8 +56,7 @@ phases:
 artifacts:
   files:
     - /NLP_Project/*
-  base-directory: base_dir
-  name: build-artifact-nlp.yml
+  name: build-artifact-nlp
   discard-paths: no
 #cache:
   #paths:
