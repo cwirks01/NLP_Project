@@ -23,8 +23,8 @@ phases:
   install: docker
     #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
     #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-    #runtime-versions:
-      # name: version
+    runtime-versions:
+       Docker: 18
       # name: version
     commands:
        - sudo yum install git
