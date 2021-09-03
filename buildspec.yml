@@ -55,7 +55,7 @@ phases:
     #file-format: JunitXml | CucumberJson
 artifacts:
   files:
-    - '/NLP_Project/'
+    - /NLP_Project/*
   base-directory: base_dir
   name: build-artifact-nlp.yml
   discard-paths: no
