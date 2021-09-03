@@ -11,11 +11,11 @@ phases:
 #      - sudo docker-compose down
 #      - echo "if [sudo docker images -q <none>] \nthen sudo docker rmi -f [sudo docker images -q <none>] \nfi"
   build:
-    on-failure: ABORT
+    on-failure: CONTINUE
     commands:
       - sudo docker network create nlp_project_default
       - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $env:NTC_TOKEN)"
   post_build:
-    on-failure: ABORT
+    on-failure: CONTINUE
     commands:
       - sudo docker-compose up
