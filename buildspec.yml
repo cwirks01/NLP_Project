@@ -27,23 +27,23 @@ phases:
        docker: latest
       # name: version
     commands:
-       - sudo yum install git
-       - sudo yum install -y yum-utils
-       - sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-       - sudo yum install docker-ce docker-ce-cli containerd.io
-       - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-       - sudo chmod +x /usr/local/bin/docker-compose
+       - echo sudo yum install git
+       - echo sudo yum install -y yum-utils
+       - echo sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+       - echo sudo yum install docker-ce docker-ce-cli containerd.io
+       - echo sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+       - echo sudo chmod +x /usr/local/bin/docker-compose
 #  pre_build:
 #    commands:
 #       - command
       # - command
   build:
     commands:
-      - sudo docker network create nlp_project_default
-      - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $NTC_TOKEN)"
+      - echo sudo docker network create nlp_project_default
+      - echo sudo docker-compose build --build-arg NTC_TOKEN="$(echo $NTC_TOKEN)"
   post_build:
     commands:
-      - sudo docker-compose up
+      - echo sudo docker-compose up
       # - command
 #reports:
   #report-name-or-arn:
