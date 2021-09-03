@@ -1,0 +1,21 @@
+version: 0.1
+
+phases:
+  install:
+    runtime-versions:
+      python: corretto11
+  pre_build:
+    run-as: cwirks01
+    on-failure: CONTINUE
+    commands:
+      - sudo docker-compose down
+      - echo "if [sudo docker images -q <none>] \nthen sudo docker rmi -f [sudo docker images -q <none>] \nfi"
+  build:
+    on-failure: ABORT
+    commands:
+      - sudo docker network create nlp_project_default
+      - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $env:GITHUB_TOKEN)"
+  post_build:
+    on-failure: ABORT
+    commands:
+      - sudo docker-compose up

@@ -35,6 +35,7 @@ RUN apt-get install -y git && \
 # Add github key
 # Authorize SSH Host
 RUN mkdir -p /NLP_Project/ssh && \
+    mkdir -p /NLP_Project/logs && \
     chmod 0700 /NLP_Project/ssh && \
     touch /NLP_Project/ssh/known_hosts && \
     touch /NLP_Project/ssh/config && \
@@ -59,7 +60,7 @@ CMD git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-CMD python -m spacy download en_core_web_sm
+CMD python3 -m spacy download en_core_web_sm
 
 EXPOSE 8000
 
