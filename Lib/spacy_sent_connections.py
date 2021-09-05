@@ -8,6 +8,7 @@ import os
 import PyPDF2
 import json
 import spacy
+import en_core_web_sm
 
 import pandas as pd
 
@@ -151,7 +152,7 @@ def read_in_pdf(file_path):
 class spacy_sent_connections:
 
     def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo'):
-        self.nlp = spacy.load("en_core_web_sm")
+        self.nlp = en_core_web_sm.load()
         self.text = []
         self.gui = gui
         self.downloads = os.path.join(ROOT, downloads)
