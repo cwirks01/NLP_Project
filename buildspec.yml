@@ -56,6 +56,9 @@ phases:
     commands:
 #      - echo Writing image definitions file...
 #      - sudo printf '[{"name":"container","imageUri":"%s"}]' $PHP_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - sudo pip3 install -U pip setuptools wheel
+      - sudo pip3 install -U spacy
+      - sudo python3 -m spacy download en_core_web_sm
       - sudo docker-compose up -d
       # - command
 #reports:
