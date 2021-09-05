@@ -25,7 +25,7 @@ phases:
     #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
     runtime-versions:
        docker: latest
-       python: 3.7
+       python: 3.8
     commands:
        - sudo yum install -y git
        - sudo yum install -y yum-utils
