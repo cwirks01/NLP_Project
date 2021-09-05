@@ -9,7 +9,7 @@ env:
      # key: "value"
   secrets-manager:
       DOCKERHUB_USERNAME: nlp/app/docker2:username
-      DOCKERHUB_PASSWORD: nlp/app/docker2:password
+      DOCKERHUB_PASSWORD: nlp/app/docker2:token
   #exported-variables:
      # - variable
      # - variable
