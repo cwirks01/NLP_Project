@@ -41,10 +41,8 @@ phases:
     commands:
       - sudo docker network create -y nlp_project_default
       - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $NTC_TOKEN)"
-      - sudo PHP_REPOSITORY_URI=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)
-      - ['ImageURI'].split('@')[0])")
-      - sudo IMAGE_TAG=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)
-      - ['ImageTags'][0])")
+      - sudo PHP_REPOSITORY_URI=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)['ImageURI'].split('@')[0])")
+      - sudo IMAGE_TAG=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)['ImageTags'][0])")
       - echo $PHP_REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
