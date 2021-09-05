@@ -29,26 +29,34 @@ phases:
     commands:
        - sudo yum install -y git
        - sudo yum install -y yum-utils
-       - sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-       - sudo yum install -y docker-ce docker-ce-cli containerd.io
-       - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
-       - sudo chmod +x /usr/bin/docker-compose
+       - sudo yum install docker -y
+       - sudo service docker start
+       - sudo usermod -a -G docker ec2-user
+       - sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+       - sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+         sudo chmod +x /usr/bin/docker-compose
+       - docker-compose version
   pre_build:
     commands:
       - echo logging in docker hub
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
   build:
     commands:
-      - sudo docker network create -y nlp_project_default
+      - sudo systemctl start docker
+      - docker pull cwirks01/nlp_project:latest
+      - git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
+      - sudo cd NLP_Project
+      - sudo docker network create nlp_project_default
       - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $NTC_TOKEN)"
-      - sudo PHP_REPOSITORY_URI=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)['ImageURI'].split('@')[0])")
-      - sudo IMAGE_TAG=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)['ImageTags'][0])")
-      - echo $PHP_REPOSITORY_URI:$IMAGE_TAG
+#      - sudo PHP_REPOSITORY_URI=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)['ImageURI'].split('@')[0])")
+#      - sudo IMAGE_TAG=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)['ImageTags'][0])")
+#      - echo $PHP_REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
-      - echo Writing image definitions file...
-      - sudo printf '[{"name":"container","imageUri":"%s"}]' $PHP_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - sudo docker-compose up
+#      - echo Writing image definitions file...
+#      - sudo printf '[{"name":"container","imageUri":"%s"}]' $PHP_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - sudo docker-compose up -d
       # - command
 #reports:
   #report-name-or-arn:
