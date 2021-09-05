@@ -1,15 +1,15 @@
 version: 0.2
 
-#env:
+env:
   #variables:
      # key: "value"
      # key: "value"
   #parameter-store:
      # key: "value"
      # key: "value"
-#  secrets-manager:
-#      NTC_TOKEN: nlp/app/github
-     # key: secret-id:json-key:version-stage:version-id
+  secrets-manager:
+      DOCKERHUB_USERNAME: nlp/app/docker2:username
+      DOCKERHUB_PASSWORD: nlp/app/docker2:password
   #exported-variables:
      # - variable
      # - variable
@@ -33,10 +33,10 @@ phases:
        - sudo yum install -y docker-ce docker-ce-cli containerd.io
        - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
        - sudo chmod +x /usr/bin/docker-compose
-#  pre_build:
-#    commands:
-#       - command
-      # - command
+  pre_build:
+    commands:
+      - echo logging in docker hub
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
   build:
     commands:
       - sudo docker network create -y nlp_project_default
