@@ -26,6 +26,8 @@ phases:
     runtime-versions:
        docker: latest
        python: 3.8
+#    commands:
+  pre_build:
     commands:
       - sudo yum update -y
       - sudo yum install git -y
@@ -35,11 +37,8 @@ phases:
       - sudo usermod -a -G docker ec2-user
       - sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
       - sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
-
       - sudo chmod +x /usr/bin/docker-compose
       - docker-compose version
-  pre_build:
-    commands:
       - echo logging in docker hub
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
   build:
