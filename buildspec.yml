@@ -31,8 +31,8 @@ phases:
        - sudo yum install -y yum-utils
        - sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
        - sudo yum install -y docker-ce docker-ce-cli containerd.io
-       - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-       - sudo chmod +x /usr/local/bin/docker-compose
+       - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+       - sudo chmod +x /usr/bin/docker-compose
 #  pre_build:
 #    commands:
 #       - command
@@ -41,8 +41,10 @@ phases:
     commands:
       - sudo docker network create -y nlp_project_default
       - sudo docker-compose build --build-arg NTC_TOKEN="$(echo $NTC_TOKEN)"
-      - sudo PHP_REPOSITORY_URI=$(cat imageDetail.json | python -c "import sys, json; print(json.load(sys.stdin)['ImageURI'].split('@')[0])")
-      - sudo IMAGE_TAG=$(cat imageDetail.json | python -c "import sys, json; print(json.load(sys.stdin)['ImageTags'][0])")
+      - sudo PHP_REPOSITORY_URI=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)
+      - ['ImageURI'].split('@')[0])")
+      - sudo IMAGE_TAG=$(cat imageDetail.json | python3 -c "import sys, json; print(json.load(sys.stdin)
+      - ['ImageTags'][0])")
       - echo $PHP_REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
