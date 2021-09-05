@@ -65,4 +65,4 @@ EXPOSE 8000
 
 COPY . .
 
-CMD ["python3", "main.py"]
+CMD ["sudo", "python3", "-m", "main.py"]
