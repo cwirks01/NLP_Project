@@ -60,7 +60,6 @@ CMD git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-CMD python3 -m spacy download en_core_web_sm
 
 EXPOSE 8000
 
