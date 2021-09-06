@@ -157,7 +157,7 @@ class spacy_sent_connections:
         self.downloads = os.path.join(ROOT, downloads)
         self.uploads = os.path.join(ROOT, upload_dir)
         self.repo = os.path.join(self.uploads, repo)
-        if os.listdir(self.repo):
+        if os.path.exists(self.repo):
             self.answer = True
         else:
             self.answer = False

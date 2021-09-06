@@ -69,4 +69,4 @@ EXPOSE 8000
 
 COPY . .
 
-CMD python3 -m main.py
+CMD python3 -m main
