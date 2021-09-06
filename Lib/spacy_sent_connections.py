@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/ python3
 """
 
 Author: Charles Wirks email: cwirks01@gmail.com
@@ -7,7 +7,6 @@ Author: Charles Wirks email: cwirks01@gmail.com
 import os
 import PyPDF2
 import json
-import spacy
 import en_core_web_sm
 
 import pandas as pd
