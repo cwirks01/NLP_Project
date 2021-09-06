@@ -210,11 +210,12 @@ class spacy_sent_connections:
                 if file_extension.endswith('txt'):
                     file = open(filepath, 'r')
                     self.text = self.nlp(file.read())
+                    file.close()
                 elif file_extension.endswith('pdf'):
                     self.text = self.nlp(read_in_pdf(filepath))
+                    file.close()
                 else:
                     pass
-                file.close()
 
             except EOFError as e:
                 print(e)
@@ -251,4 +252,3 @@ class spacy_sent_connections:
             if os.path.isfile(filePath):
                 os.remove(filePath, )
         return
-        
