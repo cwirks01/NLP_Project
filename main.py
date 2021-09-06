@@ -1,4 +1,4 @@
-#!/usr/bin/ python3
+#!/usr/bin/env python3
 from werkzeug.utils import secure_filename
 
 from Lib.spacy_sent_connections import spacy_sent_connections
