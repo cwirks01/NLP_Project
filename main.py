@@ -47,7 +47,7 @@ def upload_file():
 
         if request.form.getlist("FreeInputText"):
             text = request.form.getlist("FreeInputText")[0]
-            with open(os.path.join(app.config['UPLOAD_FOLDER'],"data.txt") ,"w")) as outputPath:
+            with open(os.path.join(app.config['UPLOAD_FOLDER'],"data.txt") ,"w") as outputPath:
                 outputPath.write(text)
                 outputPath.close()
         else:       
