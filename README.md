@@ -6,6 +6,11 @@
 - Run NGINX in a docker container
     - [Link to NGINX installation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
 
+```docker
+docker-compose down
+THEN
+docker network create nlp_project_default
+```
 
  - Ensure GITHUB_TOKEN is saved in your Environmental Variables
 ```docker
