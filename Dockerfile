@@ -58,7 +58,7 @@ RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/con
 
 CMD ["git", "clone", "https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git"]
 
-RUN cd /NLP_Project
+WORKDIR /usr/share/nginx/html/NLP_Project
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
@@ -71,4 +71,4 @@ EXPOSE 80
 
 # COPY . .
 
-CMD ["python3", "main"]
+CMD python3 main
