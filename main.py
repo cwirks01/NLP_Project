@@ -72,7 +72,7 @@ def upload_file():
 @app.route("/processing/", methods=['GET', 'POST'])
 def process_files():
     render_template("processing_file.html")
-    viz_display = bool(request.form.getlist("renderViz")[0])
+    viz_display = bool(request.form.getlist("renderViz"))
     main_app = spacy_sent_connections(inBrowser=viz_display)
     main_app.read_file()
     return redirect("/application_ran")
