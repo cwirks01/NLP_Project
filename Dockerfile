@@ -71,4 +71,4 @@ EXPOSE 80
 
 # COPY . .
 
-CMD ["python3", "-m", "main"]
+CMD ["python3", "main"]
