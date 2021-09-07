@@ -35,6 +35,6 @@ jobs:
           # Bash command you want to execute
           command: ./BUILD.sh
           # Command execution location
-          working-directory: ~/
+          working-directory: ~/NLP_Project
           # Comment for Send-Command
           comment: # optional, default is Executed by Github Actions
