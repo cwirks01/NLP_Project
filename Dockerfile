@@ -56,9 +56,7 @@ CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts && \
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
 
-RUN git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
-
-WORKDIR /usr/share/nginx/html/NLP_Project/
+CMD git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
@@ -69,6 +67,6 @@ RUN pip3 install -U pip setuptools wheel &&\
 
 EXPOSE 80
 
-# COPY . .
+COPY . .
 
-CMD python3 main
+CMD python3 -m main
