@@ -58,6 +58,8 @@ RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/con
 
 CMD git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
 
+RUN cp NLP_Project
+
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
