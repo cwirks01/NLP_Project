@@ -33,7 +33,7 @@ jobs:
           # AWS EC2 Instance id or ids
           instance-ids: i-09a1204d1b26b6bf8
           # Bash command you want to execute
-          command: ./NLP_Project/BUILD.sh
+          command: .BUILD.sh
           # Command execution location
           working-directory: ~/NLP_Project
           # Comment for Send-Command
