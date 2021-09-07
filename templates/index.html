@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>NLP SpaCy</title>
 </head>
+<link href="website_css\main_class.css" type="text/css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
     $("#logo").css('opacity','0');
 
@@ -23,21 +24,37 @@
         {% endif %}
     {% endwith %}
 </p>
-<form method="post" action="/nlp_project" enctype="multipart/form-data">
-    <dl>
-        <p>
-            <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv" multiple="true" required>
-            <a id="select_logo">Load files to Process.</a>
-            <br>
-            <input type="file" accept=".json" id="logo">
-            <a id="select_logo">Would you like to load a repository?</a>
-        </p>
-    </dl>
-<p>
-    <div class="container">
-        <form action="/processing/", method="post">
-        <input type="submit" value="Submit">
-        </form>
+    <div class="two-col">
+        <div class="col1">
+            <dl>
+                <p>
+                    <form method="post" action="/nlp_project" enctype="multipart/form-data">
+                        <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv" multiple="true" required>
+                        <a id="select_logo">Load files to Process.</a>
+                        <br>
+                        <input type="file" accept=".json" id="logo">
+                        <a id="select_logo">Would you like to load a repository?</a>
+                    </form>
+                </p>
+            </dl>    
+            <p>
+                <div>
+                    <form role="form" method="post">
+                        <label><input type="checkbox" id="renderViz" name="renderViz" checked>
+                        Display Visualization in Browser</label>
+                    </form>
+                </div>
+                <div class="container">
+                    <form action="/processing/", method="post">
+                    <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </p>
+        </div>
+        <div class="col2">
+            <form role="form" method="post">
+                <textarea name="FreeInputText" placeholder="Free input text" cols="60" rows="20" minlength="10" autocomplete spellcheck></textarea>
+            </form>
+        </div>
     </div>
-</p>
-</form>
+        

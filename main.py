@@ -44,14 +44,21 @@ def upload_file():
         if 'inputFileNames' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        files = request.files.getlist('inputFileNames')
-        for file in files:
-            if file and allowed_file(file.filename):
-                if file.filename.rsplit('.')[-1] == 'json':
-                    file.save(os.path.join(app.config['REPO_FOLDER'], filename))
-                else:
-                    filename = secure_filename(file.filename)
-                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        if request.form.getlist("FreeInputText"):
+            text = request.form.getlist("FreeInputText")[0]
+            with open(os.path.join(app.config['UPLOAD_FOLDER'],"data.txt") ,"w")) as outputPath:
+                outputPath.write(text)
+                outputPath.close()
+        else:       
+            files = request.files.getlist('inputFileNames')
+            for file in files:
+                if file and allowed_file(file.filename):
+                    if file.filename.rsplit('.')[-1] == 'json':
+                        file.save(os.path.join(app.config['REPO_FOLDER'], filename))
+                    else:
+                        filename = secure_filename(file.filename)
+                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         flash('File(s) successfully uploaded')
         return redirect('/processing/')
@@ -64,7 +71,9 @@ def upload_file():
 
 @app.route("/processing/", methods=['GET', 'POST'])
 def process_files():
-    main_app = spacy_sent_connections()
+    render_template("processing_file.html")
+    viz_display = bool(request.form.getlist("renderViz")[0])
+    main_app = spacy_sent_connections(inBrowser=viz_display)
     main_app.read_file()
     return redirect("/application_ran")
 

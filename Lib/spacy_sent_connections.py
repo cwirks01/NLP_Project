@@ -13,6 +13,7 @@ import pandas as pd
 
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import pyanx
+from spacy import displacy
 
 ROOT = os.getcwd()
 
@@ -150,13 +151,16 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections:
 
-    def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo'):
+    def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo', viz=True, inBrowser=False):
         self.nlp = en_core_web_sm.load()
         self.text = []
+        self.all_text = []
         self.gui = gui
         self.downloads = os.path.join(ROOT, downloads)
         self.uploads = os.path.join(ROOT, upload_dir)
         self.repo = os.path.join(self.uploads, repo)
+        self.viz = viz
+        self.inBrowser = inBrowser
         if os.path.exists(self.repo):
             self.answer = True
         else:
@@ -209,20 +213,28 @@ class spacy_sent_connections:
             try:
                 if file_extension.endswith('txt'):
                     file = open(filepath, 'r')
-                    self.text = self.nlp(file.read())
+                    self.text = file.read()
+                    nlp_loaded = self.nlp(self.text)
                     file.close()
                 elif file_extension.endswith('pdf'):
-                    self.text = self.nlp(read_in_pdf(filepath))
-                    file.close()
+                    self.text = read_in_pdf(filepath)
+                    nlp_loaded = self.nlp(self.text)
                 else:
+                    self.text = " "
                     pass
-
+                
             except EOFError as e:
                 print(e)
+            
+            self.all_text.append(self.text)
 
-            json_data = sentence_parser(unstruct_text=self.text, json_data_parser=json_data)
+            json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
             print('Finished processing ' + file_basename)
         self.save_csv_json_file(json_data)
+
+        if self.viz:
+            self.all_text = " ".join(self.all_text)
+            self.text_viz(self.all_text)
 
         return
 
@@ -250,5 +262,20 @@ class spacy_sent_connections:
         for f in os.listdir(self.uploads):
             filePath = os.path.join(self.uploads, f)
             if os.path.isfile(filePath):
-                os.remove(filePath, )
+                os.remove(filePath)
+        return
+
+    def text_viz(self, text_in):
+        import webbrowser
+        
+        text_in = self.nlp(text_in)
+        html = displacy.render(text_in, style="ent", page=True)
+        output_path = os.path.join(os.getcwd, "/downloaded/data.html")
+        
+        with open(output_path, "w", encoding="utf-9") as outputFile:
+            outputFile.write(html)
+        
+        if self.inBrowser:
+            url = os.path.join("file://", output_path)
+            webbrowser.open(url, new=2)
         return
