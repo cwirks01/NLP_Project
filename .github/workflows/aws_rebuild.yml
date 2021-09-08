@@ -33,7 +33,7 @@ jobs:
           # AWS EC2 Instance id or ids
           targets: app-dev-github
           # Bash command you want to execute
-          run: echo "realpath ."
+          command: echo "realpath ."
           # Command execution location
           working-directory:
           # Comment for Send-Command
