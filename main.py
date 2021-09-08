@@ -42,11 +42,11 @@ def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
-        if ('inputFileNames' not in request.files) or not bool(request.form.getlist("FreeInputText")):
+        if ('inputFileNames' not in request.files) and not bool(request.form.getlist("FreeInputText")):
             flash('No file part')
             return redirect(request.url)
 
-        if request.form.getlist("FreeInputText"):
+        if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
             with open(os.path.join(app.config['UPLOAD_FOLDER'], "data.txt"), "w") as outputPath:
                 outputPath.write(text)

@@ -230,7 +230,7 @@ class spacy_sent_connections:
                     self.text = read_in_pdf(filepath)
                     nlp_loaded = self.nlp(self.text)
                 elif os.path.isdir(filepath):
-                    pass
+                    continue
                 else:
                     self.text = " "
                     nlp_loaded = None
