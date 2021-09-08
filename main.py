@@ -33,7 +33,12 @@ def allowed_file(filename):
 
 @app.route("/nlp_project")
 def main():
-    print(os.listdir(os.getcwd()))
+    for f in os.listdir(app.config['DOWNLOAD_FOLDER']):
+        try:
+            os.remove(os.path.join(app.config['DOWNLOAD_FOLDER'], f))
+        except:
+            continue
+
     return render_template("index.html")
 
 
