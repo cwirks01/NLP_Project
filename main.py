@@ -37,24 +37,26 @@ def main():
     return render_template("index.html")
 
 
-@app.route('/nlp_project', methods=['POST'])
+@app.route('/nlp_project', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
-        if 'inputFileNames' not in request.files:
+        app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
+        if ('inputFileNames' not in request.files) or not bool(request.form.getlist("FreeInputText")):
             flash('No file part')
             return redirect(request.url)
 
         if request.form.getlist("FreeInputText"):
             text = request.form.getlist("FreeInputText")[0]
-            with open(os.path.join(app.config['UPLOAD_FOLDER'],"data.txt") ,"w") as outputPath:
+            with open(os.path.join(app.config['UPLOAD_FOLDER'], "data.txt"), "w") as outputPath:
                 outputPath.write(text)
                 outputPath.close()
-        else:       
+        else:
             files = request.files.getlist('inputFileNames')
             for file in files:
                 if file and allowed_file(file.filename):
                     if file.filename.rsplit('.')[-1] == 'json':
+                        filename = secure_filename(file.filename)
                         file.save(os.path.join(app.config['REPO_FOLDER'], filename))
                     else:
                         filename = secure_filename(file.filename)
@@ -71,11 +73,15 @@ def upload_file():
 
 @app.route("/processing/", methods=['GET', 'POST'])
 def process_files():
-    render_template("processing_file.html")
-    viz_display = bool(request.form.getlist("renderViz"))
+    processing_template()
+    viz_display = app.config['RENDER_VIZ']
     main_app = spacy_sent_connections(inBrowser=viz_display)
     main_app.read_file()
     return redirect("/application_ran")
+
+
+def processing_template():
+    return render_template("processing_file.html")
 
 
 @app.route("/application_ran", methods=['GET', 'POST'])

@@ -106,35 +106,38 @@ def analyst_worksheet(df_anb, file_out_path):
     :return:
     """
     chart = pyanx.Pyanx()
-    df_anb_count = df_anb.value_counts(subset=['name', 'value'])
-    df_anb_count = df_anb_count.reset_index()
-    df_anb_count = df_anb_count.rename(columns={df_anb_count.columns[0]: 'name',
-                                                df_anb_count.columns[1]: 'value',
-                                                df_anb_count.columns[2]: 'occurrence'})
+    try:
+        df_anb_count = df_anb.value_counts(subset=['name', 'value'])
+        df_anb_count = df_anb_count.reset_index()
+        df_anb_count = df_anb_count.rename(columns={df_anb_count.columns[0]: 'name',
+                                                    df_anb_count.columns[1]: 'value',
+                                                    df_anb_count.columns[2]: 'occurrence'})
 
-    df_anb_count = df_anb_count[df_anb_count['occurrence'] >= 2]
+        df_anb_count = df_anb_count[df_anb_count['occurrence'] >= 2]
 
-    type_of = ['PERSON', 'GPE', 'NORP', 'ORG']
-    for index, row in df_anb_count.iterrows():
-        ents_split = row['name'].split(' - ')
-        entitys_name = ents_split[0]
-        entitys_type = ents_split[1]
-        val_split = row['value'].split(' - ')
-        val_name = val_split[0]
-        value_type = val_split[1]
-        max_occurences = df_anb_count.occurrence.max()
-        if entitys_type in type_of:
-            chart_node1 = chart.add_node(entity_type=entitys_type, label=entitys_name)
-            chart_node2 = chart.add_node(entity_type=value_type, label=val_name)
-            linewidth = (float(row['occurrence']) / max_occurences) * 5
-            chart.add_edge(chart_node1, chart_node2,
-                           label="Occurence amount %s" % row['occurrence'],
-                           linewidth=linewidth)
-    file_out_dir = os.path.dirname(file_out_path)
-    file_out_name = os.path.basename(file_out_path)
-    file_out_name = os.path.splitext(file_out_name)[0]
+        type_of = ['PERSON', 'GPE', 'NORP', 'ORG']
+        for index, row in df_anb_count.iterrows():
+            ents_split = row['name'].split(' - ')
+            entitys_name = ents_split[0]
+            entitys_type = ents_split[1]
+            val_split = row['value'].split(' - ')
+            val_name = val_split[0]
+            value_type = val_split[1]
+            max_occurences = df_anb_count.occurrence.max()
+            if entitys_type in type_of:
+                chart_node1 = chart.add_node(entity_type=entitys_type, label=entitys_name)
+                chart_node2 = chart.add_node(entity_type=value_type, label=val_name)
+                linewidth = (float(row['occurrence']) / max_occurences) * 5
+                chart.add_edge(chart_node1, chart_node2,
+                               label="Occurence amount %s" % row['occurrence'],
+                               linewidth=linewidth)
+        file_out_dir = os.path.dirname(file_out_path)
+        file_out_name = os.path.basename(file_out_path)
+        file_out_name = os.path.splitext(file_out_name)[0]
 
-    chart.create(os.path.join(file_out_dir, file_out_name + ".anx"))
+        chart.create(os.path.join(file_out_dir, file_out_name + ".anx"))
+    except Exception as e:
+        print(e)
     return
 
 
@@ -189,8 +192,15 @@ class spacy_sent_connections:
                     filePathName.load_jfile()
             else:
                 os.makedirs(self.repo, exist_ok=True)
-                filePathName = os.listdir(self.repo)[0]
+                filePathName = os.listdir(self.repo)
+                if len(filePathName) > 1:
+                    filePathName = filePathName[0]
+                elif len(filePathName) == 1:
+                    filePathName = filePathName
+                else:
+                    filePathName = ''
 
+                filePathName = os.path.join(self.repo, filePathName)
             try:
                 with open(filePathName) as json_file:
                     data = json.load(json_file)
@@ -219,13 +229,16 @@ class spacy_sent_connections:
                 elif file_extension.endswith('pdf'):
                     self.text = read_in_pdf(filepath)
                     nlp_loaded = self.nlp(self.text)
+                elif os.path.isdir(filepath):
+                    pass
                 else:
                     self.text = " "
+                    nlp_loaded = None
                     pass
-                
+
             except EOFError as e:
                 print(e)
-            
+
             self.all_text.append(self.text)
 
             json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
@@ -246,9 +259,13 @@ class spacy_sent_connections:
             os.makedirs(self.downloads, exist_ok=True)
             file_out = os.path.join(self.downloads, 'data.csv')
 
-        df_data = pd.DataFrame(pd.json_normalize(json_data_save).squeeze().reset_index())
-        df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
-        df_data = df_data.explode("value").reset_index(drop=True)
+        if len(json_data_save) > 1:
+            df_data = pd.DataFrame(pd.json_normalize(json_data_save).squeeze().reset_index())
+            df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
+            df_data = df_data.explode("value").reset_index(drop=True)
+        else:
+            df_data = pd.DataFrame(json_data_save)
+
         df_data.to_csv(os.path.join(file_out), index=False)
 
         if analyst_notebook:
@@ -267,14 +284,14 @@ class spacy_sent_connections:
 
     def text_viz(self, text_in):
         import webbrowser
-        
+
         text_in = self.nlp(text_in)
         html = displacy.render(text_in, style="ent", page=True)
-        output_path = os.path.join(os.getcwd, "/downloaded/data.html")
-        
-        with open(output_path, "w", encoding="utf-9") as outputFile:
+        output_path = os.path.join(os.getcwd(), "downloaded", "data.html")
+
+        with open(output_path, "w", encoding="utf-8") as outputFile:
             outputFile.write(html)
-        
+
         if self.inBrowser:
             url = os.path.join("file://", output_path)
             webbrowser.open(url, new=2)
