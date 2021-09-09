@@ -10,15 +10,15 @@ on:
       - dev
 
 jobs:
-  # buildAndTest:
-    # name: CI Pipeline
-    # runs-on: ubuntu-latest
-    # strategy:
-      # matrix:
-        # node-version: ['12.x']
+  buildAndTest:
+    name: CI Pipeline
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['12.x']
 
-    # steps:
-      # - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
       # Initialize Node.js
       # - name: Install Node.js ${{ matrix.node-version }}
