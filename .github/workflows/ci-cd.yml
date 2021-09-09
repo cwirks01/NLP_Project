@@ -9,7 +9,7 @@ on:
     branches:
       - dev
 
-# jobs:
+jobs:
   # buildAndTest:
     # name: CI Pipeline
     # runs-on: ubuntu-latest
