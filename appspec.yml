@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/nlp_project
+    destination: /home/ubuntu/nlp-codedeploy
 permissions:
-  - object: /var/www/html/
+  - object: /home/ubuntu
     owner: ubuntu
     group: ubuntu
     type:
