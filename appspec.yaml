@@ -2,4 +2,16 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/
+    destination: /var/www/html/nlp_project
+permissions:
+  - object: /var/www/html/
+    owner: ubuntu
+    group: ubuntu
+    type:
+      - directory
+      - file
+hooks:
+  ApplicationStart:
+    - location: scripts/reload-pm2.sh
+      timeout: 300
+      runas: ubuntu
