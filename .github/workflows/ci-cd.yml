@@ -39,7 +39,7 @@ jobs:
       matrix:
         python-version: [3.8]
         node-version: ['12.x']
-        appname: ['nlp_project']
+        appname: ['nlp-codedeploy']
         deploy-group: ['staging']
         s3-bucket: ['nlp-app-project']
         s3-filename: ['dev-nlp_project-${{ github.sha }}']
