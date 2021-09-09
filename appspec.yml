@@ -11,7 +11,15 @@ permissions:
       - directory
       - file
 hooks:
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 300
+      runas: ubuntu
   ApplicationStart:
     - location: scripts/reload-pm2.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: Scripts/BUILD.sh
       timeout: 300
       runas: ubuntu
