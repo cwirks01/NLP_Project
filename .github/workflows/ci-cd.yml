@@ -40,7 +40,7 @@ jobs:
         python-version: [3.8]
         node-version: ['12.x.x']
         appname: ['nlp-codedeploy']
-        deploy-group: ['staging']
+        deploy-group: ['dev']
         s3-bucket: ['nlp-app-project']
         s3-filename: ['dev-nlp_project-${{ github.sha }}']
 
