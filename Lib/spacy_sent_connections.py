@@ -301,8 +301,8 @@ class spacy_sent_connections:
 
         text_in = self.nlp(text_in)
         html = displacy.render(text_in, style="ent", page=True)
-        os.makedirs(self.repo,exist_ok=True)
-        output_path = os.path.join(self.repo, "data.html")
+        os.makedirs(self.downloads, exist_ok=True)
+        output_path = os.path.join(self.downloads, "data.html")
         with open(output_path, "w", encoding="utf-8") as outputFile:
             outputFile.write(html)
 
