@@ -36,8 +36,8 @@ def allowed_file(filename):
 
 @app.route("/nlp_project")
 def main():
-    main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],repo=app.config['REPO_FOLDER'])
     global main_app
+    main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],repo=app.config['REPO_FOLDER'])
     return render_template("index.html")
 
 
