@@ -50,7 +50,9 @@ def upload_file():
 
         if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
-            with open(os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir(), "data.txt"), "w") as outputPath:
+            freeInputText = os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir())
+            os.makedirs(freeInputText, exist_ok=True)
+            with open(os.path.join(freeInputText, "data.txt"), "w") as outputPath:
                 outputPath.write(text)
                 outputPath.close()
         else:
@@ -82,7 +84,8 @@ def process_files():
                 os.remove(os.path.join(app.config['DOWNLOAD_FOLDER'], f))
             except:
                 continue
-
+    else:
+        os.makedirs(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir()))
     processing_template()
     main_app.inBrowser = app.config['RENDER_VIZ']
     main_app.read_file()
