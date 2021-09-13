@@ -50,7 +50,7 @@ def upload_file():
 
         if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
-            freeInputText = os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir())
+            freeInputText = os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir)
             os.makedirs(freeInputText, exist_ok=True)
             with open(os.path.join(freeInputText, "data.txt"), "w") as outputPath:
                 outputPath.write(text)
@@ -61,10 +61,10 @@ def upload_file():
                 if file and allowed_file(file.filename):
                     if file.filename.rsplit('.')[-1] == 'json':
                         filename = secure_filename(file.filename)
-                        file.save(os.path.join(app.config['REPO_FOLDER'], main_app.user_dir(), filename))
+                        file.save(os.path.join(app.config['REPO_FOLDER'], main_app.user_dir, filename))
                     else:
                         filename = secure_filename(file.filename)
-                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir(), filename))
+                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir, filename))
 
         flash('File(s) successfully uploaded')
         return redirect('/processing/')
@@ -78,14 +78,14 @@ def upload_file():
 
 @app.route("/processing/", methods=['GET', 'POST'])
 def process_files():
-    if (os.path.exists(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir()))):
-        for f in os.listdir(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir())):
+    if (os.path.exists(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir))):
+        for f in os.listdir(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir)):
             try:
                 os.remove(os.path.join(app.config['DOWNLOAD_FOLDER'], f))
             except:
                 continue
     else:
-        os.makedirs(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir()))
+        os.makedirs(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir))
     processing_template()
     main_app.inBrowser = app.config['RENDER_VIZ']
     main_app.read_file()
@@ -103,7 +103,7 @@ def complete_app():
 
 @app.route('/out/<filename>')
 def downloaded_file(filename):
-    return send_from_directory(app.config["DOWNLOAD_FOLDER"], main_app.user_dir(), filename)
+    return send_from_directory(app.config["DOWNLOAD_FOLDER"], main_app.user_dir, filename)
 
 
 if __name__ == '__main__':
