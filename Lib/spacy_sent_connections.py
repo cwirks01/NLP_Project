@@ -253,8 +253,8 @@ class spacy_sent_connections:
             except EOFError as e:
                 print(e)
 
-            if not isinstance(self.all_text, list):
-                self.all_text = list(self.all_text)
+            if not isinstance(self.text, list):
+                self.text = list(self.text)
 
             self.all_text.append(self.text)
 
