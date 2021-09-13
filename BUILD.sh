@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo docker image prune -f
+sudo docker volume prune -f
 
 sudo docker-compose down;
 

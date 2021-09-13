@@ -181,7 +181,7 @@ class spacy_sent_connections:
         self.user_dir = temp_user_dir
         self.downloads = os.path.join(downloads, self.user_dir)
         self.uploads = os.path.join(upload_dir, self.user_dir)
-        self.repo = os.path.exists(repo, self.user_dir)
+        self.repo = os.path.exists(os.path.join(repo, self.user_dir))
 
     def load_file(self):
         if self.gui:
