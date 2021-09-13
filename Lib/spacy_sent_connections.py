@@ -5,9 +5,12 @@ Author: Charles Wirks email: cwirks01@gmail.com
 
 """
 import os
+import hashlib
+import random
 import PyPDF2
 import json
 import en_core_web_sm
+import datetime
 
 import pandas as pd
 
@@ -152,22 +155,33 @@ def read_in_pdf(file_path):
     return text_out
 
 
+def _user_dir(username=None, userDir=None):
+
+    if username:
+        temp_dir = hashlib.sha256(bytes('%s'%username,'ascii')).hexdigest()
+    else:
+        ran_num = random.randint(10,10**9) 
+        temp_dir = hashlib.sha256(bytes('%s'%ran_num,'ascii')).hexdigest()
+
+    dir_define = str(temp_dir)
+    return dir_define
+
+
 class spacy_sent_connections:
 
-    def __init__(self, gui=False, downloads='downloaded', upload_dir='uploads', repo='repo', viz=True, inBrowser=False):
+    def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None, username=None):
         self.nlp = en_core_web_sm.load()
         self.text = []
         self.all_text = []
         self.gui = gui
-        self.downloads = os.path.join(ROOT, downloads)
-        self.uploads = os.path.join(ROOT, upload_dir)
-        self.repo = os.path.join(self.uploads, repo)
         self.viz = viz
         self.inBrowser = inBrowser
-        if os.path.exists(self.repo):
-            self.answer = True
-        else:
-            self.answer = False
+        self.username = username
+        temp_user_dir = _user_dir(username=username)
+        self.user_dir = temp_user_dir
+        self.downloads = os.path.join(downloads, self.user_dir)
+        self.uploads = os.path.join(upload_dir, self.user_dir)
+        self.repo = os.path.exists(self.repo, self.user_dir)
 
     def load_file(self):
         if self.gui:
@@ -183,7 +197,7 @@ class spacy_sent_connections:
 
     def json_repo_load(self):
 
-        if self.answer:
+        if os.listdir(self.repo):
             if self.gui:
                 gui_answer = gui_tkinter()
                 self.answer = gui_answer.message_out()
@@ -207,7 +221,7 @@ class spacy_sent_connections:
             except FileNotFoundError:
                 data = {}
         else:
-            Exception(" No file loaded. ")
+            Exception(" No library loaded. ")
             data = {}
 
         return data
@@ -295,4 +309,12 @@ class spacy_sent_connections:
         if self.inBrowser:
             url = os.path.join("file://", output_path)
             webbrowser.open(url, new=2)
+        return
+
+    def remove_old_files(self):
+        '''
+        Remove all files in downloads/uploads/repos for all users that are older than 10 days
+        '''
+        if datetime.datetime.fromtimestamp(os.stat(self.downloads).st_mtime)+datetime.timedelta(days=10)  > datetime.datetime.now():
+            os.remove(self.downloads)
         return

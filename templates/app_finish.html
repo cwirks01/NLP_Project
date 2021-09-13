@@ -8,7 +8,7 @@
 <body>
 <h1>Your files are complete!</h1>
 <div class="container">
-<!--    <input type="button" onclick="download_all_files()" value="Save Files"/>-->
+
     <a href="{{url_for('downloaded_file', filename='data.csv')}}" class="myLink">Download CSV</a>
     <br>
     <a href="{{url_for('downloaded_file', filename='data.json')}}" class="myLink">Download JSON</a>
@@ -16,18 +16,11 @@
     <a href="{{url_for('downloaded_file', filename='data.anx')}}" class="myLink">Download ANB</a>
     <br>
     <a href="{{url_for('downloaded_file', filename='data.html')}}" class="myLink">Download HTML</a>
-<!--    <form method="get" action="./downloaded/data.csv">-->
-<!--    <button type="submit">Download CSV</button>-->
-<!--    </form>-->
-<!--        <form method="get" action="/downloaded/data.json">-->
-<!--    <button type="submit">Download JSON</button>-->
-<!--    </form>-->
-<!--        <form method="get" action="./downloaded/data.anx">-->
-<!--    <button type="submit">Download ANB</button>-->
-<!--    </form>-->
+
     <form action="/nlp_project">
     <input type="submit" value="Home" />
     </form>
+
 </div>
 </body>
 </html>
