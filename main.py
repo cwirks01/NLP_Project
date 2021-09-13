@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from werkzeug.utils import secure_filename
+import os
 
+from werkzeug.utils import secure_filename
 from Lib.spacy_sent_connections import spacy_sent_connections
 from flask import Flask, render_template, request, flash, redirect, send_from_directory
-import os
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
