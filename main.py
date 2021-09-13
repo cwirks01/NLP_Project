@@ -61,10 +61,14 @@ def upload_file():
                 if file and allowed_file(file.filename):
                     if file.filename.rsplit('.')[-1] == 'json':
                         filename = secure_filename(file.filename)
-                        file.save(os.path.join(app.config['REPO_FOLDER'], main_app.user_dir, filename))
+                        repo_user_dir = os.path.join(app.config['REPO_FOLDER'], main_app.user_dir)
+                        os.makedirs(repo_user_dir, exist_ok=True)
+                        file.save(os.path.join(repo_user_dir, filename))
                     else:
                         filename = secure_filename(file.filename)
-                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir, filename))
+                        upload_file_user_dir = os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir)
+                        os.makedirs(upload_file_user_dir, exist_ok=True)
+                        file.save(os.path.join(upload_file_user_dir, filename))
 
         flash('File(s) successfully uploaded')
         return redirect('/processing/')

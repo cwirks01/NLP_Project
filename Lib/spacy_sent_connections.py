@@ -196,8 +196,9 @@ class spacy_sent_connections:
         return filePathName
 
     def json_repo_load(self):
-
-        if os.listdir(self.repo):
+        
+        try:
+            repo_list = os.listdir(self.repo)
             if self.gui:
                 gui_answer = gui_tkinter()
                 self.answer = gui_answer.message_out()
@@ -205,8 +206,7 @@ class spacy_sent_connections:
                     filePathName = gui_tkinter()
                     filePathName.load_jfile()
             else:
-                os.makedirs(self.repo, exist_ok=True)
-                filePathName = os.listdir(self.repo)
+                filePathName = repo_list
                 if len(filePathName) > 1:
                     filePathName = filePathName[0]
                 elif len(filePathName) == 1:
@@ -220,7 +220,7 @@ class spacy_sent_connections:
                     data = json.load(json_file)
             except FileNotFoundError:
                 data = {}
-        else:
+        except:
             Exception(" No library loaded. ")
             data = {}
 
