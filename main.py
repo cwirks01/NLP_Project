@@ -107,11 +107,7 @@ def complete_app():
 
 @app.route('/out/<filename>')
 def downloaded_file(filename):
-<<<<<<< HEAD
     return send_from_directory(os.path.join(app.config["DOWNLOAD_FOLDER"], main_app.user_dir), filename)
-=======
-    return send_from_directory(os.path.join(app.config["DOWNLOAD_FOLDER"], main_app.user_dir, filename))
->>>>>>> 0da89c21e4f306ad3d8526e6a11583e07a5bb3a0
 
 
 if __name__ == '__main__':
