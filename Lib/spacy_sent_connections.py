@@ -157,14 +157,12 @@ def read_in_pdf(file_path):
 
 def _user_dir(username=None, userDir=None):
 
-    if username:
-        temp_dir = hashlib.sha256(bytes('%s'%username,'ascii')).hexdigest()
-    else:
-        ran_num = random.randint(10,10**9) 
-        temp_dir = hashlib.sha256(bytes('%s'%ran_num,'ascii')).hexdigest()
+    if not username:
+        username = str(random.randint(10,10**9))
+        
+    dir_define = hashlib.sha256(bytes('%s'%username,'ascii')).hexdigest()
 
-    dir_define = temp_dir
-    return dir_define
+    return dir_define, username
 
 
 class spacy_sent_connections:
@@ -176,8 +174,7 @@ class spacy_sent_connections:
         self.gui = gui
         self.viz = viz
         self.inBrowser = inBrowser
-        self.username = username
-        temp_user_dir = _user_dir(username=username)
+        temp_user_dir, self.username = _user_dir(username=username)
         self.user_dir = temp_user_dir
         self.downloads = os.path.join(downloads, self.user_dir)
         self.uploads = os.path.join(upload_dir, self.user_dir)

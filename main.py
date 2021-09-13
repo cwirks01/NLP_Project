@@ -27,7 +27,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['REPO_FOLDER'] = REPO_FOLDER
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
-main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],repo=app.config['REPO_FOLDER'])
+# main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],repo=app.config['REPO_FOLDER'])
 
 
 def allowed_file(filename):
@@ -36,6 +36,8 @@ def allowed_file(filename):
 
 @app.route("/nlp_project")
 def main():
+    main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],repo=app.config['REPO_FOLDER'])
+    global main_app
     return render_template("index.html")
 
 
