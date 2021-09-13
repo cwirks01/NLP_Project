@@ -253,6 +253,9 @@ class spacy_sent_connections:
             except EOFError as e:
                 print(e)
 
+            if not isinstance(self.all_text, list):
+                self.all_text = list(self.all_text)
+
             self.all_text.append(self.text)
 
             json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
