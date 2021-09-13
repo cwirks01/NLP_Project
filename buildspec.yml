@@ -1,15 +1,15 @@
 version: 0.2
 
-env:
+# env:
   #variables:
      # key: "value"
      # key: "value"
   #parameter-store:
      # key: "value"
      # key: "value"
-  secrets-manager:
-      DOCKERHUB_USERNAME: dockerhub:username
-      DOCKERHUB_PASSWORD: dockerhub:password
+  # secrets-manager:
+      # DOCKERHUB_USERNAME: dockerhub:username
+      # DOCKERHUB_PASSWORD: dockerhub:password
   #exported-variables:
      # - variable
      # - variable
@@ -29,17 +29,17 @@ phases:
 #    commands:
   pre_build:
     commands:
-      - sudo yum -y update
-      - sudo yum install -y git
-      - sudo yum install -y yum-utils
-      - sudo yum install -y docker
-      - sudo service docker start
-      - sudo usermod -a -G docker ec2-user
-      - sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      - sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
-      - sudo chmod +x /usr/bin/docker-compose
-      - docker-compose version
-      - echo logging in docker hub
+      # - sudo yum -y update
+      # - sudo yum install -y git
+      # - sudo yum install -y yum-utils
+      # - sudo yum install -y docker
+      # - sudo service docker start
+      # - sudo usermod -a -G docker ec2-user
+      # - sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+      # - sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+      # - sudo chmod +x /usr/bin/docker-compose
+      # - docker-compose version
+      # - echo logging in docker hub
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
   build:
     commands:

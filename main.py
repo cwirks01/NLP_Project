@@ -12,19 +12,22 @@ ROOT = os.getcwd()
 
 # file Upload
 UPLOAD_FOLDER = os.path.join(ROOT, 'uploads')
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 # file repository
 REPO_FOLDER = os.path.join(UPLOAD_FOLDER, 'repo')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(REPO_FOLDER, exist_ok=True)
 
 # file Download
 DOWNLOAD_FOLDER = os.path.join(ROOT, 'downloaded')
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
-print(os.listdir(ROOT))
 
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['REPO_FOLDER'] = REPO_FOLDER
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
+
+main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],repo=app.config['REPO_FOLDER'])
 
 
 def allowed_file(filename):
@@ -33,12 +36,6 @@ def allowed_file(filename):
 
 @app.route("/nlp_project")
 def main():
-    for f in os.listdir(app.config['DOWNLOAD_FOLDER']):
-        try:
-            os.remove(os.path.join(app.config['DOWNLOAD_FOLDER'], f))
-        except:
-            continue
-
     return render_template("index.html")
 
 
@@ -48,12 +45,12 @@ def upload_file():
         # check if the post request has the file part
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
         if ('inputFileNames' not in request.files) and not bool(request.form.getlist("FreeInputText")):
-            flash('No file part')
+            flash('No files loaded!')
             return redirect(request.url)
 
         if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
-            with open(os.path.join(app.config['UPLOAD_FOLDER'], "data.txt"), "w") as outputPath:
+            with open(os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir(), "data.txt"), "w") as outputPath:
                 outputPath.write(text)
                 outputPath.close()
         else:
@@ -62,10 +59,10 @@ def upload_file():
                 if file and allowed_file(file.filename):
                     if file.filename.rsplit('.')[-1] == 'json':
                         filename = secure_filename(file.filename)
-                        file.save(os.path.join(app.config['REPO_FOLDER'], filename))
+                        file.save(os.path.join(app.config['REPO_FOLDER'], main_app.user_dir(), filename))
                     else:
                         filename = secure_filename(file.filename)
-                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                        file.save(os.path.join(app.config['UPLOAD_FOLDER'], main_app.user_dir(), filename))
 
         flash('File(s) successfully uploaded')
         return redirect('/processing/')
@@ -76,11 +73,18 @@ def upload_file():
 #     return render_template("processing_file.html")
 
 
+
 @app.route("/processing/", methods=['GET', 'POST'])
 def process_files():
+    if (os.path.exists(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir()))):
+        for f in os.listdir(os.path.join(app.config['DOWNLOAD_FOLDER'], main_app.user_dir())):
+            try:
+                os.remove(os.path.join(app.config['DOWNLOAD_FOLDER'], f))
+            except:
+                continue
+
     processing_template()
-    viz_display = app.config['RENDER_VIZ']
-    main_app = spacy_sent_connections(inBrowser=viz_display)
+    main_app.inBrowser = app.config['RENDER_VIZ']
     main_app.read_file()
     return redirect("/application_ran")
 
@@ -96,8 +100,7 @@ def complete_app():
 
 @app.route('/out/<filename>')
 def downloaded_file(filename):
-    print(filename)
-    return send_from_directory(app.config["DOWNLOAD_FOLDER"], filename)
+    return send_from_directory(app.config["DOWNLOAD_FOLDER"], main_app.user_dir(), filename)
 
 
 if __name__ == '__main__':
