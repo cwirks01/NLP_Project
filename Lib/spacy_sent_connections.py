@@ -163,7 +163,7 @@ def _user_dir(username=None, userDir=None):
         ran_num = random.randint(10,10**9) 
         temp_dir = hashlib.sha256(bytes('%s'%ran_num,'ascii')).hexdigest()
 
-    dir_define = str(temp_dir)
+    dir_define = temp_dir
     return dir_define
 
 
@@ -181,7 +181,7 @@ class spacy_sent_connections:
         self.user_dir = temp_user_dir
         self.downloads = os.path.join(downloads, self.user_dir)
         self.uploads = os.path.join(upload_dir, self.user_dir)
-        self.repo = os.path.exists(os.path.join(repo, self.user_dir))
+        self.repo = os.path.join(repo, self.user_dir)
 
     def load_file(self):
         if self.gui:
@@ -253,9 +253,6 @@ class spacy_sent_connections:
             except EOFError as e:
                 print(e)
 
-            if not isinstance(self.all_text, list):
-                self.all_text = list(self.all_text)
-
             self.all_text.append(self.text)
 
             json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
@@ -263,8 +260,8 @@ class spacy_sent_connections:
         self.save_csv_json_file(json_data)
 
         if self.viz:
-            self.all_text = " ".join(self.all_text)
-            self.text_viz(self.all_text)
+            self.all_text_for_viz = " ".join(self.all_text)
+            self.text_viz(self.all_text_for_viz)
 
         return
 
@@ -283,7 +280,7 @@ class spacy_sent_connections:
         else:
             df_data = pd.DataFrame(json_data_save)
 
-        df_data.to_csv(os.path.join(file_out), index=False)
+        df_data.to_csv(file_out, index=False)
 
         if analyst_notebook:
             analyst_worksheet(df_data, file_out)
