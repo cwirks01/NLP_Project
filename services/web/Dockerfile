@@ -16,7 +16,7 @@ LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
 LABEL desc "Incredibly fast language processor designed for initial analysis."
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /usr/nginx/html
 
 ENV FLASK_APP=main.py
 # ENV FLASK_RUN_HOST=0.0.0.0
@@ -50,8 +50,7 @@ RUN mkdir -p /NLP_Project/ssh && \
 #     echo "s/^.*X11Forwarding.*$/X11Forwarding yes/" >> /etc/ssh/sshd_config && \
 #     echo "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" >> /etc/ssh/sshd_config
 
-CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts && \
-    echo "daemon off;" >> /etc/nginx/nginx.conf
+CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts 
 
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
