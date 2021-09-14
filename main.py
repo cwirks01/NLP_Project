@@ -112,6 +112,3 @@ def downloaded_file(filename):
     return send_from_directory(os.path.join(app.config["DOWNLOAD_FOLDER"], main_app.user_dir), filename)
 
 
-if __name__ == '__main__':
-    app.secret_key = "super secret key"
-    app.run(host="0.0.0.0", port=5000, debug=True)
