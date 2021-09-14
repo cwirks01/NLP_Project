@@ -3,25 +3,25 @@ version: '3.9'
 services:
   web:
     restart: always
-    build: .
+    build: ./services/web
+    command: gunicorn --bind 0.0.0.0:5000 main:nlp_project
     networks:
       - nlp_project
-    ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - 5000
     volumes:
       - /usr/share/nginx/html
     environment:
       - NODE_ENV=prod
-      - PORT=80
+      - PORT=80:5000
 
     #Specify the network these containers will run on
   nginx:
-    image: nginx
+    build: ./services/nginx
+    ports:
+      - 80:80
     depends_on:
-    - web
-    expose:
-      - "80"
+      - web
 
 networks:
   nlp_project:
