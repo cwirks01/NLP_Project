@@ -12,7 +12,7 @@ services:
     expose:
       - 5000
     volumes:
-      - /usr/share/nginx/html
+      - /usr/nginx/html
     environment:
       - NODE_ENV=prod
 
