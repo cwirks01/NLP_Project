@@ -67,4 +67,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD python3 -m main
+CMD python3 wsgi.py
