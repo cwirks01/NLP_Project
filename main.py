@@ -6,6 +6,7 @@ from Lib.spacy_sent_connections import spacy_sent_connections
 from flask import Flask, render_template, request, flash, redirect, send_from_directory
 
 app = Flask(__name__)
+app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 ROOT = os.getcwd()
