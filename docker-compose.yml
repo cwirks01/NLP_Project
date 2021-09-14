@@ -6,11 +6,11 @@ services:
     build: 
       context: ./
       dockerfile: ./services/web/Dockerfile
-    command: gunicorn --bind 0.0.0.0:5000 main:main
+    command: gunicorn --bind 0.0.0.0:5000 main:app
     networks:
       - nlp_project
-    expose:
-      - 5000
+    ports: 
+      - 5000:5000
     volumes:
       - /usr/nginx/html
     environment:

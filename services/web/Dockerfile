@@ -65,4 +65,6 @@ RUN pip3 install -U pip setuptools wheel &&\
 
 COPY . .
 
+EXPOSE 5000
+
 CMD python3 -m main
