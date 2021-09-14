@@ -4,8 +4,8 @@ FROM ubuntu
 FROM nginx
 
 COPY ./services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
-COPY ./services/nginx/nginx.conf /etc/nginx/sites-enabled/nlp_project
-COPY ./services/nginx/nginx.conf /etc/nginx/sites-available/nlp_project
+COPY ./services/nginx/default.conf /etc/nginx/sites-enabled/nlp_project
+COPY ./services/nginx/default.conf /etc/nginx/sites-available/nlp_project
 COPY ./services/nginx/backend-not-found.html /var/www/html/backend-not-found.html
 
 ARG TOKEN
