@@ -24,7 +24,7 @@ services:
     depends_on:
       - web
 
-networks:
-  nlp_project:
-    external:
-      name: nlp_project_default
+# networks:
+#   nlp_project:
+#     external:
+#       name: nlp_project_default
