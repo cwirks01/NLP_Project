@@ -15,7 +15,6 @@ services:
       - /usr/share/nginx/html
     environment:
       - NODE_ENV=prod
-      - PORT=80:80
 
     #Specify the network these containers will run on
   nginx:
