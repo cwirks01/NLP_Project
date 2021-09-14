@@ -16,7 +16,7 @@ services:
     environment:
       - NODE_ENV=prod
 
-    #Specify the network these containers will run on
+  #Specify the network these containers will run on
   nginx:
     build: ./services/nginx
     ports:
