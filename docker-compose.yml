@@ -19,6 +19,7 @@ services:
   #Specify the network these containers will run on
   nginx:
     build: ./services/nginx
+    restart: always
     ports:
       - 1337:80
     depends_on:
