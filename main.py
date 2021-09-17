@@ -99,6 +99,8 @@ def complete_app():
     main_app_user.create_env_dir()
     with open(os.path.join(main_app_user.downloads, "data.html"), 'r+') as userItems:
         html_in_browser = userItems.read()
+        userItems.close()
+
     html_in_browser = Markup(html_in_browser)
     if not app.config['RENDER_VIZ']:
         html_in_browser = None

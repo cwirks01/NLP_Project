@@ -285,8 +285,8 @@ class spacy_sent_connections:
         self.save_csv_json_file(json_data)
 
         if self.viz:
-            self.all_text_for_viz = " ".join(self.all_text)
-            self.text_viz(self.all_text_for_viz)
+            all_text_for_viz = " ".join(self.all_text)
+            self.text_viz(all_text_for_viz)
 
         return
 
@@ -329,6 +329,7 @@ class spacy_sent_connections:
         output_path = os.path.join(self.downloads, "data.html")
         with open(output_path, "w", encoding="utf-8") as outputFile:
             outputFile.write(html)
+            outputFile.close()
 
         return
 
@@ -343,7 +344,7 @@ class spacy_sent_connections:
 
     def run(self):
         processes = []
-        for i in range(1):
+        for i in range(2):
             p = self.multiprocessing.Process(target=self.read_file(), args=(i,))
             processes.append(p)
 
