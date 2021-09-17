@@ -44,10 +44,12 @@ def main():
 
 @app.route('/nlp_project', methods=['GET', 'POST'])
 def upload_file():
+    global main_app
     if request.method == 'POST':
         cookie_name = request.cookies.get('username')
+        main_app = spacy_sent_connections(username=cookie_name)
         app.config['UPLOAD_FOLDER'], app.config['REPO_FOLDER'], app.config[
-            'DOWNLOAD_FOLDER'] = spacy_sent_connections(username=cookie_name).create_env_dir()
+            'DOWNLOAD_FOLDER'] = main_app.create_env_dir()
         # check if the post request has the file part
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
         if (request.files['inputFileNames'].filename in ['', None]) and (request.form.getlist(
