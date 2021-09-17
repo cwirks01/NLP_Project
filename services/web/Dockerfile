@@ -9,7 +9,7 @@ COPY ./services/nginx/backend-not-found.html /var/www/html/backend-not-found.htm
 
 ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
-ARG NTC_TOKEN
+ARG GIT_TOKEN
 
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
@@ -54,7 +54,7 @@ CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
 
-CMD git clone https://${NTC_TOKEN}@github.com/cwirks01/NLP_Project.git
+CMD git clone https://${GIT_TOKEN}@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt

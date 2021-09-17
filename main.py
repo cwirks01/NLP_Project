@@ -15,10 +15,6 @@ ROOT = os.getcwd()
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
 
-# main_app = spacy_sent_connections(downloads=app.config['DOWNLOAD_FOLDER'], upload_dir=app.config['UPLOAD_FOLDER'],
-# repo=app.config['REPO_FOLDER'])
-
-
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -84,11 +80,6 @@ def upload_file():
         return redirect('/processing/')
 
 
-# @app.route("/processing/")
-# def process_files_page():
-#     return render_template("processing_file.html")
-
-
 @app.route("/processing/", methods=['GET', 'POST'])
 def process_files():
     global main_app_user
@@ -98,10 +89,6 @@ def process_files():
     main_app_user.inBrowser = app.config['RENDER_VIZ']
     main_app_user.run()
     return redirect("/application_ran")
-
-
-def processing_template():
-    return render_template("processing_file.html")
 
 
 @app.route("/application_ran", methods=['GET', 'POST'])

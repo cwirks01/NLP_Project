@@ -9,6 +9,6 @@ sudo docker network create nlp_project_default;
 
 git pull;
 
-sudo docker-compose build --no-cache --build-arg NTC_TOKEN="$(echo $NTC_TOKEN)";
+sudo docker-compose build --no-cache --build-arg GIT_TOKEN="$GIT_TOKEN";
 
 sudo docker-compose up -d; 

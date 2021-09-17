@@ -187,7 +187,7 @@ class spacy_sent_connections:
 
     def create_env_dir(self):
         # file Upload
-        if not self.uploads or not self.repo or not self.downloads:
+        if not os.path.exists(self.uploads) or not os.path.exists(self.repo) or not os.path.exists(self.downloads):
             UPLOAD_FOLDER = os.path.join(self.user_root_dir_path, 'uploads')
             os.makedirs(UPLOAD_FOLDER, exist_ok=True)
             self.uploads = UPLOAD_FOLDER

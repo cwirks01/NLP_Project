@@ -39,3 +39,68 @@
   .two-col label {
     display: block;
   }
+  .box-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+#box3 {
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    border: solid 1px green
+}
+
+#box4 {
+    flex-grow: 2;
+    border: solid 1px orange
+}
+
+.middle-column {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.middle-column div {
+    flex-grow: 1;
+    margin: 0 8px;
+    border: solid 1px red;
+}
+
+.middle-column div+div {
+    margin-top: 8px
+}
+
+#box8 {
+    flex-grow: 1;
+    border: solid 1px black
+}
+
+.buttons {
+    width: 960px;
+    margin: 0 auto;
+  }
+
+.action_btn {
+    display: inline-block;
+    width: calc(50% - 4px);
+    margin: 0 auto;
+  }
+
+.box-boarder{
+    border: 3px solid #081d73;
+    box-shadow: 5px 5px 10px 1px #000;
+    column-count: 1;
+    display: inline-block;
+    margin: 0, 10px;
+}
+
+.container pre {
+    display: inline-block;
+    text-align: left;
+}
