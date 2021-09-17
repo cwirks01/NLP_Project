@@ -95,9 +95,9 @@ def process_files():
 def complete_app():
     global main_app_user
     cookie_name = request.cookies.get('username')
-    main_app_user = spacy_sent_connections(username=cookie_name)
-    main_app_user.create_env_dir()
-    with open(os.path.join(main_app_user.downloads, "data.html"), 'r+') as userItems:
+    DOWNLOAD_FOLDER = spacy_sent_connections(username=cookie_name)
+    DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
+    with open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r') as userItems:
         html_in_browser = userItems.read()
         userItems.close()
 
