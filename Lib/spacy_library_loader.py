@@ -14,7 +14,7 @@ def load_lib(repoDir=None):
             repo_file_list = os.listdir(repo_dir)
             if not repo_file_list in [[], [''], '', None]:
                 for repo_file in repo_file_list:
-                    if repo_file.startswith("regex_library"):
+                    if repo_file.startswith("data"):
                         with open(os.path.join(repo_dir, repo_file), 'r+') as json_file:
                             return json.load(json_file)
             else:
@@ -22,11 +22,12 @@ def load_lib(repoDir=None):
                 default_path = os.path.join(os.getcwd(), "repo")
                 repo_file_list = os.listdir(default_path)
                 for repo_file in repo_file_list:
-                    if repo_file.startswith("regex_library"):
+                    if repo_file.startswith("data"):
                         with open(os.path.join(default_path, repo_file), 'r+') as json_file:
                             return json.load(json_file)
         except Exception as e:
             print("%s \nNew Repo folder and/or JSON file will be created!" % e)
+            pass
             # if not os.path.exists(repo_dir):
             #     os.mkdir(repo_dir)
             return {}

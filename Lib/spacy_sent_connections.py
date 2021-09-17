@@ -139,7 +139,8 @@ def analyst_worksheet(df_anb, file_out_path):
 
         chart.create(os.path.join(file_out_dir, file_out_name + ".anx"))
     except Exception as e:
-        print(e)
+        print("%s \nmoving on" % e)
+        pass
     return
 
 
@@ -255,7 +256,11 @@ class spacy_sent_connections:
         json_data = load_lib(repoDir=self.repo)  # Loading in a library of previous runs in json
         filepaths = self.load_file()
         for filepath in filepaths:
-            file_basename = os.path.basename(filepath)
+            try:
+                file_basename = os.path.basename(filepath)
+            except Exception as e:
+                print("%s \nPassing to next file" % e)
+                pass
             print("Reading " + file_basename)
             base_split = os.path.splitext(file_basename)
             file_extension = base_split[1]
@@ -276,7 +281,7 @@ class spacy_sent_connections:
                     pass
 
             except EOFError as e:
-                print(e)
+                print("%s Starting without files" % e)
 
             self.all_text.append(self.text)
 
@@ -284,9 +289,9 @@ class spacy_sent_connections:
             print('Finished processing ' + file_basename)
         self.save_csv_json_file(json_data)
 
-        if self.viz:
-            all_text_for_viz = " ".join(self.all_text)
-            self.text_viz(all_text_for_viz)
+        # if self.viz:
+        all_text_for_viz = " ".join(self.all_text)
+        self.text_viz(all_text_for_viz)
 
         return
 
@@ -337,7 +342,7 @@ class spacy_sent_connections:
         '''
         Remove all files in downloads/uploads/repos for all users that are older than 10 days
         '''
-        if datetime.datetime.fromtimestamp(os.stat(self.user_dir).st_mtime) + datetime.timedelta(
+        if datetime.datetime.fromtimestamp(os.stat(self.user_root_dir_path).st_mtime) + datetime.timedelta(
                 days=10) > datetime.datetime.now():
             os.remove(self.downloads)
         return

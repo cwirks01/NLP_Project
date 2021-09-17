@@ -13,8 +13,8 @@
         <LinkType Colour="0" Name="Link"/>
     </LinkTypeCollection>
     <ChartItemCollection>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Scotch" XPosition="721">
-            <End Y="587" X="721" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Scotch" XPosition="201">
+            <End Y="480" X="201" Z="0">
                 <Entity EntityId="Scotch" Identity="Scotch" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="GPE"/>
@@ -22,8 +22,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Bradley" XPosition="886">
-            <End Y="981" X="886" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Bradley" XPosition="609">
+            <End Y="248" X="609" Z="0">
                 <Entity EntityId="Bradley" Identity="Bradley" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="PERSON"/>
@@ -31,8 +31,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Olson" XPosition="239">
-            <End Y="334" X="239" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Olson" XPosition="286">
+            <End Y="59" X="286" Z="0">
                 <Entity EntityId="Olson" Identity="Olson" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="PERSON"/>
@@ -40,8 +40,8 @@
                 </Entity>
             </End>
         </ChartItem>
-        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Irish" XPosition="511">
-            <End Y="454" X="511" Z="0">
+        <ChartItem DateSet="false" GradeOneIndex="0" Description="" GradeTwoIndex="0" Selected="false" GradeThreeIndex="0" TimeSet="false" Ordered="false" Label="Irish" XPosition="538">
+            <End Y="169" X="538" Z="0">
                 <Entity EntityId="Irish" Identity="Irish" LabelIsIdentity="false">
                     <Icon TextX="0" TextY="16">
                         <IconStyle Type="NORP"/>
