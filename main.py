@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
+import codecs
 
 from werkzeug.utils import secure_filename
 from Lib.spacy_sent_connections import spacy_sent_connections
@@ -97,9 +98,9 @@ def complete_app():
     cookie_name = request.cookies.get('username')
     DOWNLOAD_FOLDER = spacy_sent_connections(username=cookie_name)
     DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
-    with open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r') as userItems:
-        html_in_browser = userItems.read()
-        userItems.close()
+    userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r')
+    html_in_browser = userItems.read()
+    # userItems.close()
 
     html_in_browser = Markup(html_in_browser)
     if not app.config['RENDER_VIZ']:
