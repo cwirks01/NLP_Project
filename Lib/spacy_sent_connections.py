@@ -4,6 +4,7 @@
 Author: Charles Wirks email: cwirks01@gmail.com
 
 """
+import multiprocessing
 import os
 import hashlib
 import random
@@ -17,6 +18,8 @@ import pandas as pd
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import pyanx
 from spacy import displacy
+
+from Lib.spacy_library_loader import load_lib
 
 ROOT = os.getcwd()
 
@@ -85,19 +88,15 @@ def sentence_parser(unstruct_text, json_data_parser=None):
     if json_data_parser is None:
         json_data_parser = {}
     list_sent = list(unstruct_text.sents)
-    b = []
+
     for items in list_sent:
         a = []
         for item in items.ents:
             a.append(item.text + " - " + item.label_)
-            if "%s" % (item.text + " - " + item.label_) == "Bradley - PERSON":
-                b.append(items)
 
         json_data_parser = add_values_to_json(json_data_parser, a)
         json_data_parser = rm_header_dups_json(json_data_parser)
-    with open("./repo/some2.txt", 'w') as file:
-        file.write(str(b))
-        file.close()
+
     return json_data_parser
 
 
@@ -155,30 +154,58 @@ def read_in_pdf(file_path):
     return text_out
 
 
-def _user_dir(username=None, userDir=None):
-
-    if not username:
-        username = str(random.randint(10,10**9))
-        
-    dir_define = hashlib.sha256(bytes('%s'%username,'ascii')).hexdigest()
-
-    return dir_define, username
-
-
 class spacy_sent_connections:
-
-    def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None, username=None):
+    def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None,
+                 username=None, password=None, answer=None, root_dir=os.getcwd()):
+        self.username = username
+        self.password = password
         self.nlp = en_core_web_sm.load()
         self.text = []
         self.all_text = []
         self.gui = gui
         self.viz = viz
         self.inBrowser = inBrowser
-        temp_user_dir, self.username = _user_dir(username=username)
-        self.user_dir = temp_user_dir
-        self.downloads = os.path.join(downloads, self.user_dir)
-        self.uploads = os.path.join(upload_dir, self.user_dir)
-        self.repo = os.path.join(repo, self.user_dir)
+        self.answer = answer
+        self.downloads = downloads
+        self.uploads = upload_dir
+        self.repo = repo
+        self.user_dir = user_dir
+        self.root_dir = root_dir
+        self._user_dir()  # This assigns username and directory name to class
+        self.user_root_dir_path = os.path.join(self.root_dir, 'data', self.user_dir)
+        self.multiprocessing = multiprocessing
+
+    def _user_dir(self):
+        if self.username is None:
+            self.username = str(random.randint(10, 10 ** 9))
+
+        if self.user_dir is None:
+            self.user_dir = hashlib.sha256(bytes('%s' % self.username, 'ascii')).hexdigest()
+
+        self.username = self.username
+        self.user_dir = self.user_dir
+
+    def create_env_dir(self):
+        # file Upload
+        if not self.uploads or not self.repo or not self.downloads:
+            UPLOAD_FOLDER = os.path.join(self.user_root_dir_path, 'uploads')
+            os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+            self.uploads = UPLOAD_FOLDER
+
+            # file repository
+            REPO_FOLDER = os.path.join(UPLOAD_FOLDER, 'repo')
+            os.makedirs(REPO_FOLDER, exist_ok=True)
+            self.repo = REPO_FOLDER
+
+            # file Download
+            DOWNLOAD_FOLDER = os.path.join(self.user_root_dir_path, 'downloaded')
+            os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
+            self.downloads = DOWNLOAD_FOLDER
+
+            return UPLOAD_FOLDER, REPO_FOLDER, DOWNLOAD_FOLDER
+
+        else:
+            return self.uploads, self.repo, self.downloads
 
     def load_file(self):
         if self.gui:
@@ -193,7 +220,7 @@ class spacy_sent_connections:
         return filePathName
 
     def json_repo_load(self):
-        
+
         try:
             repo_list = os.listdir(self.repo)
             if self.gui:
@@ -224,7 +251,8 @@ class spacy_sent_connections:
         return data
 
     def read_file(self):
-        json_data = self.json_repo_load()
+
+        json_data = load_lib(repoDir=self.repo)  # Loading in a library of previous runs in json
         filepaths = self.load_file()
         for filepath in filepaths:
             file_basename = os.path.basename(filepath)
@@ -294,7 +322,6 @@ class spacy_sent_connections:
         return
 
     def text_viz(self, text_in):
-        import webbrowser
 
         text_in = self.nlp(text_in)
         html = displacy.render(text_in, style="ent", page=True)
@@ -303,15 +330,21 @@ class spacy_sent_connections:
         with open(output_path, "w", encoding="utf-8") as outputFile:
             outputFile.write(html)
 
-        if self.inBrowser:
-            url = os.path.join("file://", output_path)
-            webbrowser.open(url, new=2)
         return
 
     def remove_old_files(self):
         '''
         Remove all files in downloads/uploads/repos for all users that are older than 10 days
         '''
-        if datetime.datetime.fromtimestamp(os.stat(self.downloads).st_mtime)+datetime.timedelta(days=10)  > datetime.datetime.now():
+        if datetime.datetime.fromtimestamp(os.stat(self.user_dir).st_mtime) + datetime.timedelta(
+                days=10) > datetime.datetime.now():
             os.remove(self.downloads)
         return
+
+    def run(self):
+        processes = []
+        for i in range(1):
+            p = self.multiprocessing.Process(target=self.read_file(), args=(i,))
+            processes.append(p)
+
+        [x.start() for x in processes]

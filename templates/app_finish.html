@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Process Complete</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="..\static\main_class.css">
 </head>
 
 <body>
 <h1>Your files are complete!</h1>
+<div class="w3-sidebar w3-bar-block w3-card" style="width:25%">
+    <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">Home</a>
+</div>
+
+<div style="margin-left:27%">
+
 <div class="container">
 
     <a href="{{url_for('downloaded_file', filename='data.csv')}}" class="myLink">Download CSV</a>
@@ -17,10 +25,22 @@
     <br>
     <a href="{{url_for('downloaded_file', filename='data.html')}}" class="myLink">Download HTML</a>
 
-    <form action="/nlp_project">
-    <input type="submit" value="Home" />
-    </form>
+</div>
 
+
+<div style="align-self: baseline;">
+    {% if html_in_browser %}
+    <div class="box-boarder">
+        <h5 style="text-align: center;">SpaCy Rendered</h5>
+        <div class="container" style="text-align: left;">
+            <xml>
+            {{ html_in_browser }}
+            </xml>
+        </div>
+
+    </div>
+    {% endif %}
+</div>
 </div>
 </body>
 </html>
