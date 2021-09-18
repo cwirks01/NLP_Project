@@ -274,6 +274,7 @@ class spacy_sent_connections:
                     self.text = read_in_pdf(filepath)
                     nlp_loaded = self.nlp(self.text)
                 elif os.path.isdir(filepath):
+                    self.text = " "
                     nlp_loaded = None
                     pass
                 else:
@@ -289,7 +290,6 @@ class spacy_sent_connections:
                 print("%s Starting without files" % e)
 
             self.all_text.append(self.text)
-
             print('Finished processing ' + file_basename)
 
         # if self.viz:
