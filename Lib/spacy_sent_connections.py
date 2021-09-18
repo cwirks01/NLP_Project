@@ -274,20 +274,23 @@ class spacy_sent_connections:
                     self.text = read_in_pdf(filepath)
                     nlp_loaded = self.nlp(self.text)
                 elif os.path.isdir(filepath):
-                    continue
+                    nlp_loaded = None
+                    pass
                 else:
                     self.text = " "
                     nlp_loaded = None
                     pass
+
+                if nlp_loaded is not None:
+                    json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
+                    self.save_csv_json_file(json_data)
 
             except EOFError as e:
                 print("%s Starting without files" % e)
 
             self.all_text.append(self.text)
 
-            json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
             print('Finished processing ' + file_basename)
-        self.save_csv_json_file(json_data)
 
         # if self.viz:
         all_text_for_viz = " ".join(self.all_text)

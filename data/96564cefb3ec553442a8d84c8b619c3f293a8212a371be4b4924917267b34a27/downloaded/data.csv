@@ -1,0 +1,117 @@
+name,value
+morning - TIME,
+days - DATE,
+hours - TIME,
+first - ORDINAL,Fate - PERSON
+first - ORDINAL,German - NORP
+England - GPE,
+French - NORP,
+English - NORP,
+Channel - ORG,"August, 1914 - DATE"
+Channel - ORG,two days - DATE
+Nobs - ORG,
+Kaiser - ORG,
+the past dismal hours - DATE,
+three - CARDINAL,
+the previous afternoon - TIME,
+"August, 1914 - DATE",Channel - ORG
+about two hundred yards - QUANTITY,
+second - ORDINAL,Bradley - PERSON
+yesterday - DATE,
+American - NORP,
+Americans - NORP,
+many years - DATE,
+Frankenstein - PERSON,
+half - CARDINAL,
+English - LANGUAGE,Bradley - PERSON
+English - LANGUAGE,V. C.'s - PERSON
+English - LANGUAGE,Germans - NORP
+five hundreds tons - QUANTITY,Bradley - PERSON
+five hundreds tons - QUANTITY,V. C.'s - PERSON
+five hundreds tons - QUANTITY,Germans - NORP
+fifty feet - QUANTITY,
+Two - CARDINAL,
+the next few seconds - TIME,
+Fate - PERSON,first - ORDINAL
+Germans - NORP,nineteen - CARDINAL
+Germans - NORP,one - CARDINAL
+Germans - NORP,sixteen - CARDINAL
+Germans - NORP,nine - CARDINAL
+Germans - NORP,English - LANGUAGE
+Kick - PERSON,
+one to three - CARDINAL,
+two - CARDINAL,
+Nob - PERSON,
+one - CARDINAL,nineteen - CARDINAL
+one - CARDINAL,sixteen - CARDINAL
+one - CARDINAL,Germans - NORP
+one - CARDINAL,nine - CARDINAL
+one - CARDINAL,Jack - PERSON
+one - CARDINAL,Bradley - PERSON
+one - CARDINAL,German - NORP
+one - CARDINAL,Olson - PERSON
+one - CARDINAL,British - NORP
+one - CARDINAL,Kiel - PERSON
+ten - CARDINAL,
+eight - CARDINAL,
+nineteen - CARDINAL,one - CARDINAL
+nineteen - CARDINAL,Germans - NORP
+sixteen - CARDINAL,one - CARDINAL
+sixteen - CARDINAL,Germans - NORP
+nine - CARDINAL,one - CARDINAL
+nine - CARDINAL,Germans - NORP
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,Irish - NORP
+a bad day's - DATE,Scotch - GPE
+a bad day's - DATE,English - LANGUAGE
+a bad day's - DATE,V. C.'s - PERSON
+a bad day's - DATE,Olson - PERSON
+a bad day's - DATE,Jack - PERSON
+a bad day's - DATE,one - CARDINAL
+a bad day's - DATE,German - NORP
+a bad day's - DATE,second - ORDINAL
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Irish - NORP
+Bradley - PERSON,Scotch - GPE
+Bradley - PERSON,English - LANGUAGE
+Bradley - PERSON,V. C.'s - PERSON
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Jack - PERSON
+Bradley - PERSON,one - CARDINAL
+Bradley - PERSON,German - NORP
+Bradley - PERSON,second - ORDINAL
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,one - CARDINAL
+Olson - PERSON,British - NORP
+Irish - NORP,Bradley - PERSON
+Irish - NORP,Bradley - PERSON
+Irish - NORP,one - CARDINAL
+Irish - NORP,British - NORP
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,Bradley - PERSON
+Scotch - GPE,one - CARDINAL
+Scotch - GPE,British - NORP
+V. C.'s - PERSON,English - LANGUAGE
+V. C.'s - PERSON,Bradley - PERSON
+German - NORP,first - ORDINAL
+German - NORP,Jack - PERSON
+German - NORP,Bradley - PERSON
+German - NORP,one - CARDINAL
+Baron von Schoenvorts - PERSON,
+Friedrich von Schoenvorts - PERSON,
+Jack - PERSON,Bradley - PERSON
+Jack - PERSON,one - CARDINAL
+Jack - PERSON,German - NORP
+Half - CARDINAL,
+British - NORP,Olson - PERSON
+British - NORP,one - CARDINAL
+three months ago - DATE,
+half an hour - TIME,
+the Royal Navy - ORG,
+About one - CARDINAL,
+Union Jack - PERSON,
+forty feet - QUANTITY,
+two days - DATE,Channel - ORG
+Kiel - PERSON,one - CARDINAL
+Germany - GPE,
