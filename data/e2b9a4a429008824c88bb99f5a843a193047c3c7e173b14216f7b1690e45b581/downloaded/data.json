@@ -1,0 +1,312 @@
+{
+    "a little after three o'clock - DATE": [],
+    "June 3rd, 1916 - DATE": [],
+    "three brief months - DATE": [],
+    "Cambrian - NORP": [],
+    "Greenland - GPE": [
+        "Cape Farewell - GPE",
+        "Bengal - GPE",
+        "Cape Farewell - GPE"
+    ],
+    "the summer - DATE": [
+        "Cape Farewell - GPE",
+        "Bengal - GPE",
+        "Cape Farewell - GPE"
+    ],
+    "Cape Farewell - GPE": [
+        "Greenland - GPE",
+        "Bengal - GPE",
+        "Greenland - GPE"
+    ],
+    "Bengal - GPE": [
+        "Cape Farewell - GPE",
+        "Greenland - GPE"
+    ],
+    "two minutes - TIME": [],
+    "Santa Monica - GPE": [],
+    "recent years - DATE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "French - NORP",
+        "English - NORP"
+    ],
+    "Germany - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "French - NORP",
+        "English - NORP"
+    ],
+    "England - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "French - NORP",
+        "English - NORP"
+    ],
+    "France - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "French - NORP",
+        "English - NORP"
+    ],
+    "the United States - GPE": [
+        "American - NORP",
+        "three - CARDINAL",
+        "as many seconds - TIME",
+        "Germans - NORP",
+        "French - NORP",
+        "English - NORP"
+    ],
+    "Curtiss - ORG": [],
+    "American - NORP": [
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL",
+        "the past dismal hours - DATE",
+        "the previous afternoon - TIME"
+    ],
+    "three - CARDINAL": [
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL",
+        "the past dismal hours - DATE",
+        "the previous afternoon - TIME"
+    ],
+    "as many seconds - TIME": [
+        "France - GPE",
+        "Airedale - ORG",
+        "Crown Prince Nobbler - PERSON",
+        "first - ORDINAL",
+        "the past dismal hours - DATE",
+        "the previous afternoon - TIME"
+    ],
+    "Airedale - ORG": [
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Fate - PERSON",
+        "German - NORP"
+    ],
+    "Crown Prince Nobbler - PERSON": [
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Fate - PERSON",
+        "German - NORP"
+    ],
+    "first - ORDINAL": [
+        "American - NORP",
+        "Pacific - LOC",
+        "Frankenstein - PERSON",
+        "a few yards - QUANTITY",
+        "Nobs - ORG",
+        "Fate - PERSON",
+        "German - NORP"
+    ],
+    "Punch - NORP": [],
+    "two hundred yards - QUANTITY": [],
+    "hundreds of feet - QUANTITY": [],
+    "two seconds - TIME": [],
+    "half - CARDINAL": [],
+    "one - CARDINAL": [
+        "nineteen - CARDINAL",
+        "sixteen - CARDINAL",
+        "Germans - NORP",
+        "nine - CARDINAL",
+        "Jack - PERSON",
+        "Bradley - PERSON",
+        "German - NORP",
+        "Olson - PERSON",
+        "British - NORP",
+        "Kiel - PERSON"
+    ],
+    "Pacific - LOC": [
+        "first - ORDINAL"
+    ],
+    "Frankenstein - PERSON": [
+        "first - ORDINAL"
+    ],
+    "second - ORDINAL": [
+        "Bradley - PERSON"
+    ],
+    "One - CARDINAL": [],
+    "four feet - QUANTITY": [],
+    "a few yards - QUANTITY": [
+        "first - ORDINAL"
+    ],
+    "Germans - NORP": [
+        "Germany - GPE",
+        "nineteen - CARDINAL",
+        "one - CARDINAL",
+        "sixteen - CARDINAL",
+        "nine - CARDINAL",
+        "English - LANGUAGE"
+    ],
+    "a few minutes - TIME": [
+        "Germany - GPE",
+        "nineteen - CARDINAL",
+        "one - CARDINAL",
+        "sixteen - CARDINAL",
+        "nine - CARDINAL",
+        "English - LANGUAGE"
+    ],
+    "Nobs - ORG": [
+        "first - ORDINAL"
+    ],
+    "Caspak - GPE": [],
+    "an hour - TIME": [],
+    "Leland-Stanford - FAC": [],
+    "German - NORP": [
+        "first - ORDINAL",
+        "Jack - PERSON",
+        "Bradley - PERSON",
+        "one - CARDINAL"
+    ],
+    "all night - TIME": [],
+    "Nobbler - PERSON": [],
+    "Nobbler - ORG": [],
+    "two - CARDINAL": [],
+    "morning - TIME": [],
+    "days - DATE": [],
+    "hours - TIME": [],
+    "French - NORP": [
+        "England - GPE"
+    ],
+    "English - NORP": [
+        "England - GPE"
+    ],
+    "Channel - ORG": [
+        "August, 1914 - DATE",
+        "two days - DATE"
+    ],
+    "Kaiser - ORG": [],
+    "the past dismal hours - DATE": [
+        "three - CARDINAL"
+    ],
+    "the previous afternoon - TIME": [
+        "three - CARDINAL"
+    ],
+    "August, 1914 - DATE": [
+        "Channel - ORG"
+    ],
+    "about two hundred yards - QUANTITY": [],
+    "yesterday - DATE": [],
+    "Americans - NORP": [],
+    "many years - DATE": [],
+    "English - LANGUAGE": [
+        "Bradley - PERSON",
+        "V. C.'s - PERSON",
+        "Germans - NORP"
+    ],
+    "five hundreds tons - QUANTITY": [
+        "Bradley - PERSON",
+        "V. C.'s - PERSON",
+        "Germans - NORP"
+    ],
+    "fifty feet - QUANTITY": [],
+    "Two - CARDINAL": [],
+    "the next few seconds - TIME": [],
+    "Fate - PERSON": [
+        "first - ORDINAL"
+    ],
+    "Kick - PERSON": [],
+    "one to three - CARDINAL": [],
+    "Nob - PERSON": [],
+    "ten - CARDINAL": [],
+    "eight - CARDINAL": [],
+    "nineteen - CARDINAL": [
+        "one - CARDINAL",
+        "Germans - NORP"
+    ],
+    "sixteen - CARDINAL": [
+        "one - CARDINAL",
+        "Germans - NORP"
+    ],
+    "nine - CARDINAL": [
+        "one - CARDINAL",
+        "Germans - NORP"
+    ],
+    "a bad day's - DATE": [
+        "Olson - PERSON",
+        "Irish - NORP",
+        "Scotch - GPE",
+        "English - LANGUAGE",
+        "V. C.'s - PERSON",
+        "Olson - PERSON",
+        "Jack - PERSON",
+        "one - CARDINAL",
+        "German - NORP",
+        "second - ORDINAL"
+    ],
+    "Bradley - PERSON": [
+        "Olson - PERSON",
+        "Irish - NORP",
+        "Scotch - GPE",
+        "English - LANGUAGE",
+        "V. C.'s - PERSON",
+        "Olson - PERSON",
+        "Jack - PERSON",
+        "one - CARDINAL",
+        "German - NORP",
+        "second - ORDINAL"
+    ],
+    "Olson - PERSON": [
+        "Bradley - PERSON",
+        "Bradley - PERSON",
+        "one - CARDINAL",
+        "British - NORP"
+    ],
+    "Irish - NORP": [
+        "Bradley - PERSON",
+        "Bradley - PERSON",
+        "one - CARDINAL",
+        "British - NORP"
+    ],
+    "Scotch - GPE": [
+        "Bradley - PERSON",
+        "Bradley - PERSON",
+        "one - CARDINAL",
+        "British - NORP"
+    ],
+    "V. C.'s - PERSON": [
+        "English - LANGUAGE",
+        "Bradley - PERSON"
+    ],
+    "Baron von Schoenvorts - PERSON": [],
+    "Friedrich von Schoenvorts - PERSON": [],
+    "Jack - PERSON": [
+        "Bradley - PERSON",
+        "one - CARDINAL",
+        "German - NORP"
+    ],
+    "Half - CARDINAL": [],
+    "British - NORP": [
+        "Olson - PERSON",
+        "one - CARDINAL"
+    ],
+    "three months ago - DATE": [],
+    "half an hour - TIME": [],
+    "the Royal Navy - ORG": [],
+    "About one - CARDINAL": [],
+    "Union Jack - PERSON": [],
+    "forty feet - QUANTITY": [],
+    "two days - DATE": [
+        "Channel - ORG"
+    ],
+    "Kiel - PERSON": [
+        "one - CARDINAL"
+    ]
+}

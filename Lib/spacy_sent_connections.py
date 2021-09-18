@@ -325,10 +325,11 @@ class spacy_sent_connections:
         with open(json_file_path, "w") as write_file:
             json.dump(json_data_save, write_file, indent=4)
 
-        for f in os.listdir(self.uploads):
-            filePath = os.path.join(self.uploads, f)
-            if os.path.isfile(filePath):
-                os.remove(filePath)
+        # To remove all uploaded files
+        # for f in os.listdir(self.uploads):
+        #     filePath = os.path.join(self.uploads, f)
+        # if os.path.isfile(filePath):
+            # os.remove(filePath)
         return
 
     def text_viz(self, text_in):
