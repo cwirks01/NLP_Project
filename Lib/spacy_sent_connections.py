@@ -8,6 +8,8 @@ import multiprocessing
 import os
 import hashlib
 import random
+import shutil
+
 import PyPDF2
 import json
 import en_core_web_sm
@@ -343,11 +345,14 @@ class spacy_sent_connections:
 
     def remove_old_files(self):
         '''
-        Remove all files in downloads/uploads/repos for all users that are older than 10 days
+        Remove all files in downloads/uploads/repos for all users that are older than 12 hours
         '''
-        if datetime.datetime.fromtimestamp(os.stat(self.user_root_dir_path).st_mtime) + datetime.timedelta(
-                days=10) > datetime.datetime.now():
-            os.remove(self.downloads)
+        for user_data_path in os.listdir(os.path.join(self.root_dir, 'data')):
+            full_path = os.path.join(self.root_dir, 'data', user_data_path)
+            if datetime.datetime.fromtimestamp(os.stat(full_path).st_mtime) + datetime.timedelta(days=0.5) \
+                    < datetime.datetime.now():
+                print("Removing %s" % user_data_path)
+                shutil.rmtree(full_path, ignore_errors=True)
         return
 
     def run(self):

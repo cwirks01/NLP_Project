@@ -27,7 +27,8 @@ def main():
         cookie_name = request.cookies.get('username')
         if cookie_name is None:
             main_app = spacy_sent_connections()
-            # main_app.remove_old_files()
+            main_app.create_env_dir()
+            main_app.remove_old_files()
             cookie_name = main_app.username
             resp = make_response(render_template('index.html'))
             resp.set_cookie('username', cookie_name)
@@ -35,7 +36,7 @@ def main():
         else:
             main_app = spacy_sent_connections(username=cookie_name)
             main_app.create_env_dir()
-            # main_app.remove_old_files()
+            main_app.remove_old_files()
             return render_template('index.html')
 
     except Exception as e:
