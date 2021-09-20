@@ -111,6 +111,7 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
             hovermode='closest',
             margin=dict(b=20,l=5,r=5,t=40),
             annotations=[ dict(
+                text="",
                 showarrow=False,
                 xref="paper", yref="paper",
                 x=0.005, y=-0.002 ) ],

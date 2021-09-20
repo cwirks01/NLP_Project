@@ -9,11 +9,11 @@
 
 <body>
 <h1>Your files are complete!</h1>
-<div class="w3-sidebar w3-bar-block w3-card" style="width:25%">
+<div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
     <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">Home</a>
 </div>
 
-<div style="margin-left:27%">
+<div style="margin-left:20%">
 
 <div class="two-col">
     <div class="col1">
@@ -30,14 +30,15 @@
         {% if plotly_chart %}
         <div class="box-boarder2">
             <h5 style="text-align: center;">Network Analysis Chart</h5>
-            <div style="text-align: left;">
-                <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="{{url_for('downloaded_file', filename='plot_data.html')}}" height="525" width="100%"></iframe>
+            <div style="text-align: center;">
+                <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="{{url_for('downloaded_file', filename='plot_data.html')}}" height="525" width="95%"></iframe>
             </div>
 
         </div>
         {% endif %}
     </div>    
 </div>
+<br>
 <div style="align-self: baseline;">
     {% if html_in_browser %}
     <div class="box-boarder">
