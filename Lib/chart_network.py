@@ -119,7 +119,7 @@ def online_network_analysis(df_anb, file_out_path, num_of_occurrence=2):
             )
     
     
-    file_out_path = os.path.dirname(json_data_save_path)
+    file_out_path = os.path.dirname(file_out_path)
     file_out_path = os.path.join(file_out_path,'plot_data.html')
     pio.write_html(fig, file=file_out_path, auto_open=False)
 
