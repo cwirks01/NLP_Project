@@ -16,7 +16,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
 @app.route("/application_ran", methods=['GET', 'POST'])
 def complete_app():
-
+    
     DOWNLOAD_FOLDER = "C:\\Users\\wirksc\\NTC Tools\\NLP_Project\\data\\e2b9a4a429008824c88bb99f5a843a193047c3c7e173b14216f7b1690e45b581\\downloaded"
     userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r')
     html_in_browser = userItems.read()

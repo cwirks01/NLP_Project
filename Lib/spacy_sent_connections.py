@@ -21,7 +21,6 @@ from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import pyanx
 from spacy import displacy
 from Lib.chart_network import online_network_analysis
-
 from Lib.spacy_library_loader import load_lib
 
 ROOT = os.getcwd()
@@ -362,5 +361,5 @@ class spacy_sent_connections:
         return
 
     def run(self):
-        p = self.multiprocessing.Process(target=self.read_file(), args=(i,))
+        p = self.multiprocessing.Process(target=self.read_file())
         p.start()
