@@ -15,8 +15,8 @@
 
 <div style="margin-left:27%">
 
-<div class="container">
-
+<div class="two-col">
+    <div class="col1">
     <a href="{{url_for('downloaded_file', filename='data.csv')}}" class="myLink">Download CSV</a>
     <br>
     <a href="{{url_for('downloaded_file', filename='data.json')}}" class="myLink">Download JSON</a>
@@ -24,10 +24,20 @@
     <a href="{{url_for('downloaded_file', filename='data.anx')}}" class="myLink">Download ANB</a>
     <br>
     <a href="{{url_for('downloaded_file', filename='data.html')}}" class="myLink">Download HTML</a>
+    </div>
 
+    <div style="col2">
+        {% if plotly_chart %}
+        <div class="box-boarder2">
+            <h5 style="text-align: center;">Network Analysis Chart</h5>
+            <div style="text-align: left;">
+                <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="{{url_for('downloaded_file', filename='plot_data.html')}}" height="525" width="100%"></iframe>
+            </div>
+
+        </div>
+        {% endif %}
+    </div>    
 </div>
-
-
 <div style="align-self: baseline;">
     {% if html_in_browser %}
     <div class="box-boarder">

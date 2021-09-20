@@ -20,6 +20,7 @@ import pandas as pd
 from Lib.json_util import add_values_to_json, rm_header_dups_json
 from Lib import pyanx
 from spacy import displacy
+from Lib.chart_network import online_network_analysis
 
 from Lib.spacy_library_loader import load_lib
 
@@ -102,7 +103,7 @@ def sentence_parser(unstruct_text, json_data_parser=None):
     return json_data_parser
 
 
-def analyst_worksheet(df_anb, file_out_path):
+def analyst_worksheet(df_anb, file_out_path, num_of_occurrence=2):
     """
     May need to use in the main class if the file saving method is updated with tkinter
     :param df_anb:
@@ -117,7 +118,7 @@ def analyst_worksheet(df_anb, file_out_path):
                                                     df_anb_count.columns[1]: 'value',
                                                     df_anb_count.columns[2]: 'occurrence'})
 
-        df_anb_count = df_anb_count[df_anb_count['occurrence'] >= 2]
+        df_anb_count = df_anb_count[df_anb_count['occurrence'] >= num_of_occurrence]
 
         type_of = ['PERSON', 'GPE', 'NORP', 'ORG']
         for index, row in df_anb_count.iterrows():
@@ -159,7 +160,7 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections:
     def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None,
-                 username=None, password=None, answer=None, root_dir=os.getcwd()):
+                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd()):
         self.username = username
         self.password = password
         self.nlp = en_core_web_sm.load()
@@ -172,6 +173,7 @@ class spacy_sent_connections:
         self.downloads = downloads
         self.uploads = upload_dir
         self.repo = repo
+        self.online_network_analysis_viz = online_network_analysis_viz
         self.user_dir = user_dir
         self.root_dir = root_dir
         self._user_dir()  # This assigns username and directory name to class
@@ -316,6 +318,9 @@ class spacy_sent_connections:
             df_data = pd.DataFrame(json_data_save)
 
         df_data.to_csv(file_out, index=False)
+
+        if self.online_network_analysis_viz:
+            online_network_analysis(df_data, file_out)
 
         if analyst_notebook:
             analyst_worksheet(df_data, file_out)

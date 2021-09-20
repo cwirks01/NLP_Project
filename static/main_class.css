@@ -25,7 +25,7 @@
   
   .two-col .col1,
   .two-col .col2 {
-    width: 49%;
+    width: 10%;
   }
   
   .two-col .col1 {
@@ -34,6 +34,7 @@
   
   .two-col .col2 {
     float: right;
+    width: 250px;
   }
   
   .two-col label {
@@ -103,4 +104,10 @@
 .container pre {
     display: inline-block;
     text-align: left;
+}
+.box-boarder2{
+  border: 3px solid #081d73;
+  box-shadow: 5px 5px 10px 1px #000;
+  column-count: 1;
+  margin: 0, 10px;
 }

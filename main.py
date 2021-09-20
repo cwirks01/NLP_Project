@@ -55,6 +55,7 @@ def upload_file():
             'DOWNLOAD_FOLDER'] = main_app.create_env_dir()
         # check if the post request has the file part
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
+        app.config['ploty_viz'] = bool(request.form.get("ploty_viz"))
         if (request.files['inputFileNames'].filename in ['', None]) and (request.form.getlist(
                 "FreeInputText") in [[''], [None]]):
             flash('No files loaded!')
@@ -105,13 +106,18 @@ def complete_app():
     DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
     userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r')
     html_in_browser = userItems.read()
+    userItems_plotly = codecs.open(os.path.join(DOWNLOAD_FOLDER, "plot_data.html"), 'r')
+    plotly_chart = userItems_plotly.read()
     # userItems.close()
 
     html_in_browser = Markup(html_in_browser)
     if not app.config['RENDER_VIZ']:
         html_in_browser = None
+    
+    if app.config['ploty']:
+        plotly_chart=app.config['ploty']
 
-    return render_template("app_finish.html", html_in_browser=html_in_browser)
+    return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart)
 
 
 @app.route('/out/<filename>')
