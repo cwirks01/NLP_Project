@@ -362,9 +362,5 @@ class spacy_sent_connections:
         return
 
     def run(self):
-        processes = []
-        for i in range(2):
-            p = self.multiprocessing.Process(target=self.read_file(), args=(i,))
-            processes.append(p)
-
-        [x.start() for x in processes]
+        p = self.multiprocessing.Process(target=self.read_file(), args=(i,))
+        p.start()
