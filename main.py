@@ -114,8 +114,8 @@ def complete_app():
     if not app.config['RENDER_VIZ']:
         html_in_browser = None
     
-    if app.config['ploty']:
-        plotly_chart=app.config['ploty']
+    if app.config['ploty_viz']:
+        plotly_chart = app.config['ploty_viz']
 
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart)
 
