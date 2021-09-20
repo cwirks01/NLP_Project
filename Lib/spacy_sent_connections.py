@@ -320,7 +320,7 @@ class spacy_sent_connections:
         df_data.to_csv(file_out, index=False)
 
         if self.online_network_analysis_viz:
-            online_network_analysis(df_data, file_out)
+            online_network_analysis(df_data, self.downloads)
 
         if analyst_notebook:
             analyst_worksheet(df_data, file_out)

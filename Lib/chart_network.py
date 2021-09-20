@@ -4,7 +4,7 @@ import json
 import plotly.graph_objects as go
 import plotly.io as pio
 
-def online_network_analysis(df_anb, file_out_path, num_of_occurrence=2):
+def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occurrence=2):
     import networkx as nx
     from networkx import nx_pydot
 
@@ -118,8 +118,6 @@ def online_network_analysis(df_anb, file_out_path, num_of_occurrence=2):
             yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
             )
     
-    
-    file_out_path = os.path.dirname(file_out_path)
     file_out_path = os.path.join(file_out_path,'plot_data.html')
     pio.write_html(fig, file=file_out_path, auto_open=False)
 
