@@ -6,6 +6,7 @@ Author: Charles Wirks email: cwirks01@gmail.com
 """
 import multiprocessing
 import os
+import re
 import hashlib
 import random
 import shutil
@@ -151,10 +152,23 @@ def read_in_pdf(file_path):
     mypdf = open(r'%s' % file_path, mode='rb')
     pdf_document = PyPDF2.PdfFileReader(mypdf)
 
+
+    all_text_list = []
     for i in range(pdf_document.numPages):
         page_to_print = pdf_document.getPage(i)
         text_out = page_to_print.extractText()
-    return text_out
+        
+        # text_out = "".join(text_out)
+        text_out = text_out.replace("\n", "").replace("\\", "")
+        text_out = re.sub(r'\n\s*\n', '\n', text_out)
+        text_out = text_out.strip()
+        text_out = re.sub(r'[ ]{3,}', '\n', text_out)
+        
+        all_text_list.append(text_out)
+    
+    all_text = "\n".join(all_text_list)
+
+    return all_text
 
 
 class spacy_sent_connections:
@@ -287,14 +301,17 @@ class spacy_sent_connections:
 
                 if nlp_loaded is not None:
                     json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
-                    self.save_csv_json_file(json_data)
+            
 
             except EOFError as e:
                 print("%s Starting without files" % e)
-
+            
+            
             self.all_text.append(self.text)
             print('Finished processing ' + file_basename)
+        
 
+        self.save_csv_json_file(json_data)
         # if self.viz:
         all_text_for_viz = " ".join(self.all_text)
         self.text_viz(all_text_for_viz)
