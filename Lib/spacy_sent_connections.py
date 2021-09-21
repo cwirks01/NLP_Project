@@ -356,12 +356,13 @@ class spacy_sent_connections:
             # os.remove(filePath)
         return
 
-    def text_viz(self, text_in):
+    def text_viz(self, text_in=''):
 
         text_in = self.nlp(text_in)
         html = displacy.render(text_in, style="ent", page=True)
         os.makedirs(self.downloads, exist_ok=True)
         output_path = os.path.join(self.downloads, "data.html")
+
         with open(output_path, "w", encoding="utf-8") as outputFile:
             outputFile.write(html)
             outputFile.close()
