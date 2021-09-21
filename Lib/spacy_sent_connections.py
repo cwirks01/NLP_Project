@@ -268,18 +268,21 @@ class spacy_sent_connections:
         return data
 
     def read_file(self):
-
+        all_text_for_viz = None
         json_data = load_lib(repoDir=self.repo)  # Loading in a library of previous runs in json
         filepaths = self.load_file()
+
         for filepath in filepaths:
             try:
                 file_basename = os.path.basename(filepath)
             except Exception as e:
                 print("%s \nPassing to next file" % e)
                 pass
+
             print("Reading " + file_basename)
             base_split = os.path.splitext(file_basename)
             file_extension = base_split[1]
+
             try:
                 if file_extension.endswith('txt'):
                     file = open(filepath, 'r')
@@ -310,7 +313,8 @@ class spacy_sent_connections:
             print('Finished processing ' + file_basename)
         
 
-        self.save_csv_json_file(json_data)
+        self.save_csv_json_file(json_data_save=json_data)
+
         # if self.viz:
         all_text_for_viz = " ".join(self.all_text)
         self.text_viz(all_text_for_viz)
