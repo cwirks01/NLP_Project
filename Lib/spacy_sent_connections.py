@@ -238,7 +238,6 @@ class spacy_sent_connections:
         return filePathName
 
     def json_repo_load(self):
-
         try:
             repo_list = os.listdir(self.repo)
             if self.gui:
@@ -336,7 +335,7 @@ class spacy_sent_connections:
         df_data.to_csv(file_out, index=False)
 
         if self.online_network_analysis_viz:
-            online_network_analysis(df_data, self.downloads)
+            online_network_analysis(df_anb=df_data, file_out_path=self.downloads)
 
         if analyst_notebook:
             analyst_worksheet(df_data, file_out)
