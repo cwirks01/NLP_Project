@@ -69,6 +69,7 @@ def upload_file():
                 outputPath.write(text)
                 outputPath.close()
         else:
+            main_app.remove_upload_file()
             files = request.files.getlist('inputFileNames')
             for file in files:
                 if file and allowed_file(file.filename):
@@ -104,11 +105,16 @@ def complete_app():
     cookie_name = request.cookies.get('username')
     DOWNLOAD_FOLDER = spacy_sent_connections(username=cookie_name)
     DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
-    userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r')
+    userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r', encoding='utf-8')
     html_in_browser = userItems.read()
-    userItems_plotly = codecs.open(os.path.join(DOWNLOAD_FOLDER, "plot_data.html"), 'r')
+    userItems_plotly = codecs.open(os.path.join(DOWNLOAD_FOLDER, "plot_data.html"), 'r', encoding='utf-8')
     plotly_chart = userItems_plotly.read()
-    # userItems.close()
+    with open(os.path.join(DOWNLOAD_FOLDER, "data_ents_list.json"), 'r+') as userItems:
+        userItems = json.load(userItems)
+
+    all_items = []
+    for i in userItems:
+        all_items.append(list([i, userItems[i]]))
 
     html_in_browser = Markup(html_in_browser)
     if not app.config['RENDER_VIZ']:
@@ -117,7 +123,8 @@ def complete_app():
     if app.config['ploty_viz']:
         plotly_chart = app.config['ploty_viz']
 
-    return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart)
+    return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
+                           json_ents_list=all_items)
 
 
 @app.route('/out/<filename>')

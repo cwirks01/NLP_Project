@@ -1,0 +1,118 @@
+{
+    "DATE": [
+        "August, 1914",
+        "June 3rd, 1916",
+        "a bad day's",
+        "a little after three o'clock",
+        "days",
+        "many years",
+        "recent years",
+        "the past dismal hours",
+        "the summer",
+        "three brief months",
+        "three months ago",
+        "two days",
+        "yesterday"
+    ],
+    "NORP": [
+        "American",
+        "Americans",
+        "British",
+        "Cambrian",
+        "English",
+        "French",
+        "German",
+        "Germans",
+        "Irish",
+        "Punch"
+    ],
+    "GPE": [
+        "Bengal",
+        "Cape Farewell",
+        "Caspak",
+        "England",
+        "France",
+        "Germany",
+        "Greenland",
+        "Santa Monica",
+        "Scotch",
+        "the United States"
+    ],
+    "TIME": [
+        "a few minutes",
+        "all night",
+        "an hour",
+        "as many seconds",
+        "half an hour",
+        "hours",
+        "morning",
+        "the next few seconds",
+        "the previous afternoon",
+        "two minutes",
+        "two seconds"
+    ],
+    "ORG": [
+        "Airedale",
+        "Channel",
+        "Curtiss",
+        "Kaiser",
+        "Nobbler",
+        "Nobs",
+        "the Royal Navy"
+    ],
+    "CARDINAL": [
+        "About one",
+        "Half",
+        "One",
+        "Two",
+        "eight",
+        "half",
+        "nine",
+        "nineteen",
+        "one",
+        "one to three",
+        "sixteen",
+        "ten",
+        "three",
+        "two"
+    ],
+    "PERSON": [
+        "Baron von Schoenvorts",
+        "Bradley",
+        "Crown Prince Nobbler",
+        "Fate",
+        "Frankenstein",
+        "Friedrich von Schoenvorts",
+        "Jack",
+        "Kick",
+        "Kiel",
+        "Nob",
+        "Nobbler",
+        "Olson",
+        "Union Jack",
+        "V. C.'s"
+    ],
+    "ORDINAL": [
+        "first",
+        "second"
+    ],
+    "QUANTITY": [
+        "a few yards",
+        "about two hundred yards",
+        "fifty feet",
+        "five hundreds tons",
+        "forty feet",
+        "four feet",
+        "hundreds of feet",
+        "two hundred yards"
+    ],
+    "LOC": [
+        "Pacific"
+    ],
+    "FAC": [
+        "Leland-Stanford"
+    ],
+    "LANGUAGE": [
+        "English"
+    ]
+}

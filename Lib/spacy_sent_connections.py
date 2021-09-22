@@ -18,7 +18,7 @@ import datetime
 
 import pandas as pd
 
-from Lib.json_util import add_values_to_json, rm_header_dups_json
+from Lib.json_util import *
 from Lib import pyanx
 from spacy import displacy
 from Lib.chart_network import online_network_analysis
@@ -74,7 +74,7 @@ class gui_tkinter:
         return answer
 
 
-def sentence_parser(unstruct_text, json_data_parser=None):
+def sentence_parser(unstruct_text, json_data_parser=None, json_ents_list=None):
     """
     parses out sentences and counts the amount of times objects/places/currency/dates
     are in the same sentence. Output in dataframe format with names and number.
@@ -83,6 +83,7 @@ def sentence_parser(unstruct_text, json_data_parser=None):
     appear in the same sentence.
 
 
+    :param json_ents_list:
     :param unstruct_text:
     :param json_data_parser:
     :return:
@@ -90,6 +91,10 @@ def sentence_parser(unstruct_text, json_data_parser=None):
 
     if json_data_parser is None:
         json_data_parser = {}
+
+    if json_ents_list is None:
+        json_ents_list = {}
+
     list_sent = list(unstruct_text.sents)
 
     for items in list_sent:
@@ -97,15 +102,19 @@ def sentence_parser(unstruct_text, json_data_parser=None):
         for item in items.ents:
             a.append(item.text + " - " + item.label_)
 
-        json_data_parser = add_values_to_json(json_data_parser, a)
-        json_data_parser = rm_header_dups_json(json_data_parser)
+            json_ents_list = ents_to_list(json_ents_file=json_ents_list, values=a)
+            json_ents_list = rm_list_dups_json(json_ents_list=json_ents_list)
 
-    return json_data_parser
+            json_data_parser = add_values_to_json(json_data_parser, a)
+            json_data_parser = rm_header_dups_json(json_data_parser)
+
+    return json_data_parser, json_ents_list
 
 
 def analyst_worksheet(df_anb, file_out_path, num_of_occurrence=2):
     """
     May need to use in the main class if the file saving method is updated with tkinter
+    :param num_of_occurrence:
     :param df_anb:
     :param file_out_path:
     :return:
@@ -152,20 +161,19 @@ def read_in_pdf(file_path):
     mypdf = open(r'%s' % file_path, mode='rb')
     pdf_document = PyPDF2.PdfFileReader(mypdf)
 
-
     all_text_list = []
     for i in range(pdf_document.numPages):
         page_to_print = pdf_document.getPage(i)
         text_out = page_to_print.extractText()
-        
+
         # text_out = "".join(text_out)
         text_out = text_out.replace("\n", "").replace("\\", "")
         text_out = re.sub(r'\n\s*\n', '\n', text_out)
         text_out = text_out.strip()
         text_out = re.sub(r'[ ]{3,}', '\n', text_out)
-        
+
         all_text_list.append(text_out)
-    
+
     all_text = "\n".join(all_text_list)
 
     return all_text
@@ -269,6 +277,7 @@ class spacy_sent_connections:
 
     def read_file(self):
         all_text_for_viz = None
+        json_ents_list = None
         json_data = load_lib(repoDir=self.repo)  # Loading in a library of previous runs in json
         filepaths = self.load_file()
 
@@ -276,7 +285,7 @@ class spacy_sent_connections:
             try:
                 file_basename = os.path.basename(filepath)
             except Exception as e:
-                print("%s \nPassing to next file" % e)
+                print("%s \nMoving to next file" % e)
                 pass
 
             print("Reading " + file_basename)
@@ -302,18 +311,15 @@ class spacy_sent_connections:
                     pass
 
                 if nlp_loaded is not None:
-                    json_data = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data)
-            
+                    json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
+                                                                json_ents_list=json_ents_list)
 
             except EOFError as e:
                 print("%s Starting without files" % e)
-            
-            
+
+            self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
             self.all_text.append(self.text)
             print('Finished processing ' + file_basename)
-        
-
-        self.save_csv_json_file(json_data_save=json_data)
 
         # if self.viz:
         all_text_for_viz = " ".join(self.all_text)
@@ -321,7 +327,7 @@ class spacy_sent_connections:
 
         return
 
-    def save_csv_json_file(self, json_data_save, analyst_notebook=True):
+    def save_csv_json_file(self, json_data_save, json_ents_list=None, analyst_notebook=True):
         if self.gui:
             file_out = gui_tkinter()
             file_out.save_file()
@@ -349,11 +355,15 @@ class spacy_sent_connections:
         with open(json_file_path, "w") as write_file:
             json.dump(json_data_save, write_file, indent=4)
 
+        json_ents_list_file_path = os.path.join(os.path.dirname(file_out), 'data_ents_list.json')
+        with open(json_ents_list_file_path, "w") as write_file:
+            json.dump(json_ents_list, write_file, indent=4)
+
         # To remove all uploaded files
         # for f in os.listdir(self.uploads):
         #     filePath = os.path.join(self.uploads, f)
         # if os.path.isfile(filePath):
-            # os.remove(filePath)
+        # os.remove(filePath)
         return
 
     def text_viz(self, text_in=''):
@@ -379,6 +389,12 @@ class spacy_sent_connections:
                     < datetime.datetime.now():
                 print("Removing %s" % user_data_path)
                 shutil.rmtree(full_path, ignore_errors=True)
+        return
+
+    def remove_upload_file(self):
+        for file in os.listdir(self.uploads):
+            if not os.path.isdir(file):
+                os.remove(os.path.join(self.uploads, file))
         return
 
     def run(self):

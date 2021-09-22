@@ -1,0 +1,294 @@
+name,value
+a little after three o'clock - DATE,"June 3rd, 1916 - DATE"
+"June 3rd, 1916 - DATE",a little after three o'clock - DATE
+three brief months - DATE,
+Cambrian - NORP,
+Greenland - GPE,the summer - DATE
+Greenland - GPE,Cape Farewell - GPE
+Greenland - GPE,Bengal - GPE
+Greenland - GPE,Cape Farewell - GPE
+the summer - DATE,Greenland - GPE
+Cape Farewell - GPE,Greenland - GPE
+Cape Farewell - GPE,Bengal - GPE
+Cape Farewell - GPE,Bengal - GPE
+Cape Farewell - GPE,Greenland - GPE
+Bengal - GPE,Cape Farewell - GPE
+Bengal - GPE,Cape Farewell - GPE
+Bengal - GPE,Greenland - GPE
+two minutes - TIME,
+Santa Monica - GPE,
+recent years - DATE,Germany - GPE
+recent years - DATE,Germany - GPE
+recent years - DATE,England - GPE
+recent years - DATE,Germany - GPE
+recent years - DATE,England - GPE
+recent years - DATE,France - GPE
+recent years - DATE,Germany - GPE
+recent years - DATE,England - GPE
+recent years - DATE,France - GPE
+recent years - DATE,the United States - GPE
+Germany - GPE,recent years - DATE
+Germany - GPE,recent years - DATE
+Germany - GPE,England - GPE
+Germany - GPE,recent years - DATE
+Germany - GPE,England - GPE
+Germany - GPE,France - GPE
+Germany - GPE,recent years - DATE
+Germany - GPE,England - GPE
+Germany - GPE,France - GPE
+Germany - GPE,the United States - GPE
+Germany - GPE,Germans - NORP
+England - GPE,recent years - DATE
+England - GPE,Germany - GPE
+England - GPE,recent years - DATE
+England - GPE,Germany - GPE
+England - GPE,France - GPE
+England - GPE,recent years - DATE
+England - GPE,Germany - GPE
+England - GPE,France - GPE
+England - GPE,the United States - GPE
+England - GPE,French - NORP
+England - GPE,French - NORP
+England - GPE,English - NORP
+France - GPE,recent years - DATE
+France - GPE,Germany - GPE
+France - GPE,England - GPE
+France - GPE,recent years - DATE
+France - GPE,Germany - GPE
+France - GPE,England - GPE
+France - GPE,the United States - GPE
+France - GPE,American - NORP
+France - GPE,American - NORP
+France - GPE,three - CARDINAL
+France - GPE,American - NORP
+France - GPE,three - CARDINAL
+France - GPE,as many seconds - TIME
+the United States - GPE,recent years - DATE
+the United States - GPE,Germany - GPE
+the United States - GPE,England - GPE
+the United States - GPE,France - GPE
+Curtiss - ORG,
+American - NORP,France - GPE
+American - NORP,France - GPE
+American - NORP,three - CARDINAL
+American - NORP,France - GPE
+American - NORP,three - CARDINAL
+American - NORP,as many seconds - TIME
+American - NORP,Airedale - ORG
+American - NORP,Airedale - ORG
+American - NORP,Crown Prince Nobbler - PERSON
+American - NORP,Airedale - ORG
+American - NORP,Crown Prince Nobbler - PERSON
+American - NORP,first - ORDINAL
+three - CARDINAL,American - NORP
+three - CARDINAL,France - GPE
+three - CARDINAL,American - NORP
+three - CARDINAL,France - GPE
+three - CARDINAL,as many seconds - TIME
+three - CARDINAL,the past dismal hours - DATE
+three - CARDINAL,the past dismal hours - DATE
+three - CARDINAL,the previous afternoon - TIME
+as many seconds - TIME,American - NORP
+as many seconds - TIME,France - GPE
+as many seconds - TIME,three - CARDINAL
+Airedale - ORG,American - NORP
+Airedale - ORG,American - NORP
+Airedale - ORG,Crown Prince Nobbler - PERSON
+Airedale - ORG,American - NORP
+Airedale - ORG,Crown Prince Nobbler - PERSON
+Airedale - ORG,first - ORDINAL
+Crown Prince Nobbler - PERSON,American - NORP
+Crown Prince Nobbler - PERSON,Airedale - ORG
+Crown Prince Nobbler - PERSON,American - NORP
+Crown Prince Nobbler - PERSON,Airedale - ORG
+Crown Prince Nobbler - PERSON,first - ORDINAL
+first - ORDINAL,American - NORP
+first - ORDINAL,Airedale - ORG
+first - ORDINAL,Crown Prince Nobbler - PERSON
+first - ORDINAL,Pacific - LOC
+first - ORDINAL,Pacific - LOC
+first - ORDINAL,Frankenstein - PERSON
+first - ORDINAL,a few yards - QUANTITY
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,Nobs - ORG
+first - ORDINAL,Fate - PERSON
+first - ORDINAL,German - NORP
+Punch - NORP,
+two hundred yards - QUANTITY,
+hundreds of feet - QUANTITY,
+two seconds - TIME,
+half - CARDINAL,
+one - CARDINAL,nineteen - CARDINAL
+one - CARDINAL,nineteen - CARDINAL
+one - CARDINAL,sixteen - CARDINAL
+one - CARDINAL,nineteen - CARDINAL
+one - CARDINAL,sixteen - CARDINAL
+one - CARDINAL,Germans - NORP
+one - CARDINAL,nineteen - CARDINAL
+one - CARDINAL,sixteen - CARDINAL
+one - CARDINAL,Germans - NORP
+one - CARDINAL,nine - CARDINAL
+one - CARDINAL,Jack - PERSON
+one - CARDINAL,Bradley - PERSON
+one - CARDINAL,Jack - PERSON
+one - CARDINAL,Bradley - PERSON
+one - CARDINAL,German - NORP
+one - CARDINAL,Olson - PERSON
+one - CARDINAL,Olson - PERSON
+one - CARDINAL,British - NORP
+one - CARDINAL,Kiel - PERSON
+Pacific - LOC,first - ORDINAL
+Pacific - LOC,first - ORDINAL
+Pacific - LOC,Frankenstein - PERSON
+Frankenstein - PERSON,first - ORDINAL
+Frankenstein - PERSON,Pacific - LOC
+second - ORDINAL,Bradley - PERSON
+One - CARDINAL,
+four feet - QUANTITY,
+a few yards - QUANTITY,first - ORDINAL
+Germans - NORP,a few minutes - TIME
+Germans - NORP,Germany - GPE
+Germans - NORP,nineteen - CARDINAL
+Germans - NORP,one - CARDINAL
+Germans - NORP,sixteen - CARDINAL
+Germans - NORP,nineteen - CARDINAL
+Germans - NORP,one - CARDINAL
+Germans - NORP,sixteen - CARDINAL
+Germans - NORP,nine - CARDINAL
+Germans - NORP,English - LANGUAGE
+a few minutes - TIME,Germans - NORP
+Nobs - ORG,first - ORDINAL
+Nobs - ORG,first - ORDINAL
+Caspak - GPE,
+an hour - TIME,
+Leland-Stanford - FAC,
+German - NORP,first - ORDINAL
+German - NORP,Jack - PERSON
+German - NORP,Bradley - PERSON
+German - NORP,one - CARDINAL
+all night - TIME,
+Nobbler - PERSON,
+Nobbler - ORG,
+two - CARDINAL,
+morning - TIME,days - DATE
+morning - TIME,days - DATE
+morning - TIME,hours - TIME
+days - DATE,morning - TIME
+days - DATE,morning - TIME
+days - DATE,hours - TIME
+hours - TIME,morning - TIME
+hours - TIME,days - DATE
+French - NORP,England - GPE
+French - NORP,England - GPE
+French - NORP,English - NORP
+English - NORP,England - GPE
+English - NORP,French - NORP
+Channel - ORG,"August, 1914 - DATE"
+Channel - ORG,two days - DATE
+Kaiser - ORG,
+the past dismal hours - DATE,three - CARDINAL
+the past dismal hours - DATE,three - CARDINAL
+the past dismal hours - DATE,the previous afternoon - TIME
+the previous afternoon - TIME,the past dismal hours - DATE
+the previous afternoon - TIME,three - CARDINAL
+"August, 1914 - DATE",Channel - ORG
+about two hundred yards - QUANTITY,
+yesterday - DATE,
+Americans - NORP,many years - DATE
+many years - DATE,Americans - NORP
+English - LANGUAGE,five hundreds tons - QUANTITY
+English - LANGUAGE,Bradley - PERSON
+English - LANGUAGE,Bradley - PERSON
+English - LANGUAGE,V. C.'s - PERSON
+English - LANGUAGE,Germans - NORP
+five hundreds tons - QUANTITY,English - LANGUAGE
+fifty feet - QUANTITY,
+Two - CARDINAL,
+the next few seconds - TIME,
+Fate - PERSON,first - ORDINAL
+Kick - PERSON,
+one to three - CARDINAL,
+Nob - PERSON,
+ten - CARDINAL,
+eight - CARDINAL,
+nineteen - CARDINAL,one - CARDINAL
+nineteen - CARDINAL,one - CARDINAL
+nineteen - CARDINAL,sixteen - CARDINAL
+nineteen - CARDINAL,one - CARDINAL
+nineteen - CARDINAL,sixteen - CARDINAL
+nineteen - CARDINAL,Germans - NORP
+nineteen - CARDINAL,one - CARDINAL
+nineteen - CARDINAL,sixteen - CARDINAL
+nineteen - CARDINAL,Germans - NORP
+nineteen - CARDINAL,nine - CARDINAL
+sixteen - CARDINAL,nineteen - CARDINAL
+sixteen - CARDINAL,one - CARDINAL
+sixteen - CARDINAL,nineteen - CARDINAL
+sixteen - CARDINAL,one - CARDINAL
+sixteen - CARDINAL,Germans - NORP
+sixteen - CARDINAL,nineteen - CARDINAL
+sixteen - CARDINAL,one - CARDINAL
+sixteen - CARDINAL,Germans - NORP
+sixteen - CARDINAL,nine - CARDINAL
+nine - CARDINAL,nineteen - CARDINAL
+nine - CARDINAL,one - CARDINAL
+nine - CARDINAL,sixteen - CARDINAL
+nine - CARDINAL,Germans - NORP
+a bad day's - DATE,Bradley - PERSON
+Bradley - PERSON,a bad day's - DATE
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Irish - NORP
+Bradley - PERSON,Scotch - GPE
+Bradley - PERSON,English - LANGUAGE
+Bradley - PERSON,English - LANGUAGE
+Bradley - PERSON,V. C.'s - PERSON
+Bradley - PERSON,Olson - PERSON
+Bradley - PERSON,Jack - PERSON
+Bradley - PERSON,Jack - PERSON
+Bradley - PERSON,one - CARDINAL
+Bradley - PERSON,Jack - PERSON
+Bradley - PERSON,one - CARDINAL
+Bradley - PERSON,German - NORP
+Bradley - PERSON,second - ORDINAL
+Olson - PERSON,Irish - NORP
+Olson - PERSON,Irish - NORP
+Olson - PERSON,Scotch - GPE
+Olson - PERSON,Irish - NORP
+Olson - PERSON,Scotch - GPE
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,Bradley - PERSON
+Olson - PERSON,one - CARDINAL
+Olson - PERSON,one - CARDINAL
+Olson - PERSON,British - NORP
+Irish - NORP,Olson - PERSON
+Irish - NORP,Olson - PERSON
+Irish - NORP,Scotch - GPE
+Irish - NORP,Olson - PERSON
+Irish - NORP,Scotch - GPE
+Irish - NORP,Bradley - PERSON
+Scotch - GPE,Olson - PERSON
+Scotch - GPE,Irish - NORP
+Scotch - GPE,Olson - PERSON
+Scotch - GPE,Irish - NORP
+Scotch - GPE,Bradley - PERSON
+V. C.'s - PERSON,English - LANGUAGE
+V. C.'s - PERSON,Bradley - PERSON
+Baron von Schoenvorts - PERSON,
+Friedrich von Schoenvorts - PERSON,
+Jack - PERSON,Bradley - PERSON
+Jack - PERSON,Bradley - PERSON
+Jack - PERSON,one - CARDINAL
+Jack - PERSON,Bradley - PERSON
+Jack - PERSON,one - CARDINAL
+Jack - PERSON,German - NORP
+Half - CARDINAL,
+British - NORP,Olson - PERSON
+British - NORP,one - CARDINAL
+three months ago - DATE,
+half an hour - TIME,the Royal Navy - ORG
+the Royal Navy - ORG,half an hour - TIME
+About one - CARDINAL,
+Union Jack - PERSON,
+forty feet - QUANTITY,
+two days - DATE,Channel - ORG
+Kiel - PERSON,one - CARDINAL

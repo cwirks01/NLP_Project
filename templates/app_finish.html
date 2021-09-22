@@ -15,43 +15,59 @@
 
 <div style="margin-left:20%">
 
-<div class="two-col">
-    <div class="col1">
-    <a href="{{url_for('downloaded_file', filename='data.csv')}}" class="myLink">Download CSV</a>
-    <br>
-    <a href="{{url_for('downloaded_file', filename='data.json')}}" class="myLink">Download JSON</a>
-    <br>
-    <a href="{{url_for('downloaded_file', filename='data.anx')}}" class="myLink">Download ANB</a>
-    <br>
-    <a href="{{url_for('downloaded_file', filename='data.html')}}" class="myLink">Download HTML</a>
-    </div>
+    <div class="two-col">
+        <div class="col1">
+        <a href="{{url_for('downloaded_file', filename='data.csv')}}" class="myLink">Download CSV</a>
+        <br>
+        <a href="{{url_for('downloaded_file', filename='data.json')}}" class="myLink">Download JSON</a>
+        <br>
+        <a href="{{url_for('downloaded_file', filename='data.anx')}}" class="myLink">Download ANB</a>
+        <br>
+        <a href="{{url_for('downloaded_file', filename='data.html')}}" class="myLink">Download HTML</a>
+        </div>
 
-    <div style="col2">
-        {% if plotly_chart %}
-        <div class="box-boarder2">
-            <h5 style="text-align: center;">Network Analysis Chart</h5>
-            <div style="text-align: center;">
-                <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="{{url_for('downloaded_file', filename='plot_data.html')}}" height="525" width="95%"></iframe>
+        <div style="col2">
+            {% if plotly_chart %}
+            <div class="box-boarder2">
+                <h5 style="text-align: center;">Network Analysis Chart</h5>
+                <div style="text-align: center;">
+                    <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="{{url_for('downloaded_file', filename='plot_data.html')}}" height="525" width="95%"></iframe>
+                </div>
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    <div style="align-self: baseline;">
+    {% if json_ents_list %}
+    {% for item in json_ents_list %}
+    <div class="box-boarder">
+        <h5 style="text-align: center;">{{item[0]}}</h5>
+        <div class="container" style="text-align: left;">
+        <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
+            {{ "\r"+"\n".join(item[1]) }}
+        </textarea>
+        </div>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+    <br>
+    <div style="align-self: baseline;">
+        {% if html_in_browser %}
+        <div class="box-boarder">
+            <h5 style="text-align: center;">SpaCy Rendered</h5>
+            <div class="container" style="text-align: left;">
+                <xml>
+                {{ html_in_browser }}
+                </xml>
             </div>
 
         </div>
         {% endif %}
-    </div>    
-</div>
-<br>
-<div style="align-self: baseline;">
-    {% if html_in_browser %}
-    <div class="box-boarder">
-        <h5 style="text-align: center;">SpaCy Rendered</h5>
-        <div class="container" style="text-align: left;">
-            <xml>
-            {{ html_in_browser }}
-            </xml>
-        </div>
-
     </div>
-    {% endif %}
-</div>
 </div>
 </body>
 </html>
