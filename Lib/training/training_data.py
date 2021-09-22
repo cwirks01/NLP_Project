@@ -1,0 +1,43 @@
+TRAIN_DATA_entities = [
+            ("Walmart is a leading e-commerce company", {"entities": [(0, 7, "ORG")]}),
+            ("I reached Chennai yesterday.", {"entities": [(18, 27, "GPE")]}),
+            ("I recently ordered a book from Amazon", {"entities": [(31,37, "ORG")]}),
+            ("I was driving a BMW", {"entities": [(16,19, "PRODUCT")]}),
+            ("I ordered this from ShopClues", {"entities": [(20,29, "ORG")]}),
+            ("Fridge can be ordered in Amazon ", {"entities": [(0,6, "PRODUCT")]}),
+            ("I bought a new Washer", {"entities": [(16,22, "PRODUCT")]}),
+            ("I bought a old table", {"entities": [(16,21, "PRODUCT")]}),
+            ("I bought a fancy dress", {"entities": [(18,23, "PRODUCT")]}),
+            ("I rented a camera", {"entities": [(12,18, "PRODUCT")]}),
+            ("I rented a tent for our trip", {"entities": [(12,16, "PRODUCT")]}),
+            ("I rented a screwdriver from our neighbour", {"entities": [(12,22, "PRODUCT")]}),
+            ("I repaired my computer", {"entities": [(15,23, "PRODUCT")]}),
+            ("I got my clock fixed", {"entities": [(16,21, "PRODUCT")]}),
+            ("I got my truck fixed", {"entities": [(16,21, "PRODUCT")]}),
+            ("Flipkart started it's journey from zero", {"entities": [(0,8, "ORG")]}),
+            ("I recently ordered from Max", {"entities": [(24,27, "ORG")]}),
+            ("Flipkart is recognized as leader in market",{"entities": [(0,8, "ORG")]}),
+            ("I recently ordered from Swiggy", {"entities": [(24,29, "ORG")]})
+            ]
+
+TRAIN_DATA_drugs = [
+            ("Marijuana is a medically prescribed drug.", {"entities": [(0, 9, "DRUG")]}),
+            ("He sold heroine in his neighborhood yesterday.", {"entities": [(8, 15, "DRUG")]}),
+            ("I recently bought methamphetamines in the trailer park.", {"entities": [(18,34, "DRUG")]}),
+            ("I was driving a BMW", {"entities": [(16,19, "PRODUCT")]}),
+            ("I ordered this from ShopClues", {"entities": [(20,29, "ORG")]}),
+            ("Fridge can be ordered in Amazon ", {"entities": [(0,6, "PRODUCT")]}),
+            ("I bought a new Washer", {"entities": [(16,22, "PRODUCT")]}),
+            ("I bought a old table", {"entities": [(16,21, "PRODUCT")]}),
+            ("I bought a fancy dress", {"entities": [(18,23, "PRODUCT")]}),
+            ("I rented a camera", {"entities": [(12,18, "PRODUCT")]}),
+            ("I rented a tent for our trip", {"entities": [(12,16, "PRODUCT")]}),
+            ("I rented a screwdriver from our neighbour", {"entities": [(12,22, "PRODUCT")]}),
+            ("I repaired my computer", {"entities": [(15,23, "PRODUCT")]}),
+            ("I got my clock fixed", {"entities": [(16,21, "PRODUCT")]}),
+            ("I got my truck fixed", {"entities": [(16,21, "PRODUCT")]}),
+            ("Flipkart started it's journey from zero", {"entities": [(0,8, "ORG")]}),
+            ("I recently ordered from Max", {"entities": [(24,27, "ORG")]}),
+            ("Flipkart is recognized as leader in market",{"entities": [(0,8, "ORG")]}),
+            ("I recently ordered from Swiggy", {"entities": [(24,29, "ORG")]})
+            ]
