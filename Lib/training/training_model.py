@@ -28,5 +28,5 @@ def training_model(TRAIN_DATA, **args):
                 print("Losses", losses)
 
 if __name__=='__main__':
-
+    
     training_model()
