@@ -26,7 +26,6 @@ def ents_to_list(json_ents_file, values):
         item = value[0]
         label = value[1]
         try:
-            print("!!!!!HEREHEREHERE!!!!\n%s" % item)
             json_ents_file[label].extend([item])
         except Exception as e:
             print("%s \nNot listed in JSON file." % e)

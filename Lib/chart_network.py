@@ -4,6 +4,7 @@ import json
 import plotly.graph_objects as go
 import plotly.io as pio
 
+
 def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occurrence=2):
     import networkx as nx
     from networkx import nx_pydot
@@ -22,9 +23,9 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
         df_anb_count = df_anb_count[df_anb_count['occurrence'] >= num_of_occurrence]
 
         type_of = ['PERSON', 'GPE', 'NORP', 'ORG']
-        
+
         edge_list = []
-             
+
         for index, row in df_anb_count.iterrows():
             ents_split = row['name'].split(' - ')
             entitys_name = ents_split[0]
@@ -34,13 +35,13 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
             value_type = val_split[1]
             max_occurences = df_anb_count.occurrence.max()
             if entitys_type in type_of:
-                edge_tup = (entitys_name,val_name, {"occurrence":max_occurences})
+                edge_tup = (entitys_name, val_name, {"occurrence": max_occurences})
                 edge_list.append(edge_tup)
-        
+
         df_nx_graph.add_edges_from(edge_list)
-        pos=nx.spring_layout(df_nx_graph)
+        pos = nx.spring_layout(df_nx_graph)
         nx.set_node_attributes(df_nx_graph, pos, 'coord')
-        
+
         edge_x = []
         edge_y = []
         for edge in df_nx_graph.edges():
@@ -53,14 +54,12 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
             edge_y.append(y1)
             edge_y.append(None)
 
-
         node_x = []
         node_y = []
         for node in pos:
             x, y = pos[node]
             node_x.append(x)
             node_y.append(y)
-
 
         edge_trace = go.Scatter(
             x=edge_x, y=edge_y,
@@ -75,9 +74,9 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
             marker=dict(
                 showscale=True,
                 # colorscale options
-                #'Greys' | 'YlGnBu' | 'Greens' | 'YlOrRd' | 'Bluered' | 'RdBu' |
-                #'Reds' | 'Blues' | 'Picnic' | 'Rainbow' | 'Portland' | 'Jet' |
-                #'Hot' | 'Blackbody' | 'Earth' | 'Electric' | 'Viridis' |
+                # 'Greys' | 'YlGnBu' | 'Greens' | 'YlOrRd' | 'Bluered' | 'RdBu' |
+                # 'Reds' | 'Blues' | 'Picnic' | 'Rainbow' | 'Portland' | 'Jet' |
+                # 'Hot' | 'Blackbody' | 'Earth' | 'Electric' | 'Viridis' |
                 colorscale='YlGnBu',
                 reversescale=True,
                 color=[],
@@ -99,27 +98,27 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
         node_trace.marker.color = node_adjacencies
         node_trace.text = node_text
 
+        fig = go.Figure(data=[edge_trace, node_trace],
+                        layout=go.Layout(
+                            title='<br>Network graph',
+                            titlefont_size=16,
+                            showlegend=False,
+                            hovermode='closest',
+                            margin=dict(b=20, l=5, r=5, t=40),
+                            annotations=[dict(
+                                text="",
+                                showarrow=False,
+                                xref="paper", yref="paper",
+                                x=0.005, y=-0.002)],
+                            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
+                        )
+
+        file_out_path = os.path.join(file_out_path, 'plot_data.html')
+        pio.write_html(fig, file=file_out_path, auto_open=False)
+
     except Exception as e:
         print("%s \nUnable to create Network Analysis" % e)
         pass
-
-    fig = go.Figure(data=[edge_trace, node_trace],
-            layout=go.Layout(
-            title='<br>Network graph',
-            titlefont_size=16,
-            showlegend=False,
-            hovermode='closest',
-            margin=dict(b=20,l=5,r=5,t=40),
-            annotations=[ dict(
-                text="",
-                showarrow=False,
-                xref="paper", yref="paper",
-                x=0.005, y=-0.002 ) ],
-            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
-            )
-    
-    file_out_path = os.path.join(file_out_path,'plot_data.html')
-    pio.write_html(fig, file=file_out_path, auto_open=False)
 
     return
