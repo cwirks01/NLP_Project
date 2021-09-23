@@ -24,6 +24,23 @@ services:
       - 80:80
     depends_on:
       - web
+      - mongodb
+
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    build: ./services/mongo
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/ec2-user/mongodb/database:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+    depends_on:
+      - web
+
 
 networks:
   nlp_project:
