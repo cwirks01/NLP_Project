@@ -4,27 +4,30 @@
 Author: Charles Wirks email: cwirks01@gmail.com
 
 """
+import datetime
+import hashlib
+import json
 import multiprocessing
 import os
-import re
-import hashlib
 import random
+import re
 import shutil
 
 import PyPDF2
-import json
 import en_core_web_sm
-import datetime
-
 import pandas as pd
 
-from Lib.json_util import *
-from Lib import pyanx
+from bson.objectid import ObjectId
+from pymongo import MongoClient, ReturnDocument
 from spacy import displacy
+
+from Lib import pyanx
 from Lib.chart_network import online_network_analysis
+from Lib.json_util import *
 from Lib.spacy_library_loader import load_lib
 
 ROOT = os.getcwd()
+client = MongoClient("mongodb://127.0.0.1:27019")
 
 
 class gui_tkinter:
@@ -181,7 +184,8 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections:
     def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None,
-                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd()):
+                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd(),
+                 _db='users'):
         self.username = username
         self.password = password
         self.nlp = en_core_web_sm.load()
@@ -197,6 +201,7 @@ class spacy_sent_connections:
         self.online_network_analysis_viz = online_network_analysis_viz
         self.user_dir = user_dir
         self.root_dir = root_dir
+        self.db = client.NLP_db[_db]
         self._user_dir()  # This assigns username and directory name to class
         self.user_root_dir_path = os.path.join(self.root_dir, 'data', self.user_dir)
         self.multiprocessing = multiprocessing
@@ -204,9 +209,13 @@ class spacy_sent_connections:
     def _user_dir(self):
         if self.username is None:
             self.username = str(random.randint(10, 10 ** 9))
+            while self.db.find().collection.count_documents({"username": self.username}) > 1:
+                self.username = str(random.randint(10, 10 ** 9))
+            self.db.insert_one({"username": self.username})
 
         if self.user_dir is None:
-            self.user_dir = hashlib.sha256(bytes('%s' % self.username, 'ascii')).hexdigest()
+            self.user_dir = str(self.db.find({"username": self.username})[0].get("_id"))
+            # self.user_dir = hashlib.sha256(bytes('%s' % self.username, 'ascii')).hexdigest()
 
         self.username = self.username
         self.user_dir = self.user_dir
@@ -278,52 +287,68 @@ class spacy_sent_connections:
     def read_file(self):
         all_text_for_viz = None
         json_ents_list = None
-        json_data = load_lib(repoDir=self.repo)  # Loading in a library of previous runs in json
-        filepaths = self.load_file()
 
-        for filepath in filepaths:
-            try:
-                file_basename = os.path.basename(filepath)
-            except Exception as e:
-                print("%s \nMoving to next file" % e)
-                pass
+        # Loading in a library of previous runs in json
+        json_data_main = self.db.find({'username': self.username})[0]['repository']
+        json_data = json_data_main[0]['text']
 
-            print("Reading " + file_basename)
-            base_split = os.path.splitext(file_basename)
-            file_extension = base_split[1]
+        for file in self.db.find({'username': self.username})[0]['uploads']:
+            nlp_loaded = self.nlp(file['text'])
+            json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
+                                                        json_ents_list=json_ents_list)
+            self.all_text.append(file['text'])
+            print('Finished processing ' + file['filename'])
 
-            try:
-                if file_extension.endswith('txt'):
-                    file = open(filepath, 'r')
-                    self.text = file.read()
-                    nlp_loaded = self.nlp(self.text)
-                    file.close()
-                elif file_extension.endswith('pdf'):
-                    self.text = read_in_pdf(filepath)
-                    nlp_loaded = self.nlp(self.text)
-                elif os.path.isdir(filepath):
-                    self.text = " "
-                    nlp_loaded = None
-                    pass
-                else:
-                    self.text = " "
-                    nlp_loaded = None
-                    pass
+        self.db.find_one_and_update({'username': self.username}, {
+            "$set": {"repository": [{"filename": json_data_main[0]['filename'], "text": json_data}]}},
+                                    return_document=ReturnDocument.AFTER)
+        self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
 
-                if nlp_loaded is not None:
-                    json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
-                                                                json_ents_list=json_ents_list)
-
-            except EOFError as e:
-                print("%s Starting without files" % e)
-
-            self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
-            self.all_text.append(self.text)
-            print('Finished processing ' + file_basename)
+        # filepaths = self.load_file()
+        # json_data = load_lib(repoDir=self.repo)
+        # for filepath in filepaths:
+        #     try:
+        #         file_basename = os.path.basename(filepath)
+        #     except Exception as e:
+        #         print("%s \nMoving to next file" % e)
+        #         pass
+        #
+        #     print("Reading " + file_basename)
+        #     base_split = os.path.splitext(file_basename)
+        #     file_extension = base_split[1]
+        #
+        #     try:
+        #         if file_extension.endswith('txt'):
+        #             file = open(filepath, 'r')
+        #             self.text = file.read()
+        #             nlp_loaded = self.nlp(self.text)
+        #             file.close()
+        #         elif file_extension.endswith('pdf'):
+        #             self.text = read_in_pdf(filepath)
+        #             nlp_loaded = self.nlp(self.text)
+        #         elif os.path.isdir(filepath):
+        #             self.text = " "
+        #             nlp_loaded = None
+        #             pass
+        #         else:
+        #             self.text = " "
+        #             nlp_loaded = None
+        #             pass
+        #
+        #         if nlp_loaded is not None:
+        #             json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
+        #                                                         json_ents_list=json_ents_list)
+        #
+        #     except EOFError as e:
+        #         print("%s Starting without files" % e)
+        #
+        #     self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
+        #     self.all_text.append(self.text)
+        #     print('Finished processing ' + file_basename)
 
         # if self.viz:
         all_text_for_viz = " ".join(self.all_text)
-        self.text_viz(all_text_for_viz)
+        self.text_viz(all_text_for_viz, json_ents_list=json_ents_list)
 
         return
 
@@ -366,12 +391,17 @@ class spacy_sent_connections:
         # os.remove(filePath)
         return
 
-    def text_viz(self, text_in=''):
+    def text_viz(self, text_in='', json_ents_list=None):
 
         text_in = self.nlp(text_in)
         html = displacy.render(text_in, style="ent", page=True)
         os.makedirs(self.downloads, exist_ok=True)
         output_path = os.path.join(self.downloads, "data.html")
+
+        self.db.find_one_and_update({"username": self.username},
+                                    {"$set": {"downloads": [{"data.html": html,
+                                                             "data_ents_list.json": json_ents_list}]}},
+                                    return_document=ReturnDocument.AFTER)
 
         with open(output_path, "w", encoding="utf-8") as outputFile:
             outputFile.write(html)

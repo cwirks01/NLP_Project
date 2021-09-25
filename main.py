@@ -3,15 +3,22 @@ import json
 import os
 import codecs
 
-from werkzeug.utils import secure_filename
 from Lib.spacy_sent_connections import spacy_sent_connections
+
+from pymongo import MongoClient, ReturnDocument
+from bson.objectid import ObjectId
+from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, flash, redirect, send_from_directory, make_response, Markup
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config['MONGO_URI'] = "mongodb://127.0.0.1:27019/NLP_db"
+mongo = PyMongo(app)
 
 ROOT = os.getcwd()
+client = MongoClient("mongodb://127.0.0.1:27019")
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
@@ -63,6 +70,10 @@ def upload_file():
 
         if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
+            main_app.db.find_one_and_update({"username": main_app.username},
+                                            {"$set": {"uploads": [text]}},
+                                            return_document=ReturnDocument.AFTER)
+
             freeInputText = os.path.join(app.config['UPLOAD_FOLDER'])
             os.makedirs(freeInputText, exist_ok=True)
             with open(os.path.join(freeInputText, "data.txt"), "w") as outputPath:
@@ -75,14 +86,32 @@ def upload_file():
                 if file and allowed_file(file.filename):
                     if file.filename.rsplit('.')[-1] == 'json':
                         filename = secure_filename(file.filename)
-                        repo_user_dir = os.path.join(app.config['REPO_FOLDER'])
-                        os.makedirs(repo_user_dir, exist_ok=True)
-                        file.save(os.path.join(repo_user_dir, filename))
+                        new_file = file.stream.read()
+                        text = json.loads(new_file.decode("utf-8"))
+                        main_app.db.find_one_and_update({"username": main_app.username},
+                                                        {"$set": {
+                                                            "repository": [{"filename": filename, "text": text}]}},
+                                                        return_document=ReturnDocument.AFTER)
+
+                        # file.stream.seek(0)
+                        # repo_user_dir = os.path.join(app.config['REPO_FOLDER'])
+                        # os.makedirs(repo_user_dir, exist_ok=True)
+                        # file.save(os.path.join(repo_user_dir, filename))
+                        # file.close()
+
                     else:
                         filename = secure_filename(file.filename)
-                        upload_file_user_dir = os.path.join(app.config['UPLOAD_FOLDER'])
-                        os.makedirs(upload_file_user_dir, exist_ok=True)
-                        file.save(os.path.join(upload_file_user_dir, filename))
+                        new_file = file.stream.read()
+                        text = new_file.decode("utf-8")
+                        main_app.db.find_one_and_update({"username": main_app.username},
+                                                        {"$set": {"uploads": [{"filename": filename, "text": text}]}},
+                                                        return_document=ReturnDocument.AFTER)
+
+                        # file.stream.seek(0)
+                        # upload_file_user_dir = os.path.join(app.config['UPLOAD_FOLDER'])
+                        # os.makedirs(upload_file_user_dir, exist_ok=True)
+                        # file.save(os.path.join(upload_file_user_dir, filename))
+                        # file.close()
 
         flash('File(s) successfully uploaded')
         return redirect('/processing/')
@@ -103,14 +132,19 @@ def process_files():
 def complete_app():
     global main_app_user
     cookie_name = request.cookies.get('username')
-    DOWNLOAD_FOLDER = spacy_sent_connections(username=cookie_name)
-    DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
-    userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r', encoding='utf-8')
-    html_in_browser = userItems.read()
-    userItems_plotly = codecs.open(os.path.join(DOWNLOAD_FOLDER, "plot_data.html"), 'r', encoding='utf-8')
-    plotly_chart = userItems_plotly.read()
-    with open(os.path.join(DOWNLOAD_FOLDER, "data_ents_list.json"), 'r+') as userItems:
-        userItems = json.load(userItems)
+    main_app_user = spacy_sent_connections(username=cookie_name)
+    html_in_browser = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data.html']
+    userItems = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data_ents_list.json']
+
+    # DOWNLOAD_FOLDER = spacy_sent_connections(username=cookie_name)
+    # DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
+    # userItems = codecs.open(os.path.join(DOWNLOAD_FOLDER, "data.html"), 'r', encoding='utf-8')
+    # # html_in_browser = userItems.read()
+    #
+    # userItems_plotly = codecs.open(os.path.join(DOWNLOAD_FOLDER, "plot_data.html"), 'r', encoding='utf-8')
+    # plotly_chart = userItems_plotly.read()
+    # with open(os.path.join(DOWNLOAD_FOLDER, "data_ents_list.json"), 'r+') as userItems:
+    #     userItems = json.load(userItems)
 
     all_items = []
     for i in userItems:
@@ -119,17 +153,23 @@ def complete_app():
     html_in_browser = Markup(html_in_browser)
     if not app.config['RENDER_VIZ']:
         html_in_browser = None
-    
+
     if app.config['ploty_viz']:
         plotly_chart = app.config['ploty_viz']
 
+    user = mongo.db.users.find_one_or_404({"username": main_app_user.username})['downloads'][0]
+    mongo.save_file("data.html",)
+
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
-                           json_ents_list=all_items)
+                           json_ents_list=all_items, user=user)
 
 
 @app.route('/out/<filename>')
 def downloaded_file(filename):
+    global main_app_user
     cookie_name = request.cookies.get('username')
-    DOWNLOAD_FOLDER = spacy_sent_connections(username=cookie_name)
-    DOWNLOAD_FOLDER = DOWNLOAD_FOLDER.create_env_dir()[2]
-    return send_from_directory(os.path.join(DOWNLOAD_FOLDER), filename)
+    main_app_user = spacy_sent_connections(username=cookie_name)
+
+    # DOWNLOAD_FOLDER = main_app_user.create_env_dir()[2]
+    # return send_from_directory(os.path.join(DOWNLOAD_FOLDER), filename)
+    return mongo.send_file(filename)
