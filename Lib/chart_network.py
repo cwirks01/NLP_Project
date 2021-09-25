@@ -115,8 +115,11 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
                         )
 
         file_out_path = os.path.join(file_out_path, 'plot_data.html')
-        pio.write_html(fig, file=file_out_path, auto_open=False)
-
+        if file_out_path == None:
+            htmlfile = pio.write_html(fig, file=file_out_path, auto_open=False)
+            return htmlfile
+        else:
+            pio.write_html(fig, file=file_out_path, auto_open=False)
     except Exception as e:
         print("%s \nUnable to create Network Analysis" % e)
         pass

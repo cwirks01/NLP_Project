@@ -1,0 +1,70 @@
+{
+    "PERSON": [
+        "Kathryn Muller",
+        "Lyndon Johnson",
+        "Marian Rezelman",
+        "Metcalf",
+        "Muller",
+        "Pro Action",
+        "Rezelman"
+    ],
+    "CARDINAL": [
+        "19",
+        "2",
+        "26",
+        "30",
+        "46 million",
+        "Nearly half",
+        "One",
+        "one",
+        "tens of thousands of dollars",
+        "thousands",
+        "three",
+        "two"
+    ],
+    "NORP": [
+        "Americans"
+    ],
+    "DATE": [
+        "12 years old",
+        "15",
+        "15 years",
+        "24 years old",
+        "4",
+        "6 years old",
+        "One year",
+        "Today",
+        "a year",
+        "almost 50 years ago",
+        "one year",
+        "the middle of the night",
+        "today",
+        "two years ago"
+    ],
+    "GPE": [
+        "Bath",
+        "Florida",
+        "New York",
+        "Steuben County"
+    ],
+    "ORDINAL": [
+        "first"
+    ],
+    "QUANTITY": [
+        "two feet"
+    ],
+    "MONEY": [
+        "200",
+        "3,000",
+        "700",
+        "744"
+    ],
+    "ORG": [
+        "McDonald's",
+        "Medicaid",
+        "Social Security"
+    ],
+    "PRODUCT": [
+        "Rezelman"
+    ]
+}

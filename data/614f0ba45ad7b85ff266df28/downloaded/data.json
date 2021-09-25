@@ -87,7 +87,10 @@
         "Atlantic - LOC",
         "the past dismal hours - DATE",
         "the past dismal hours - DATE",
-        "the previous afternoon - TIME"
+        "the previous afternoon - TIME",
+        "4 - DATE",
+        "4 - DATE",
+        "2 - CARDINAL"
     ],
     "as many seconds - TIME": [
         "France - GPE",
@@ -152,7 +155,17 @@
         "Baron von Schoenvorts - PERSON",
         "the U-33 - PRODUCT",
         "Fate - PERSON",
-        "German - NORP"
+        "German - NORP",
+        "15 - DATE",
+        "15 - DATE",
+        "Marian Rezelman - PERSON",
+        "15 - DATE",
+        "Marian Rezelman - PERSON",
+        "Pro Action - PERSON",
+        "15 - DATE",
+        "Marian Rezelman - PERSON",
+        "Pro Action - PERSON",
+        "Metcalf - PERSON"
     ],
     "Punch - NORP": [],
     "two hundred yards - QUANTITY": [],
@@ -195,7 +208,8 @@
         "Olson - PERSON",
         "Olson - PERSON",
         "British - NORP",
-        "Kiel - PERSON"
+        "Kiel - PERSON",
+        "two - CARDINAL"
     ],
     "Pacific - LOC": [
         "first - ORDINAL"
@@ -208,7 +222,10 @@
         "Bradley - PERSON"
     ],
     "One - CARDINAL": [
-        "Diesel - ORG"
+        "Diesel - ORG",
+        "Metcalf - PERSON",
+        "Metcalf - PERSON",
+        "3,000 - MONEY"
     ],
     "four feet - QUANTITY": [],
     "a few yards - QUANTITY": [
@@ -292,7 +309,14 @@
         "first - ORDINAL",
         "Benson - PERSON",
         "Englishmen - PRODUCT",
-        "Lys - PERSON"
+        "Lys - PERSON",
+        "Metcalf - PERSON",
+        "Metcalf - PERSON",
+        "Bath - GPE",
+        "Metcalf - PERSON",
+        "Bath - GPE",
+        "New York - GPE",
+        "one - CARDINAL"
     ],
     "morning - TIME": [
         "days - DATE",
@@ -344,7 +368,12 @@
     "about two hundred yards - QUANTITY": [],
     "yesterday - DATE": [],
     "Americans - NORP": [
-        "many years - DATE"
+        "many years - DATE",
+        "Metcalf - PERSON",
+        "46 million - CARDINAL",
+        "Metcalf - PERSON",
+        "46 million - CARDINAL",
+        "today - DATE"
     ],
     "many years - DATE": [
         "Americans - NORP"
@@ -742,7 +771,9 @@
     "the seventh day - DATE": [],
     "five hundred - CARDINAL": [],
     "about 20 - CARDINAL": [],
-    "30 - CARDINAL": [],
+    "30 - CARDINAL": [
+        "15 years - DATE"
+    ],
     "nearly twenty-five hundred miles - CARDINAL": [],
     "the days - DATE": [
         "Bradley - PERSON",
@@ -872,5 +903,235 @@
     "A half-hour - TIME": [
         "von Schoenvorts - PERSON"
     ],
-    "San Diego - GPE": []
+    "San Diego - GPE": [],
+    "Metcalf - PERSON": [
+        "46 million - CARDINAL",
+        "46 million - CARDINAL",
+        "Americans - NORP",
+        "46 million - CARDINAL",
+        "Americans - NORP",
+        "today - DATE",
+        "24 years old - DATE",
+        "two - CARDINAL",
+        "two - CARDINAL",
+        "Bath - GPE",
+        "two - CARDINAL",
+        "Bath - GPE",
+        "New York - GPE",
+        "two years ago - DATE",
+        "26 - CARDINAL",
+        "first - ORDINAL",
+        "15 - DATE",
+        "Marian Rezelman - PERSON",
+        "Pro Action - PERSON",
+        "the middle of the night - DATE",
+        "thousands - CARDINAL",
+        "tens of thousands of dollars - CARDINAL",
+        "almost 50 years ago - DATE",
+        "almost 50 years ago - DATE",
+        "Lyndon Johnson - PERSON",
+        "One - CARDINAL",
+        "One - CARDINAL",
+        "3,000 - MONEY",
+        "Rezelman - PRODUCT",
+        "Rezelman - PRODUCT",
+        "Medicaid - ORG",
+        "Kathryn Muller - PERSON",
+        "Steuben County - GPE"
+    ],
+    "46 million - CARDINAL": [
+        "Metcalf - PERSON",
+        "Metcalf - PERSON",
+        "Americans - NORP",
+        "Metcalf - PERSON",
+        "Americans - NORP",
+        "today - DATE"
+    ],
+    "today - DATE": [
+        "Metcalf - PERSON",
+        "46 million - CARDINAL",
+        "Americans - NORP"
+    ],
+    "24 years old - DATE": [
+        "Metcalf - PERSON"
+    ],
+    "4 - DATE": [
+        "three - CARDINAL",
+        "three - CARDINAL",
+        "2 - CARDINAL"
+    ],
+    "2 - CARDINAL": [
+        "three - CARDINAL",
+        "4 - DATE"
+    ],
+    "Bath - GPE": [
+        "Metcalf - PERSON",
+        "two - CARDINAL",
+        "Metcalf - PERSON",
+        "two - CARDINAL",
+        "New York - GPE"
+    ],
+    "New York - GPE": [
+        "Metcalf - PERSON",
+        "two - CARDINAL",
+        "Bath - GPE"
+    ],
+    "two years ago - DATE": [
+        "Metcalf - PERSON"
+    ],
+    "15 years - DATE": [
+        "30 - CARDINAL"
+    ],
+    "12 years old - DATE": [],
+    "26 - CARDINAL": [
+        "Metcalf - PERSON"
+    ],
+    "Today - DATE": [],
+    "15 - DATE": [
+        "first - ORDINAL",
+        "first - ORDINAL",
+        "Marian Rezelman - PERSON",
+        "first - ORDINAL",
+        "Marian Rezelman - PERSON",
+        "Pro Action - PERSON",
+        "first - ORDINAL",
+        "Marian Rezelman - PERSON",
+        "Pro Action - PERSON",
+        "Metcalf - PERSON"
+    ],
+    "Marian Rezelman - PERSON": [
+        "first - ORDINAL",
+        "15 - DATE",
+        "first - ORDINAL",
+        "15 - DATE",
+        "Pro Action - PERSON",
+        "first - ORDINAL",
+        "15 - DATE",
+        "Pro Action - PERSON",
+        "Metcalf - PERSON"
+    ],
+    "Pro Action - PERSON": [
+        "first - ORDINAL",
+        "15 - DATE",
+        "Marian Rezelman - PERSON",
+        "first - ORDINAL",
+        "15 - DATE",
+        "Marian Rezelman - PERSON",
+        "Metcalf - PERSON"
+    ],
+    "Rezelman - PERSON": [],
+    "Nearly half - CARDINAL": [
+        "19 - CARDINAL"
+    ],
+    "19 - CARDINAL": [
+        "Nearly half - CARDINAL"
+    ],
+    "Florida - GPE": [],
+    "the middle of the night - DATE": [
+        "Metcalf - PERSON"
+    ],
+    "6 years old - DATE": [],
+    "thousands - CARDINAL": [
+        "tens of thousands of dollars - CARDINAL",
+        "tens of thousands of dollars - CARDINAL",
+        "Metcalf - PERSON"
+    ],
+    "tens of thousands of dollars - CARDINAL": [
+        "thousands - CARDINAL",
+        "thousands - CARDINAL",
+        "Metcalf - PERSON"
+    ],
+    "almost 50 years ago - DATE": [
+        "Metcalf - PERSON",
+        "Metcalf - PERSON",
+        "Lyndon Johnson - PERSON"
+    ],
+    "Lyndon Johnson - PERSON": [
+        "Metcalf - PERSON",
+        "almost 50 years ago - DATE"
+    ],
+    "two feet - QUANTITY": [],
+    "3,000 - MONEY": [
+        "One - CARDINAL",
+        "Metcalf - PERSON",
+        "Medicaid - ORG"
+    ],
+    "700 - MONEY": [
+        "200 - MONEY",
+        "200 - MONEY",
+        "744 - MONEY",
+        "200 - MONEY",
+        "744 - MONEY",
+        "Social Security - ORG",
+        "200 - MONEY",
+        "744 - MONEY",
+        "Social Security - ORG",
+        "McDonald's - ORG"
+    ],
+    "200 - MONEY": [
+        "700 - MONEY",
+        "700 - MONEY",
+        "744 - MONEY",
+        "700 - MONEY",
+        "744 - MONEY",
+        "Social Security - ORG",
+        "700 - MONEY",
+        "744 - MONEY",
+        "Social Security - ORG",
+        "McDonald's - ORG"
+    ],
+    "744 - MONEY": [
+        "700 - MONEY",
+        "200 - MONEY",
+        "700 - MONEY",
+        "200 - MONEY",
+        "Social Security - ORG",
+        "700 - MONEY",
+        "200 - MONEY",
+        "Social Security - ORG",
+        "McDonald's - ORG"
+    ],
+    "Social Security - ORG": [
+        "700 - MONEY",
+        "200 - MONEY",
+        "744 - MONEY",
+        "700 - MONEY",
+        "200 - MONEY",
+        "744 - MONEY",
+        "McDonald's - ORG"
+    ],
+    "McDonald's - ORG": [
+        "700 - MONEY",
+        "200 - MONEY",
+        "744 - MONEY",
+        "Social Security - ORG"
+    ],
+    "Medicaid - ORG": [
+        "3,000 - MONEY",
+        "Rezelman - PRODUCT",
+        "Metcalf - PERSON"
+    ],
+    "Rezelman - PRODUCT": [
+        "Metcalf - PERSON",
+        "Metcalf - PERSON",
+        "Medicaid - ORG"
+    ],
+    "Kathryn Muller - PERSON": [
+        "Steuben County - GPE",
+        "Steuben County - GPE",
+        "Metcalf - PERSON"
+    ],
+    "Steuben County - GPE": [
+        "Kathryn Muller - PERSON",
+        "Kathryn Muller - PERSON",
+        "Metcalf - PERSON"
+    ],
+    "Muller - PERSON": [
+        "one year - DATE"
+    ],
+    "a year - DATE": [],
+    "One year - DATE": [],
+    "one year - DATE": [
+        "Muller - PERSON"
+    ]
 }

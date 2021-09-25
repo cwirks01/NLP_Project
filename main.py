@@ -3,11 +3,14 @@ import json
 import os
 import codecs
 
+import pandas as pd
+
 from Lib.spacy_sent_connections import spacy_sent_connections
 
 from pymongo import MongoClient, ReturnDocument
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
+from werkzeug.wrappers import Response
 from flask import Flask, render_template, request, flash, redirect, send_from_directory, make_response, Markup
 from flask_pymongo import PyMongo
 
@@ -158,7 +161,6 @@ def complete_app():
         plotly_chart = app.config['ploty_viz']
 
     user = mongo.db.users.find_one_or_404({"username": main_app_user.username})['downloads'][0]
-    mongo.save_file("data.html",)
 
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
                            json_ents_list=all_items, user=user)
@@ -170,6 +172,18 @@ def downloaded_file(filename):
     cookie_name = request.cookies.get('username')
     main_app_user = spacy_sent_connections(username=cookie_name)
 
-    # DOWNLOAD_FOLDER = main_app_user.create_env_dir()[2]
-    # return send_from_directory(os.path.join(DOWNLOAD_FOLDER), filename)
-    return mongo.send_file(filename)
+    DOWNLOAD_FOLDER = main_app_user.create_env_dir()[2]
+    return send_from_directory(os.path.join(DOWNLOAD_FOLDER), filename)
+
+
+@app.route('/out/<filename>')
+def downloaded_file_db(filename, file):
+    global main_app_user
+    cookie_name = request.cookies.get('username')
+    main_app_user = spacy_sent_connections(username=cookie_name)
+    file_out = main_app_user.download_file(filename=filename, file=file)
+
+    response = Response(file_out, mimetype='text/csv')
+    response.headers.set("Content-Disposition", "attachment", filename=filename)
+
+    return response

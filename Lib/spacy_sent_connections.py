@@ -391,6 +391,54 @@ class spacy_sent_connections:
         # os.remove(filePath)
         return
 
+    def download_file(self, filename, file):
+        global file_out
+        df_data = pd.DataFrame(pd.json_normalize(file).squeeze().reset_index())
+        df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
+        df_data = df_data.explode("value").reset_index(drop=True)
+        if filename == "data.csv":
+            file_out = df_data.to_csv(index=False)
+        elif filename=="data.json":
+            file_out = file
+        elif filename=="data.anx":
+            chart = pyanx.Pyanx()
+            try:
+                df_anb_count = df_data.value_counts(subset=['name', 'value'])
+                df_anb_count = df_anb_count.reset_index()
+                df_anb_count = df_anb_count.rename(columns={df_anb_count.columns[0]: 'name',
+                                                            df_anb_count.columns[1]: 'value',
+                                                            df_anb_count.columns[2]: 'occurrence'})
+
+                df_anb_count = df_anb_count[df_anb_count['occurrence'] >= 2]
+
+                type_of = ['PERSON', 'GPE', 'NORP', 'ORG']
+                for index, row in df_anb_count.iterrows():
+                    ents_split = row['name'].split(' - ')
+                    entitys_name = ents_split[0]
+                    entitys_type = ents_split[1]
+                    val_split = row['value'].split(' - ')
+                    val_name = val_split[0]
+                    value_type = val_split[1]
+                    max_occurences = df_anb_count.occurrence.max()
+                    if entitys_type in type_of:
+                        chart_node1 = chart.add_node(entity_type=entitys_type, label=entitys_name)
+                        chart_node2 = chart.add_node(entity_type=value_type, label=val_name)
+                        linewidth = (float(row['occurrence']) / max_occurences) * 5
+                        chart.add_edge(chart_node1, chart_node2,
+                                       label="Occurence amount %s" % row['occurrence'],
+                                       linewidth=linewidth)
+
+                file_out = chart.create()
+            except Exception as e:
+                print("%s \nmoving on" % e)
+                file_out = {}
+                pass
+        elif filename == "data.anx":
+            file_out = online_network_analysis(df_anb=df_data, file_out_path=None)
+        elif filename == "data.html":
+            file_out = file
+        return file_out
+
     def text_viz(self, text_in='', json_ents_list=None):
 
         text_in = self.nlp(text_in)

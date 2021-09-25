@@ -17,13 +17,18 @@
 
     <div class="two-col">
         <div class="col1">
-        <a href="{{url_for('downloaded_file', filename='data.csv')}}" class="myLink">Download CSV</a>
+        <a href="{{url_for('downloaded_file_db', filename='data.csv', file=user['data.json'])}}" class="myLink">Download CSV</a>
         <br>
-        <a href="{{url_for('downloaded_file', filename=user['data.json'])}}" class="myLink">Download JSON</a>
+        <a href="{{url_for('downloaded_file_db', filename='data.json', file=user['data.json'])}}"
+           class="myLink">Download
+            JSON</a>
         <br>
-        <a href="{{url_for('downloaded_file', filename='data.anx')}}" class="myLink">Download ANB</a>
+        <a href="{{url_for('downloaded_file_db', filename='data.anx', file=user['data.json'])}}"
+           class="myLink">Download ANB</a>
         <br>
-        <a href="{{url_for('downloaded_file', filename='data.html')}}" class="myLink">Download HTML</a>
+        <a href="{{url_for('downloaded_file_db', filename='data.html', file=user['data.html'])}}"
+           class="myLink">Download
+            HTML</a>
         </div>
 
         <div style="col2">
