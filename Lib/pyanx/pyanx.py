@@ -14,6 +14,7 @@ the License.
 import random
 
 import datetime
+from io import StringIO
 
 from Lib.pyanx import anx
 
@@ -141,7 +142,7 @@ class Pyanx(object):
 
         chart.add_ChartItemCollection(chart_item_collection)
 
-    def create(self, path, pretty=True):
+    def create(self, path=None, pretty=True, text_file_out=False):
         chart = anx.Chart(IdReferenceLinking=False)
         appVersion = anx.ApplicationVersion()
         chart.add_StrengthCollection(anx.StrengthCollection([
@@ -154,6 +155,16 @@ class Pyanx(object):
         self.__add_entities(chart)
         self.__add_links(chart)
 
-        with open(path, 'w') as output_file:
+        if text_file_out:
+            with open(path, 'w') as output_file:
+                appVersion.export(outfile=output_file, level=0, namespacedef_='')
+                chart.export(output_file, 0, pretty_print=pretty, namespacedef_=None)
+
+            return
+        else:
+            output_file = StringIO()
             appVersion.export(outfile=output_file, level=0, namespacedef_='')
             chart.export(output_file, 0, pretty_print=pretty, namespacedef_=None)
+            output_file.seek(0)
+            output_file = output_file.read()
+            return output_file

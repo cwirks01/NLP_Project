@@ -17,26 +17,30 @@
 
     <div class="two-col">
         <div class="col1">
-        <a href="{{url_for('downloaded_file_db', filename='data.csv', file=user['data.json'])}}" class="myLink">Download CSV</a>
-        <br>
+        <a href="{{url_for('downloaded_file_db', filename='data.csv', file=user['data.json'])}}"
+           class="myLink">Download CSV</a>
+            <br>
         <a href="{{url_for('downloaded_file_db', filename='data.json', file=user['data.json'])}}"
-           class="myLink">Download
-            JSON</a>
-        <br>
+           class="myLink">Download JSON</a>
+            <br>
         <a href="{{url_for('downloaded_file_db', filename='data.anx', file=user['data.json'])}}"
            class="myLink">Download ANB</a>
-        <br>
+            <br>
         <a href="{{url_for('downloaded_file_db', filename='data.html', file=user['data.html'])}}"
-           class="myLink">Download
-            HTML</a>
+           class="myLink">Download HTML</a>
+            <br>
         </div>
 
         <div style="col2">
             {% if plotly_chart %}
             <div class="box-boarder2">
                 <h5 style="text-align: center;">Network Analysis Chart</h5>
-                <div style="text-align: center;">
-                    <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="{{url_for('downloaded_file', filename='plot_data.html')}}" height="525" width="95%"></iframe>
+                <div style="text-align: center; width: 95%;">
+<!--                    <iframe id="igraph" scrolling="no" style="border:none;"-->
+<!--                            src=""-->
+<!--                            height="525"-->
+<!--                            width="95%"></iframe>-->
+                    {{plot_data}}
                 </div>
 
             </div>

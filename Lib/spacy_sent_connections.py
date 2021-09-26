@@ -20,6 +20,7 @@ import pandas as pd
 from bson.objectid import ObjectId
 from pymongo import MongoClient, ReturnDocument
 from spacy import displacy
+from flask import Markup
 
 from Lib import pyanx
 from Lib.chart_network import online_network_analysis
@@ -302,7 +303,7 @@ class spacy_sent_connections:
         self.db.find_one_and_update({'username': self.username}, {
             "$set": {"repository": [{"filename": json_data_main[0]['filename'], "text": json_data}]}},
                                     return_document=ReturnDocument.AFTER)
-        self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
+        # self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
 
         # filepaths = self.load_file()
         # json_data = load_lib(repoDir=self.repo)
@@ -348,7 +349,11 @@ class spacy_sent_connections:
 
         # if self.viz:
         all_text_for_viz = " ".join(self.all_text)
-        self.text_viz(all_text_for_viz, json_ents_list=json_ents_list)
+        df_data = pd.DataFrame(pd.json_normalize(json_data).squeeze().reset_index())
+        df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
+        df_data = df_data.explode("value").reset_index(drop=True)
+        plotly_data = online_network_analysis(df_anb=df_data)
+        self.text_viz(all_text_for_viz, json_data=json_data, plotly_data=plotly_data, json_ents_list=json_ents_list)
 
         return
 
@@ -370,7 +375,7 @@ class spacy_sent_connections:
         df_data.to_csv(file_out, index=False)
 
         if self.online_network_analysis_viz:
-            online_network_analysis(df_anb=df_data, file_out_path=self.downloads)
+            online_network_analysis(df_anb=df_data)
 
         if analyst_notebook:
             analyst_worksheet(df_data, file_out)
@@ -392,15 +397,19 @@ class spacy_sent_connections:
         return
 
     def download_file(self, filename, file):
-        global file_out
-        df_data = pd.DataFrame(pd.json_normalize(file).squeeze().reset_index())
-        df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
-        df_data = df_data.explode("value").reset_index(drop=True)
+        if filename in ["data.csv", "data.anx"]:
+            file = eval(file)
+            df_data = pd.DataFrame(pd.json_normalize(file).squeeze().reset_index())
+            df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
+            df_data = df_data.explode("value").reset_index(drop=True)
+        else:
+            pass
+
         if filename == "data.csv":
             file_out = df_data.to_csv(index=False)
-        elif filename=="data.json":
-            file_out = file
-        elif filename=="data.anx":
+        elif filename == "data.json":
+            file_out = eval(file)
+        elif filename == "data.anx":
             chart = pyanx.Pyanx()
             try:
                 df_anb_count = df_data.value_counts(subset=['name', 'value'])
@@ -428,32 +437,31 @@ class spacy_sent_connections:
                                        label="Occurence amount %s" % row['occurrence'],
                                        linewidth=linewidth)
 
-                file_out = chart.create()
+                file_out = chart.create("data.anx")
             except Exception as e:
                 print("%s \nmoving on" % e)
                 file_out = {}
-                pass
-        elif filename == "data.anx":
-            file_out = online_network_analysis(df_anb=df_data, file_out_path=None)
-        elif filename == "data.html":
+
+        else:
             file_out = file
+
         return file_out
 
-    def text_viz(self, text_in='', json_ents_list=None):
+    def text_viz(self, text_in='', json_data=None, plotly_data=None, json_ents_list=None):
 
         text_in = self.nlp(text_in)
         html = displacy.render(text_in, style="ent", page=True)
-        os.makedirs(self.downloads, exist_ok=True)
-        output_path = os.path.join(self.downloads, "data.html")
 
         self.db.find_one_and_update({"username": self.username},
-                                    {"$set": {"downloads": [{"data.html": html,
+                                    {"$set": {"downloads": [{"data.html": Markup(html),
+                                                             "plot_data.html": plotly_data,
+                                                             "data.json": json_data,
                                                              "data_ents_list.json": json_ents_list}]}},
                                     return_document=ReturnDocument.AFTER)
 
-        with open(output_path, "w", encoding="utf-8") as outputFile:
-            outputFile.write(html)
-            outputFile.close()
+        # with open(output_path, "w", encoding="utf-8") as outputFile:
+        #     outputFile.write(html)
+        #     outputFile.close()
 
         return
 

@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 
 
-def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occurrence=2):
+def online_network_analysis(df_anb=None, num_of_occurrence=2):
     import networkx as nx
     from networkx import nx_pydot
 
@@ -114,14 +114,11 @@ def online_network_analysis(df_anb=None, file_out_path=os.getcwd(), num_of_occur
                             yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
                         )
 
-        file_out_path = os.path.join(file_out_path, 'plot_data.html')
-        if file_out_path == None:
-            htmlfile = pio.write_html(fig, file=file_out_path, auto_open=False)
-            return htmlfile
-        else:
-            pio.write_html(fig, file=file_out_path, auto_open=False)
+        # htmlfile = pio.write_html(fig, file="plot_data.html", auto_open=False)
+        htmlfile = pio.to_html(fig, auto_play=False)
     except Exception as e:
         print("%s \nUnable to create Network Analysis" % e)
+        htmlfile = ""
         pass
 
-    return
+    return htmlfile

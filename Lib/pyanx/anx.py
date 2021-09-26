@@ -4958,6 +4958,8 @@ class Chart(GeneratedsSuper):
         else:
             outfile.write('/>%s' % (eol_,))
 
+        return
+
     def exportAttributes(self, outfile, level, already_processed, namespace_='', name_='Chart'):
         if self.GridHeightSize is not None and 'GridHeightSize' not in already_processed:
             already_processed.add('GridHeightSize')
