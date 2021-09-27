@@ -35,8 +35,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MONGO_INITDB_ROOT_USERNAME_FILE="${MONGO_DB_USERNAME}"
-      - MONGO_INITDB_ROOT_PASSWORD_FILE="${MONGO_DB_PASSWORD}"
+      - MONGO_INITDB_ROOT_USERNAME_FILE=$$MONGO_DB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=$$MONGO_DB_PASSWORD
     volumes:
       - /home/ec2-user/mongodb/database:/data/db
     ports:

@@ -54,7 +54,8 @@ CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts
 # Add the keys and set permissions
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
 
-CMD git clone https://${GIT_TOKEN}@github.com/cwirks01/NLP_Project.git
+# variabels in Dockerfile and docker-compose.yml need to be escaped out with $$
+CMD git clone https://$$GIT_TOKEN@github.com/cwirks01/NLP_Project.git
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
@@ -63,7 +64,7 @@ RUN pip3 install -U pip setuptools wheel &&\
     pip3 install -U spacy && \
     python3 -m spacy download en_core_web_sm
 
-COPY . .
+# COPY . .
 
 EXPOSE 5000
 
