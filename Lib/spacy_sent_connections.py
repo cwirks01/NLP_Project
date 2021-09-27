@@ -12,6 +12,7 @@ import os
 import random
 import re
 import shutil
+import datetime
 
 import PyPDF2
 import en_core_web_sm
@@ -27,8 +28,12 @@ from Lib.chart_network import online_network_analysis
 from Lib.json_util import *
 from Lib.spacy_library_loader import load_lib
 
+MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
+MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
+
 ROOT = os.getcwd()
-client = MongoClient("mongodb://127.0.0.1:27019")
+client = MongoClient("mongodb://%s:%s127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
+
 
 
 class gui_tkinter:
@@ -212,11 +217,11 @@ class spacy_sent_connections:
             self.username = str(random.randint(10, 10 ** 9))
             while self.db.find().collection.count_documents({"username": self.username}) > 1:
                 self.username = str(random.randint(10, 10 ** 9))
-            self.db.insert_one({"username": self.username})
+            self.db.insert_one({"username": self.username,
+                                "createdUser": datetime.datetime.now().timestamp()})
 
         if self.user_dir is None:
             self.user_dir = str(self.db.find({"username": self.username})[0].get("_id"))
-            # self.user_dir = hashlib.sha256(bytes('%s' % self.username, 'ascii')).hexdigest()
 
         self.username = self.username
         self.user_dir = self.user_dir
@@ -293,61 +298,17 @@ class spacy_sent_connections:
         json_data_main = self.db.find({'username': self.username})[0]['repository']
         json_data = json_data_main[0]['text']
 
-        for file in self.db.find({'username': self.username})[0]['uploads']:
-            nlp_loaded = self.nlp(file['text'])
+        for file_input in self.db.find({'username': self.username})[0]['uploads']:
+            nlp_loaded = self.nlp(file_input['text'])
             json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
                                                         json_ents_list=json_ents_list)
-            self.all_text.append(file['text'])
-            print('Finished processing ' + file['filename'])
+            self.all_text.append(file_input['text'])
+            print('Finished processing ' + file_input['filename'])
 
         self.db.find_one_and_update({'username': self.username}, {
             "$set": {"repository": [{"filename": json_data_main[0]['filename'], "text": json_data}]}},
                                     return_document=ReturnDocument.AFTER)
-        # self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
-
-        # filepaths = self.load_file()
-        # json_data = load_lib(repoDir=self.repo)
-        # for filepath in filepaths:
-        #     try:
-        #         file_basename = os.path.basename(filepath)
-        #     except Exception as e:
-        #         print("%s \nMoving to next file" % e)
-        #         pass
-        #
-        #     print("Reading " + file_basename)
-        #     base_split = os.path.splitext(file_basename)
-        #     file_extension = base_split[1]
-        #
-        #     try:
-        #         if file_extension.endswith('txt'):
-        #             file = open(filepath, 'r')
-        #             self.text = file.read()
-        #             nlp_loaded = self.nlp(self.text)
-        #             file.close()
-        #         elif file_extension.endswith('pdf'):
-        #             self.text = read_in_pdf(filepath)
-        #             nlp_loaded = self.nlp(self.text)
-        #         elif os.path.isdir(filepath):
-        #             self.text = " "
-        #             nlp_loaded = None
-        #             pass
-        #         else:
-        #             self.text = " "
-        #             nlp_loaded = None
-        #             pass
-        #
-        #         if nlp_loaded is not None:
-        #             json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
-        #                                                         json_ents_list=json_ents_list)
-        #
-        #     except EOFError as e:
-        #         print("%s Starting without files" % e)
-        #
-        #     self.save_csv_json_file(json_data_save=json_data, json_ents_list=json_ents_list)
-        #     self.all_text.append(self.text)
-        #     print('Finished processing ' + file_basename)
-
-        # if self.viz:
+        
         all_text_for_viz = " ".join(self.all_text)
         df_data = pd.DataFrame(pd.json_normalize(json_data).squeeze().reset_index())
         df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
@@ -396,10 +357,10 @@ class spacy_sent_connections:
         # os.remove(filePath)
         return
 
-    def download_file(self, filename, file):
+    def download_file(self, filename, file_in):
         if filename in ["data.csv", "data.anx"]:
-            file = eval(file)
-            df_data = pd.DataFrame(pd.json_normalize(file).squeeze().reset_index())
+            file_in = eval(file_in)
+            df_data = pd.DataFrame(pd.json_normalize(file_in).squeeze().reset_index())
             df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
             df_data = df_data.explode("value").reset_index(drop=True)
         else:
@@ -408,7 +369,7 @@ class spacy_sent_connections:
         if filename == "data.csv":
             file_out = df_data.to_csv(index=False)
         elif filename == "data.json":
-            file_out = eval(file)
+            file_out = eval(file_in)
         elif filename == "data.anx":
             chart = pyanx.Pyanx()
             try:
@@ -443,7 +404,7 @@ class spacy_sent_connections:
                 file_out = {}
 
         else:
-            file_out = file
+            file_out = file_in
 
         return file_out
 
@@ -465,22 +426,12 @@ class spacy_sent_connections:
 
         return
 
-    def remove_old_files(self):
+    def remove_old_data(self):
         '''
         Remove all files in downloads/uploads/repos for all users that are older than 12 hours
         '''
-        for user_data_path in os.listdir(os.path.join(self.root_dir, 'data')):
-            full_path = os.path.join(self.root_dir, 'data', user_data_path)
-            if datetime.datetime.fromtimestamp(os.stat(full_path).st_mtime) + datetime.timedelta(days=0.5) \
-                    < datetime.datetime.now():
-                print("Removing %s" % user_data_path)
-                shutil.rmtree(full_path, ignore_errors=True)
-        return
-
-    def remove_upload_file(self):
-        for file in os.listdir(self.uploads):
-            if not os.path.isdir(file):
-                os.remove(os.path.join(self.uploads, file))
+        days_old_data = datetime.datetime.now().timestamp() - datetime.timedelta(7).total_seconds()
+        self.db.remove({"createdUser":{"$lt: %s" % days_old_data}})
         return
 
     def run(self):

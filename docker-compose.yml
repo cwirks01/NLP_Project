@@ -15,6 +15,8 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
+    depends_on:
+      - mongodb
 
   #Specify the network these containers will run on
   nginx:
@@ -29,18 +31,17 @@ services:
   mongodb:
     image : mongo
     container_name: mongodb
-    build: ./services/mongo
+    command: mkdir -pv mongodb/database
     environment:
       - PUID=1000
       - PGID=1000
+      - MONGO_INITDB_ROOT_USERNAME_FILE="${MONGO_DB_USERNAME}"
+      - MONGO_INITDB_ROOT_PASSWORD_FILE="${MONGO_DB_PASSWORD}"
     volumes:
       - /home/ec2-user/mongodb/database:/data/db
     ports:
-      - 27017:27017
+      - 27019:27017
     restart: always
-    depends_on:
-      - web
-
 
 networks:
   nlp_project:
