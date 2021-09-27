@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\cwirk\\Anaconda3\\envs\\Master\\python.exe",
     "python.envFile": "${workspaceFolder}/.env"
 }
