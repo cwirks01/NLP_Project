@@ -17,7 +17,7 @@ LABEL desc "Incredibly fast language processor designed for initial analysis."
 
 WORKDIR /usr/nginx/html
 
-ENV FLASK_APP=main.py
+ENV FLASK_APP=wsgi.py
 # ENV FLASK_RUN_HOST=0.0.0.0
 
 # Update aptitude with new repo
