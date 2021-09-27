@@ -42,13 +42,6 @@ RUN mkdir -p /NLP_Project/ssh && \
     touch /etc/ssh/sshd_config && \
     ssh-keyscan -H github.com > /NLP_Project/ssh/known_hosts
 
-# ERROR: _tkinter.TclError: couldn't connect to display "unix" (SOLVED)
-# RUN echo "export DISPLAY='localhost:0.0'" >> /.bashrc && \
-#     echo "export DISPLAY=':0'" >> /.bashrc && \
-#     echo "export MPLBACKEND='Agg'" >> /.bashrc && \
-#     echo "s/^.*X11Forwarding.*$/X11Forwarding yes/" >> /etc/ssh/sshd_config && \
-#     echo "s/^.*X11UseLocalhost.*$/X11UseLocalhost no/" >> /etc/ssh/sshd_config
-
 CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts 
 
 # Add the keys and set permissions
