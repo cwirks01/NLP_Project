@@ -15,6 +15,7 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
+      - GIT_TOKEN=$$GIT_TOKEN
     depends_on:
       - mongodb
 
