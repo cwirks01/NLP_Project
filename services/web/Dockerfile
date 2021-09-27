@@ -49,7 +49,7 @@ RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/con
 
 # variabels in Dockerfile and docker-compose.yml need to be escaped out with $$
 RUN echo "########################### Cloning GITHUB Repo ###########################"
-RUN git clone https://$${GIT_TOKEN}@github.com/cwirks01/NLP_Project.git
+RUN git clone https://$GIT_TOKEN@github.com/cwirks01/NLP_Project.git
 
 WORKDIR /usr/nginx/html/NLP_Project
 
