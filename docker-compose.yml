@@ -8,6 +8,7 @@ services:
       dockerfile: ./services/web/Dockerfile
       args:
         GIT_TOKEN: $$GIT_TOKEN
+        GIT_USERNAME: $$GIT_USERNAME
     command: gunicorn --bind 0.0.0.0:5000 NLP_Project.main:app
     networks:
       - nlp_project
