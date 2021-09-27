@@ -6,7 +6,7 @@ services:
     build: 
       context: ./
       dockerfile: ./services/web/Dockerfile
-    command: gunicorn --bind 0.0.0.0:5000 wsgi:app
+    command: gunicorn --bind 0.0.0.0:5000 app
     networks:
       - nlp_project
     ports: 
