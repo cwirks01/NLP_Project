@@ -7,8 +7,8 @@ services:
       context: ./
       dockerfile: ./services/web/Dockerfile
       args:
-        GIT_TOKEN: $$GIT_TOKEN
-        GIT_USERNAME: $$GIT_USERNAME
+        ssh_prv_key: "$(cat ~/.ssh/id_ed25519)"
+        ssh_pub_key: "$(cat ~/.ssh/id_ed25519.pub)"
     command: gunicorn --bind 0.0.0.0:5000 NLP_Project.main:app
     networks:
       - nlp_project
@@ -18,8 +18,6 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
-      - ssh_prv_key="$(cat ~/.ssh/id_ed25519)"
-      - ssh_pub_key="$(cat ~/.ssh/id_ed25519.pub)"
     depends_on:
       - mongodb
 
