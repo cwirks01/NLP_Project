@@ -9,8 +9,8 @@ COPY ./services/nginx/backend-not-found.html /var/www/html/backend-not-found.htm
 
 ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
-ARG GIT_TOKEN
-ARG GIT_USERNAME
+ARG ssh_prv_key
+ARG ssh_pub_key
 
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
@@ -34,25 +34,28 @@ RUN apt-get install -y git && \
 # Create known_hosts
 # Add github key
 # Authorize SSH Host
-RUN mkdir -p /NLP_Project/ssh && \
-    mkdir -p /NLP_Project/logs && \
-    chmod 0700 /NLP_Project/ssh && \
-    touch /NLP_Project/ssh/known_hosts && \
-    touch /NLP_Project/ssh/config && \
-    touch /.bashrc && \
-    touch /etc/ssh/sshd_config && \
-    ssh-keyscan -H github.com > /NLP_Project/ssh/known_hosts
+RUN mkdir -p ~/.ssh && \
+    mkdir -p ~/logs && \
+    chmod 0700 ~/.ssh && \
+    touch ~/.ssh/known_hosts && \
+    touch ~/.ssh/config && \
+    ssh-keyscan -H github.com > ~/.ssh/known_hosts
+
+# Add the keys and set permissions
+RUN echo "$ssh_prv_key" > ~/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > ~/.ssh/id_rsa.pub && \
+    chmod 600 ~/.ssh/id_rsa && \
+    chmod 600 ~/.ssh/id_rsa.pub
 
 CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts 
 
 # Add the keys and set permissions
-RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /NLP_Project/ssh/config
+RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 # variabels in Dockerfile and docker-compose.yml need to be escaped out with $$
-RUN echo "########################### Cloning GITHUB Repo ###########################" && \
-    cd /NLP_Project
+RUN echo "########################### Cloning GITHUB Repo ###########################"
     
-CMD git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/cwirks01/NLP_Project.git
+RUN git clone git@github.com:cwirks01/NLP_Project.git
 
 WORKDIR /usr/nginx/html/NLP_Project
 
