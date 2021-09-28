@@ -18,8 +18,8 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
-      - ssh_prv_key="$(cat ~/Documents/working_dir/ssh/id_ed25519)"
-      - ssh_pub_key="$(cat ~/Documents/working_dir/ssh/id_ed25519.pub)"
+      - ssh_prv_key="$(cat ~/.ssh/id_ed25519)"
+      - ssh_pub_key="$(cat ~/.ssh/id_ed25519.pub)"
     depends_on:
       - mongodb
 
