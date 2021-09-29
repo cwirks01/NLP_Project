@@ -11,6 +11,9 @@ ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ssh_prv_key
 ARG ssh_pub_key
+ARG passphrase
+ARG git_username
+ARG git_password
 
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
@@ -24,40 +27,40 @@ ENV FLASK_APP=app.py
 # Update aptitude with new repo
 RUN apt-get update
 
-# Install software
-RUN apt-get install -y git && \
-    apt-get install -y python3-pip && \
-    apt-get install -y python3-tk && \
-    pip3 install -U pip setuptools wheel && \
-    pip install blis
+RUN mkdir -p /root/.ssh && \
+    mkdir -p ~/logs 
+
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub
 
 # Create known_hosts
 # Add github key
 # Authorize SSH Host
-RUN mkdir -p ~/.ssh && \
-    mkdir -p ~/logs && \
-    chmod 0700 ~/.ssh && \
-    touch ~/.ssh/known_hosts && \
-    touch ~/.ssh/config && \
-    ssh-keyscan -H github.com > ~/.ssh/known_hosts
+RUN touch /root/.ssh/known_hosts && \
+    touch /root/.ssh/config && \
+    # Install software
+    apt-get install -y git && \
+    ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 # Add the keys and set permissions
-RUN echo "$ssh_prv_key" > ~/.ssh/id_rsa && \
-    echo "$ssh_pub_key" > ~/.ssh/id_rsa.pub && \
-    chmod 600 ~/.ssh/id_rsa && \
-    chmod 600 ~/.ssh/id_rsa.pub
-
-CMD echo "127.0.0.1 testing-dev.dev www.testing-dev.dev" >> /etc/hosts 
-
+RUN chmod 600 /root/.ssh/id_rsa && \
+    chmod 600 /root/.ssh/id_rsa.pub && \
+    echo "    IdentityFile /root/.ssh/id_rsa" >> /etc/ssh/ssh_config && \
+    eval `ssh-agent`
+    
 # Add the keys and set permissions
-RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+
 
 # variabels in Dockerfile and docker-compose.yml need to be escaped out with $$
 RUN echo "########################### Cloning GITHUB Repo ###########################"
-    
-RUN git clone git@github.com:cwirks01/NLP_Project.git
 
-WORKDIR /usr/nginx/html/NLP_Project
+COPY . .
+
+RUN apt-get install -y python3-pip && \
+    apt-get install -y python3-tk && \
+    pip3 install -U pip setuptools wheel && \
+    pip install blis
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
@@ -66,8 +69,6 @@ RUN pip3 install -U pip setuptools wheel &&\
     pip3 install -U spacy && \
     python3 -m spacy download en_core_web_sm
 
-# COPY . .
-
 EXPOSE 5000
 
-CMD python3 app.py
+CMD ["python3", "app.py"]

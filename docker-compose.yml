@@ -7,9 +7,11 @@ services:
       context: ./
       dockerfile: ./services/web/Dockerfile
       args:
-        ssh_prv_key: $(cat ~/.ssh/id_ed25519)
-        ssh_pub_key: $(cat ~/.ssh/id_ed25519.pub)
-    command: gunicorn --bind 0.0.0.0:5000 NLP_Project.main:app
+        ssh_prv_key: $$(cat ~/.ssh/id_rsa)
+        ssh_pub_key: $$(cat ~/.ssh/id_rsa.pub)
+        git_username: $${env:MONGO_DB_USERNAME}
+        git_password: $${env:GITHUB_TOKEN}
+    command: gunicorn --workers 4 --bind 0.0.0.0:5000 app:app
     networks:
       - nlp_project
     ports: 
@@ -18,6 +20,8 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
+      - MONGO_DB_USERNAME=$${env:MONGO_DB_USERNAME}
+      - MONGO_DB_PASSWORD=$${env:MONGO_DB_PASSWORD}
     depends_on:
       - mongodb
 
@@ -26,10 +30,9 @@ services:
     build: ./services/nginx
     restart: always
     ports:
-      - 80:80
+      - 1337:80
     depends_on:
       - web
-      - mongodb
 
   mongodb:
     image : mongo
@@ -38,8 +41,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MONGO_INITDB_ROOT_USERNAME_FILE=$$MONGO_DB_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD_FILE=$$MONGO_DB_PASSWORD
+      - MONGO_INITDB_ROOT_USERNAME_FILE=$$env:MONGO_DB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=$$env:MONGO_DB_PASSWORD
     volumes:
       - /home/ec2-user/mongodb/database:/data/db
     ports:
