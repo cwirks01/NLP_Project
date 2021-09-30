@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   web:
@@ -22,8 +22,6 @@ services:
       - NODE_ENV=prod
       - MONGO_DB_USERNAME=$${env:MONGO_DB_USERNAME}
       - MONGO_DB_PASSWORD=$${env:MONGO_DB_PASSWORD}
-    depends_on:
-      - mongodb
 
   #Specify the network these containers will run on
   nginx:
@@ -34,23 +32,8 @@ services:
     depends_on:
       - web
 
-  mongodb:
-    image : mongo
-    container_name: mongodb
-    command: mkdir -pv /c/Users/612946/Documents/NTC/NLP_Project/mongodb/database
-    environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      # - /home/ec2-user/mongodb/database:/data/db
-      - /c/Users/612946/Documents/NTC/NLP_Project/mongodb/database:/data/db
-    ports:
-      - 27019:27019
-    restart: always
-
 networks:
   nlp_project:
     external:
       name: 
         - "nlp_project_default"
-        - "mongodb_default"
