@@ -3,6 +3,7 @@ version: '3.9'
 services:
   web:
     restart: always
+    container_name: nlp_project
     build: 
       context: ./
       dockerfile: ./services/web/Dockerfile
@@ -14,8 +15,6 @@ services:
     command: gunicorn --workers 4 --bind 0.0.0.0:5000 app:app
     networks:
       - nlp_project
-    ports: 
-      - 5000:5000
     volumes:
       - /usr/nginx/html
     environment:
@@ -25,6 +24,7 @@ services:
 
   #Specify the network these containers will run on
   nginx:
+    container_name: nginx
     build: ./services/nginx
     restart: always
     ports:
