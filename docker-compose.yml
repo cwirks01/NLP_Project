@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.8'
 
 services:
   web:
@@ -37,19 +37,20 @@ services:
   mongodb:
     image : mongo
     container_name: mongodb
-    command: mkdir -pv mongodb/database
+    command: mkdir -pv /c/Users/612946/Documents/NTC/NLP_Project/mongodb/database
     environment:
       - PUID=1000
       - PGID=1000
-      - MONGO_INITDB_ROOT_USERNAME_FILE=$$env:MONGO_DB_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD_FILE=$$env:MONGO_DB_PASSWORD
     volumes:
-      - /home/ec2-user/mongodb/database:/data/db
+      # - /home/ec2-user/mongodb/database:/data/db
+      - /c/Users/612946/Documents/NTC/NLP_Project/mongodb/database:/data/db
     ports:
-      - 27019:27017
+      - 27019:27019
     restart: always
 
 networks:
   nlp_project:
     external:
-      name: nlp_project_default
+      name: 
+        - "nlp_project_default"
+        - "mongodb_default"
