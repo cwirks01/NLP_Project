@@ -36,4 +36,4 @@ networks:
   nlp_project:
     external:
       name: 
-        - "nlp_project_default"
+        - nlp_project_default
