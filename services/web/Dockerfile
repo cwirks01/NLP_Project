@@ -71,4 +71,4 @@ RUN pip3 install -U pip setuptools wheel &&\
 
 EXPOSE 5000
 
-CMD ["python3", "app.py"]
+CMD ["python3", "-m", "app"]
