@@ -35,5 +35,4 @@ services:
 networks:
   nlp_project:
     external:
-      name: 
-        - nlp_project_default
+      name: nlp_project_default
