@@ -1,11 +1,12 @@
 # syntax=docker/dockerfile:1
 FROM python:3.8-alpine
 FROM ubuntu
-FROM nginx
 
-COPY ./services/nginx/default.conf /etc/nginx/sites-enabled/nlp_project
-COPY ./services/nginx/default.conf /etc/nginx/sites-available/nlp_project
-COPY ./services/nginx/backend-not-found.html /var/www/html/backend-not-found.html
+RUN mkdir -pv /etc/nginx/sites-enabled/nlp_project
+
+COPY /services/nginx/default.conf /etc/nginx/sites-enabled/nlp_project
+COPY /services/nginx/default.conf /etc/nginx/sites-available/nlp_project
+COPY /services/nginx/backend-not-found.html /var/www/html/backend-not-found.html
 
 ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
@@ -21,8 +22,8 @@ LABEL desc "Incredibly fast language processor designed for initial analysis."
 
 WORKDIR /usr/nginx/html
 
-ENV FLASK_APP=app.py
-# ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_APP=wsgi.py
+ENV FLASK_RUN_HOST=0.0.0.0
 
 # Update aptitude with new repo
 RUN apt-get update
@@ -59,6 +60,7 @@ COPY . .
 
 RUN apt-get install -y python3-pip && \
     apt-get install -y python3-tk && \
+    apt-get install -y vim && \
     pip3 install -U pip setuptools wheel && \
     pip install blis
 
@@ -71,4 +73,4 @@ RUN pip3 install -U pip setuptools wheel &&\
 
 EXPOSE 5000
 
-CMD ["python3", "-m", "app"]
+CMD ["python3", "wsgi.py"]
