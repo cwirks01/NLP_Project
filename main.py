@@ -21,12 +21,14 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # app.config['MONGO_URI'] = "mongodb://%s:%s127.0.0.1:27019/NLP_db" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD)
-app.config['MONGO_URI'] = 'mongodb://mognodb:27017/NLP_db'
+# app.config['MONGO_URI'] = 'mongodb://mognodb:27017/NLP_db'
+app.config['MONGO_URI'] = 'mongodb://192.168.0.18:27019/NLP_db' # for debugging
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
 # client = MongoClient("mongodb://%s:%s127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 client = MongoClient('mongodb://mognodb:27017')
+# client = MongoClient('mongodb://192.168.0.18:27019')  # for debuging
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
@@ -132,7 +134,6 @@ def complete_app():
         plotly_chart = app.config['ploty_viz']
 
     user_downloads = mongo.db.users.find_one_or_404({"username": main_app_user.username})['downloads'][0]
-    user_downloads['data.html'].stream.seek(0)
     plot_data = Markup(user_downloads['plot_data.html'])
 
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
@@ -144,7 +145,7 @@ def downloaded_file_db(filename, file):
     cookie_name = request.cookies.get('username')
     main_app_user_db = spacy_sent_connections(username=cookie_name)
     
-    file_out = main_app_user_db.download_file(filename=filename, file=file)
+    file_out = main_app_user_db.download_file(filename=filename, file_in=file)
 
     if filename.endswith("html"):
         file_out = Markup(file)

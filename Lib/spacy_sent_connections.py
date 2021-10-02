@@ -34,7 +34,7 @@ MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
 ROOT = os.getcwd()
 # client = MongoClient("mongodb://%s:%s127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 client = MongoClient('mongodb://mognodb:27017')
-
+# client = MongoClient('mongodb://192.168.0.18:27019')  # for debuging
 
 
 class gui_tkinter:
@@ -309,7 +309,7 @@ class spacy_sent_connections:
         self.db.find_one_and_update({'username': self.username}, {
             "$set": {"repository": [{"filename": json_data_main[0]['filename'], "text": json_data}]}},
                                     return_document=ReturnDocument.AFTER)
-        
+
         all_text_for_viz = " ".join(self.all_text)
         df_data = pd.DataFrame(pd.json_normalize(json_data).squeeze().reset_index())
         df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
@@ -432,7 +432,7 @@ class spacy_sent_connections:
         Remove all files in downloads/uploads/repos for all users that are older than 12 hours
         '''
         days_old_data = datetime.datetime.now().timestamp() - datetime.timedelta(7).total_seconds()
-        self.db.remove({"createdUser":{"$lt: %s" % days_old_data}})
+        self.db.remove({"createdUser": {"$lt: %s" % days_old_data}})
         return
 
     def run(self):
