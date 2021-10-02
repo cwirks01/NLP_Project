@@ -21,8 +21,8 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # app.config['MONGO_URI'] = "mongodb://%s:%s127.0.0.1:27019/NLP_db" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD)
-# app.config['MONGO_URI'] = 'mongodb://mognodb:27017/NLP_db'
-app.config['MONGO_URI'] = 'mongodb://192.168.0.18:27019/NLP_db' # for debugging
+app.config['MONGO_URI'] = 'mongodb://mognodb:27017/NLP_db'
+# app.config['MONGO_URI'] = 'mongodb://192.168.0.18:27019/NLP_db' # for debugging
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
