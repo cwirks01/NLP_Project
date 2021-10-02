@@ -296,8 +296,12 @@ class spacy_sent_connections:
         json_ents_list = None
 
         # Loading in a library of previous runs in json
-        json_data_main = self.db.find({'username': self.username})[0]['repository']
-        json_data = json_data_main[0]['text']
+        try:
+            json_data_main = self.db.find({'username': self.username})[0]['repository']
+            json_data = json_data_main[0]['text']
+        except Exception as e:
+            print("%s \nCreating Repo" % e)
+            json_data = {}
 
         for file_input in self.db.find({'username': self.username})[0]['uploads']:
             nlp_loaded = self.nlp(file_input['text'])
