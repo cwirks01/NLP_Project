@@ -88,8 +88,9 @@ def upload_file():
                         new_file = file_item.stream.read()
                         text = json.loads(new_file.decode("utf-8"))
                         main_app.db.find_one_and_update({"username": main_app.username},
-                                                        {"$set": {
-                                                            "repository": [{"filename": filename, "text": text}]}},
+                                                        {"$set":
+                                                             {"repository":
+                                                                  [{"filename": filename, "text": text}]}},
                                                         return_document=ReturnDocument.AFTER)
 
                     else:
@@ -144,7 +145,7 @@ def complete_app():
 def downloaded_file_db(filename, file):
     cookie_name = request.cookies.get('username')
     main_app_user_db = spacy_sent_connections(username=cookie_name)
-    
+
     file_out = main_app_user_db.download_file(filename=filename, file_in=file)
 
     if filename.endswith("html"):

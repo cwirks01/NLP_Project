@@ -13,6 +13,7 @@ import random
 import re
 import shutil
 import datetime
+import time
 
 import PyPDF2
 import en_core_web_sm
@@ -34,6 +35,8 @@ MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
 ROOT = os.getcwd()
 # client = MongoClient("mongodb://%s:%s127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 client = MongoClient('mongodb://mongodb:27017')
+
+
 # client = MongoClient('mongodb://192.168.0.18:27019')  # for debuging
 
 
@@ -302,16 +305,25 @@ class spacy_sent_connections:
         except Exception as e:
             print("%s \nCreating Repo" % e)
             json_data = {}
+            self.db.find_one_and_update({'username': self.username},
+                                        {"$set": {"repository": [
+                                            {"filename": "data-repo-%s.json" % time.strftime("%d%m%Y"),
+                                             "text": json_data}]}},
+                                        return_document=ReturnDocument.AFTER)
+            json_data_main = self.db.find({'username': self.username})[0]['repository']
 
         for file_input in self.db.find({'username': self.username})[0]['uploads']:
             nlp_loaded = self.nlp(file_input['text'])
-            json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded, json_data_parser=json_data,
+            json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded,
+                                                        json_data_parser=json_data,
                                                         json_ents_list=json_ents_list)
             self.all_text.append(file_input['text'])
             print('Finished processing ' + file_input['filename'])
 
-        self.db.find_one_and_update({'username': self.username}, {
-            "$set": {"repository": [{"filename": json_data_main[0]['filename'], "text": json_data}]}},
+        self.db.find_one_and_update({'username': self.username},
+                                    {"$set": {"repository": [
+                                        {"filename": json_data_main[0]['filename'],
+                                         "text": json_data}]}},
                                     return_document=ReturnDocument.AFTER)
 
         all_text_for_viz = " ".join(self.all_text)
