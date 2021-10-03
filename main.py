@@ -66,6 +66,7 @@ def upload_file():
         cookie_name = request.cookies.get('username')
         main_app = spacy_sent_connections(username=cookie_name)
         # check if the post request has the file part
+        app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
         app.config['ploty_viz'] = bool(request.form.get("ploty_viz"))
         if (request.files['inputFileNames'].filename in ['', None]) and (request.form.getlist(

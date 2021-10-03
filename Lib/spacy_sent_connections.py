@@ -195,7 +195,8 @@ def read_in_pdf(file_path):
 class spacy_sent_connections:
     def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None,
                  username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd(),
-                 _db='users'):
+                 _db='users', previousRun_repo=False):
+        self.previousRun_repo=previousRun_repo
         self.username = username
         self.password = password
         self.nlp = en_core_web_sm.load()
@@ -298,17 +299,27 @@ class spacy_sent_connections:
         all_text_for_viz = None
         json_ents_list = None
 
-        # Loading in a library of previous runs in json
-        try:
-            json_data_main = self.db.find({'username': self.username})[0]['repository']
-            json_data = json_data_main[0]['text']
-        except Exception as e:
+        if self.previousRun_repo:
+            # Loading in a library of previous runs in json
+            try:
+                json_data_main = self.db.find({'username': self.username})[0]['repository']
+                json_data = json_data_main[0]['text']
+            except Exception as e:
+                print("%s \nCreating Repo" % e)
+                json_data = {}
+                self.db.find_one_and_update({'username': self.username},
+                                            {"$set": {"repository": [
+                                                {"filename": "data-repo-%s.json" % time.strftime("%d%m%Y"),
+                                                "text": json_data}]}},
+                                            return_document=ReturnDocument.AFTER)
+                json_data_main = self.db.find({'username': self.username})[0]['repository']
+        else:
             print("%s \nCreating Repo" % e)
             json_data = {}
             self.db.find_one_and_update({'username': self.username},
                                         {"$set": {"repository": [
                                             {"filename": "data-repo-%s.json" % time.strftime("%d%m%Y"),
-                                             "text": json_data}]}},
+                                            "text": json_data}]}},
                                         return_document=ReturnDocument.AFTER)
             json_data_main = self.db.find({'username': self.username})[0]['repository']
 
@@ -331,7 +342,10 @@ class spacy_sent_connections:
         df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
         df_data = df_data.explode("value").reset_index(drop=True)
         plotly_data = online_network_analysis(df_anb=df_data)
-        self.text_viz(all_text_for_viz, json_data=json_data, plotly_data=plotly_data, json_ents_list=json_ents_list)
+        self.text_viz(all_text_for_viz,
+                      json_data=json_data,
+                      plotly_data=plotly_data,
+                      json_ents_list=json_ents_list)
 
         return
 
