@@ -112,6 +112,7 @@ def process_files():
     cookie_name = request.cookies.get('username')
     main_app_user = spacy_sent_connections(username=cookie_name)
     main_app_user.inBrowser = app.config['RENDER_VIZ']
+    main_app_user.previousRun_repo = app.config['createNewRepo']
     main_app_user.run()
     return redirect("/application_ran")
 
