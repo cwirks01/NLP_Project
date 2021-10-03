@@ -314,7 +314,6 @@ class spacy_sent_connections:
                                             return_document=ReturnDocument.AFTER)
                 json_data_main = self.db.find({'username': self.username})[0]['repository']
         else:
-            print("%s \nCreating Repo" % e)
             json_data = {}
             self.db.find_one_and_update({'username': self.username},
                                         {"$set": {"repository": [
