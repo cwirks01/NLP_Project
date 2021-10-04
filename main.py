@@ -89,9 +89,8 @@ def upload_file():
                         new_file = file_item.stream.read()
                         text = json.loads(new_file.decode("utf-8"))
                         main_app.db.find_one_and_update({"username": main_app.username},
-                                                        {"$set":
-                                                             {"repository":
-                                                                  [{"filename": filename, "text": text}]}},
+                                                        {"$set":{"repository":
+                                                        [{"filename": filename, "text": text}]}},
                                                         return_document=ReturnDocument.AFTER)
 
                     else:
@@ -99,7 +98,8 @@ def upload_file():
                         new_file = file_item.stream.read()
                         text = new_file.decode("utf-8")
                         main_app.db.find_one_and_update({"username": main_app.username},
-                                                        {"$set": {"uploads": [{"filename": filename, "text": text}]}},
+                                                        {"$set": {"uploads":
+                                                        [{"filename": filename, "text": text}]}},
                                                         return_document=ReturnDocument.AFTER)
 
         flash('File(s) successfully uploaded')

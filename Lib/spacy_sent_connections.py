@@ -314,6 +314,7 @@ class spacy_sent_connections:
                                             return_document=ReturnDocument.AFTER)
                 json_data_main = self.db.find({'username': self.username})[0]['repository']
         else:
+            # Load Library if not previously ran
             json_data = {}
             self.db.find_one_and_update({'username': self.username},
                                         {"$set": {"repository": [
@@ -322,6 +323,7 @@ class spacy_sent_connections:
                                         return_document=ReturnDocument.AFTER)
             json_data_main = self.db.find({'username': self.username})[0]['repository']
 
+        # Loading in files from database upload
         for file_input in self.db.find({'username': self.username})[0]['uploads']:
             nlp_loaded = self.nlp(file_input['text'])
             json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded,
