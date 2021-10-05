@@ -31,6 +31,23 @@ services:
       - 80:80
     depends_on:
       - web
+      - regex
+  
+  regex:
+    restart: always
+    container_name: regex
+    build: 
+      context: ../regex/
+      dockerfile: ../regex/services/web/Dockerfile
+    command: gunicorn --bind 0.0.0.0:5080 wsgi:app  --timeout 120
+    networks:
+      - regex
+    ports: 
+      - 5080:5080
+    volumes:
+      - /usr/nginx/html
+    environment:
+      - NODE_ENV=prod
 
 networks:
   nlp_project:
