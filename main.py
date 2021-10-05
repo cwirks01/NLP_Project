@@ -104,7 +104,7 @@ def upload_file():
                                                         return_document=ReturnDocument.AFTER)
 
         flash('File(s) successfully uploaded')
-        return redirect('/processing/')
+        return redirect('/nlp_project/processing/')
 
 
 @app.route("/nlp_project/processing/", methods=['GET', 'POST'])
