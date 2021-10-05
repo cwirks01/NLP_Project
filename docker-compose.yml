@@ -40,8 +40,6 @@ services:
       context: ../regex/
       dockerfile: ../regex/services/web/Dockerfile
     command: gunicorn --bind 0.0.0.0:5080 wsgi:app  --timeout 120
-    ports: 
-      - 5080:5080
     volumes:
       - /usr/nginx/html
     environment:
