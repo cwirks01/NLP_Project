@@ -35,6 +35,7 @@ services:
   
   regex:
     restart: always
+    image: regex_web
     container_name: regex
     build: 
       context: ../regex/
