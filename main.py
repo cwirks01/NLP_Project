@@ -107,7 +107,7 @@ def upload_file():
         return redirect('/processing/')
 
 
-@app.route("/processing/", methods=['GET', 'POST'])
+@app.route("/nlp_project/processing/", methods=['GET', 'POST'])
 def process_files():
     global main_app_user
     cookie_name = request.cookies.get('username')
@@ -115,10 +115,10 @@ def process_files():
     main_app_user.inBrowser = app.config['RENDER_VIZ']
     main_app_user.previousRun_repo = app.config['createNewRepo']
     main_app_user.run()
-    return redirect("/application_ran")
+    return redirect("/nlp_project/application_ran")
 
 
-@app.route("/application_ran", methods=['GET', 'POST'])
+@app.route("/nlp_project/application_ran", methods=['GET', 'POST'])
 def complete_app():
     global main_app_user
     cookie_name = request.cookies.get('username')
@@ -144,7 +144,7 @@ def complete_app():
                            json_ents_list=all_items, user=user_downloads, plot_data=plot_data)
 
 
-@app.route('/out/filename/<filename>/file/<file>')
+@app.route('/nlp_project/out/filename/<filename>/file/<file>')
 def downloaded_file_db(filename, file):
     cookie_name = request.cookies.get('username')
     main_app_user_db = spacy_sent_connections(username=cookie_name)
