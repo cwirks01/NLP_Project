@@ -22,13 +22,13 @@ app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # app.config['MONGO_URI'] = "mongodb://%s:%s127.0.0.1:27019/NLP_db" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD)
 app.config['MONGO_URI'] = 'mongodb://mongodb:27017/NLP_db'
-# app.config['MONGO_URI'] = 'mongodb://192.168.0.18:27019/NLP_db' # for debugging
+# app.config['MONGO_URI'] = 'mongodb://3.89.36.89:27019/NLP_db' # for debugging
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
 # client = MongoClient("mongodb://%s:%s127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 client = MongoClient('mongodb://mongodb:27017')
-# client = MongoClient('mongodb://192.168.0.18:27019')  # for debuging
+# client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
@@ -69,7 +69,7 @@ def upload_file():
         app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
         app.config['ploty_viz'] = bool(request.form.get("ploty_viz"))
-        
+
         if (request.files['inputFileNames'].filename in ['', None]) and (request.form.getlist(
                 "FreeInputText") in [[''], [None]]):
             flash('No files loaded!')

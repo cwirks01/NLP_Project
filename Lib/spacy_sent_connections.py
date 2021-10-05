@@ -37,7 +37,7 @@ ROOT = os.getcwd()
 client = MongoClient('mongodb://mongodb:27017')
 
 
-# client = MongoClient('mongodb://192.168.0.18:27019')  # for debuging
+# client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
 
 
 class gui_tkinter:
@@ -226,7 +226,13 @@ class spacy_sent_connections:
                                 "createdUser": datetime.datetime.now().timestamp()})
 
         if self.user_dir is None:
-            self.user_dir = str(self.db.find({"username": self.username})[0].get("_id"))
+            try:
+                self.user_dir = str(self.db.find({"username": self.username})[0].get("_id"))
+            except Exception as e:
+                print("%s \nCreating new user documents." % e)
+                self.db.insert_one({"username": self.username,
+                                "createdUser": datetime.datetime.now().timestamp()})
+                self.user_dir = str(self.db.find({"username": self.username})[0].get("_id"))
 
         self.username = self.username
         self.user_dir = self.user_dir
