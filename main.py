@@ -69,6 +69,7 @@ def upload_file():
         app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
         app.config['ploty_viz'] = bool(request.form.get("ploty_viz"))
+        
         if (request.files['inputFileNames'].filename in ['', None]) and (request.form.getlist(
                 "FreeInputText") in [[''], [None]]):
             flash('No files loaded!')
@@ -82,11 +83,11 @@ def upload_file():
 
         else:
             files = request.files.getlist('inputFileNames')
-            for file_item in files:
-                if file_item and allowed_file(file_item.filename):
-                    if file_item.filename.rsplit('.')[-1] == 'json':
-                        filename = secure_filename(file_item.filename)
-                        new_file = file_item.stream.read()
+            for file in files:
+                if file and allowed_file(file.filename):
+                    if file.filename.rsplit('.')[-1] == 'json':
+                        filename = secure_filename(file.filename)
+                        new_file = file.stream.read()
                         text = json.loads(new_file.decode("utf-8"))
                         main_app.db.find_one_and_update({"username": main_app.username},
                                                         {"$set":{"repository":
@@ -94,8 +95,8 @@ def upload_file():
                                                         return_document=ReturnDocument.AFTER)
 
                     else:
-                        filename = secure_filename(file_item.filename)
-                        new_file = file_item.stream.read()
+                        filename = secure_filename(file.filename)
+                        new_file = file.stream.read()
                         text = new_file.decode("utf-8")
                         main_app.db.find_one_and_update({"username": main_app.username},
                                                         {"$set": {"uploads":
