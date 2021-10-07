@@ -39,7 +39,7 @@ services:
     build: 
       context: ../regex/
       dockerfile: ../regex/services/web/Dockerfile
-    command: gunicorn --bind 0.0.0.0:5080 wsgi:app  --timeout 120
+    command: gunicorn --bind 0.0.0.0:8080 wsgi:app  --timeout 120
     volumes:
       - /usr/nginx/html
     environment:
