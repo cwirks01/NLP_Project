@@ -13,8 +13,6 @@ services:
         git_username: $${env:MONGO_DB_USERNAME}
         git_password: $${env:GITHUB_TOKEN}
     command: gunicorn --bind 0.0.0.0:5000 wsgi:app --timeout 120
-    networks:
-      - nlp_project
     volumes:
       - /usr/nginx/html
     environment:
