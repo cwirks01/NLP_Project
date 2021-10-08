@@ -21,7 +21,6 @@ services:
       - NODE_ENV=prod
       - MONGO_DB_USERNAME=$${env:MONGO_DB_USERNAME}
       - MONGO_DB_PASSWORD=$${env:MONGO_DB_PASSWORD}
-    network_mode: host
 
   #Specify the network these containers will run on
   nginx:
