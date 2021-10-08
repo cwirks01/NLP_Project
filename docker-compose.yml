@@ -21,6 +21,7 @@ services:
       - NODE_ENV=prod
       - MONGO_DB_USERNAME=$${env:MONGO_DB_USERNAME}
       - MONGO_DB_PASSWORD=$${env:MONGO_DB_PASSWORD}
+    network:_mode: host
 
   #Specify the network these containers will run on
   nginx:
@@ -33,6 +34,7 @@ services:
     depends_on:
       - web
       - regex
+    network:_mode: host
   
   regex:
     restart: always
@@ -45,6 +47,7 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
+    network:_mode: host
 
 networks:
   nlp_project:
