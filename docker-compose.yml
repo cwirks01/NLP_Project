@@ -28,8 +28,7 @@ services:
     build: ./services/nginx
     restart: always
     ports:
-      - 8080:80
-      - 5000:80
+      - 80:80
     depends_on:
       - web
       - regex
