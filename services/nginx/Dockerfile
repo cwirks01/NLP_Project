@@ -11,6 +11,7 @@ COPY regex.conf /etc/nginx/sites-available/regex.testing-dev.dev.conf
 COPY nlp.conf /etc/nginx/sites-available/nlp.testing-dev.dev.conf
 COPY drop.conf /etc/nginx/drop.conf
 COPY ../static/ ./static/
+COPY ../../regex/static/ ./static/
 
 RUN ln -s /etc/nginx/sites-available/regex.testing-dev.dev.conf /etc/nginx/sites-enabled/ && \
     ln -s /etc/nginx/sites-available/nlp.testing-dev.dev.conf /etc/nginx/sites-enabled/
