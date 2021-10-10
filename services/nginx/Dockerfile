@@ -5,7 +5,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY regex.conf /etc/nginx/sites-available/regex.testing-dev.dev.conf
 COPY nlp.conf /etc/nginx/sites-available/nlp.testing-dev.dev.conf
 COPY drop.conf /etc/nginx/drop.conf
