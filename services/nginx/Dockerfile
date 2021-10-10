@@ -6,7 +6,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
     mkdir -pv /static
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /etc/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
 

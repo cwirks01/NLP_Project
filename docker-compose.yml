@@ -39,6 +39,8 @@ services:
       - regex    
     networks:
       - nlp_project
+    volumes:
+      - /usr/nginx/html
   
   regex:
     restart: always
