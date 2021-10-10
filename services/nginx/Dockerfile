@@ -14,8 +14,8 @@ COPY ./NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY ./NLP_Project/services/nginx/regex.conf /etc/nginx/sites-available/regex.testing-dev.dev.conf
 COPY ./NLP_Project/services/nginx/nlp.conf /etc/nginx/sites-available/nlp.testing-dev.dev.conf
 COPY ./NLP_Project/services/nginx/drop.conf /etc/nginx/drop.conf
-COPY ./NLP_Project/static/ ./static/
-COPY ./regex/static/ ./static/
+COPY ./NLP_Project/static ./static/
+COPY ./regex/static ./static/
 
 RUN ln -s /etc/nginx/sites-available/regex.testing-dev.dev.conf /etc/nginx/sites-enabled/ && \
     ln -s /etc/nginx/sites-available/nlp.testing-dev.dev.conf /etc/nginx/sites-enabled/
