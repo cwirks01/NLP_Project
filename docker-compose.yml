@@ -27,7 +27,9 @@ services:
   #Specify the network these containers will run on
   nginx:
     container_name: nginx
-    build: ./services/nginx
+    build: 
+      context: ./
+      dockerfile: ./services/nginx/Dockerfile
     restart: always
     ports:
       - 80:80
