@@ -162,5 +162,6 @@ def downloaded_file_db(filename, file):
 
     response = Response(file_out, mimetype='text/csv')
     response.headers.set("Content-Disposition", "attachment", filename=filename)
-
+    response.headers.set("X-Accel-Redirect", "downloads", filename=filename)
+    
     return response
