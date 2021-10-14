@@ -36,7 +36,8 @@ services:
       - 443:443
     depends_on:
       - web
-      - regex    
+      - regex
+      - swell 
     networks:
       - nlp_project
     volumes:
@@ -63,7 +64,7 @@ services:
     container_name: swell
     build: 
       context: ../swell-watchers-app/
-      dockerfile: ../swell/services/web/Dockerfile
+      dockerfile: ../swell-watchers-app/services/swell-watchers-app/Dockerfile
     command: gunicorn -b 0.0.0.0:5001 wsgi:app --timeout 120
     volumes:
       - /usr/nginx/html
