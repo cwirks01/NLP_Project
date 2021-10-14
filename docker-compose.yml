@@ -70,8 +70,8 @@ services:
       - /usr/nginx/html
     environment:
       - NODE_ENV=prod
-      - API_TOKEN="pk.eyJ1IjoiY3dpcmtzMDEiLCJhIjoiY2t1MngzbTRoNDVqaTJ2cGlicWc2a3g2aCJ9.un0FXVnmyP2au1a0X7nGyA"
-      - MAPBOX_STYLE="mapbox://styles/cwirks01/ckun70qvf0bdv18kq1hai6k3q"
+      - API_TOKEN=pk.eyJ1IjoiY3dpcmtzMDEiLCJhIjoiY2t1MngzbTRoNDVqaTJ2cGlicWc2a3g2aCJ9.un0FXVnmyP2au1a0X7nGyA
+      - MAPBOX_STYLE=mapbox://styles/cwirks01/ckun70qvf0bdv18kq1hai6k3q
     networks:
       - nlp_project
     ports:
