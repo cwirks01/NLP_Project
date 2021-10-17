@@ -23,6 +23,24 @@
     overflow: hidden;/* Makes this div contain its floats */
   }
   
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column_main {
+    float: left;
+  }
+  
+  .left {
+    width: 20%;
+  }
+  
+  .right {
+    width: 80%;
+  }
+  
   .two-col .col1,
   .two-col .col2 {
     width: 10%;

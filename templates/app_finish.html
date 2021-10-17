@@ -8,13 +8,15 @@
 </head>
 
 <body>
-<h1>Your files are complete!</h1>
+
 <div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
-    <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">Home</a>
+    <h3 class="w3-bar-item">Development Site</h3>
+    <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
+    <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
 </div>
 
 <div style="margin-left:20%">
-
+    <h1>Your files are complete!</h1>
     <div class="two-col">
         <div class="col1">
         <a href="{{url_for('downloaded_file_db', filename='data.csv', file=user['data.json'])}}"
