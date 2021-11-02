@@ -2,6 +2,7 @@ FROM certbot/certbot:latest
 FROM ubuntu:20.04
 
 RUN apt-get update && \
+    apt-get install snapd && \
     snap install core; snap refresh core && \
     snap install --classic certbot && \
     ln -s /snap/bin/certbot /usr/bin/certbot
