@@ -4,7 +4,8 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
-    mkdir -pv /static
+    mkdir -pv /static && \
+    mkdir -pv /etc/nginx/ssl/live/certs
 
 WORKDIR /etc/nginx/html
 # Remove default nginx static assets
