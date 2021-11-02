@@ -1,10 +1,10 @@
-FROM nginx:1.19-alpine
 FROM ubuntu
+FROM nginx:1.19-alpine
 
 RUN rm /etc/nginx/conf.d/default.conf
 
 RUN apt-get update && \
-    snap install core; sudo snap refresh core && \
+    snap install core; snap refresh core && \
     snap install --classic certbot && \
     ln -s /snap/bin/certbot /usr/bin/certbot
 
