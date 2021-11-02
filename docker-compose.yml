@@ -44,12 +44,15 @@ services:
       - /usr/nginx/html
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
   
   certbot:
     image: certbot/certbot:latest
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
+    networks:
+      - nlp_project
 
   regex:
     restart: always
