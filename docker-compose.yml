@@ -42,7 +42,7 @@ services:
       - nlp_project
     volumes:
       - /usr/nginx/html
-      - ./certbot/www:/var/www/certbot/:roy
+      - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
   
   certbot:
