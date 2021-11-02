@@ -1,4 +1,5 @@
-FROM ubuntu
+FROM certbot/certbot:latest
+FROM ubuntu:20.04
 
 RUN apt-get update && \
     snap install core; snap refresh core && \
