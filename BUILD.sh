@@ -11,6 +11,6 @@ git pull;
 
 sudo docker-compose build --no-cache;
 
-sudo docker-compose up --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d; 
+sudo docker-compose up -d; 
 
 sudo docker ps;

@@ -11,6 +11,8 @@ WORKDIR /etc/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
 
+RUN sudo certbot certonly --webroot --webroot-path /etc/nginx/ssl/live/certs;
+
 COPY ./NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY ./NLP_Project/services/nginx/drop.conf /etc/nginx/drop.conf
 
