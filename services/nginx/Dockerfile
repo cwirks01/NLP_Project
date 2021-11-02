@@ -1,17 +1,22 @@
 FROM nginx:1.19-alpine
+FROM ubuntu
 
 RUN rm /etc/nginx/conf.d/default.conf
+
+RUN apt-get update && \
+    snap install core; sudo snap refresh core && \
+    snap install --classic certbot && \
+    ln -s /snap/bin/certbot /usr/bin/certbot
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
     mkdir -pv /static && \
-    mkdir -pv /etc/nginx/ssl/live/certs
+    mkdir -pv /etc/nginx/ssl/live/certs && \
+    certbot certonly --webroot --webroot-path /etc/nginx/ssl/live/certs/
 
 WORKDIR /etc/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
-
-RUN sudo certbot certonly --webroot --webroot-path /etc/nginx/ssl/live/certs;
 
 COPY ./NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY ./NLP_Project/services/nginx/drop.conf /etc/nginx/drop.conf
