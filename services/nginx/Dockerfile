@@ -5,11 +5,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-RUN apt-get update
-
-RUN apt remove certbot && \
-    apt-get install -y certbot python3-certbot-nginx
-
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
     mkdir -pv /static && \
