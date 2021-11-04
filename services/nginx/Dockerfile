@@ -3,7 +3,9 @@ FROM nginx:1.19-alpine
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf 
+
+COPY ./nginx.conf /etc/nginx/conf.d/
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
