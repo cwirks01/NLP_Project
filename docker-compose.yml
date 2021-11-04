@@ -43,7 +43,7 @@ services:
     volumes:
       - /usr/nginx/html
       - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /etc/letsencrypt/archive/app.testing-dev.dev:/etc/nginx/ssl/live/certs
   
