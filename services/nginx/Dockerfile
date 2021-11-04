@@ -9,8 +9,7 @@ COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
-    mkdir -pv /static && \
-    mkdir -pv /etc/nginx/ssl/live/certs/
+    mkdir -pv /static 
 
 WORKDIR /etc/nginx/html
 # Remove default nginx static assets
