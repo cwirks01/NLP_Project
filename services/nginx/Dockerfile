@@ -16,7 +16,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
 
 WORKDIR /etc/nginx/html
 # Remove default nginx static assets
-# RUN rm -rf ./*
+
 
 RUN ln -s /etc/nginx/sites-available/regex.testing-dev.dev.conf /etc/nginx/sites-enabled/ && \
     ln -s /etc/nginx/sites-available/nlp.testing-dev.dev.conf /etc/nginx/sites-enabled/
