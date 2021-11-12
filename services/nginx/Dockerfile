@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM nginx:1.19-alpine
+FROM ubuntu
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -7,15 +7,16 @@ RUN apt-get update
 RUN apt-get install nginx -y
 RUN rm /etc/nginx/conf.d/default.conf 
 
-COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/default.conf
-COPY index.html /var/www/html/
-
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
     mkdir -pv /static && \
+    mkdir -pv /etc/nginx/conf.d && \
     mkdir -pv /etc/nginx/ssl/live/certs && \
     chown -R root:root /etc/nginx/ssl/live/certs && \
     chmod -R 600 /etc/nginx/ssl/live/certs
+
+COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html /var/www/html/
 
 WORKDIR /etc/nginx/html
 # Remove default nginx static assets
