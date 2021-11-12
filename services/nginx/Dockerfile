@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN rm /etc/nginx/conf.d/default.conf 
 
-COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
