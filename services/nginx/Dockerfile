@@ -3,9 +3,12 @@ FROM nginx:1.19-alpine
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update
+RUN apt-get install nginx -y
 RUN rm /etc/nginx/conf.d/default.conf 
 
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html /var/www/html/
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
@@ -16,7 +19,10 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
 
 WORKDIR /etc/nginx/html
 # Remove default nginx static assets
-
+EXPOSE 80
+EXPOSE 443
 
 RUN ln -s /etc/nginx/sites-available/regex.testing-dev.dev.conf /etc/nginx/sites-enabled/ && \
     ln -s /etc/nginx/sites-available/nlp.testing-dev.dev.conf /etc/nginx/sites-enabled/
+
+CMD ["nginx", "-g", "daemon off;"]
