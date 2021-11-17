@@ -17,7 +17,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
 
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
-COPY index.html /var/www/html/
+COPY /NLP_Project/services/nginx/index.html /var/www/html/
 
 # Remove default nginx static assets
 EXPOSE 80
