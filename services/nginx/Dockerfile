@@ -18,7 +18,6 @@ COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
 COPY index.html /var/www/html/
 
-WORKDIR /etc/nginx/html
 # Remove default nginx static assets
 EXPOSE 80
 EXPOSE 443

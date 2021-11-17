@@ -16,13 +16,13 @@ services:
     networks:
       - nlp_project
     volumes:
-      - /usr/nginx/html
+      - /static/nlp_project:/usr/nginx/nlp_project/html
     environment:
       - NODE_ENV=prod
       - MONGO_DB_USERNAME=$${env:MONGO_DB_USERNAME}
       - MONGO_DB_PASSWORD=$${env:MONGO_DB_PASSWORD}
-    ports:
-      - 5000:80
+    expose:
+      - 5000
 
   #Specify the network these containers will run on
   nginx:
@@ -41,11 +41,11 @@ services:
     networks:
       - nlp_project
     volumes:
-      - /usr/nginx/html
+      - /static/nlp_project:/usr/nginx/nlp_project/html
+      - /static/regex:/usr/nginx/regex/html
+      - /static/swell:/usr/nginx/swell/html
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /etc/letsencrypt/archive/app.testing-dev.dev:/etc/nginx/ssl/live/certs
   
   certbot:
     image: certbot/certbot:latest
@@ -64,13 +64,13 @@ services:
       dockerfile: ../regex/services/web/Dockerfile
     command: gunicorn -b 0.0.0.0:8080 wsgi:app --timeout 120
     volumes:
-      - /usr/nginx/html
+      - /static/regex:/usr/nginx/regex/html
     environment:
       - NODE_ENV=prod    
     networks:
       - nlp_project
-    ports:
-      - 8080:80
+    expose:
+      - 8080
   
   swell:
     restart: always
@@ -80,17 +80,17 @@ services:
       dockerfile: ../swell-watchers-app/services/swell-watchers-app/Dockerfile
     command: gunicorn -b 0.0.0.0:5001 wsgi:app --timeout 120
     volumes:
-      - /usr/nginx/html
+      - /static/swell:/usr/nginx/swell/html
     environment:
       - NODE_ENV=prod
       - API_TOKEN=pk.eyJ1IjoiY3dpcmtzMDEiLCJhIjoiY2t1MngzbTRoNDVqaTJ2cGlicWc2a3g2aCJ9.un0FXVnmyP2au1a0X7nGyA
       - MAPBOX_STYLE=mapbox://styles/cwirks01/ckun70qvf0bdv18kq1hai6k3q
     networks:
       - nlp_project
-    ports:
-      - 5001:80
+    expose:
+      - 5001
 
 networks:
   nlp_project:
-    external:
-      name: nlp_project_default
+    external: true
+    name: nlp_project

@@ -2,7 +2,7 @@
 
 sudo docker-compose down;
 
-sudo docker system prune -f
+sudo docker system prune -f -a
 sudo docker volume prune -f
 
 sudo docker network create nlp_project_default;
