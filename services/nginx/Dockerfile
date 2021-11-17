@@ -15,6 +15,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
     chmod -R 600 /etc/nginx/ssl/live/certs
 
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
 COPY index.html /var/www/html/
 
 WORKDIR /etc/nginx/html
@@ -22,7 +23,8 @@ WORKDIR /etc/nginx/html
 EXPOSE 80
 EXPOSE 443
 
-# RUN ln -s /etc/nginx/sites-available/regex.testing-dev.dev.conf /etc/nginx/sites-enabled/ && \
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/ 
+# && \
 #     ln -s /etc/nginx/sites-available/nlp.testing-dev.dev.conf /etc/nginx/sites-enabled/
 
 CMD ["nginx", "-g", "daemon off;"]
