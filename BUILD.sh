@@ -1,16 +1,16 @@
 #!/bin/bash
 
-sudo docker-compose down;
+docker-compose down;
 
-sudo docker system prune -f -a
-sudo docker volume prune -f
+docker system prune -f -a
+docker volume prune -f
 
-sudo docker network create nlp_project_default;
+docker network create nlp_project_default;
 
 sudo git pull;
 
-sudo docker-compose build --no-cache;
+docker-compose build --no-cache;
 
-sudo docker-compose up -d; 
+docker-compose up -d; 
 
-sudo docker ps;
+docker ps;
