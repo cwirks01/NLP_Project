@@ -23,7 +23,5 @@ EXPOSE 80
 EXPOSE 443
 
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/ 
-# && \
-#     ln -s /etc/nginx/sites-available/nlp.testing-dev.dev.conf /etc/nginx/sites-enabled/
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx"]
