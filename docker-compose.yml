@@ -44,15 +44,15 @@ services:
       - /static/nlp_project:/usr/nginx/nlp_project/html
       - /static/regex:/usr/nginx/regex/html
       - /static/swell:/usr/nginx/swell/html
-      - /certbot/www:/var/www/certbot/:ro
-      - /certbot/conf/:/etc/nginx/ssl/
+      - /certbot/www:/var/www/certbot:ro
+      - /certbot/conf:/etc/nginx/ssl
   
   certbot:
     image: certbot/certbot:latest
     command: certonly --webroot --webroot-path=/var/www/certbot --email cwirks01@gmail.com --agree-tos --no-eff-email -d testing-dev.dev -d www.testing-dev.dev
     volumes:
-      - /certbot/www/:/var/www/certbot/:rw
-      - /certbot/conf/:/etc/letsencrypt/:rw
+      - /certbot/www:/var/www/certbot:rw
+      - /certbot/conf:/etc/letsencrypt:rw
     networks:
       - nlp_project
 
