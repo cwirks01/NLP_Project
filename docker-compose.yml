@@ -57,7 +57,7 @@ services:
       - nlp_project
 
   regex:
-    restart: always
+    restart: alwaysdocker 
     container_name: regex
     build: 
       context: ../regex/
@@ -92,4 +92,4 @@ services:
 
 networks:
   nlp_project:
-    name: nlp_project_default
+    external: true
