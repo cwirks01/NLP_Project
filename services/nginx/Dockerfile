@@ -18,9 +18,9 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
 # RUN rm /etc/nginx/conf.d/*
 RUN rm /etc/nginx/sites-available/*
 
-COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+# COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 # COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
-# COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-enabled/default
+COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-enabled/default
 COPY /NLP_Project/services/nginx/index.html /var/www/html/
 
 # Remove default nginx static assets
