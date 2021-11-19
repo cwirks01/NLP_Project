@@ -6,8 +6,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install nginx -y
 
-
-
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
     mkdir -pv /static && \
@@ -17,6 +15,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
     chown -R root:root /etc/nginx/ssl/live/certs && \
     chmod -R 600 /etc/nginx/ssl/live/certs
 
+RUN rm /etc/nginx/conf.d/default.conf
 RUN rm /etc/nginx/sites-available/*
 
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
