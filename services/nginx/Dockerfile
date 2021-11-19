@@ -32,4 +32,4 @@ RUN rm /etc/nginx/sites-enabled/*
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 
-CMD ["nginx", "-T"]
+CMD ["nginx"]
