@@ -21,6 +21,7 @@ RUN rm /etc/nginx/sites-available/*
 
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
+COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 COPY /NLP_Project/services/nginx/index.html /var/www/html/
 
 # Remove default nginx static assets
@@ -28,8 +29,8 @@ EXPOSE 80
 EXPOSE 443
 
 
-RUN rm /etc/nginx/sites-enabled/*
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+# RUN rm /etc/nginx/sites-enabled/*
+# RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 
 CMD ["nginx"]
