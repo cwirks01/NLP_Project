@@ -92,5 +92,4 @@ services:
 
 networks:
   nlp_project:
-    external: true
     name: nlp_project_default
