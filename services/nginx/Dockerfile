@@ -25,6 +25,7 @@ COPY /NLP_Project/services/nginx/index.html /var/www/html/
 EXPOSE 80
 EXPOSE 443
 
+RUN ls /etc/nginx/sites-available/
 RUN rm /etc/nginx/sites-enabled/*
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/ 
 
