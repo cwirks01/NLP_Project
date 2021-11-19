@@ -33,4 +33,4 @@ EXPOSE 443
 # RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 
-CMD ["nginx", "-g", "daemon", "off"]
+CMD ["nginx", "-g", "daemon off;"]
