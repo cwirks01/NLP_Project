@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install nginx -y
 
-RUN rm /etc/nginx/sites-enabled/*.conf
+
 
 RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /etc/nginx/sites-available && \
@@ -24,7 +24,7 @@ COPY /NLP_Project/services/nginx/index.html /var/www/html/
 # Remove default nginx static assets
 EXPOSE 80
 EXPOSE 443
-
+RUN ls /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/ 
 
 CMD ["nginx"]
