@@ -57,7 +57,7 @@ services:
       - nlp_project
 
   regex:
-    restart: alwaysdocker 
+    restart: always
     container_name: regex
     build: 
       context: ../regex/
