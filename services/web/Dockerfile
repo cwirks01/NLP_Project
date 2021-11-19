@@ -20,7 +20,7 @@ LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
 LABEL desc "Incredibly fast language processor designed for initial analysis."
 
-WORKDIR /usr/nginx/html
+WORKDIR /var/www/html/nlp_project
 
 ENV FLASK_APP=wsgi.py
 ENV FLASK_RUN_HOST=0.0.0.0
