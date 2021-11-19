@@ -1,7 +1,7 @@
 # Docker controlled volumes
-static/nlp_project/*
-static/regex/*
-static/swell/*
+app_static/nlp_project/*
+app_static/regex/*
+app_static/swell/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
