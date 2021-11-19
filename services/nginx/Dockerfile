@@ -15,7 +15,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
     chown -R root:root /etc/nginx/ssl/live/certs && \
     chmod -R 600 /etc/nginx/ssl/live/certs
 
-RUN rm /etc/nginx/conf.d/*
+# RUN rm /etc/nginx/conf.d/*
 RUN rm /etc/nginx/sites-available/*
 
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
