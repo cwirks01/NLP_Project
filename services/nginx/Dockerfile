@@ -26,5 +26,6 @@ EXPOSE 80
 EXPOSE 443
 RUN ls /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/ 
+RUN ls /etc/nginx/sites-enabled/
 
 CMD ["nginx"]
