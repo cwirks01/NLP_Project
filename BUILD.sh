@@ -5,7 +5,7 @@ docker-compose down;
 docker system prune -f -a
 docker volume prune -f
 
-docker network create nlp_project_default;
+docker network create nlp_project;
 
 sudo git pull;
 

@@ -16,7 +16,7 @@ services:
     networks:
       - nlp_project
     volumes:
-      - /static/nlp_project:/var/www/html/nlp_project
+      - /static/nlp_project:/usr/nginx/nlp_project/html
     environment:
       - NODE_ENV=prod
       - MONGO_DB_USERNAME=$${env:MONGO_DB_USERNAME}
@@ -41,7 +41,7 @@ services:
     networks:
       - nlp_project
     volumes:
-      - /static/nlp_project:/var/www/html/nlp_project
+      - /static/nlp_project:/usr/nginx/nlp_project/html
       - /static/regex:/usr/nginx/regex/html
       - /static/swell:/usr/nginx/swell/html
       - /certbot/www:/var/www/certbot:ro
