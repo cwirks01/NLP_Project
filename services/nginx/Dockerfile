@@ -17,6 +17,8 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
     chown -R root:root /etc/nginx/ssl/live/certs && \
     chmod -R 600 /etc/nginx/ssl/live/certs
 
+RUN rm /etc/nginx/sites-available/*
+
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
 COPY /NLP_Project/services/nginx/index.html /var/www/html/
@@ -25,7 +27,7 @@ COPY /NLP_Project/services/nginx/index.html /var/www/html/
 EXPOSE 80
 EXPOSE 443
 
-RUN rm /etc/nginx/sites-available/*
+
 RUN rm /etc/nginx/sites-enabled/*
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/ 
 
