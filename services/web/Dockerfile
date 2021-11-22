@@ -73,4 +73,4 @@ RUN pip3 install -U pip setuptools wheel &&\
 
 EXPOSE 5000
 
-RUN realpath ./ && ls ./
+RUN realpath ./ && ls ./ && ls -l .
