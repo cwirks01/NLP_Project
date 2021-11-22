@@ -2,9 +2,11 @@
 FROM python:3.8-alpine
 FROM ubuntu
 
-WORKDIR /usr/nginx/nlp_project/html
+WORKDIR /usr/nginx/html
 
 RUN mkdir -pv /etc/nginx/sites-enabled/nlp_project
+
+RUN mkdir -pv /usr/nginx/html/nlp_project
 
 COPY /services/nginx/default.conf /etc/nginx/sites-enabled/nlp_project
 COPY /services/nginx/default.conf /etc/nginx/sites-available/nlp_project
