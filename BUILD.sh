@@ -2,8 +2,8 @@
 
 docker-compose down;
 
-docker system prune -f -a
-docker volume prune -f
+docker system prune -f -a;
+docker volume prune -f;
 
 docker network create nlp_project;
 
