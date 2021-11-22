@@ -2,6 +2,8 @@
 FROM python:3.8-alpine
 FROM ubuntu
 
+WORKDIR /usr/nginx/nlp_project/html
+
 RUN mkdir -pv /etc/nginx/sites-enabled/nlp_project
 
 COPY /services/nginx/default.conf /etc/nginx/sites-enabled/nlp_project
@@ -19,8 +21,6 @@ ARG git_password
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
 LABEL desc "Incredibly fast language processor designed for initial analysis."
-
-WORKDIR /usr/nginx/nlp_project/html
 
 ENV FLASK_APP=wsgi.py
 ENV FLASK_RUN_HOST=0.0.0.0
@@ -56,7 +56,7 @@ RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 # variabels in Dockerfile and docker-compose.yml need to be escaped out with $$
 RUN echo "########################### Cloning GITHUB Repo ###########################"
 
-COPY . /usr/nginx/nlp_project/html/
+COPY . .
 
 RUN apt-get install -y python3-pip && \
     apt-get install -y python3-tk && \
