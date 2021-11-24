@@ -16,9 +16,6 @@ ARG TOKEN
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ssh_prv_key
 ARG ssh_pub_key
-ARG passphrase
-ARG git_username
-ARG git_password
 
 LABEL name nlp_project
 LABEL src "https://github.com/cwirks01/NLP_Project"
