@@ -39,7 +39,7 @@ services:
     networks:
       - nlp_project
     volumes:
-      - /static/nlp_project:/usr/nginx/html/nlp_project
+      - /static/nlp_project:/var/www/html/nlp_project
       - /static/regex:/usr/nginx/html/regex
       - /static/swell:/usr/nginx/html/swell
       - /certbot/www:/var/www/certbot:ro
