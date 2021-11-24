@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu
 
+WORKDIR /usr/nginx/html
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
