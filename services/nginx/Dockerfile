@@ -25,7 +25,7 @@ RUN rm /etc/nginx/sites-available/*
 # COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-enabled/default
 COPY /NLP_Project/services/nginx/index.html /var/www/html/
-# COPY /NLP_Project/templates/* /var/www/html/nlp_project/ # To transfer html files to nginx
+COPY /NLP_Project/static/* /usr/nginx/html/static 
 
 # Remove default nginx static assets
 EXPOSE 80
