@@ -27,6 +27,7 @@ RUN rm /etc/nginx/sites-available/*
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-enabled/default
 COPY /NLP_Project/services/nginx/index.html /var/www/html/
 COPY /NLP_Project/static/* /usr/nginx/html/static 
+COPY /NLP_Project/templates/NOT_FOUND.html /var/www/html/NOT_FOUND.html
 
 # Remove default nginx static assets
 EXPOSE 80
