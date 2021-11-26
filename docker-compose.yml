@@ -17,7 +17,7 @@ services:
       - /static/nlp_project:/usr/nginx/html/products
     environment:
       - NODE_ENV=prod
-      - MONGO_DB_USERNAME=admin
+      - MONGO_DB_USERNAME=root
       - MONGO_DB_PASSWORD=password
     expose:
       - 5000
