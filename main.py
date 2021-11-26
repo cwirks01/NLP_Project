@@ -25,7 +25,7 @@ app.config['MONGO_URI'] = "mongodb://%s:%s@mongodb:27017/NLP_db" % (MONGO_DB_USE
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
-# client = MongoClient("mongodb://%s:%s127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
+# client = MongoClient("mongodb://%s:%s@127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 client = MongoClient('mongodb://mongodb:27017')
 # client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
 
