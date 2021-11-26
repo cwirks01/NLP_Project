@@ -3,7 +3,8 @@
     <meta charset="UTF-8">
     <title>NLP SpaCy</title>
 
-    <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" type="text/css" />
+    <link href="../static/main_class_nlp.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
 
@@ -28,7 +29,7 @@
         </div>
     </div>
     <div class="column_main right">
-        <div class="container" style="margin-left:20%">
+        <div class="container" style="margin-left:25%">
             <h2>Select file(s) to upload</h2>
             <p>
                 {% with messages = get_flashed_messages() %}
