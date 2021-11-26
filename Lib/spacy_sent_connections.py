@@ -33,7 +33,7 @@ MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
 
 ROOT = os.getcwd()
-client = MongoClient("mongodb://%s:%s@mongodb:27017" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
+client = MongoClient("mongodb://%s:%s@mongodb:27017?authSource=admin" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 # client = MongoClient('mongodb://mongodb:27017')
 
 
