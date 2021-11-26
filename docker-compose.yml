@@ -10,7 +10,7 @@ services:
       args:
         ssh_prv_key: $$(cat ~/.ssh/id_rsa)
         ssh_pub_key: $$(cat ~/.ssh/id_rsa.pub)
-    command: gunicorn -b 0.0.0.0:5000 wsgi:app --timeout 120
+    command: gunicorn -b 127.0.0.1:5000 wsgi:app --timeout 120
     networks:
       - nlp_project
     volumes:
