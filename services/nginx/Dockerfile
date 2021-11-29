@@ -31,7 +31,7 @@ COPY /NLP_Project/templates/NOT_FOUND.html /var/www/html/NOT_FOUND.html
 
 # Remove default nginx static assets
 EXPOSE 80
-EXPOSE 443
+# EXPOSE 443
 
 
 # RUN rm /etc/nginx/sites-enabled/*
