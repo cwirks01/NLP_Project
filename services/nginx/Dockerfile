@@ -17,7 +17,7 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
     mkdir -pv /var/www/html/ && \
     mkdir -pv /usr/nginx/html/static && \
     chown -R root:root /etc/nginx/ssl/live/certs && \
-    chmod -R 600 /etc/nginx/ssl/live/certs
+    chmod -R 755 /etc/nginx/ssl/live/certs
 
 # RUN rm /etc/nginx/conf.d/*
 RUN rm /etc/nginx/sites-available/*
