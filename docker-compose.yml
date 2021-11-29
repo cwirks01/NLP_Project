@@ -44,7 +44,6 @@ services:
       - /static/swell:/usr/nginx/html/swell
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/conf:/etc/nginx/ssl/live/certs
   
   certbot:
     image: certbot/certbot:latest
