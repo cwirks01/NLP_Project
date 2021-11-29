@@ -48,7 +48,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --certonly --webroot-path=/var/www/certbot --email cwirks01@gmail.com --agree-tos --no-eff-email -d testing-dev.dev -d app.testing-dev.dev -d www.testing-dev.dev
+    command: certonly --webroot --webroot-path=/var/www/certbot --staging --email cwirks01@gmail.com --agree-tos --no-eff-email -d testing-dev.dev
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
