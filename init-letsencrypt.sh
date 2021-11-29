@@ -7,7 +7,7 @@ fi
 
 domains=(testing-dev.dev www.testing-dev.dev app.testing-dev.dev)
 rsa_key_size=4096
-data_path="./certbot"
+data_path="certbot"
 email="" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
