@@ -20,7 +20,7 @@ docker network create nlp_project_default
 
  - Ensure GITHUB_TOKEN is saved in your Environmental Variables
 ```docker
-sudo docker-compose build --build-arg NTC_TOKEN="$(echo $env:NTC_TOKEN)"; sudo docker-compose up -b
+sudo docker-compose build --build-arg GIT_TOKEN="$(echo $env:GIT_TOKEN)"; sudo docker-compose up -b
 ```
 
  - Confirm docker is running properly
