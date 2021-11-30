@@ -1,9 +1,14 @@
 # NLP Project
 
-#### To run application in Docker with NGINX:
+### Web App to process unstructured text
+- Reads in multiple documents 
+- Creates a connection between entities in a web
+- Lists out entities categorically
+- Displays appended text with entities highlighted
 
+### Run application in Docker with NGINX:
 
-- Run NGINX in a docker container
+- To run NGINX in a docker container
     - [NGINX installation guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/)
 
  - Prior to building docker ensure you took the previous container down and create a network
