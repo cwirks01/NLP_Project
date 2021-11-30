@@ -22,8 +22,6 @@ RUN mkdir -pv /etc/nginx/sites-enabled && \
 # RUN rm /etc/nginx/conf.d/*
 RUN rm /etc/nginx/sites-available/*
 
-# COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
-# COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-available/nginx.conf
 COPY /NLP_Project/services/nginx/nginx.conf /etc/nginx/sites-enabled/default
 COPY /NLP_Project/services/nginx/index.html /var/www/html/
 COPY /NLP_Project/static/* /usr/nginx/html/static 
@@ -33,9 +31,7 @@ COPY /NLP_Project/templates/NOT_FOUND.html /var/www/html/NOT_FOUND.html
 EXPOSE 80
 EXPOSE 443
 
-
 # RUN rm /etc/nginx/sites-enabled/*
 # RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
-
 
 CMD ["nginx", "-g", "daemon off;"]
