@@ -38,8 +38,8 @@ services:
       - swell 
     networks:
       - nlp_project
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
-      # - /static/nlp_project:/usr/nginx/html/nlp_project
       - /static/regex:/usr/nginx/html/regex
       - /static/swell:/usr/nginx/html/swell
       - ./certbot/www:/var/www/certbot
@@ -48,12 +48,12 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    # command: certonly --webroot --webroot-path=/var/www/certbot --staging --email cwirks01@gmail.com --agree-tos --no-eff-email -d testing-dev.dev
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     networks:
       - nlp_project
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   regex:
     restart: always
