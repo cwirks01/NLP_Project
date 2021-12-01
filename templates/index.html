@@ -22,52 +22,49 @@
     </script>
 </head>
 
-<div class="column_main left">
-    <div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
-        <h3 class="w3-bar-item">Development Site</h3>
-        <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
-        <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
-    </div>
+
+<div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
+    <h3 class="w3-bar-item">Development Site</h3>
+    <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
+    <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
 </div>
-<div class="column_main right">
-    <div class="container" style="margin-left:20%">
-        <h2>Select file(s) to upload</h2>
-        <p>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <ul class=flashes>
-                    {% for message in messages %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endwith %}
-        </p>
-        <div class="container">
-            <div>
-                    <div>
-                        <form method="POST" action="/nlp_project" enctype='multipart/form-data'>
-                            <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv" multiple="true"/>
-                                <label>Load files for processing.</label>
-                                    <br>
-                                <input type="file" name="inputFileNames" accept=".json" id="logo"/>
-                            <label>Load a library, if applicable.</label>
+<div class="container" style="margin-left:20%">
+    <h2>Select file(s) to upload</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+    <div class="container">
+        <div>
+                <div>
+                    <form method="POST" action="/nlp_project" enctype='multipart/form-data'>
+                        <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv" multiple="true"/>
+                            <label>Load files for processing.</label>
                                 <br>
-                            <label><input type="checkbox" id="renderViz" name="renderViz" checked>Text Rendered Visualization
-                                in Browser</label>
-                                <br>
-                            <label><input type="checkbox" id="ploty_viz" name="ploty_viz" checked>Network Analysis in Browser</label>
-                                <br>
-                            <label><input type="checkbox" id="createNewRepo" name="createNewRepo">Keep library for multiple runs.</label>
+                            <input type="file" name="inputFileNames" accept=".json" id="logo"/>
+                        <label>Load a library, if applicable.</label>
+                            <br>
+                        <label><input type="checkbox" id="renderViz" name="renderViz" checked>Text Rendered Visualization
+                            in Browser</label>
+                            <br>
+                        <label><input type="checkbox" id="ploty_viz" name="ploty_viz" checked>Network Analysis in Browser</label>
+                            <br>
+                        <label><input type="checkbox" id="createNewRepo" name="createNewRepo">Keep library for multiple runs.</label>
 
-                    </div>
-                    <div class="col2">
-                        <textarea name="FreeInputText" placeholder="Free input text" cols="60" rows="20" minlength="10" autocomplete spellcheck></textarea>
+                </div>
+                <div class="col2">
+                    <textarea name="FreeInputText" placeholder="Free input text" cols="60" rows="20" minlength="10" autocomplete spellcheck></textarea>
 
-                    </div>
-                <input type="submit" value="Submit" onclick="submitForms()"/>
-                </form>
-            </div>
+                </div>
+            <input type="submit" value="Submit" onclick="submitForms()"/>
+            </form>
         </div>
     </div>
 </div>
