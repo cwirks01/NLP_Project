@@ -41,27 +41,14 @@ def allowed_file(filename):
 def main():
     global main_app
     try:
-        cookie_name = request.cookies.get('cdub_app_username')
-        new_cookie_name = "_".join(cookie_name.split("_")[:-1])
-        cookie_username = user_db.users_db.user.find_one({"email":new_cookie_name})
+        cookie_name = request.cookies.get('_cdub_app_username')
+        cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
 
-        if cookie_name is None or cookie_username is None:
-
-            if cookie_name is None and cookie_username is not None:
-                cookie_name = (cookie_username["email"].split("_")[0]+"_"+str(random.randint(0,1000000000000)))
-                main_app = spacy_sent_connections(username=cookie_name)
-                cookie_name = main_app.username
-                resp = make_response(render_template('index.html'))
-                resp.set_cookie('cdub_app_username', cookie_username)
-                return resp
-
-            else:
-                return redirect("/auth_app", code=302)
+        if cookie_name is None:
+            return redirect("/auth_app", code=302)
                 
-            
-
         else:
-            main_app = spacy_sent_connections(username=cookie_name)
+            main_app = spacy_sent_connections(username=cookie_username)
             return render_template('index.html')
 
     except Exception as e:
@@ -74,8 +61,9 @@ def main():
 def upload_file():
     global main_app
     if request.method == 'POST':
-        cookie_name = request.cookies.get('cdub_app_username')
-        main_app = spacy_sent_connections(username=cookie_name)
+        cookie_name = request.cookies.get('_cdub_app_username')
+        cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+        main_app = spacy_sent_connections(username=cookie_username)
         # check if the post request has the file part
         app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
@@ -121,8 +109,9 @@ def upload_file():
 @app.route("/nlp_project/processing/", methods=['GET', 'POST'])
 def process_files():
     global main_app_user
-    cookie_name = request.cookies.get('cdub_app_username')
-    main_app_user = spacy_sent_connections(username=cookie_name)
+    cookie_name = request.cookies.get('_cdub_app_username')
+    cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+    main_app_user = spacy_sent_connections(username=cookie_username)
     main_app_user.inBrowser = app.config['RENDER_VIZ']
     main_app_user.previousRun_repo = app.config['createNewRepo']
     main_app_user.run()
@@ -132,8 +121,9 @@ def process_files():
 @app.route("/nlp_project/application_ran", methods=['GET', 'POST'])
 def complete_app():
     global main_app_user
-    cookie_name = request.cookies.get('cdub_app_username')
-    main_app_user = spacy_sent_connections(username=cookie_name)
+    cookie_name = request.cookies.get('_cdub_app_username')
+    cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+    main_app_user = spacy_sent_connections(username=cookie_username)
     html_in_browser = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data.html']
     userItems = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data_ents_list.json']
 
@@ -157,8 +147,9 @@ def complete_app():
 
 @app.route('/nlp_project/out/filename/<filename>/file/<file>')
 def downloaded_file_db(filename, file):
-    cookie_name = request.cookies.get('cdub_app_username')
-    main_app_user_db = spacy_sent_connections(username=cookie_name)
+    cookie_name = request.cookies.get('_cdub_app_username')
+    cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+    main_app_user_db = spacy_sent_connections(username=cookie_username)
 
     file_out = main_app_user_db.download_file(filename=filename, file_in=file)
 
