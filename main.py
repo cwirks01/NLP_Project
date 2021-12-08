@@ -42,13 +42,13 @@ def main():
     global main_app
     try:
         cookie_name = request.cookies.get('_cdub_app_username')
-        cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+        cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
 
         if cookie_name is None:
             return redirect("/auth_app", code=302)
                 
         else:
-            main_app = spacy_sent_connections(username=cookie_username)
+            main_app = spacy_sent_connections(username=cookie_username['_cookies'])
             return render_template('index.html')
 
     except Exception as e:
