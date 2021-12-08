@@ -49,7 +49,7 @@ def main():
 
             if cookie_name is None and cookie_username is not None:
                 cookie_name = (cookie_username.split("_")[0]+"_"+str(random.randint(0,1000000000000)))
-                main_app = spacy_sent_connections()
+                main_app = spacy_sent_connections(username=cookie_name)
                 cookie_name = main_app.username
                 resp = make_response(render_template('index.html'))
                 resp.set_cookie('cdub_app_username', cookie_username)
@@ -67,7 +67,7 @@ def main():
     except Exception as e:
         print("%s \n moving on" % e)
         pass
-        return render_template('index.html')
+        return redirect("/auth_app", code=302)
 
 
 @app.route('/nlp_project', methods=['GET', 'POST'])
