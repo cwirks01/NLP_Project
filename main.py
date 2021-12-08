@@ -43,12 +43,12 @@ def main():
     try:
         cookie_name = request.cookies.get('cdub_app_username')
         new_cookie_name = "_".join(cookie_name.split("_")[:-1])
-        cookie_username = user_db.users_db.user.find_one({"email":new_cookie_name})["email"]
+        cookie_username = user_db.users_db.user.find_one({"email":new_cookie_name})
 
         if cookie_name is None or cookie_username is None:
 
             if cookie_name is None and cookie_username is not None:
-                cookie_name = (cookie_username.split("_")[0]+"_"+str(random.randint(0,1000000000000)))
+                cookie_name = (cookie_username["email"].split("_")[0]+"_"+str(random.randint(0,1000000000000)))
                 main_app = spacy_sent_connections(username=cookie_name)
                 cookie_name = main_app.username
                 resp = make_response(render_template('index.html'))
