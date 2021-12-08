@@ -40,7 +40,7 @@ services:
       - nlp_project
     command: "/bin/sh -c 'while :; do sleep 12h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
-      - /static/flask_auth_app:/usr/nginx/html/flask_auth_app    
+      - nginx-auth:/usr/nginx/html/flask_auth_app   
       - /static/regex:/usr/nginx/html/regex
       - /static/swell:/usr/nginx/html/swell
       - ./certbot/www:/var/www/certbot
@@ -92,4 +92,8 @@ services:
 
 networks:
   nlp_project:
+    external: true
+  
+volumes:
+  nginx-auth:
     external: true
