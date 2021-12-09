@@ -35,10 +35,11 @@ services:
     depends_on:
       - web
       - regex
-      - swell 
+      - swell
+      - certbot
     networks:
       - nlp_project
-    command: "/bin/sh -c 'while :; do sleep 12h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
       - nginx-auth:/usr/nginx/html/flask_auth_app   
       - /static/regex:/usr/nginx/html/regex
