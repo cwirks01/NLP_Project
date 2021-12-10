@@ -1,17 +1,12 @@
 import json
 import os
-import codecs
-import random
-
-import pandas as pd
 
 from Lib.spacy_sent_connections import spacy_sent_connections
 
 from pymongo import MongoClient, ReturnDocument
-from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
 from werkzeug.wrappers import Response
-from flask import Flask, render_template, request, flash, redirect, send_from_directory, make_response, Markup, url_for
+from flask import Flask, render_template, request, flash, redirect, Markup
 from flask_pymongo import PyMongo
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
@@ -21,14 +16,11 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.config['MONGO_URI'] = "mongodb://%s:%s@mongodb:27017/NLP_db?authSource=admin" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD)
-# app.config['MONGO_URI'] = 'mongodb://mongodb:27017/NLP_db'
 # app.config['MONGO_URI'] = 'mongodb://3.89.36.89:27019/NLP_db' # for debugging
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
-# client = MongoClient("mongodb://%s:%s@127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 user_db = MongoClient('mongodb://%s:%s@mongodb:27017/users_db?authSource=admin' % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
-# client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 

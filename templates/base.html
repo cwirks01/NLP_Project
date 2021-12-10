@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Complete</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <!-- <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" /> -->
+    <link href="../static/main_class_nlp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="column_main left">
+    <div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
+        <h3 class="w3-bar-item">Development Site</h3>
+        <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
+        <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
+    </div>
+</div>
+<div class="column_main right">
+    {% block content %}
+    {% endblock %}
+</div>
+</html>

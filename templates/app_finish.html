@@ -1,86 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Process Complete</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <!-- <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" /> -->
-    <link href="../static/main_class_nlp.css" rel="stylesheet" type="text/css" />
-</head>
+{% extends "base.html" %}
 
-<div class="column_main left">
-    <div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
-        <h3 class="w3-bar-item">Development Site</h3>
-        <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
-        <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
+{% block content %}
+<h1>This is extended from base</h1>
+<div style="margin-left:25%">
+    <h1>Your files are complete!</h1>
+    <div class="col1">
+        <a href="{{url_for('downloaded_file_db', filename='data.csv', file=user['data.json'])}}"
+        class="myLink">Download CSV</a>
+            <!-- <br> -->
+        <a href="{{url_for('downloaded_file_db', filename='data.json', file=user['data.json'])}}"
+        class="myLink">Download JSON</a>
+            <!-- <br> -->
+        <a href="{{url_for('downloaded_file_db', filename='data.anx', file=user['data.json'])}}"
+        class="myLink">Download ANB</a>
+            <br>
     </div>
-</div>
-<div class="column_main right">
-    <div style="margin-left:25%">
-        <h1>Your files are complete!</h1>
-        <div class="col1">
-            <a href="{{url_for('downloaded_file_db', filename='data.csv', file=user['data.json'])}}"
-            class="myLink">Download CSV</a>
-                <!-- <br> -->
-            <a href="{{url_for('downloaded_file_db', filename='data.json', file=user['data.json'])}}"
-            class="myLink">Download JSON</a>
-                <!-- <br> -->
-            <a href="{{url_for('downloaded_file_db', filename='data.anx', file=user['data.json'])}}"
-            class="myLink">Download ANB</a>
-                <br>
-    <!--        <a href="{{url_for('downloaded_file_db', filename='data.html', file=user['data.html'])}}"-->
-    <!--           class="myLink">Download HTML</a>-->
-    <!--            <br>-->
-        </div>
-        <div class="two-col">
+    <div class="two-col">
 
 
-            <div style="col2">
-                {% if plotly_chart %}
-                <div class="box-boarder2">
-                    <h5 style="text-align: center;">Network Analysis Chart</h5>
-                    <div style="text-align: center; width: 95%;">
-    <!--                    <iframe id="igraph" scrolling="no" style="border:none;"-->
-    <!--                            src=""-->
-    <!--                            height="525"-->
-    <!--                            width="95%"></iframe>-->
-                        {{plot_data}}
-                    </div>
-
-                </div>
-                {% endif %}
-            </div>
-        </div>
-        <br>
-        <div style="align-self: baseline;">
-        {% if json_ents_list %}
-        {% for item in json_ents_list %}
-        <div class="box-boarder">
-            <h5 style="text-align: center;">{{item[0]}}</h5>
-            <div class="container" style="text-align: left;">
-            <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
-                {{ "\r"+"\n".join(item[1]) }}
-            </textarea>
-            </div>
-
-        </div>
-        {% endfor %}
-        {% endif %}
-        </div>
-        <br>
-        <div style="align-self: baseline;">
-            {% if html_in_browser %}
-            <div class="box-boarder">
-                <h5 style="text-align: center;">SpaCy Rendered</h5>
-                <div class="container" style="text-align: left;">
-                    <xml>
-                    {{ html_in_browser }}
-                    </xml>
+        <div style="col2">
+            {% if plotly_chart %}
+            <div class="box-boarder2">
+                <h5 style="text-align: center;">Network Analysis Chart</h5>
+                <div style="text-align: center; width: 95%;">
+                    {{plot_data}}
                 </div>
 
             </div>
             {% endif %}
         </div>
     </div>
+    <br>
+    <div style="align-self: baseline;">
+    {% if json_ents_list %}
+    {% for item in json_ents_list %}
+    <div class="box-boarder">
+        <h5 style="text-align: center;">{{item[0]}}</h5>
+        <div class="container" style="text-align: left;">
+        <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
+            {{ "\r"+"\n".join(item[1]) }}
+        </textarea>
+        </div>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+    <br>
+    <div style="align-self: baseline;">
+        {% if html_in_browser %}
+        <div class="box-boarder">
+            <h5 style="text-align: center;">SpaCy Rendered</h5>
+            <div class="container" style="text-align: left;">
+                <xml>
+                {{ html_in_browser }}
+                </xml>
+            </div>
+
+        </div>
+        {% endif %}
+    </div>
 </div>
-</html>
+{% endblock %}
