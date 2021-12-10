@@ -54,7 +54,7 @@ def upload_file():
     global main_app
     if request.method == 'POST':
         cookie_name = request.cookies.get('_cdub_app_username')
-        cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+        cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
         main_app = spacy_sent_connections(username=cookie_username['email'])
         # check if the post request has the file part
         app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
@@ -102,7 +102,7 @@ def upload_file():
 def process_files():
     global main_app_user
     cookie_name = request.cookies.get('_cdub_app_username')
-    cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+    cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
     main_app_user = spacy_sent_connections(username=cookie_username['email'])
     main_app_user.inBrowser = app.config['RENDER_VIZ']
     main_app_user.previousRun_repo = app.config['createNewRepo']
@@ -114,7 +114,7 @@ def process_files():
 def complete_app():
     global main_app_user
     cookie_name = request.cookies.get('_cdub_app_username')
-    cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+    cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
     main_app_user = spacy_sent_connections(username=cookie_username['email'])
     html_in_browser = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data.html']
     userItems = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data_ents_list.json']
@@ -140,7 +140,7 @@ def complete_app():
 @app.route('/nlp_project/out/filename/<filename>/file/<file>')
 def downloaded_file_db(filename, file):
     cookie_name = request.cookies.get('_cdub_app_username')
-    cookie_username = user_db.users_db.user.find_one({"_cookie":cookie_name})
+    cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
     main_app_user_db = spacy_sent_connections(username=cookie_username['email'])
 
     file_out = main_app_user_db.download_file(filename=filename, file_in=file)
