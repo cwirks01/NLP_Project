@@ -48,7 +48,7 @@ def main():
             return redirect("/auth_app", code=302)
                 
         else:
-            main_app = spacy_sent_connections(username=cookie_username['_cookies'])
+            main_app = spacy_sent_connections(username=cookie_username['email'])
             return render_template('index.html')
 
     except Exception as e:
