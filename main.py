@@ -36,7 +36,7 @@ def main():
         cookie_name = request.cookies.get('_cdub_app_username')
         cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
 
-        if cookie_name is None:
+        if cookie_username is None:
             return redirect("/auth_app", code=302)
                 
         else:
@@ -108,7 +108,8 @@ def process_files():
     main_app_user.previousRun_repo = app.config['createNewRepo']
     main_app_user.run()
     return redirect("/nlp_project/application_ran")
-
+import datetime
+datetime.datetime.utcfromtimestamp(1638589050.518225)
 
 @app.route("/nlp_project/application_ran", methods=['GET', 'POST'])
 def complete_app():
