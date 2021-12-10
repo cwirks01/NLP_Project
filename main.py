@@ -11,16 +11,38 @@ from flask_pymongo import PyMongo
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
+MONGO_HOST = "mongodb"
+MONGO_PORT = "27017"
 
+# # DEBUGING
+# MONGO_DB_USERNAME = ""
+# MONGO_DB_PASSWORD = ""
+# MONGO_HOST = "23.23.40.32"
+# MONGO_PORT = "27019"
+
+MONGO_NLP_DB = "NLP_db"
+MONGO_USER_DB = "users_db"
+MONGODB_NLP_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'% (MONGO_DB_USERNAME,
+                                                                MONGO_DB_PASSWORD,
+                                                                MONGO_HOST,
+                                                                MONGO_PORT,
+                                                                MONGO_NLP_DB)
+                                                                                    
+MONGODB_USER_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'%(MONGO_DB_USERNAME,
+                                                                MONGO_DB_PASSWORD,
+                                                                MONGO_HOST,
+                                                                MONGO_PORT,
+                                                                MONGO_USER_DB)
 app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-app.config['MONGO_URI'] = "mongodb://%s:%s@mongodb:27017/NLP_db?authSource=admin" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD)
-# app.config['MONGO_URI'] = 'mongodb://3.89.36.89:27019/NLP_db' # for debugging
+
+app.config['MONGO_URI'] = MONGODB_NLP_URI
+user_db = MongoClient(MONGODB_USER_URI)
+NLP_db = MongoClient(MONGODB_NLP_URI)
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
-user_db = MongoClient('mongodb://%s:%s@mongodb:27017/users_db?authSource=admin' % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
@@ -40,7 +62,7 @@ def main():
             return redirect("/auth_app", code=302)
                 
         else:
-            main_app = spacy_sent_connections(username=cookie_username['email'])
+            main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
             return render_template('index.html')
 
     except Exception as e:
@@ -55,7 +77,7 @@ def upload_file():
     if request.method == 'POST':
         cookie_name = request.cookies.get('_cdub_app_username')
         cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
-        main_app = spacy_sent_connections(username=cookie_username['email'])
+        main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
         # check if the post request has the file part
         app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
@@ -103,20 +125,18 @@ def process_files():
     global main_app_user
     cookie_name = request.cookies.get('_cdub_app_username')
     cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
-    main_app_user = spacy_sent_connections(username=cookie_username['email'])
+    main_app_user = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
     main_app_user.inBrowser = app.config['RENDER_VIZ']
     main_app_user.previousRun_repo = app.config['createNewRepo']
     main_app_user.run()
     return redirect("/nlp_project/application_ran")
-import datetime
-datetime.datetime.utcfromtimestamp(1638589050.518225)
 
 @app.route("/nlp_project/application_ran", methods=['GET', 'POST'])
 def complete_app():
     global main_app_user
     cookie_name = request.cookies.get('_cdub_app_username')
     cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
-    main_app_user = spacy_sent_connections(username=cookie_username['email'])
+    main_app_user = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
     html_in_browser = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data.html']
     userItems = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data_ents_list.json']
 
@@ -138,11 +158,11 @@ def complete_app():
                            json_ents_list=all_items, user=user_downloads, plot_data=plot_data)
 
 
-@app.route('/nlp_project/out/filename/<filename>/file/<file>')
+@app.route('/nlp_project/out/filename/<filename>/file')
 def downloaded_file_db(filename, file):
     cookie_name = request.cookies.get('_cdub_app_username')
     cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
-    main_app_user_db = spacy_sent_connections(username=cookie_username['email'])
+    main_app_user_db = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
 
     file_out = main_app_user_db.download_file(filename=filename, file_in=file)
 

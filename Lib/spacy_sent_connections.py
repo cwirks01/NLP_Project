@@ -5,13 +5,11 @@ Author: Charles Wirks email: cwirks01@gmail.com
 
 """
 import datetime
-import hashlib
 import json
 import multiprocessing
 import os
 import random
 import re
-import shutil
 import datetime
 import time
 
@@ -20,7 +18,7 @@ import en_core_web_sm
 import pandas as pd
 
 from bson.objectid import ObjectId
-from pymongo import MongoClient, ReturnDocument
+from pymongo import ReturnDocument
 from spacy import displacy
 from flask import Markup
 
@@ -31,14 +29,6 @@ from Lib.spacy_library_loader import load_lib
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-
-ROOT = os.getcwd()
-client = MongoClient("mongodb://%s:%s@mongodb:27017" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
-# client = MongoClient('mongodb://mongodb:27017')
-
-
-# client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
-
 
 class gui_tkinter:
 
@@ -194,7 +184,7 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections:
     def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None,
-                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd(),
+                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd(), db=None,
                  _db='users', previousRun_repo=False):
         self.previousRun_repo=previousRun_repo
         self.username = username
@@ -212,7 +202,7 @@ class spacy_sent_connections:
         self.online_network_analysis_viz = online_network_analysis_viz
         self.user_dir = user_dir
         self.root_dir = root_dir
-        self.db = client.NLP_db[_db]
+        self.db = db[_db]
         self._user_dir()  # This assigns username and directory name to class
         self.user_root_dir_path = os.path.join(self.root_dir, 'data', self.user_dir)
         self.multiprocessing = multiprocessing
