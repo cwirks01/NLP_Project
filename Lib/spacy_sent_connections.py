@@ -390,6 +390,7 @@ class spacy_sent_connections:
         file_in = self.db.find_one({"username":self.username})['downloads'][0]['data.json']
         
         if filename in ["data.csv", "data.anx"]:
+        
             file_in = eval(file_in)
             df_data = pd.DataFrame(pd.json_normalize(file_in).squeeze().reset_index())
             df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
