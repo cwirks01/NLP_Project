@@ -158,7 +158,7 @@ def complete_app():
                            json_ents_list=all_items, user=user_downloads, plot_data=plot_data)
 
 
-@app.route('/nlp_project/out/<filename>/file')
+@app.route('/nlp_project/out/<filename>/file', methods=['GET','POST'])
 def downloaded_file_db(filename, file):
     cookie_name = request.cookies.get('_cdub_app_username')
     cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
