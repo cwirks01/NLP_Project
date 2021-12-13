@@ -175,7 +175,7 @@ def downloaded_file_db(filename, file):
     else:
         file_out = file_out
 
-    response = Response(file_out, mimetype='text/csv')
+    response = Response(file_out, mimetype='text/csv', direct_passthrough=True)
     response.headers.set("Content-Disposition", "attachment", filename=filename)
 
     return response
