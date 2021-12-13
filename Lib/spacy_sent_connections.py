@@ -21,6 +21,7 @@ from bson.objectid import ObjectId
 from pymongo import ReturnDocument
 from spacy import displacy
 from flask import Markup
+from io import StringIO
 
 from Lib import pyanx
 from Lib.chart_network import online_network_analysis
@@ -401,7 +402,7 @@ class spacy_sent_connections:
         if filename == "data.csv":
             file_out = df_data.to_csv(index=False)
         elif filename == "data.json":
-            file_out = file_in
+            file_out = StringIO(file_in)
         elif filename == "data.anx":
             chart = pyanx.Pyanx()
             try:
