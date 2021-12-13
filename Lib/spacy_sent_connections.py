@@ -385,7 +385,10 @@ class spacy_sent_connections:
         # os.remove(filePath)
         return
 
-    def download_file(self, filename, file_in):
+    def download_file(self, filename):
+        
+        file_in = self.db.find_one({"username":self.username})['downloads'][0]['data.json']
+        
         if filename in ["data.csv", "data.anx"]:
             file_in = eval(file_in)
             df_data = pd.DataFrame(pd.json_normalize(file_in).squeeze().reset_index())

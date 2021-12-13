@@ -159,11 +159,12 @@ def complete_app():
 
 
 @app.route('/nlp_project/out/<filename>/file', methods=['GET','POST'])
-def downloaded_file_db(filename, file):
+def downloaded_file_db(filename):
     cookie_name = request.cookies.get('_cdub_app_username')
     cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
     main_app_user_db = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
-
+    file = main_app_user_db.db[filename]
+    
     file_out = main_app_user_db.download_file(filename=filename, file_in=file)
 
     if filename.endswith("html"):
