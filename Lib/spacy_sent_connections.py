@@ -391,7 +391,7 @@ class spacy_sent_connections:
         
         if filename in ["data.csv", "data.anx"]:
         
-            file_in = eval(file_in)
+            # file_in = eval(file_in)
             df_data = pd.DataFrame(pd.json_normalize(file_in).squeeze().reset_index())
             df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
             df_data = df_data.explode("value").reset_index(drop=True)
