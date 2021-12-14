@@ -170,7 +170,7 @@ def downloaded_file_db(filename):
         file_out = Markup(file_out)
     elif filename.endswith("json"):
         file_out = file_out.seek(0)
-        file_out = file_out.read()
+        file_out = [file_out.read()]
     elif filename.endswith("anx"):
         file_out = file_out
     else:
