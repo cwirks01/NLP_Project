@@ -398,7 +398,7 @@ class spacy_sent_connections:
         if filename == "data.csv":
             file_out = df_data.to_csv(index=False)
         elif filename == "data.json":
-            file_out = file_in
+            file_out = pd.read_json(file_in).to_json(index=False)
         elif filename == "data.anx":
             chart = pyanx.Pyanx()
             try:
