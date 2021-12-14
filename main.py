@@ -1,5 +1,6 @@
 import json
 import os
+import jsonify
 
 from Lib.spacy_sent_connections import spacy_sent_connections
 
@@ -168,9 +169,12 @@ def downloaded_file_db(filename):
 
     if filename.endswith("html"):
         file_out = Markup(file_out)
+        
     elif filename.endswith("json"):
-        file_out.seek(0)
-        file_out = [file_out.read()]
+        response = jsonify(file_out)
+        response.headers['Content-Disposition'] = 'attachment;filename=%s'% filename
+        return response
+
     elif filename.endswith("anx"):
         file_out = file_out
     else:
