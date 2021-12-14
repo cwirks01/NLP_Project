@@ -169,11 +169,11 @@ def downloaded_file_db(filename):
 
     if filename.endswith("html"):
         file_out = Markup(file_out)
-        
+
     elif filename.endswith("json"):
-        response = jsonify(file_out)
-        response.headers['Content-Disposition'] = 'attachment;filename=%s'% filename
-        return response
+        # response = jsonify(file_out)
+        # response.headers['Content-Disposition'] = 'attachment;filename=%s'% filename
+        return jsonify(file_out)
 
     elif filename.endswith("anx"):
         file_out = file_out
