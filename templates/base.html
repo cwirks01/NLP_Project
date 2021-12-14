@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Process Complete</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" />
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>NLP SpaCy</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
 
-<div class="column_main left">
-    <div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
-        <h3 class="w3-bar-item">Development Site</h3>
-        <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
-        <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
-    </div>
-</div>
-<div class="column_main right">
-    {% block content %}
-    {% endblock %}
-</div>
+            $("#logo").css('opacity','0');
+
+            $("#select_logo").click(function(e){
+            e.preventDefault();
+            $("#logo").trigger('click');
+            });
+            submitForms = function(){
+                document.forms["form1"].submit();
+                document.forms["form2"].submit();
+                }
+        </script>
+    </head>
+    <body>
+        <section class="hero is-primary is-fullheight">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div id="navbarMenuHeroA" class="navbar-menu">
+                            <div class="navbar-end">
+                                {% if main_app_user.username %}
+                                <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                    {{ main_app_user.username }}
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="hero-body">
+                <div class="column_main left">
+                    <div class="w3-sidebar w3-bar-block w3-card" style="width:18%">
+                        <h3 class="w3-bar-item">Development Site</h3>
+                        <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
+                        <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
+                    </div>
+                </div>
+                <div class="column_main right">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </section>
+    </body>
 </html>
