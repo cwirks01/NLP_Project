@@ -28,8 +28,6 @@ from Lib.chart_network import online_network_analysis
 from Lib.json_util import *
 from Lib.spacy_library_loader import load_lib
 
-MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
-MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
 
 class gui_tkinter:
 
@@ -402,7 +400,7 @@ class spacy_sent_connections:
         if filename == "data.csv":
             file_out = df_data.to_csv(index=False)
         elif filename == "data.json":
-            file_out = StringIO(file_in)
+            file_out = json.dumps(file_in)
         elif filename == "data.anx":
             chart = pyanx.Pyanx()
             try:
