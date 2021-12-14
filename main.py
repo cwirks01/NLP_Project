@@ -15,8 +15,8 @@ MONGO_HOST = "mongodb"
 MONGO_PORT = "27017"
 
 # # DEBUGING
-# MONGO_DB_USERNAME = ""
-# MONGO_DB_PASSWORD = ""
+# MONGO_DB_USERNAME = "root"
+# MONGO_DB_PASSWORD = "password"
 # MONGO_HOST = "23.23.40.32"
 # MONGO_PORT = "27019"
 
@@ -170,7 +170,7 @@ def downloaded_file_db(filename):
         file_out = Markup(file_out)
     elif filename.endswith("json"):
         file_out.seek(0)
-        file_out = json.dumps(file_out.read())
+        file_out = file_out.read()
     elif filename.endswith("anx"):
         file_out = file_out
     else:
