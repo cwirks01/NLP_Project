@@ -28,7 +28,6 @@
                         <div id="navbarMenuHeroA" class="navbar-menu">
                             <div class="navbar-end">
                                 {% if current_user.username %}
-                                <a href="{{ url_for('auth.logout') }}" class="navbar-item">
                                     {{ current_user.username }}
                                 </a>
                                 {% endif %}
