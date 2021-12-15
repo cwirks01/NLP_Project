@@ -156,7 +156,7 @@ def complete_app():
     plot_data = Markup(user_downloads['plot_data.html'])
 
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
-                           json_ents_list=all_items, user=user_downloads, plot_data=plot_data)
+                           json_ents_list=all_items, user=user_downloads, plot_data=plot_data, main_app=main_app_user)
 
 
 @app.route('/nlp_project/out/<filename>/file', methods=['GET','POST'])
