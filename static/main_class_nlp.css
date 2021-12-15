@@ -22,6 +22,11 @@
   .two-col {
     overflow: hidden;/* Makes this div contain its floats */
   }
+
+  .color {
+    background-color: #00bb9f;
+    color: #fff;
+  }
   
   .row:after {
     content: "";

@@ -25,11 +25,6 @@
   overflow: hidden;/* Makes this div contain its floats */
 }
 
-.color {
-  background-color: #00bb9f;
-  color: #fff;
-}
-
 .two-col .col1,
 .two-col .col2 {
   width: 49%;
