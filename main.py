@@ -10,16 +10,16 @@ from werkzeug.wrappers import Response
 from flask import Flask, render_template, request, flash, redirect, Markup
 from flask_pymongo import PyMongo
 
-MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
-MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-MONGO_HOST = "mongodb"
-MONGO_PORT = "27017"
+# MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
+# MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
+# MONGO_HOST = "mongodb"
+# MONGO_PORT = "27017"
 
-# # DEBUGING
-# MONGO_DB_USERNAME = "root"
-# MONGO_DB_PASSWORD = "password"
-# MONGO_HOST = "23.23.40.32"
-# MONGO_PORT = "27019"
+# DEBUGING
+MONGO_DB_USERNAME = "root"
+MONGO_DB_PASSWORD = "password"
+MONGO_HOST = "127.0.0.1"
+MONGO_PORT = "27019"
 
 MONGO_NLP_DB = "NLP_db"
 MONGO_USER_DB = "users_db"
@@ -64,7 +64,7 @@ def main():
                 
         else:
             main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
-            return render_template('index.html')
+            return render_template('index.html', main_app=main_app)
 
     except Exception as e:
         print("%s \n moving on" % e)
