@@ -6,6 +6,8 @@
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  background-color: #00d1b2;
+  color: #fff;
 }
 
 /* Safari */
@@ -21,6 +23,11 @@
 
 .two-col {
   overflow: hidden;/* Makes this div contain its floats */
+}
+
+.color {
+  background-color: #00bb9f;
+  color: #fff;
 }
 
 .two-col .col1,

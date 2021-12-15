@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <title>NLP SpaCy</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-        <link href="{{ url_for('static',filename='main_class_nlp.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ url_for('static',filename='main_class_nlp.css') }}" />
+        <link rel="stylesheet" href="website_css/main_class.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
 
@@ -26,7 +27,7 @@
                 <nav class="navbar">
                     <div class="container">
                         <div id="navbarMenuHeroA" class="navbar-menu">
-                            <div class="navbar-end">
+                            <div class="navbar-end color">
                                 {% if main_app.username %}
                                     {{ main_app.username }}
                                 {% endif %}
@@ -36,7 +37,7 @@
                 </nav>
             </div>
             <div class="hero-body">
-                <div class="w3-sidebar w3-bar-block w3-card hero-body" style="width:18%">
+                <div class="w3-sidebar w3-bar-block w3-card color" style="width:18%">
                     <h3 class="w3-bar-item">Development Site</h3>
                     <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
                     <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
