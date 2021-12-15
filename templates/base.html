@@ -5,7 +5,7 @@
         <title>NLP SpaCy</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
         <link rel="stylesheet" href="{{ url_for('static',filename='main_class_nlp.css') }}" />
-        <link rel="stylesheet" href="website_css/main_class.css" />
+        <link rel="stylesheet" href="../static/main_class_nlp.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
 
@@ -27,9 +27,9 @@
                 <nav class="navbar">
                     <div class="container">
                         <div id="navbarMenuHeroA" class="navbar-menu">
-                            <div class="navbar-end color">
+                            <div class="navbar-end color w3-card">
                                 {% if main_app.username %}
-                                    {{ main_app.username }}
+                                &nbsp;{{ main_app.username }}&nbsp;
                                 {% endif %}
                             </div>
                         </div>
