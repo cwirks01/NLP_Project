@@ -15,9 +15,9 @@
             <br>
     </div>
     {% if plotly_chart %}
-    <div class="box-boarder2">
+    <div class="box-boarder2" style="text-align: center; width: 80%;">
         <h5 style="text-align: center;">Network Analysis Chart</h5>
-        <div>
+        <div style="align-self: baseline;">
             {{plot_data}}
         </div>
 
@@ -29,7 +29,7 @@
         {% for item in json_ents_list %}
         <div class="box-boarder">
             <h5 style="text-align: center;">{{item[0]}}</h5>
-            <div class="container" style="text-align: left;">
+            <div style="text-align: left;">
                 <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
                     {{ "\r"+"\n".join(item[1]) }}
                 </textarea>
@@ -43,7 +43,7 @@
         {% if html_in_browser %}
         <div class="box-boarder">
             <h5 style="text-align: center;">SpaCy Rendered</h5>
-            <div class="container" style="text-align: left;">
+            <div style="text-align: left;">
                 <xml>
                     {{ html_in_browser }}
                 </xml>
