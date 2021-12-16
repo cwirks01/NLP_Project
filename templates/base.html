@@ -11,35 +11,33 @@
         <script src="{{url_for('static', filename='javascriptfile.js')}}"></script>
         <script src="../static/javascriptfile.js"></script>
     </head>
-    <body>
-        <section class="hero is-primary is-fullheight">
-            <div class="hero-head">
-                <nav class="navbar">
-                    <div class="container">
-                        <div id="navbarMenuHeroA" class="navbar-menu">
-                            <div class="navbar-end color w3-card">
-                                {% if main_app.username %}
-                                <div class="dropdown">
-                                    <button onclick="dropDownFunction()" class="dropbtn">&nbsp;{{ main_app.username }}&nbsp;</button>
-                                    <div id="myDropdown" class="dropdown-content color">
-                                      <a href="/auth_app/v1/logout">Logout</a>
-                                    </div>
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-end color w3-card">
+                            {% if main_app.username %}
+                            <div class="dropdown">
+                                <button onclick="dropDownFunction()" class="dropbtn">&nbsp;{{ main_app.username }}&nbsp;</button>
+                                <div id="myDropdown" class="dropdown-content color">
+                                    <a href="/auth_app/v1/logout">Logout</a>
                                 </div>
-                                {% endif %}
                             </div>
+                            {% endif %}
                         </div>
                     </div>
-                </nav>
-            </div>
-            <div class="w3-sidebar w3-bar-block w3-card color" style="width:18%">
-                <h3 class="w3-bar-item">Development Site</h3>
-                <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
-                <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
-            </div>
-            <div class="hero-body">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </section>
-    </body>
+                </div>
+            </nav>
+        </div>
+        <div class="w3-sidebar w3-bar-block w3-card color" style="width:18%">
+            <h3 class="w3-bar-item">Development Site</h3>
+            <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
+            <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
+        </div>
+        <div class="hero-body">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
 </html>

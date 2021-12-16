@@ -103,7 +103,6 @@ def online_network_analysis(df_anb=None, num_of_occurrence=2):
                             title='Network graph',
                             titlefont_size=16,
                             showlegend=False,
-                            autosize=True,
                             hovermode='closest',
                             margin=dict(b=20, l=5, r=5, t=40),
                             annotations=[dict(
