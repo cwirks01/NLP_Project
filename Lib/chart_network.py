@@ -104,7 +104,7 @@ def online_network_analysis(df_anb=None, num_of_occurrence=2):
                             titlefont_size=16,
                             showlegend=False,
                             hovermode='closest',
-                            # margin=dict(b=20, l=5, r=5, t=40),
+                            margin=dict(b=20, l=5, r=5, t=40),
                             annotations=[dict(
                                 text="",
                                 showarrow=False,
