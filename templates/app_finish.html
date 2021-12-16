@@ -14,50 +14,42 @@
         class="myLink">Download ANB</a>
             <br>
     </div>
-    <div class="container">
-        <div class="two-col">
-            <div style="col2">
-                {% if plotly_chart %}
-                <div class="box-boarder2">
-                    <h5 style="text-align: center;">Network Analysis Chart</h5>
-                    <div style="text-align: center; width: 95%;">
-                        {{plot_data}}
-                    </div>
-
-                </div>
-                {% endif %}
-            </div>
+    {% if plotly_chart %}
+    <div class="box-boarder2">
+        <h5 style="text-align: center;">Network Analysis Chart</h5>
+        <div style="text-align: center; width: 95%;">
+            {{plot_data}}
         </div>
-        <br>
-        <div style="align-self: baseline;">
-        {% if json_ents_list %}
+
+    </div>
+    {% endif %}
+    <br>
+    <div style="align-self: baseline;">
+    {% if json_ents_list %}
         {% for item in json_ents_list %}
         <div class="box-boarder">
             <h5 style="text-align: center;">{{item[0]}}</h5>
             <div class="container" style="text-align: left;">
-            <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
-                {{ "\r"+"\n".join(item[1]) }}
-            </textarea>
+                <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
+                    {{ "\r"+"\n".join(item[1]) }}
+                </textarea>
             </div>
-
         </div>
         {% endfor %}
-        {% endif %}
-        </div>
-        <br>
-        <div style="align-self: baseline;">
-            {% if html_in_browser %}
-            <div class="box-boarder">
-                <h5 style="text-align: center;">SpaCy Rendered</h5>
-                <div class="container" style="text-align: left;">
-                    <xml>
+    {% endif %}
+    </div>
+    <br>
+    <div style="align-self: baseline;">
+        {% if html_in_browser %}
+        <div class="box-boarder">
+            <h5 style="text-align: center;">SpaCy Rendered</h5>
+            <div class="container" style="text-align: left;">
+                <xml>
                     {{ html_in_browser }}
-                    </xml>
-                </div>
-
+                </xml>
             </div>
-            {% endif %}
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
