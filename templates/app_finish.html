@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" style="margin-left:20%">
+<div class="container" style="margin-left:20%; width: 80%;">
     <h1>Your files are complete!</h1>
     <div class="col1">
         <a href="{{url_for('downloaded_file_db', filename='data.csv')}}"
@@ -17,7 +17,7 @@
     {% if plotly_chart %}
     <div class="box-boarder2">
         <h5 style="text-align: center;">Network Analysis Chart</h5>
-        <div style="text-align: center; width: 75%;">
+        <div style="text-align: center;">
             {{plot_data}}
         </div>
 
