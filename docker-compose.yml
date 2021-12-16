@@ -35,7 +35,6 @@ services:
     depends_on:
       - web
       - regex
-      - swell
       - certbot
     networks:
       - nlp_project
@@ -88,6 +87,8 @@ services:
       - MAPBOX_STYLE=mapbox://styles/cwirks01/ckun70qvf0bdv18kq1hai6k3q
     networks:
       - nlp_project
+    depends_on:
+      - nginx
     expose:
       - 5001
 
