@@ -1,33 +1,49 @@
 import json
 import os
-import codecs
-
-import pandas as pd
+import jsonify
 
 from Lib.spacy_sent_connections import spacy_sent_connections
 
 from pymongo import MongoClient, ReturnDocument
-from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
 from werkzeug.wrappers import Response
-from flask import Flask, render_template, request, flash, redirect, send_from_directory, make_response, Markup, url_for
+from flask import Flask, render_template, request, flash, redirect, Markup
 from flask_pymongo import PyMongo
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
+MONGO_HOST = os.environ['MONGO_HOST']
+MONGO_PORT = os.environ['MONGO_PORT']
 
+# # DEBUGING
+# MONGO_DB_USERNAME = "root"
+# MONGO_DB_PASSWORD = "password"
+# MONGO_HOST = "127.0.0.1"
+# MONGO_PORT = "27019"
+
+MONGO_NLP_DB = "NLP_db"
+MONGO_USER_DB = "users_db"
+MONGODB_NLP_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'% (MONGO_DB_USERNAME,
+                                                                MONGO_DB_PASSWORD,
+                                                                MONGO_HOST,
+                                                                MONGO_PORT,
+                                                                MONGO_NLP_DB)
+                                                                                    
+MONGODB_USER_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'%(MONGO_DB_USERNAME,
+                                                                MONGO_DB_PASSWORD,
+                                                                MONGO_HOST,
+                                                                MONGO_PORT,
+                                                                MONGO_USER_DB)
 app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-app.config['MONGO_URI'] = "mongodb://%s:%s@mongodb:27017/NLP_db?authSource=admin" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD)
-# app.config['MONGO_URI'] = 'mongodb://mongodb:27017/NLP_db'
-# app.config['MONGO_URI'] = 'mongodb://3.89.36.89:27019/NLP_db' # for debugging
+
+app.config['MONGO_URI'] = MONGODB_NLP_URI
+user_db = MongoClient(MONGODB_USER_URI)
+NLP_db = MongoClient(MONGODB_NLP_URI)
 mongo = PyMongo(app)
 
 ROOT = os.getcwd()
-# client = MongoClient("mongodb://%s:%s@127.0.0.1:27019" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
-client = MongoClient('mongodb://mongodb:27017')
-# client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
 
@@ -40,30 +56,29 @@ def allowed_file(filename):
 def main():
     global main_app
     try:
-        cookie_name = request.cookies.get('username')
-        if cookie_name is None:
-            main_app = spacy_sent_connections()
-            cookie_name = main_app.username
-            resp = make_response(render_template('index.html'))
-            resp.set_cookie('username', cookie_name)
-            return resp
+        cookie_name = request.cookies.get('_cdub_app_username')
+        cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
 
+        if cookie_username is None:
+            return redirect("/auth_app", code=302)
+                
         else:
-            main_app = spacy_sent_connections(username=cookie_name)
-            return render_template('index.html')
+            main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
+            return render_template('index.html', main_app=main_app)
 
     except Exception as e:
         print("%s \n moving on" % e)
         pass
-        return render_template('index.html')
+        return redirect("/auth_app", code=302)
 
 
 @app.route('/nlp_project', methods=['GET', 'POST'])
 def upload_file():
     global main_app
     if request.method == 'POST':
-        cookie_name = request.cookies.get('username')
-        main_app = spacy_sent_connections(username=cookie_name)
+        cookie_name = request.cookies.get('_cdub_app_username')
+        cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
+        main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
         # check if the post request has the file part
         app.config['createNewRepo'] = bool(request.form.get("createNewRepo"))
         app.config['RENDER_VIZ'] = bool(request.form.get("renderViz"))
@@ -96,7 +111,10 @@ def upload_file():
                     else:
                         filename = secure_filename(file.filename)
                         new_file = file.stream.read()
-                        text = new_file.decode("utf-8")
+                        if filename.endswith("txt"):
+                            text = new_file.decode("utf-8")
+                        else:
+                            text = main_app.read_in_pdf(file_in=file)
                         main_app.db.find_one_and_update({"username": main_app.username},
                                                         {"$set": {"uploads":
                                                         [{"filename": filename, "text": text}]}},
@@ -109,19 +127,20 @@ def upload_file():
 @app.route("/nlp_project/processing/", methods=['GET', 'POST'])
 def process_files():
     global main_app_user
-    cookie_name = request.cookies.get('username')
-    main_app_user = spacy_sent_connections(username=cookie_name)
+    cookie_name = request.cookies.get('_cdub_app_username')
+    cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
+    main_app_user = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
     main_app_user.inBrowser = app.config['RENDER_VIZ']
     main_app_user.previousRun_repo = app.config['createNewRepo']
     main_app_user.run()
     return redirect("/nlp_project/application_ran")
 
-
 @app.route("/nlp_project/application_ran", methods=['GET', 'POST'])
 def complete_app():
     global main_app_user
-    cookie_name = request.cookies.get('username')
-    main_app_user = spacy_sent_connections(username=cookie_name)
+    cookie_name = request.cookies.get('_cdub_app_username')
+    cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
+    main_app_user = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
     html_in_browser = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data.html']
     userItems = main_app_user.db.find({"username": main_app_user.username})[0]["downloads"][0]['data_ents_list.json']
 
@@ -140,27 +159,31 @@ def complete_app():
     plot_data = Markup(user_downloads['plot_data.html'])
 
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
-                           json_ents_list=all_items, user=user_downloads, plot_data=plot_data)
+                           json_ents_list=all_items, user=user_downloads, plot_data=plot_data, main_app=main_app_user)
 
 
-@app.route('/nlp_project/out/filename/<filename>/file/<file>')
-def downloaded_file_db(filename, file):
-    cookie_name = request.cookies.get('username')
-    main_app_user_db = spacy_sent_connections(username=cookie_name)
-
-    file_out = main_app_user_db.download_file(filename=filename, file_in=file)
+@app.route('/nlp_project/out/<filename>/file', methods=['GET','POST'])
+def downloaded_file_db(filename):
+    cookie_name = request.cookies.get('_cdub_app_username')
+    cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
+    main_app_user_db = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
+    
+    file_out = main_app_user_db.download_file(filename=filename)
 
     if filename.endswith("html"):
-        file_out = Markup(file)
-    elif filename.endswith("json"):
-        file_out = json.dumps(file_out)
+        file_out = Markup(file_out)
+
+    # elif filename.endswith("json"):
+    #     response = jsonify(file_out)
+    #     response.headers['Content-Disposition'] = 'attachment;filename=%s'% filename
+    #     return response
+
     elif filename.endswith("anx"):
         file_out = file_out
     else:
         file_out = file_out
 
-    response = Response(file_out, mimetype='text/csv')
+    response = Response(file_out, mimetype='text/csv', direct_passthrough=True)
     response.headers.set("Content-Disposition", "attachment", filename=filename)
-    response.headers["X-Accel-Redirect"] = "/downloads/" + filename
 
     return response

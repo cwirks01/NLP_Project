@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "NLP_Project",
+			"path": ".."
+		},
+		{
+			"name": "flask_auth_app",
+			"path": "..\\..\\flask_auth_app"
+		},
+		{
+			"path": "..\\..\\swell-watchers-app"
+		}
+	],
+	"settings": {
+		"DockerRun.DisableAutoGenerateConfig": true
+	}
+}

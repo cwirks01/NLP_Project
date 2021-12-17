@@ -1,1 +1,0 @@
-RUN mkdir -pv mongodb/database

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>NLP SpaCy</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link rel="stylesheet" href="{{ url_for('static',filename='main_class_nlp.css') }}" />
+        <link rel="stylesheet" href="../static/main_class_nlp.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{{url_for('static', filename='javascriptfile.js')}}"></script>
+        <script src="../static/javascriptfile.js"></script>
+    </head>
+    <body style="padding: 0% 0%;">
+        <section class="hero is-primary is-fullheight">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div id="navbarMenuHeroA" class="navbar-menu">
+                            <div class="navbar-end color w3-card">
+                                {% if main_app.username %}
+                                <div class="dropdown">
+                                    <button onclick="dropDownFunction()" class="dropbtn">&nbsp;{{ main_app.username }}&nbsp;</button>
+                                    <div id="myDropdown" class="dropdown-content color">
+                                        <a href="/auth_app/v1/logout">Logout</a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="w3-sidebar w3-bar-block w3-card color" style="width:18%">
+                <h3 class="w3-bar-item">Development Site</h3>
+                <a href="https://www.testing-dev.dev/" class="w3-bar-item w3-button w3-border-bottom">Testing Site</a>
+                <a href="/nlp_project" class="w3-bar-item w3-button w3-border-bottom">NLP Home</a>
+            </div>
+            <div class="hero-body">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+    </body>
+</html>

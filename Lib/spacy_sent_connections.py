@@ -5,13 +5,11 @@ Author: Charles Wirks email: cwirks01@gmail.com
 
 """
 import datetime
-import hashlib
 import json
 import multiprocessing
 import os
 import random
 import re
-import shutil
 import datetime
 import time
 
@@ -20,24 +18,20 @@ import en_core_web_sm
 import pandas as pd
 
 from bson.objectid import ObjectId
-from pymongo import MongoClient, ReturnDocument
+from pymongo import ReturnDocument
 from spacy import displacy
 from flask import Markup
+from io import StringIO
+
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
 
 from Lib import pyanx
 from Lib.chart_network import online_network_analysis
 from Lib.json_util import *
 from Lib.spacy_library_loader import load_lib
-
-MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
-MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-
-ROOT = os.getcwd()
-client = MongoClient("mongodb://%s:%s@mongodb:27017" % (MONGO_DB_USERNAME,MONGO_DB_PASSWORD))
-# client = MongoClient('mongodb://mongodb:27017')
-
-
-# client = MongoClient('mongodb://3.89.36.89:27019')  # for debuging
 
 
 class gui_tkinter:
@@ -194,7 +188,7 @@ def read_in_pdf(file_path):
 
 class spacy_sent_connections:
     def __init__(self, gui=False, downloads=None, upload_dir=None, repo=None, viz=True, inBrowser=False, user_dir=None,
-                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd(),
+                 username=None, password=None, answer=None, online_network_analysis_viz=True, root_dir=os.getcwd(), db=None,
                  _db='users', previousRun_repo=False):
         self.previousRun_repo=previousRun_repo
         self.username = username
@@ -212,7 +206,7 @@ class spacy_sent_connections:
         self.online_network_analysis_viz = online_network_analysis_viz
         self.user_dir = user_dir
         self.root_dir = root_dir
-        self.db = client.NLP_db[_db]
+        self.db = db[_db]
         self._user_dir()  # This assigns username and directory name to class
         self.user_root_dir_path = os.path.join(self.root_dir, 'data', self.user_dir)
         self.multiprocessing = multiprocessing
@@ -395,19 +389,22 @@ class spacy_sent_connections:
         # os.remove(filePath)
         return
 
-    def download_file(self, filename, file_in):
+    def download_file(self, filename):
+        
+        file_in = self.db.find_one({"username":self.username})['downloads'][0]['data.json']
+        
         if filename in ["data.csv", "data.anx"]:
-            file_in = eval(file_in)
+        
+            # file_in = eval(file_in)
             df_data = pd.DataFrame(pd.json_normalize(file_in).squeeze().reset_index())
             df_data = df_data.rename(columns={df_data.columns[0]: "name", df_data.columns[1]: "value"})
             df_data = df_data.explode("value").reset_index(drop=True)
-        else:
-            pass
 
         if filename == "data.csv":
             file_out = df_data.to_csv(index=False)
         elif filename == "data.json":
-            file_out = eval(file_in)
+            file_out = pd.DataFrame(pd.json_normalize(file_in).squeeze().reset_index())
+            file_out = file_out.to_json(index=False)
         elif filename == "data.anx":
             chart = pyanx.Pyanx()
             try:
@@ -463,6 +460,35 @@ class spacy_sent_connections:
         #     outputFile.close()
 
         return
+
+    def read_in_pdf(self, file_in):
+        global text_out
+        
+        # file_in = self.db.find_one({"username":self.username})['uploads'][0]
+        
+        rsrcmgr = PDFResourceManager()
+        retstr = StringIO()
+        # codec = 'utf-8'
+        laparams = LAParams()
+        device = TextConverter(rsrcmgr, retstr, laparams=laparams)
+        interpreter = PDFPageInterpreter(rsrcmgr, device)
+        password = ""
+        maxpages = 0
+        caching = True
+        pagenos = set()
+
+        for page in PDFPage.get_pages(file_in.stream, pagenos, maxpages=maxpages,
+                                    password=password,
+                                    caching=caching,
+                                    check_extractable=True):
+            interpreter.process_page(page)
+
+        file_out = retstr.getvalue()
+
+        device.close()
+        retstr.close()
+
+        return file_out
 
     def remove_old_data(self):
         '''
