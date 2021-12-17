@@ -12,8 +12,8 @@ from flask_pymongo import PyMongo
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-MONGO_HOST = "mongodb"
-MONGO_PORT = "27017"
+MONGO_HOST = os.environ['MONGO_HOST']
+MONGO_PORT = os.environ['MONGO_PORT']
 
 # # DEBUGING
 # MONGO_DB_USERNAME = "root"
@@ -111,7 +111,10 @@ def upload_file():
                     else:
                         filename = secure_filename(file.filename)
                         new_file = file.stream.read()
-                        text = new_file.decode("utf-8")
+                        if filename.endswith("txt"):
+                            text = new_file.decode("utf-8")
+                        else:
+                            text = main_app.read_in_pdf(file_in=file)
                         main_app.db.find_one_and_update({"username": main_app.username},
                                                         {"$set": {"uploads":
                                                         [{"filename": filename, "text": text}]}},

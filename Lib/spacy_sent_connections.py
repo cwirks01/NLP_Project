@@ -23,6 +23,11 @@ from spacy import displacy
 from flask import Markup
 from io import StringIO
 
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
+
 from Lib import pyanx
 from Lib.chart_network import online_network_analysis
 from Lib.json_util import *
@@ -455,6 +460,35 @@ class spacy_sent_connections:
         #     outputFile.close()
 
         return
+
+    def read_in_pdf(self, file_in):
+        global text_out
+        
+        # file_in = self.db.find_one({"username":self.username})['uploads'][0]
+        
+        rsrcmgr = PDFResourceManager()
+        retstr = StringIO()
+        # codec = 'utf-8'
+        laparams = LAParams()
+        device = TextConverter(rsrcmgr, retstr, laparams=laparams)
+        interpreter = PDFPageInterpreter(rsrcmgr, device)
+        password = ""
+        maxpages = 0
+        caching = True
+        pagenos = set()
+
+        for page in PDFPage.get_pages(file_in.stream, pagenos, maxpages=maxpages,
+                                    password=password,
+                                    caching=caching,
+                                    check_extractable=True):
+            interpreter.process_page(page)
+
+        file_out = retstr.getvalue()
+
+        device.close()
+        retstr.close()
+
+        return file_out
 
     def remove_old_data(self):
         '''
