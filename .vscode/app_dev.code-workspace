@@ -9,7 +9,12 @@
 			"path": "..\\..\\flask_auth_app"
 		},
 		{
+			"name": "swell",
 			"path": "..\\..\\swell-watchers-app"
+		},
+		{
+			"name": "regex",
+			"path": "..\\..\\regex"
 		}
 	],
 	"settings": {
