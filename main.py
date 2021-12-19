@@ -13,14 +13,8 @@ from flask_pymongo import PyMongo
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-MONGO_HOST = "mongodb"
-MONGO_PORT = "27017"
-
-# # DEBUGING
-# MONGO_DB_USERNAME = "root"
-# MONGO_DB_PASSWORD = "password"
-# MONGO_HOST = "127.0.0.1"
-# MONGO_PORT = "27019"
+MONGO_HOST = os.environ['MONGO_HOST']
+MONGO_PORT = os.environ['MONGO_PORT']
 
 MONGO_NLP_DB = "NLP_db"
 MONGO_USER_DB = "users_db"
@@ -35,6 +29,7 @@ MONGODB_USER_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'%(MONGO_DB_USERNAM
                                                                 MONGO_HOST,
                                                                 MONGO_PORT,
                                                                 MONGO_USER_DB)
+                                                                
 app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -120,7 +115,10 @@ def upload_file():
                     else:
                         filename = secure_filename(file.filename)
                         new_file = file.stream.read()
-                        text = new_file.decode("utf-8")
+                        if filename.endswith("txt"):
+                            text = new_file.decode("utf-8")
+                        else:
+                            text = main_app.read_in_pdf(file_in=file)
                         main_app.db.find_one_and_update({"username": main_app.username},
                                                         {"$set": {"uploads":
                                                         [{"filename": filename, "text": text}]}},
