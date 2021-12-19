@@ -3,6 +3,7 @@ import os
 import jsonify
 
 from Lib.spacy_sent_connections import spacy_sent_connections
+from Lib.app_word_cloud import appWordCloud
 
 from pymongo import MongoClient, ReturnDocument
 from werkzeug.utils import secure_filename
@@ -58,6 +59,14 @@ def main():
     try:
         cookie_name = request.cookies.get('_cdub_app_username')
         cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
+        try:
+            text = cookie_username[0]["downloads"][0]['data.csv']
+            text = text['']
+            image = appWordCloud(text=text)
+        except Exception as e:
+            print("%s \n moving on" % e)
+            text=None
+            pass
 
         if cookie_username is None:
             return redirect("/auth_app", code=302)

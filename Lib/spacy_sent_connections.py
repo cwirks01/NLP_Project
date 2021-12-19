@@ -320,6 +320,12 @@ class spacy_sent_connections:
 
         # Loading in files from database upload
         for file_input in self.db.find({'username': self.username})[0]['uploads']:
+            # For pdf files
+            # if file_input['filename'].endswith(".pdf"):
+            #     _input_text = read_in_pdf(file_input['text'])
+            # else:
+            #     _input_text = file_input['text']
+
             nlp_loaded = self.nlp(file_input['text'])
             json_data, json_ents_list = sentence_parser(unstruct_text=nlp_loaded,
                                                         json_data_parser=json_data,
