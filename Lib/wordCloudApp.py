@@ -51,7 +51,7 @@ def cloud_app(username=None, db=NLP_db):
 
     # Display the generated image:
     plt.imshow(wordcloud, interpolation='bilinear')
-    plt.figure( figsize=(20,10), facecolor='k' )
+    plt.figure(figsize=(20,10))
     plt.axis("off")
     plt.tight_layout(pad=0)
     
