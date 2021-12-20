@@ -41,10 +41,12 @@
         </div>
     </div>
     {% if plot_url %}
-    <section>
-        <h2>WordCloud</h2>
-        <img src="data:image/png;base64, {{ plot_url }}">
-    </section>
+    <div class="container box-boarder2">
+        <section>
+            <h2 style="text-align: center;">WordCloud</h2>
+            <img src="data:image/png;base64, {{ plot_url }}">
+        </section>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
