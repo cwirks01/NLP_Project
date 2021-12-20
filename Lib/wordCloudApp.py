@@ -8,27 +8,22 @@ from pandas.io.json import json_normalize
 from pymongo import MongoClient
 from wordcloud import WordCloud
 
-MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
-MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-MONGO_HOST = "mongodb"
-MONGO_PORT = "27017"
-
 # DEBUGING
 # MONGO_DB_USERNAME = "root"
 # MONGO_DB_PASSWORD = "password"
 # MONGO_HOST = "23.23.40.32"
 # MONGO_PORT = "27019"
 
-MONGO_NLP_DB = "NLP_db"
-MONGODB_NLP_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'% (MONGO_DB_USERNAME,
-                                                                MONGO_DB_PASSWORD,
-                                                                MONGO_HOST,
-                                                                MONGO_PORT,
-                                                                MONGO_NLP_DB)
+# MONGO_NLP_DB = "NLP_db"
+# MONGODB_NLP_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'% (MONGO_DB_USERNAME,
+#                                                                 MONGO_DB_PASSWORD,
+#                                                                 MONGO_HOST,
+#                                                                 MONGO_PORT,
+#                                                                 MONGO_NLP_DB)
 
-NLP_db = MongoClient(MONGODB_NLP_URI)
+# NLP_db = MongoClient(MONGODB_NLP_URI)
 
-def cloud_app(username=None, db=NLP_db):
+def cloud_app(username=None, db=None):
     
     user_db = db.NLP_db.users.find({"username":username})
     text = user_db[0]['repository'][0]['text']

@@ -54,30 +54,23 @@ def main():
     try:
         cookie_name = request.cookies.get('_cdub_app_username')
         cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
-        try:
-            text = cookie_username[0]["downloads"][0]['data.csv']
-            text = text['']
-            image = appWordCloud(text=text)
-        except Exception as e:
-            print("%s \n moving on" % e)
-            text=None
-            pass
 
         if cookie_username is None:
             return redirect("/auth_app", code=302)
                 
         else:
             try:
-                plot_url = cloud_app(username=cookie_username['email'],db=NLP_db)
+                plot_url = cloud_app(username=cookie_username['email'], db=NLP_db)
+
             except Exception as e:
-                print(e+"\nNew User, Repository has not been established yet.")
+                print("%s \nNew User, Repository has not been established yet." % e)
                 plot_url = None
 
             main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
             return render_template('index.html', plot_url=plot_url, main_app=main_app)
 
     except Exception as e:
-        print("%s \n moving on" % e)
+        print("%s \nmoving on" % e)
         pass
         return redirect("/auth_app", code=302)
 
