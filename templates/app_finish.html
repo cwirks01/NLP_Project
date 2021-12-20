@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="margin-left:23%">
+<div class="container" style="margin-left:20%">
     <h1>Your files are complete!</h1>
     <div class="col1">
         <a href="{{url_for('downloaded_file_db', filename='data.csv')}}"
@@ -14,35 +14,28 @@
         class="myLink">Download ANB</a>
             <br>
     </div>
-    <div class="two-col">
-
-
-        <div style="col2">
-            {% if plotly_chart %}
-            <div class="box-boarder2">
-                <h5 style="text-align: center;">Network Analysis Chart</h5>
-                <div style="text-align: center; width: 95%;">
-                    {{plot_data}}
-                </div>
-
-            </div>
-            {% endif %}
+    {% if plotly_chart %}
+    <div class="container box-boarder2" style="text-align: center; width: 100%;">
+        <h5 style="text-align: center;">Network Analysis Chart</h5>
+        <div>
+            {{plot_data}}
         </div>
+
     </div>
+    {% endif %}
     <br>
     <div style="align-self: baseline;">
     {% if json_ents_list %}
-    {% for item in json_ents_list %}
-    <div class="box-boarder">
-        <h5 style="text-align: center;">{{item[0]}}</h5>
-        <div class="container" style="text-align: left;">
-        <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
-            {{ "\r"+"\n".join(item[1]) }}
-        </textarea>
+        {% for item in json_ents_list %}
+        <div class="box-boarder">
+            <h5 style="text-align: center;">{{item[0]}}</h5>
+            <div style="text-align: left;">
+                <textarea name="{{item[0]}}" id="{{item[0]}}" cols="20" rows="10" style="line-height: 1.2;">
+                    {{ "\r"+"\n".join(item[1]) }}
+                </textarea>
+            </div>
         </div>
-
-    </div>
-    {% endfor %}
+        {% endfor %}
     {% endif %}
     </div>
     <br>
@@ -50,12 +43,11 @@
         {% if html_in_browser %}
         <div class="box-boarder">
             <h5 style="text-align: center;">SpaCy Rendered</h5>
-            <div class="container" style="text-align: left;">
+            <div style="text-align: left;">
                 <xml>
-                {{ html_in_browser }}
+                    {{ html_in_browser }}
                 </xml>
             </div>
-
         </div>
         {% endif %}
     </div>

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\swell-watchers-app"
+		},
+		{
+			"path": "..\\..\\flask_auth_app"
+		}
+	],
+	"settings": {}
+}

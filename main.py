@@ -13,14 +13,8 @@ from flask_pymongo import PyMongo
 
 MONGO_DB_USERNAME = os.environ['MONGO_DB_USERNAME']
 MONGO_DB_PASSWORD = os.environ['MONGO_DB_PASSWORD']
-MONGO_HOST = "mongodb"
-MONGO_PORT = "27017"
-
-# # DEBUGING
-# MONGO_DB_USERNAME = "root"
-# MONGO_DB_PASSWORD = "password"
-# MONGO_HOST = "23.23.40.32"
-# MONGO_PORT = "27019"
+MONGO_HOST = os.environ['MONGO_HOST']
+MONGO_PORT = os.environ['MONGO_PORT']
 
 MONGO_NLP_DB = "NLP_db"
 MONGO_USER_DB = "users_db"
@@ -35,6 +29,7 @@ MONGODB_USER_URI = 'mongodb://%s:%s@%s:%s/%s?authSource=admin'%(MONGO_DB_USERNAM
                                                                 MONGO_HOST,
                                                                 MONGO_PORT,
                                                                 MONGO_USER_DB)
+                                                                
 app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -59,6 +54,14 @@ def main():
     try:
         cookie_name = request.cookies.get('_cdub_app_username')
         cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
+        try:
+            text = cookie_username[0]["downloads"][0]['data.csv']
+            text = text['']
+            image = appWordCloud(text=text)
+        except Exception as e:
+            print("%s \n moving on" % e)
+            text=None
+            pass
 
         if cookie_username is None:
             return redirect("/auth_app", code=302)
@@ -72,7 +75,7 @@ def main():
                 pass
 
             main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
-            return render_template('index.html', plot_url=plot_url)
+            return render_template('index.html', plot_url=plot_url, main_app=main_app)
 
     except Exception as e:
         print("%s \n moving on" % e)
@@ -119,7 +122,10 @@ def upload_file():
                     else:
                         filename = secure_filename(file.filename)
                         new_file = file.stream.read()
-                        text = new_file.decode("utf-8")
+                        if filename.endswith("txt"):
+                            text = new_file.decode("utf-8")
+                        else:
+                            text = main_app.read_in_pdf(file_in=file)
                         main_app.db.find_one_and_update({"username": main_app.username},
                                                         {"$set": {"uploads":
                                                         [{"filename": filename, "text": text}]}},
@@ -164,7 +170,7 @@ def complete_app():
     plot_data = Markup(user_downloads['plot_data.html'])
 
     return render_template("app_finish.html", html_in_browser=html_in_browser, plotly_chart=plotly_chart,
-                           json_ents_list=all_items, user=user_downloads, plot_data=plot_data)
+                           json_ents_list=all_items, user=user_downloads, plot_data=plot_data, main_app=main_app_user)
 
 
 @app.route('/nlp_project/out/<filename>/file', methods=['GET','POST'])

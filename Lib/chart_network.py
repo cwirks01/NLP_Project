@@ -100,7 +100,7 @@ def online_network_analysis(df_anb=None, num_of_occurrence=2):
 
         fig = go.Figure(data=[edge_trace, node_trace],
                         layout=go.Layout(
-                            title='<br>Network graph',
+                            title='Network graph',
                             titlefont_size=16,
                             showlegend=False,
                             hovermode='closest',
