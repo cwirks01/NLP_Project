@@ -71,8 +71,7 @@ def main():
                 plot_url = cloud_app(username=cookie_username['email'],db=NLP_db)
             except Exception as e:
                 print(e+"\nNew User, Repository has not been established yet.")
-                plot_url = False
-                pass
+                plot_url = None
 
             main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
             return render_template('index.html', plot_url=plot_url, main_app=main_app)
