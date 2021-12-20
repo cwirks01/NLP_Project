@@ -25,7 +25,9 @@ ENV FLASK_APP=wsgi.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Update aptitude with new repo
-RUN apt-get update
+RUN apt-get update&& \
+    # Install software
+    apt-get install -y git
 
 RUN mkdir -p /root/.ssh && \
     mkdir -p ~/logs 
@@ -37,9 +39,7 @@ RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
 # Add github key
 # Authorize SSH Host
 RUN touch /root/.ssh/known_hosts && \
-    touch /root/.ssh/config && \
-    # Install software
-    apt-get install -y git && \
+    touch /root/.ssh/config  && \
     ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 # Add the keys and set permissions
