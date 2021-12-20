@@ -47,11 +47,13 @@ def cloud_app(username=None, db=NLP_db):
     for index, i in new_text.iterrows():
         d[i['newItem']] = int(i['len_list'])
 
-    wordcloud = WordCloud(background_color="white").generate_from_frequencies(d)
+    wordcloud = WordCloud(background_color="white", width=800, height=400).generate_from_frequencies(d)
 
     # Display the generated image:
     plt.imshow(wordcloud, interpolation='bilinear')
+    plt.figure( figsize=(20,10), facecolor='k' )
     plt.axis("off")
+    plt.tight_layout(pad=0)
     
     data = BytesIO()
     plt.savefig(data, format='png')
