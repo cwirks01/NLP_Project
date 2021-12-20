@@ -40,5 +40,11 @@
             </form>
         </div>
     </div>
+    {% if plot_url %}
+    <section>
+        <h2>WordCloud</h2>
+        <img src="data:image/png;base64, {{ plot_url }}">
+    </section>
+    {% endif %}
 </div>
 {% endblock %}

@@ -3,6 +3,7 @@ import os
 import jsonify
 
 from Lib.spacy_sent_connections import spacy_sent_connections
+from Lib.wordCloudApp import cloud_app
 
 from pymongo import MongoClient, ReturnDocument
 from werkzeug.utils import secure_filename
@@ -63,8 +64,15 @@ def main():
             return redirect("/auth_app", code=302)
                 
         else:
+            try:
+                plot_url = cloud_app(username=cookie_username['email'],db=NLP_db)
+            except Exception as e:
+                print(e+"\nNew User, Repository has not been established yet.")
+                plot_url = False
+                pass
+
             main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
-            return render_template('index.html')
+            return render_template('index.html', plot_url=plot_url)
 
     except Exception as e:
         print("%s \n moving on" % e)
