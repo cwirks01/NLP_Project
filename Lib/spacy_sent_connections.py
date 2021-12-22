@@ -51,6 +51,7 @@ class gui_tkinter:
                                                         title='Open file to read',
                                                         filetypes=(("Text Document", "*.txt"),
                                                                    ("Adobe Acrobat Document", "*.pdf"),
+                                                                   ("Microsoft Word Document", "*.doc"),
                                                                    ("All Files", "*.*")))
         return filePathName
 

@@ -41,7 +41,7 @@ mongo = PyMongo(app)
 
 ROOT = os.getcwd()
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json", "doc"}
 
 
 def allowed_file(filename):
@@ -95,7 +95,8 @@ def upload_file():
         if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
             main_app.db.find_one_and_update({"username": main_app.username},
-                                            {"$set": {"uploads": [text]}},
+                                            {"$set": {"uploads": 
+                                            [{"filename": "freeTextInput", "text": text}]}},
                                             return_document=ReturnDocument.AFTER)
 
         else:
@@ -114,7 +115,7 @@ def upload_file():
                     else:
                         filename = secure_filename(file.filename)
                         new_file = file.stream.read()
-                        if filename.endswith("txt"):
+                        if filename.endswith("txt") or filename.endswith("doc"):
                             text = new_file.decode("utf-8")
                         else:
                             text = main_app.read_in_pdf(file_in=file)
