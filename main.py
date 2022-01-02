@@ -3,7 +3,7 @@ import os
 import jsonify
 
 from Lib.spacy_sent_connections import spacy_sent_connections
-from Lib.app_word_cloud import appWordCloud
+from Lib.wordCloudApp import cloud_app
 
 from pymongo import MongoClient, ReturnDocument
 from werkzeug.utils import secure_filename
@@ -41,7 +41,7 @@ mongo = PyMongo(app)
 
 ROOT = os.getcwd()
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json"}
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', "json", "doc"}
 
 
 def allowed_file(filename):
@@ -54,24 +54,23 @@ def main():
     try:
         cookie_name = request.cookies.get('_cdub_app_username')
         cookie_username = user_db.users_db.user.find_one({"_cookies":cookie_name})
-        try:
-            text = cookie_username[0]["downloads"][0]['data.csv']
-            text = text['']
-            image = appWordCloud(text=text)
-        except Exception as e:
-            print("%s \n moving on" % e)
-            text=None
-            pass
 
         if cookie_username is None:
             return redirect("/auth_app", code=302)
                 
         else:
+            try:
+                plot_url = cloud_app(username=cookie_username['email'], db=NLP_db)
+
+            except Exception as e:
+                print("%s \nNew User, Repository has not been established yet." % e)
+                plot_url = None
+
             main_app = spacy_sent_connections(username=cookie_username['email'], db=NLP_db.NLP_db)
-            return render_template('index.html', main_app=main_app)
+            return render_template('index.html', plot_url=plot_url, main_app=main_app)
 
     except Exception as e:
-        print("%s \n moving on" % e)
+        print("%s \nmoving on" % e)
         pass
         return redirect("/auth_app", code=302)
 
@@ -96,7 +95,8 @@ def upload_file():
         if not request.form.getlist("FreeInputText") in [[''], None]:
             text = request.form.getlist("FreeInputText")[0]
             main_app.db.find_one_and_update({"username": main_app.username},
-                                            {"$set": {"uploads": [text]}},
+                                            {"$set": {"uploads": 
+                                            [{"filename": "freeTextInput", "text": text}]}},
                                             return_document=ReturnDocument.AFTER)
 
         else:
@@ -115,7 +115,7 @@ def upload_file():
                     else:
                         filename = secure_filename(file.filename)
                         new_file = file.stream.read()
-                        if filename.endswith("txt"):
+                        if filename.endswith("txt") or filename.endswith("doc"):
                             text = new_file.decode("utf-8")
                         else:
                             text = main_app.read_in_pdf(file_in=file)

@@ -18,7 +18,7 @@
         <div>
                 <div>
                     <form method="POST" action="/nlp_project" enctype='multipart/form-data'>
-                        <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv" multiple="true"/>
+                        <input type="file" name="inputFileNames" accept=".txt, .pdf, .csv, .doc" multiple="true"/>
                             <label>Load files for processing.</label>
                                 <br>
                             <input type="file" name="inputFileNames" accept=".json" id="logo"/>
@@ -40,5 +40,14 @@
             </form>
         </div>
     </div>
+    {% if plot_url %}
+    <br>
+    <div class="box-boarder">
+        <section>
+            <h2 style="text-align: center;">WordCloud of Last Run</h2>
+            <img src="data:image/png;base64, {{ plot_url }}">
+        </section>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
