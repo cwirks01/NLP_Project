@@ -1,5 +1,18 @@
 {
-    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\cwirk\\anaconda3\\python.exe",
     "python.envFile": "${workspaceFolder}/.env",
-    "DockerRun.DisableAutoGenerateConfig": true
+    "python.condaPath": "C:\\Users\\cwirk\\anaconda3\\Scripts\\conda.exe",
+    "DockerRun.DisableAutoGenerateConfig": true,
+    "python.defaultInterpreterPath": "C:\\Users\\cwirk\\anaconda3\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.pylintEnabled": true,
+    "json.schemas": [],
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+          "source": "PowerShell",
+          "icon": "terminal-powershell",
+          "args": ["-ExecutionPolicy", "Bypass"]
+        }
+      },
+      "terminal.integrated.defaultProfile.windows": "PowerShell",
 }
